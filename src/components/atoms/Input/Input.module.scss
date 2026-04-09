@@ -1,0 +1,39 @@
+.c-input {
+  position: relative;
+  padding: $space-sm;
+  margin-top: $space-md;
+
+  &__wrapper {
+    height: 40px;
+  }
+
+  &--error {
+    border-color: $color-error;
+    color: $color-error;
+    font-size: $font-xs;
+  }
+
+  &__label {
+    position: relative;
+    left: 10px;
+    top: -32px;
+    transform: translateY(-50%);
+    transition: all 0.2s ease;
+    font-size: $font-base;
+  }
+
+  &__field {
+    border-bottom: 1px solid $color-border;
+    width: 100%;
+    padding: $space-sm 0;
+    font-size: $font-base;
+    background: transparent;
+  }
+
+  &__field:focus + .c-input__label, .c-input__field:not(:placeholder-shown) + .c-input__label {
+    top: -62px;
+    left: 0;
+    font-size: $font-xs;
+    color: var(--primary-color);
+  }
+}

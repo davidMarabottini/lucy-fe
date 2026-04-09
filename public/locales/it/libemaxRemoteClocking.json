@@ -1,0 +1,13 @@
+{
+  "title": "Timbrature remote",
+  "table": {
+    "name": "Nome",
+    "location": "Timbratura",
+    "distance": "Distanza",
+    "phone": "Telefono"
+  },
+  "additionalMessage": {
+    "loading": "Caricamento...",
+    "errorLoading": "Errore caricamento utenti remoti"
+  }
+}

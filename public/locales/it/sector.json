@@ -1,0 +1,31 @@
+{
+  "list": {
+    "title": "Settore",
+    "table": {
+      "id": "ID",
+      "name": "Nome",
+      "description": "Descrizione",
+      "actions": "Azioni"
+    },
+    "delete": {
+      "bodyQuestion": "Sei sicuro di voler eliminare questo settore?",
+      "bodyTable": {
+        "id": "ID",
+        "name": "Nome",
+        "description": "Descrizione"
+      },
+      "confirmButton": "Elimina",
+      "cancelButton": "Annulla"
+    }
+  },
+  "insert": {
+    "title": "Inserisci settore",
+    "form": {
+      "name": {"label": "Nome"},
+      "description": {"label": "Descrizione"},
+      "submit": "Salva",
+      "reset": "Annulla"
+    },
+    "keepInPage": "Rimani in pagina"
+  }
+}

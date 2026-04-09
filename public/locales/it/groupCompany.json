@@ -1,0 +1,50 @@
+{
+  "list": {
+    "title": "Società del Gruppo",
+    "table": {
+      "name": "Ragione Sociale",
+      "vat_number": "Partita IVA",
+      "sectors": "Settori",
+      "actions": "Azioni"
+    },
+    "delete": {
+      "title": "Elimina Società",
+      "bodyQuestion": "Sei sicuro di voler eliminare questa società?",
+      "bodyTable": {
+        "name": "Ragione Sociale",
+        "vat_number": "Partita IVA"
+      },
+      "confirmButton": "Elimina",
+      "cancelButton": "Annulla"
+    },
+    "additiveMessages": {
+      "loading": "Caricamento società...",
+      "updateError": "Errore durante il recupero delle società."
+    }
+  },
+  "insert": {
+    "title": "Inserisci nuova società",
+    "form": {
+      "name": {
+        "label": "Ragione Sociale",
+        "error": {
+          "required": "La ragione sociale è obbligatoria"
+        }
+      },
+      "vat_number": {
+        "label": "Partita IVA"
+      },
+      "sectors": {
+        "selection_title": "Assegnazione Settori",
+        "available": "Settori disponibili",
+        "selected": "Settori assegnati",
+        "none_selected": "Trascina o clicca un settore per assegnarlo",
+        "error": {
+          "required": "Seleziona almeno un settore di competenza"
+        }
+      },
+      "submit": "Salva",
+      "reset": "Annulla"
+    }
+  }
+}

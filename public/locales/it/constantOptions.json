@@ -1,0 +1,19 @@
+{
+  "gender": {
+    "male": "Maschio",
+    "female": "Femmina",
+    "other": "Altro"
+  },
+  "mail_insert": {
+    "file": "File",
+    "text": "Testo"
+  },
+  "domain": {
+    "mail": "Mail",
+    "sms": "SMS"
+  },
+  "outcome": {
+    "spam": "Spam",
+    "ham": "Legittima"
+  }
+}

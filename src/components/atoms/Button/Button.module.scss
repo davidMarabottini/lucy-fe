@@ -1,0 +1,58 @@
+.c-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: $radius-sm;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &--primary {
+    background-color: $color-primary;
+    color: #fff;
+
+    &:hover {
+      background-color: $color-primary-hover;
+    }
+  }
+
+  &--secondary {
+    background-color: $color-secondary;
+    color: #fff;
+
+    &:hover {
+      background-color: $color-secondary-hover;
+    }
+  }
+
+  &--success {
+    background-color: $color-success;
+    color: #fff;
+
+    &:hover {
+      background-color: $color-success-text;
+    }
+  }
+
+  &--error {
+    background-color: $color-error;
+    color: #fff;
+
+    &:hover {
+      background-color: $color-error-text;
+    }
+  }
+
+  &--rounded {
+    border-radius: $radius-lg;
+  }
+
+  &--disabled {
+    background-color: $color-border;
+    color: $color-text-muted;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: $color-border;
+    }
+  }
+}

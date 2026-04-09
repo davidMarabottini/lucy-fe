@@ -1,0 +1,62 @@
+sms
+
+Action Required: Your Santander account has been temporarily locked due to suspicious activity. Please verify your identity immediately at: https://santander-secure-auth.com/login to avoid permanent suspension.
+
+mail
+
+Return-Path: <security-alert@update-service.com>
+Received: from 192.168.1.10 ([103.45.201.12])
+	by mx.google.com with ESMTPS id j18si2103442;
+	Mon, 15 Dec 2025 10:20:45 -0800
+Received: from 10.0.0.5 by 103.45.201.12; Mon, 15 Dec 2025 18:18:12 +0000
+Message-ID: <K9A2B3C4D5E6F7G8H9I0@service-check.net>
+From: "Blockchain Support" <security-alert@update-service.com>
+Reply-To: "Blockchain Support" <no-reply@verification-portal.io>
+To: target-user@example.com
+Subject: Urgent: Your Wallet Access is Expiring Soon!
+Date: Mon, 15 Dec 2025 19:15:22 +0100
+X-Mailer: Microsoft Outlook 16.0
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="--4492710385529104726"
+X-Priority: 1 (Highest)
+Status: U
+Content-Length: 1150
+
+----4492710385529104726
+Content-Type: text/html;
+Content-Transfer-Encoding: 7Bit
+
+<html>
+<body bgcolor="#f4f4f4">
+<div style="font-family: Arial, sans-serif; padding: 20px;" align="center">
+<table style="border: 2px solid #ff0000; max-width: 600px;" cellpadding="20" cellspacing="0" bgcolor="#ffffff">
+<tr>
+<td align="center" style="background-color: #ff0000; color: #ffffff;">
+<h2 style="margin: 0;">SECURITY ALERT</h2>
+</td>
+</tr>
+<tr>
+<td>
+<p>Our automated system has detected an unauthorized login attempt from a new IP address in <b>Moscow, RU</b>.</p>
+<p>To protect your assets, your account has been placed under a temporary restriction.</p>
+</td>
+</tr>
+<tr>
+<td bgcolor="#ffffcc" align="center">
+<a href="http://secure-wallet-validation.biz/verify-account" style="font-size: 18px; color: #d32f2f; font-weight: bold; text-decoration: none;">
+CLICK HERE TO RESTORE ACCESS IMMEDIATELY
+</a>
+</td>
+</tr>
+<tr>
+<td align="center">
+<small style="color: #999999;">If you do not complete this verification within 24 hours, your funds may be permanently inaccessible.</small>
+</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+
+----4492710385529104726--

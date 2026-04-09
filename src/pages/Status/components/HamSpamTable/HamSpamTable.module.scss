@@ -1,0 +1,29 @@
+.c-ham-spam-table {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+  margin-top: $space-lg;
+
+  &__row {
+    display: flex;
+    gap: $space-md;
+  }
+
+  &__cell {
+    @include flex-center;
+    gap: $space-sm;
+    padding: $space-xs;
+    width: 100%;
+    border-radius: $radius-sm
+  }
+
+  &__cell--ham {
+    border: 2px solid $color-success;
+    color:  $color-success;
+  }
+
+  &__cell--spam {
+    border: 2px solid $color-error;
+    color: $color-error;
+  }
+}

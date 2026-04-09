@@ -1,0 +1,46 @@
+git clone https://github.com/davidMarabottini/bayes_spam_detector.git
+git clone https://github.com/davidMarabottini/fe-spam-detector.git
+
+entra nella cartella dove hai clonato il backend (cd bayes_spam_detector)
+python -m venv venv
+.\venv\Scripts\activate
+pip install -r requirements.txt
+py run.py
+
+entra nella cartella dove hai clonato il frontend (cd fe-spam-detector)
+inserisci il file .env con il seguente valore
+VITE_API_URL=http://localhost:5000
+npm install
+npm run dev
+
+http://localhost:5173/
+
+il login è moccato lato python, accetta qualsiasi cosa
+
+esempio formato mail
+
+Return-Path: <events@university.edu>
+Received: from mail.university.edu (88.31.99.22) by mail-hub.com with ESMTP id UNI4466;
+    Thu, 12 Dec 2025 10:30:00 -0500
+Message-ID: <UNI4466.ABCD@university.edu>
+From: "University Events" <events@university.edu>
+To: user@domain.com
+Subject: Claim Your Exclusive $5000 Research Grant Now!
+Date: Thu, 12 Dec 2025 16:30:00 +0100
+X-Priority: 3 (Normal)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Status: RO
+Content-Length: 420
+Lines: 10
+
+Dear Participant,
+
+Congratulations! You have been selected to receive an exclusive $5000 Research Grant from our University.
+
+To claim your grant, simply provide your personal details and banking information by replying to this email.
+
+Hurry, this offer is valid for a limited time only!
+
+University Events Office

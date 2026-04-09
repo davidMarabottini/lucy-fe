@@ -1,0 +1,74 @@
+{
+  "auth": {
+    "login": {
+      "success": "Login avvenuto con successo",
+      "401": "Username o password errata",
+      "500": "Errore del server",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "logout": {
+      "success": "Logout avvenuto con successo",
+      "401": "Non sei autorizzato a effettuare il logout",
+      "500": "Errore del server",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    }
+  },
+  "me": {
+    "get": {
+      "401": "Non hai i permessi per visualizzare i tuoi dati",
+      "500": "Errore del server",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "update": {
+      "success": "Dati personali modificati correttamente",
+      "401": "Non hai i permessi per modificare i tuoi dati",
+      "500": "Errore del server",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "insert": {
+      "success": "Utente registrato con successo",
+      "401": "Non hai i permessi per registrare un utente",
+      "500": "Errore del server",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    }
+  },
+  "content": {
+    "insert": {
+      "mail": {
+        "success": "Mail inserita correttamente",
+        "401": "Non hai i permessi per inserire questa mail",
+        "500": "Errore del server"
+      },
+      "sms": {
+        "success": "SMS inserito correttamente",
+        "401": "Non hai i permessi per inserire questo SMS",
+        "500": "Errore del server"
+      }
+    }
+  },
+  "analyze": {
+    "mail": {
+      "success": "Mail analizzata",
+      "401": "Non hai i permessi per analizzare questa mail",
+      "500": "Errore del server"
+    },
+    "sms": {
+      "success": "SMS analizzato",
+      "401": "Non hai i permessi per analizzare questo SMS",
+      "500": "Errore del server"
+    }
+  },
+  "updateUser": {
+    "success": "Dati personali modificati correttamente",
+    "401": "Non hai i permessi per modificare i tuoi dati",
+    "500": "Errore del server"
+  },
+  "logout": {
+    "success": "Logout avvenuto con successo"
+  }
+}

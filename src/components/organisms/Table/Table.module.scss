@@ -1,0 +1,97 @@
+.c-table {
+  width: 100%;
+
+  &__inner {
+    display: block;
+  }
+
+  &__header {
+    display: none;
+  }
+
+  &__row {
+    display: block;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  &__cell {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 4px 0;
+
+    &::before {
+      content: attr(data-label);
+      font-weight: 600;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+  }
+
+  @include mq($bp-tablet) {
+    overflow-x: auto;
+
+    &__inner {
+      display: table;
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    &__header {
+      display: table-header-group;
+      font-weight: bold;
+    }
+
+    &__row {
+      display: table-row;
+      padding: 0;
+      border: none;
+    }
+
+    &__cell {
+      display: table-cell;
+      padding: 8px;
+      border-bottom: 1px solid #eee;
+      white-space: nowrap;
+
+      &::before {
+        content: none;
+      }
+    }
+  }
+}
+
+// .c-table {
+//   width: 100%;
+//   overflow-x: auto;
+
+//   &__inner {
+//     min-width: 600px;
+//     display: table;
+//     width: 100%;
+//     border-collapse: collapse;
+//   }
+
+//   &__header {
+//     display: table-header-group;
+//     font-weight: bold;
+//   }
+
+//   &__row {
+//     display: table-row;
+//     width: 100%;
+//   }
+
+//   &__cell {
+//     display: table-cell;
+//     padding: 8px;
+//     border-bottom: 1px solid #eee;
+//     white-space: nowrap;
+//   }
+//   @include mq($bp-tablet) {
+//     &__inner {
+//       min-width: 100%;
+//     }
+//   }
+// }

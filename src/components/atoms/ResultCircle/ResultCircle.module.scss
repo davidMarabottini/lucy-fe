@@ -1,0 +1,40 @@
+.c-result-circle {
+  width: 200px;
+  height: 200px;
+
+  --c-result-circle-color: #{$color-text-muted};
+  --c-result-circle-text-color: #{$color-text-muted-dark};
+
+  :global(.CircularProgressbar) {
+    width: 100%;
+    vertical-align: middle;
+  }
+
+  :global(.CircularProgressbar-trail) {
+    stroke: $color-border;
+    stroke-linecap: round;
+  }
+
+  :global(.CircularProgressbar-path) {
+    stroke: var(--c-result-circle-color);
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.5s ease;
+  }
+
+  :global(.CircularProgressbar-text) {
+    fill:  var(--c-result-circle-text-color);
+    font-size: 20px;
+    dominant-baseline: middle;
+    text-anchor: middle;
+  }
+
+  &--spam {
+    --c-result-circle-color: #{$color-error};
+    --c-result-circle-text-color: #{$color-error-text};
+  }
+
+  &--legit {
+    --c-result-circle-color: #{$color-success};
+    --c-result-circle-text-color: #{$color-success-text};
+  }
+}

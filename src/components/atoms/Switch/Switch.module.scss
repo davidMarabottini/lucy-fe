@@ -1,0 +1,52 @@
+.c-switch {
+  display: flex;
+  flex-direction: row;
+  gap: $space-sm;
+  cursor: pointer;
+
+  --switch-trackback-border: #{$color-error-text};
+  --switch-trackback-bg: #{$color-error};
+  --margin-left: 0;
+
+  &--indeterminate {
+    --switch-trackback-border: #{$color-border};
+    --switch-trackback-bg: #{$color-canvas};
+    --margin-left:15px;
+  }
+
+  &--checked {
+    --switch-trackback-border: #{$color-success-text};
+    --switch-trackback-bg: #{$color-success};
+    --margin-left:30px;
+  }
+
+  &__checkbox {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &__trackback {
+    width: 60px;
+    height: 30px;
+    background: var(--switch-trackback-bg);
+    border: 3px solid var(--switch-trackback-border);
+    border-radius: $radius-lg;
+    display: flex;
+    align-items: center;
+
+    svg {
+      color: var(--switch-trackback-border);
+    }
+  }
+
+  &__point {
+    height:25px;
+    aspect-ratio: 1;
+    background: $color-surface;
+    border-radius: $radius-full;
+    transition-duration: .5s;
+    border: 3px solid $color-border;
+    margin-left: var(--margin-left)
+  }
+}

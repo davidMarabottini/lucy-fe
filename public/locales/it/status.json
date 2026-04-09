@@ -1,0 +1,29 @@
+{
+  "title": "User Status",
+
+  "contribution": {
+    "title": "Panoramica contributi",
+    "areas": {
+      "mail": "Mail",
+      "sms": "SMS"
+    }
+  },
+
+  "progress": {
+    "title": "Progresso",
+    "level": "Livello {{level}}"
+  },
+
+  "badges": {
+    "title": "Badges"
+  },
+
+  "privileges": {
+    "title": "Privilegi"
+  },
+
+  "buttons": {
+    "newMessage": "Inserisci nuovo messaggio",
+    "cronology": "Cronologia"
+  }
+}

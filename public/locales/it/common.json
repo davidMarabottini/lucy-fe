@@ -1,0 +1,25 @@
+{
+  "app": {
+    "title": "LUCY",
+    "version": "1.0.0"
+  },
+  "sideMenu": {
+    "title": "Menu"
+  },
+  "domains": {
+    "types": {
+      "mail": "Email",
+      "sms": "SMS"
+    },
+    "classifications": {
+      "ham": "Legittimo",
+      "spam": "Spam"
+    }
+  },
+  "header": {
+    "actions": {
+      "openMenu": "Apri menu",
+      "logout": "Logout"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "user": {
+    "username": "User123",
+    "level": 3,
+    "nextLevelProgress": 78,
+    "rank": "Expert Contributor"
+  },
+  "contributions": {
+    "mail": { "ham": 12, "spam": 7 },
+    "sms": { "ham": 5, "spam": 8 }
+  },
+  "privileges": [
+    "Accesso api con sconto 20%",
+    "Utilizzo validazione manuale illimitato",
+    "Prestazioni massime"
+  ],
+  "badges": [
+    { "id": 1, "name": "Fast Responder", "icon": "Zap" },
+    { "id": 2, "name": "Early Bird", "icon": "Sun" },
+    { "id": 3, "name": "Accuracy Guru", "icon": "Target" }
+  ]
+}

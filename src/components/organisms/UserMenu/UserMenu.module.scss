@@ -1,0 +1,83 @@
+.c-user-menu {
+  &__chevron-opened {
+    transform: rotate(180deg);
+  }
+
+  &__user-info {
+    @include flex-center;
+    
+    gap: $space-sm;
+    line-height: 1.2;
+  }
+
+   &__username {
+    font-weight: 600;
+    color: $color-text-main;
+    font-size: 1rem;
+  }
+
+  &__list {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 160px;
+    background-color: $color-surface;
+    border-radius: 6px;
+    box-shadow: $shadow-md;
+    z-index: 100;
+    overflow: hidden;
+    animation: slideDown 0.2s ease-out;
+
+    > li {
+      list-style: none;
+      margin: 0;
+      border-bottom: 2px solid $color-border;
+
+      > a {
+        display: block;
+        padding: $space-sm;
+        cursor: pointer;
+        &:hover {
+          background: $color-border;
+        }
+      }
+      > div {
+        display: block;
+        padding: 0 $space-sm;
+      }
+    }
+  }
+  
+  &__submenu-toggle {
+    display: flex;
+    gap: $space-sm-md;
+    padding: $space-sm;
+      cursor: pointer;
+      &:hover {
+        background: $color-border;
+      }
+  }
+
+  &__sublist {
+    min-width: 160px;
+    background-color: $color-surface;
+    animation: slideDown 0.2s ease-out;
+    display: flex;
+    justify-content: space-between;
+
+    > li {
+      list-style: none;
+      margin: 0;
+
+      > a {
+      display: block;
+      padding: $space-md;
+      cursor: pointer;
+
+      &:hover {
+        background: $color-border;
+      }
+    }
+    }
+  }
+}

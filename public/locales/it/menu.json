@@ -1,0 +1,26 @@
+{
+  "labels": {
+    "home": "Home",
+    "login": "Login",
+    "registration": "Aggiungi utente",
+    "status": "Status",
+    "cronology": "Cronologia",
+    "insert": "Inserisci",
+    "user": "User",
+    "userList": "Lista utenti",
+    "userDatas": "Dati",
+    "settings": "Settaggi",
+    "analyze": "Analizza",
+    "logout": "Logout",
+    "sectors": "Settori",
+    "sectorInsert": "Inserisci settore",
+    "libemaxEmployees": "Anagrafica dipendenti",
+    "libemaxClients": "Anagrafica clienti",
+    "libemaxMissingClocking": "Timbrature mancanti",
+    "libemaxRemoteClocking": "Timbrature remote",
+    "groupCompanies": "Società interne",
+    "contractList": "Contratti",
+    "workScheduleTypes": "Tipologie Orario",
+    "workActivities": "Attività"
+  }
+}

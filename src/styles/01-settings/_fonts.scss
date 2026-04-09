@@ -1,0 +1,32 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('../../assets/fonts/InterVariable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+$font-family-base: 'Inter', sans-serif;
+$font-family-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+$font-size-root: 16px;
+
+$font-xs: 12px;
+$font-sm: 14px;
+$font-base: 16px;
+$font-md: 18px;
+$font-lg: 20px;
+$font-xl: 24px;
+$font-2xl: 32px;
+$font-3xl: 40px;
+
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+$line-height-base: 1.5;
+$line-height-tight: 1.2;
+
+$letter-spacings-tight: -0.02em;
+$letter-spacings-normal: 0;
+$letter-spacings-wide: 0.05em;

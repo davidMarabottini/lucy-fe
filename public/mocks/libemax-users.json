@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "nome": "Mario Rossi",
+    "contrattoOreGiornaliere": 8
+  },
+  {
+    "id": 2,
+    "nome": "Luca Bianchi",
+    "contrattoOreGiornaliere": 6
+  }
+]

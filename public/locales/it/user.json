@@ -1,0 +1,79 @@
+{"list": {
+  "title": "Lista Utenti",
+  "table": {
+    "name": "Nome",
+    "surname": "Cognome",
+    "email": "Email",
+    "phone": "Telefono",
+    "username": "Username",
+    "roles": "Ruoli"
+  },
+  "modal.delete": {
+    "header":"Cancellazione utente",
+    "bodyQuestion": "Vuoi davvero cancellare l'utente ?",
+    "bodyTable": {
+      "id": "ID",
+      "name": "Nome",
+      "surname": "Cognome",
+      "email": "Email",
+      "username": "Username",
+      "roles": "Ruoli"
+    }
+  }
+}, "insert": {
+  "title": "Registraione",
+  "form": {
+    "name": {
+      "label": "Nome",
+      "error": {
+        "required": "Nome Richiesto"
+      } 
+    },
+    "surname": {
+      "label": "Cognome",
+      "error": {
+        "required": "Cognome Richiesto"
+      } 
+    },
+    "birthday": {
+      "label": "Data di nascita",
+      "error": {
+        "required": "Data di nascita Richiesta"
+      } 
+    },
+    "gender": {
+      "label": "Genere:",
+      "error": {
+        "required": "Genere Richiesto"
+      }
+    },
+    "email": {
+      "label": "Email",
+      "error": {
+        "required": "Email Richiesta",
+        "errorFormat": "Email in formato errato"
+      } 
+    },
+    "username": {
+      "label": "Username",
+      "error": {
+        "required": "Username Richiesto"
+      } 
+    },
+    "password": {
+      "label": "Password",
+      "error": {
+        "required": "Password Richiesta"
+      }
+    },
+    "repeatPassword": {
+      "label": "Ripeti Password",
+      "error": {
+        "required": "Password Richiesta"
+      }
+    },
+    "submit": "Registrati"
+  },
+  "login": "Sei gia iscritto ? <0>loggati</0>"
+}
+}

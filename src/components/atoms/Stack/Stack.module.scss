@@ -1,0 +1,10 @@
+.c-stack {
+  display: flex;
+
+  &--column {flex-direction: column;}
+  &--row {flex-direction: row; flex-wrap: wrap}
+
+  &--lg {gap: $space-lg}
+  &--md {gap: $space-md}
+  &--sm {gap: $space-sm}
+}

@@ -1,0 +1,50 @@
+.p-insert-sector {
+  &__card-title {
+    margin-top: $space-lg;
+    margin-bottom: $space-lg;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__card-title-internal {
+     display: flex;
+     justify-content: space-between;
+     width: 100%;
+  }
+
+  &__title {
+    font-size: 2rem;
+    margin: 0;
+    color: $color-text-main;
+    text-transform: uppercase;
+  }
+
+  
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+    padding: $space-lg;
+  }
+
+  &__container {
+    margin: 0 auto;
+  }
+
+  &__login-link {
+    margin-top: $space-md;
+  }
+
+  &__button {
+    @include flex-center;
+    gap: $space-sm;
+  }
+
+  &__radio-icon-wrapper {
+    @include flex-center;
+  }
+
+  &__keep-in-page {
+    margin-top: $space-md;
+  }
+}

@@ -1,0 +1,47 @@
+@use "../abstracts" as *;
+
+.l-container {
+  width: 100%;
+  max-width: 1367px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $space-md;
+  padding-right: $space-md;
+}
+
+.l-grid {
+  display: grid;
+  width: 100%;
+  gap: $space-md; 
+
+  grid-template-columns: repeat(6, 1fr);
+
+  @include mq($bp-tablet) {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  &--no-gap {
+    gap: 0;
+  }
+
+  &__col {
+    grid-column: span 6;
+
+    @for $i from 1 through 12 {
+      &--span-#{$i} {
+        grid-column: span 6;
+
+        @include mq($bp-tablet) {
+          grid-column: span $i;
+        }
+      }
+      &--#{$i} {
+        grid-column: span $i;
+      }
+    }
+
+    &--break {
+      grid-column: 1 / -1;
+    }
+  }
+}

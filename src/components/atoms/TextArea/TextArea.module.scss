@@ -1,0 +1,29 @@
+.c-text-area {
+  position: relative;
+  padding: $space-sm;
+
+  &--error {
+    border-color: $color-error;
+    color: $color-error;
+    font-size: $font-xs;
+  }
+
+  &__label {
+    left: 10px;
+    margin-bottom: $space-md;
+    transform: translateY(-50%);
+    transition: all 0.2s ease;
+    font-size: $font-base;
+  }
+
+  &__field {
+    width: 100%;
+    min-height: 150px;
+    padding: $space-sm;
+    font-size: 1rem;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    resize: vertical;
+    background-color: $color-canvas;
+  }
+}

@@ -1,0 +1,16 @@
+.c-badge-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__image {
+    width: 60px;
+    aspect-ratio: 1;
+    border-radius: $radius-full;
+    background: #ccc;
+  }
+
+  &__text {
+
+  }
+}

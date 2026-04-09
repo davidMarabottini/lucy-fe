@@ -1,0 +1,29 @@
+.c-radio-btn {
+  &__container {
+    display: flex;
+
+    &--vertical {
+      flex-direction: column;
+    }
+
+    &--sm {
+      gap: $space-sm;
+    }
+
+    &--md {
+      gap: $space-md;
+    }
+
+    &--lg {
+      gap: $space-lg;
+    }
+  }
+
+  &__item-input {
+    &--ghost {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+}

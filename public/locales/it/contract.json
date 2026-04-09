@@ -1,0 +1,115 @@
+{
+  "list": {
+    "title": "Elenco Contratti",
+    "additiveMessages": {
+      "loading": "Caricamento contratti in corso...",
+      "updateError": "Si è verificato un errore durante il recupero dei contratti."
+    },
+    "table": {
+      "contract_code": "Codice Contratto",
+      "provider": "Azienda Provider",
+      "client": "Cliente",
+      "start_date": "Data Inizio",
+      "end_date": "Data Scadenza",
+      "description": "Descrizione"
+    },
+    "delete": {
+      "title": "Elimina Contratto",
+      "bodyQuestion": "Sei sicuro di voler eliminare definitivamente questo contratto? L'operazione non è reversibile.",
+      "bodyTable": {
+        "provider": "Azienda Provider",
+        "client": "Cliente",
+        "contract_code": "Codice",
+        "description": "Descrizione",
+        "group_company_id": "ID Azienda",
+        "start_date": "Data Inizio"
+      },
+      "success": "Contratto eliminato con successo",
+      "500": "Errore del server durante l'eliminazione",
+      "defaultError": "Impossibile eliminare il contratto"
+    }
+  },
+  "insert": {
+    "title": "Nuovo Contratto",
+    "form": {
+      "contract_code": {
+        "label": "Codice Contratto",
+        "required": "Il codice contratto è obbligatorio"
+      },
+      "date_range": {
+        "label": "Periodo Validità (Inizio - Fine)",
+        "required": "Selezionare il periodo di validità"
+      },
+      "provider": {
+        "label": "Azienda Provider",
+        "required": "Selezionare un'azienda provider"
+      },
+      "client": {
+        "label": "Cliente",
+        "required": "Selezionare un cliente"
+      },
+      "description": {
+        "label": "Note / Descrizione del contratto"
+      }
+    },
+    "submit": "Salva Contratto",
+    "reset": "Pulisci Campi",
+    "success": "Contratto creato con successo",
+    "500": "Errore interno del server durante il salvataggio",
+    "defaultError": "Si è verificato un errore imprevisto",
+    "keepInPage": "Rimani in pagina"
+  },
+  
+  "details": {
+    "title": "Dettaglio Contratto",
+    "no_client": "Cliente non specificato",
+    "ongoing": "In corso",
+    "activities_list": "Pianificazione Attività",
+    "loading": "Caricamento dettagli contratto...",
+    "errorLoading": "Errore durante il caricamento del contratto.",
+    "fields": {
+      "period": "Periodo",
+      "provider": "Fornitore"
+    },
+    "form": {
+      "add_activity": "Aggiungi Nuova Attività",
+      "type": {
+        "label": "Tipo di Orario",
+        "error": "Selezionare un tipo di orario"
+      },
+      "weekly_hours": {
+        "label": "Ore Settimanali",
+        "error": "Inserire il numero di ore"
+      },
+      "day": {
+        "label": "Giorno della Settimana",
+        "error": "Selezionare un giorno"
+      },
+      "start": {
+        "label": "Orario Inizio",
+        "error": "Orario di inizio obbligatorio"
+      },
+      "end": {
+        "label": "Orario Fine",
+        "error": "Orario di fine obbligatorio"
+      },
+      "reset": "Pulisci",
+      "save": "Salva Attività"
+    },
+    "table": {
+      "title": "Attività Pianificate",
+      "operator": "Operatore",
+      "day": "Giorno",
+      "hours": "Orario / Ore",
+      "activity_type": "Tipo Attività",
+      "actions": "Azioni",
+      "view_details": "Vedi",
+      "flexible": "Flessibile",
+      "weekly_short": "sett."
+    },
+    "filters": {
+      "user_label": "Filtra per Operatore"
+    }
+  }
+
+}

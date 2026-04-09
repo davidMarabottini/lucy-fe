@@ -1,0 +1,73 @@
+{
+  "list": {
+    "title": "Clienti libemax",
+
+    "table": {
+      "name": "Nome",
+      "phone": "Telefono",
+      "email": "Email",
+      "actions": "Azioni"
+    },
+    "modal.delete": {
+      "header":"Cancellazione cliente",
+      "bodyQuestion": "Vuoi davvero cancellare il cliente ?",
+      "bodyTable": {
+        "id": "ID",
+        "name": "Nome",
+        "phone": "Telefono",
+        "email": "Email"
+      }
+    },
+    "additiveMessages": {
+      "loading": "Caricamento...",
+      "updateError": "Errore caricamento clienti"
+    }
+  }, "details": {
+    "title": "Dettagli cliente",
+    "contracts": "Contratti",
+    
+    "section": {
+      "contact": "Contatti",
+      "details": "Dettagli"
+    },
+
+    "client": {
+      "address": "Indirizzo: ",
+      "phone": "Telefono: ",
+      "email": "Email: ",
+      "hours": "Ore teoriche: ",
+      "schedule": "Schedule: "
+    },
+    
+    "additionalMessage": {
+      "loading": "Caricamento...",
+      "errorLoading": "Errore nel caricamento del cliente"
+    }
+  }, "insert": {
+    "title": "Aggiungi cliente",
+    "form": {
+      "name": {
+        "label": "Nome",
+        "error": {
+          "required": "Nome Richiesto"
+        } 
+      },
+      "phone": {
+        "label": "Telefono",
+        "error": {
+          "required": "Telefono Richiesto"
+        } 
+      },
+      "email": {
+        "label": "Email",
+        "error": {
+          "required": "Email Richiesta",
+          "errorFormat": "Email in formato errato"
+        } 
+      },
+      "submit": "Aggiungi",
+      "reset": "Reset"
+    },
+    "keepInPage": "Rimani in pagina"
+  }
+}

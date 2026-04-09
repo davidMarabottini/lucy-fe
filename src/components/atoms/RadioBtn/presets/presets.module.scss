@@ -1,0 +1,42 @@
+.pr-icon {
+  &__radiogroup {
+    display: flex;
+    flex-direction: column;
+    padding-left: $space-md;
+    gap: $space-lg;
+    
+    @include mq($bp-tablet) {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  &__radio-wrapper {
+    cursor: pointer;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: $color-text-muted;
+    transition: 0.2s;
+    font-weight: 700;
+
+    &:hover {
+      color: $color-text-main;
+      font-weight: 720;
+    }
+  }
+
+  &__radio-wrapper--selected {
+    color: $color-primary;
+
+    &:hover {
+      color: $color-primary-hover;
+    }
+  }
+
+  &__radio-icon-wrapper {
+    @include flex-center;
+  }
+}

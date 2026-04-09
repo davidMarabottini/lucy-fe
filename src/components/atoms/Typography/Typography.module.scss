@@ -1,0 +1,54 @@
+
+.c-typography {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  color: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &--h1 {
+    @include typography_h1;
+    letter-spacing: -0.02em;
+  }
+
+  &--h2 {
+    @include typography_h2;
+    letter-spacing: -0.02em;
+  }
+
+  &--h3 {
+    @include typography_h3;
+  }
+
+  &--h4 {
+    @include typography_h4;
+  }
+
+  &--body {
+    @include typography_body;
+  }
+
+  &--small {
+    @include typography_small;
+  }
+
+  &--muted {
+    color: $color-text-muted
+  }
+
+  &--primary {
+    color: $color-primary;
+  }
+
+  &--secondary {
+    color: $color-secondary;
+  }
+
+   &--success {
+    color: $color-success;
+  }
+
+  &--error {
+    color: $color-error;
+  }
+}

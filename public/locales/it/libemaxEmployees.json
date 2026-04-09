@@ -1,0 +1,12 @@
+{
+  "title": "Dipendenti",
+  "table": {
+    "name": "Nome",
+    "email": "Email",
+    "phone": "Telefono"
+  },
+  "additionalMessage": {
+    "loading": "Caricamento...",
+    "errorLoading": "Errore nel caricamento degli utenti"
+  }
+}

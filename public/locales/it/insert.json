@@ -1,0 +1,88 @@
+{
+  "formMail": {
+    "dropArea": {
+      "label": "Inserisci mail"
+    },
+    "labelInsert": "Oppure compila la form sottostante",
+    "language": {
+      "label": "Lingua mail",
+      "error": {
+        "required": "Lingua mail necessaria"
+      }
+    },
+    "isSpam": {
+      "label": "",
+      "error": {
+        "required": "Necessario indicare se siamo di fronte ad una mail leggittima o di spam"
+      }
+    },
+    "subject": {
+      "label": "Oggetto",
+      "error": {
+        "required": "Oggetto della mail necessario"
+      }
+    },
+    "from_name": {
+      "label": "Nome Mittente",
+      "error": {
+        "required": "Nome mittente necessario"
+      }
+    },
+    "from_mail": {
+      "label": "Mail Mittente",
+      "error": {
+        "required": "Mail Mittente necessaria",
+        "pattern.message": "La mail del mittente deve rispettare il formato della mail"
+      }
+    },
+    "to": {
+      "label": "Mail destinatario",
+      "error": {
+        "required": "Mail destinatario necessaria",
+        "pattern.message": "La mail destinatario deve rispettare il formato della mail"
+      }
+    },
+    "body_text": {
+      "label": "Contenuto",
+      "error": {
+        "required": "Contenuto mail necessario"
+      }
+    },
+    "is_html":{
+      "label": "Mail in HTML",
+      "error": {
+        "required": "Devi indicare se la mail è in HTML oppure testuale"
+      }
+    },
+    "submit": {
+      "label": "Inserisci mail"
+    },
+    "localToasts": {
+      "notFile": "Non è stato inserito alcun file",
+      "addedFile": "File aggiunto correttamente"
+    }
+  },
+  "formSMS": {
+    "language": {
+      "label": "Lingua SMS",
+      "error": {
+        "required": "Lingua SMS necessaria"
+      }
+    },
+    "isSpam": {
+      "label": "",
+      "error": {
+        "required": "Necessario indicare se siamo di fronte ad un sms leggittima o di spam"
+      }
+    },
+    "body_text": {
+      "label": "Contenuto",
+      "error": {
+        "required": "Contenuto sms necessario"
+      }
+    },
+    "submit": {
+      "label": "Inserisci sms"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+@use "../01-settings/settings" as *;
+@use "sass:meta";
+
+@mixin mobile {
+  @media (max-width: #{$bp-mobile}) {
+    @content;
+  }
+}
+
+@mixin mq($min) {
+  @media (min-width: $min) {
+    @content;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// TYPOGRAPHY
+
+@function rem($pixel) {
+  @return calc($pixel / $font-size-root) * 1rem;
+}
+
+@mixin typography($size, $weight: $font-weight-normal, $lh: $line-height-base) {
+  font-family: $font-family-base;
+  font-weight: $weight;
+  line-height: $lh;
+
+  $size-map: ();
+
+  @if meta.type-of($size) == "map" {
+    $size-map: $size;
+  } @else {
+    $size-map: (0: $size);
+  }
+
+  @each $breakpoint, $value in $size-map {
+    @if $breakpoint == 0 {
+      font-size: rem($value);
+    } @else {
+      @include mq($breakpoint) {
+        font-size: rem($value);
+      }
+    }
+  }
+}
+
+@mixin typography_h1{@include typography((0: $font-2xl, $bp-tablet: $font-3xl), $font-weight-medium, $line-height-tight)}
+@mixin typography_h2{@include typography((0: $font-xl, $bp-tablet: $font-2xl), $font-weight-medium, $line-height-tight)}
+@mixin typography_h3{@include typography((0: $font-lg, $bp-tablet: $font-xl), $font-weight-medium, $line-height-tight)}
+@mixin typography_h4{@include typography((0: $font-md, $bp-tablet: $font-lg), $font-weight-medium, $line-height-tight)}
+@mixin typography_body{@include typography($font-md, $font-weight-medium, $line-height-tight)}
+@mixin typography_small{@include typography($font-sm, $font-weight-medium, $line-height-tight)}

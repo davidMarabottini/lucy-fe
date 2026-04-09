@@ -1,0 +1,19 @@
+{
+  "title": "Entra",
+  "form": {
+    "username": {
+      "label": "Username",
+      "error": {
+        "required": "Username Richiesto"
+      } 
+    },
+    "password": {
+      "label": "Password",
+      "error": {
+        "required": "Password Richiesta"
+      } 
+    },
+    "submit": "Login"
+  },
+  "register": "Non sei ancora iscritto ? <0>fallo subito</0>"
+}

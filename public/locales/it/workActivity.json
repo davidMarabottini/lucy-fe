@@ -1,0 +1,30 @@
+{
+  "list": {
+    "title": "Attività lavorative",
+    "table": {
+      "filter": {"name": "Cerca per nome"},
+      "name": "Nome",
+      "description": "Descrizione",
+      "actions": "Azioni"
+    },
+    "delete": {
+      "bodyQuestion": "Sei sicuro di voler eliminare questa attività lavorativa?",
+      "bodyTable": {
+        "name": "Nome",
+        "description": "Descrizione"
+      },
+      "confirmButton": "Elimina",
+      "cancelButton": "Annulla"
+    }
+  },
+  "insert": {
+    "title": "Inserisci attività lavorativa",
+    "form": {
+      "name": {"label": "Nome"},
+      "description": {"label": "Descrizione"}
+    },
+    "submitButton": "Salva",
+    "cancelButton": "Annulla",
+    "keepInPage":"Tieni in pagina"
+  }
+}

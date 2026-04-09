@@ -1,0 +1,55 @@
+@use "../abstracts" as *;
+@use "sass:meta";
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: $font-family-base;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: $color-text-main;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: $color-text-main;
+}
+
+h1 { @include typography_h1; }
+h2 { @include typography_h2; }
+h3 { @include typography_h3; }
+h4 { @include typography_h4; }
+p { @include typography_body; }
+small { @include typography_small; }
+
+textarea, input, button {
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+}
+
+ul {
+  list-style: none;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+  background: $color-canvas;
+}

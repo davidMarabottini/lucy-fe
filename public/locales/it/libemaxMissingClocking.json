@@ -1,0 +1,14 @@
+{
+  "title": "Timbrature mancanti",
+
+  "table": {
+    "name": "Nome",
+    "expected_time": "Orario teorico",
+    "delay": "Ritardo attuale",
+    "phone": "Telefono"
+  },
+  "additionalMessage": {
+    "loading": "Caricamento...",
+    "errorLoading": "Errore nel caricamento delle timbrature mancanti"
+  }
+}

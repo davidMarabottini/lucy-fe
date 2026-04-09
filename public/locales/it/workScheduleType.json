@@ -1,0 +1,66 @@
+{
+  "list": {
+    "title": "Tipologie Orari di Lavoro",
+    "additiveMessages": {
+      "loading": "Caricamento tipologie in corso...",
+      "updateError": "Si è verificato un errore durante il recupero delle tipologie."
+    },
+    "table": {
+      "name": "Nome Tipologia",
+      "period": "Periodicità Controllo",
+      "frequency": "Frequenza",
+      "description": "Descrizione"
+    },
+    "periods": {
+      "DAY": "Giornaliero",
+      "WEEK": "Settimanale",
+      "MONTH": "Mensile",
+      "YEAR": "Annuale",
+      "FIXED": "Orario Fisso",
+      "NONE": "Nessun controllo (Vendita)"
+    },
+    "delete": {
+      "title": "Elimina Tipologia",
+      "bodyQuestion": "Sei sicuro di voler eliminare questa tipologia? Assicurati che non sia collegata a contratti attivi.",
+      "success": "Tipologia eliminata con successo",
+      "500": "Errore del server durante l'eliminazione",
+      "defaultError": "Impossibile eliminare la tipologia"
+    }
+  },
+  "insert": {
+    "title": "Nuova Tipologia Orario",
+    "form": {
+      "name": {
+        "label": "Nome Tipologia",
+        "required": "Il nome è obbligatorio"
+      },
+      "icon_name": {
+        "label": "Icona (Lucide Name)",
+        "placeholder": "es: Clock, Zap, Home"
+      },
+      "period": {
+        "label": "Tipo di Controllo / Periodo",
+        "options": {
+          "none": "Nessun controllo",
+          "day": "Giornaliero",
+          "week": "Settimanale",
+          "month": "Mensile",
+          "year": "Annuale",
+          "fixed": "Orario Fisso"
+        }
+      },
+      "frequency": {
+        "label": "Frequenza (Ogni quanti periodi)",
+        "minError": "La frequenza deve essere almeno 1"
+      },
+      "description": {
+        "label": "Descrizione / Note"
+      }
+    },
+    "submit": "Salva Tipologia",
+    "reset": "Annulla",
+    "success": "Tipologia creata con successo",
+    "500": "Errore interno del server",
+    "defaultError": "Si è verificato un errore imprevisto"
+  }
+}

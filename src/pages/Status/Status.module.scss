@@ -1,0 +1,68 @@
+.p-status {
+  padding-top: $space-md;
+
+  &__title {
+    margin: 0 auto;
+  }
+
+  &__subtitle {
+    margin: 0 auto;
+  }
+
+  &__ham-spam-head {
+    display: flex;
+    align-items: center;
+    gap: $space-sm;
+  }
+
+  &__contributions-card {
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+  }
+
+  &__progress-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-md;
+  }
+
+  &__badges-card {
+    display: flex;
+    gap: $space-md;
+    flex-direction: column;
+  }
+
+  &__priviledges-card {
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+  }
+
+  &__internal-priviledges-card {
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+
+    @include mq($bp-tablet) {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__priviledge {
+    border: 2px solid $color-success;
+    padding: $space-xs;
+    border-radius: $radius-sm;
+    display: flex;
+    justify-content: 'center';
+    gap: $space-xs;
+  }
+
+  &__buttons-card {
+    display: flex;
+    gap: $space-md;
+    flex-wrap: wrap;
+  }
+}
