@@ -58,8 +58,8 @@ export const getUserStatus = async (): Promise<UserStatusResult> => {
   return data;
 };
 
-export const getUsers = async (): Promise<UsersResult[]> => {
-  const { data } = await apiClient.get('/api/users');
+export const getUsers = async (params?: Record<string, unknown>): Promise<UsersResult[]> => {
+  const { data } = await apiClient.get('/api/users', { params });
   return data;
 };
 

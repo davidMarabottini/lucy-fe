@@ -14,14 +14,20 @@ import { ICON_PRESET } from '@/components/atoms/RadioBtn/presets/icon.presets';
 import { useOptions } from '@/hooks/useOptions';
 import type { AvailableGendersType } from '@/types/contentsFormDatas.types';
 import LinkComponent from '@/components/atoms/LinkComponent/LinkComponent';
+import { useState } from 'react';
+import Switch from '@/components/atoms/Switch/Switch';
+import type { UseFormReturn } from 'react-hook-form';
 
 const Registration = () => {
+  const [locNavigate, setLockNavigate] = useState<boolean>(false)
+  
   const {t} = useTranslation("user", {keyPrefix: "insert"});
-  const {mutate: insertUser, error} = useInsertUser();
+  const {mutate: insertUser, error} = useInsertUser(locNavigate);
 
-  const onSubmit = (values: RegistrationForm) => {
+  const onSubmit = (values: RegistrationForm, method: UseFormReturn<RegistrationForm>) => {
     const { repeatPassword: _repeatPassword, ...payload } = values;
     insertUser(payload);
+    method.reset()
   };
 
   const init = {
@@ -37,21 +43,21 @@ const Registration = () => {
 
   const { gender } = useOptions()
 
-  const btnClass = clsx(styles['p-registration__button'], "l-grid__col l-grid__col--span-6");
+  const btnClass = clsx(styles['p-insert-user__button'], "l-grid__col l-grid__col--span-6");
 
   return (
     <div>
-      <Card additionalClassName={styles["p-registration__card-title"]}>
-        <div className={styles["p-registration__card-title-internal"]}>
-            <Typography variant="h2" additionalClasses={styles["p-registration__title"]}>
+      <Card additionalClassName={styles["p-insert-user__card-title"]}>
+        <div className={styles["p-insert-user__card-title-internal"]}>
+            <Typography variant="h2" additionalClasses={styles["p-insert-user__title"]}>
               {t("title")}
             </Typography>
 
             <LinkComponent to={ROUTES.USER_LIST}><ChevronLeft /></LinkComponent>
         </div>
       </Card>
-      <Card additionalClassName={clsx(styles['p-registration'], "l-grid__col l-grid__col--span-12")}>
-        <div className={styles["p-registration__container"]}>
+      <Card additionalClassName={clsx(styles['p-insert-user'], "l-grid__col l-grid__col--span-12")}>
+        <div className={styles["p-insert-user__container"]}>
           {error && <Typography>errore</Typography>}
           <Form<RegistrationForm>
             defaultValues={init}
@@ -138,6 +144,12 @@ const Registration = () => {
               </div>
             </Stack>
           </Form>
+          <Switch
+            onChange={res => setLockNavigate(!!res)}
+            value={locNavigate}
+            label={t('keepInPage')}
+            additionalClassName={styles['p-insert-user__keep-in-page']}
+          />
         </div>
       </Card>
     </div>

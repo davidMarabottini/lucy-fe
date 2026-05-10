@@ -4,23 +4,11 @@ import Button from '@/components/atoms/Button/Button';
 import Input from '@/components/atoms/Input/Input';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import styles from './TablePaginated.module.scss';
-import type { TableColumn } from '../Table/Table.types';
 import { useDebounce } from '@/hooks/useDebounce';
+import type { PaginatedData, TablePaginatedProps } from './TablePaginated.types';
 
-export interface FilterConfig {
-  key: string;
-  placeholder: string;
-  label?: string;
-  value?: string;
-  type?: 'text' | 'hidden';
-}
-
-interface TablePaginatedProps<T extends object> {
-  useQueryHook: (params: Record<string, any>) => any;
-  columns: TableColumn<T>[];
-  actions?: ((row: T) => React.ReactNode)[];
-  initialPerPage?: number;
-  filterConfig?: FilterConfig[];
+function isPaginatedData<T>(data: T[] | PaginatedData<T>): data is PaginatedData<T> {
+  return data != null && !Array.isArray(data);
 }
 
 function TablePaginated<T extends object>({
@@ -31,26 +19,29 @@ function TablePaginated<T extends object>({
   filterConfig = [],
 }: TablePaginatedProps<T>) {
   const [page, setPage] = useState(1);
-  const baseFilter = filterConfig.reduce((acc, f) => f.value ? ({ ...acc, [f.key]: f.value || '' }): acc, {} as Record<string, string>);
+
+  const baseFilter = filterConfig.reduce(
+    (acc, f) => f.value ? ({ ...acc, [f.key]: f.value || '' }): acc, {} as Record<string, string>
+  );
+  
   const [filters, setFilters] = useState<Record<string, string>>(baseFilter);
   
   const nonHiddenFilters = filterConfig.filter(f => f.type !== 'hidden');
-  // Debounce dell'intero oggetto filtri
   const debouncedFilters = useDebounce(filters, 500);
 
   const { data, isLoading, isPlaceholderData } = useQueryHook({
     page,
     per_page: initialPerPage,
-    ...debouncedFilters, // Spalmiamo i filtri nell'oggetto parametri
+    ...debouncedFilters,
   });
 
-  const isPaginated = data && !Array.isArray(data);
-  const items = isPaginated ? data.items : (data || []);
-  const totalPages = isPaginated ? data.pages : 1;
+  const paginated = data && isPaginatedData(data);
+  const items = paginated ? data.items : (data || []);
+  const totalPages = paginated ? data.pages : 1;
 
   const handleFilterChange = (key: string, value: string) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
-    setPage(1); // Reset alla prima pagina ad ogni modifica dei filtri
+    setPage(1);
   };
 
   if (isLoading) return <div>Caricamento...</div>;
@@ -75,7 +66,7 @@ function TablePaginated<T extends object>({
         <Table data={items} columns={columns} actions={actions} />
       </div>
 
-      {isPaginated && totalPages > 1 && (
+      {paginated && totalPages > 1 && (
         <div className={styles['c-table-paginated__footer']}>
           <div className={styles['c-table-paginated__pagination']}>
             <Button

@@ -52,7 +52,6 @@ const InsertSector = () => {
           >
             <Stack spacing='md'>
               <div className="l-grid">
-                {/* Nome Settore */}
                 <Form.Input
                   className="l-grid__col l-grid__col--span-12"
                   name="name"
@@ -60,7 +59,6 @@ const InsertSector = () => {
                   rules={{ required: t('form.name.error.required') }}
                 />
                 
-                {/* Descrizione Settore */}
                 <Form.Input
                   className="l-grid__col l-grid__col--span-12"
                   name="description"

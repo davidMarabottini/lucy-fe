@@ -1,6 +1,5 @@
 import Card from "@components/atoms/Card/Card";
 import { useUsers } from "@/hooks/api/useUserHooks";
-import Table from "@/components/organisms/Table/Table";
 import Typography from "@/components/atoms/Typography/Typography";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { ROUTES } from "@/constants/routes";
@@ -12,9 +11,9 @@ import Button from "@/components/atoms/Button/Button";
 import { useState } from "react";
 import type { UsersResult } from "@/api/userService";
 import { DeleteModal } from "./components/DeleteModal/DeleteModal";
+import TablePaginated from "@/components/organisms/TablePaginated/TablePaginated";
 
 const User = () => {
-  const {data: users} = useUsers();
   const {t} = useTranslation("user", {keyPrefix: "list"});
   const { data: me } = useMe()
 
@@ -29,20 +28,35 @@ const User = () => {
 
   return (
     <div>
-      <DeleteModal openModal={openModal} setOpenModal={setOpenModal} curUser={curClient} />
+      {curClient && <DeleteModal
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        curUser={curClient}
+      />}
       <Card additionalClassName={styles["p-user-list__card-title"]}>
         <div className={styles["p-user-list__card-title-internal"]}>
-            <Typography variant="h2"
-            additionalClasses={styles["p-user-list__title"]}
+            <Typography
+              variant="h2"
+              additionalClasses={styles["p-user-list__title"]}
             >
               {t("title")}
             </Typography>
-            <LinkComponent to={ROUTES.REGISTRATION}><PlusCircle /></LinkComponent>
+            <LinkComponent
+              to={ROUTES.REGISTRATION}
+            >
+              <PlusCircle />
+            </LinkComponent>
         </div>
       </Card>
       <Card>
-        <Table<UsersResult>
-          data={users || []}
+        <TablePaginated<UsersResult>
+          useQueryHook={useUsers}
+          filterConfig={[
+            {key: 'name', placeholder: '', label: 'Cerca per nome'},
+            {key: 'surname', placeholder: '', label: 'Cerca per Cognome'},
+            {key: 'username', placeholder: '', label: 'Cerca per username'},
+            {key: 'email', placeholder: '', label: 'Cerca per email'}
+          ]}
           columns={[
             {key: 'name', header: t("table.name")},
             {key: 'surname', header: t("table.surname")},
@@ -62,7 +76,7 @@ const User = () => {
               ><Trash2 /></Button>
             
           ]}
-        />
+          />
       </Card>
     </div>
   )

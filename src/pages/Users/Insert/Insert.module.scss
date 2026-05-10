@@ -1,4 +1,4 @@
-.p-registration {
+.p-insert-user {
   &__card-title {
     margin-top: $space-lg;
     margin-bottom: $space-lg;
@@ -41,5 +41,9 @@
 
   &__radio-icon-wrapper {
     @include flex-center;
+  }
+
+  &__keep-in-page {
+    margin-top: $space-md;
   }
 }

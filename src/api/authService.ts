@@ -2,12 +2,12 @@ import apiClient from "./apiClient";
 import type { UserDetails, UserProfile, UpdateResponse } from "@/auth/types";
 
 export const login = async (credentials: {username: string, password: string}): Promise<UserProfile> => {
-  const { data } = await apiClient.post('/login', credentials);
+  const { data } = await apiClient.post('/api/login', credentials);
   return data;
 };
 
 export const logout = async (): Promise<void> => {
-  await apiClient.post('/logout');
+  await apiClient.post('/api/logout');
 };
 
 export const getMe = async (): Promise<UserProfile> => {

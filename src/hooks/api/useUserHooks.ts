@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const domain = 'me';
 
-export const useInsertUser = () => {
+export const useInsertUser = (locNavigate?: boolean) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
@@ -16,7 +16,10 @@ export const useInsertUser = () => {
     onSuccess: data => {
       queryClient.setQueryData(['result'], data);
       queryClient.invalidateQueries(['users']);
-      navigate('/users');
+
+      if (!locNavigate) {
+        navigate('/users');
+      }
     },
     successKey: `${domain}.insert.success`,
     errorMap: {
@@ -35,10 +38,10 @@ export const useUserStatus = () =>
     staleTime: 1000 * 60 * 5, 
   });
 
-export const useUsers = () =>
+export const useUsers = (params?: Record<string, unknown>) =>
   useAppQuery<userService.UsersResult[]>({
-    queryKey: ['users'],
-    queryFn: userService.getUsers,
+    queryKey: ['users', params],
+    queryFn: () => userService.getUsers(params),
     errorMap: {
       [ERROR_KINDS.UNAUTHORIZED]: `${domain}.missingClockin.401`,
       [ERROR_KINDS.SERVER]: `${domain}.missingClockin.500`,
@@ -54,7 +57,7 @@ export const useUsers = () =>
     return useAppMutation({
       mutationFn: userService.deleteUser,
       onSuccess: () => {
-        queryClient.invalidateQueries(['users']);
+        queryClient.invalidateQueries(['users', params]);
       },
       successKey: `${domain}.delete.success`,
       errorMap: {
