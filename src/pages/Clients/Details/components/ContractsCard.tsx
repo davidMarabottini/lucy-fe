@@ -5,6 +5,8 @@ import styles from "../Details.module.scss";
 import { useContracts } from "@/hooks/api/ContractHooks";
 import type { Contract } from "@/api/contractService";
 import TablePaginated from "@/components/organisms/TablePaginated/TablePaginated";
+import { Link } from "react-router-dom";
+import { ChevronRight } from "lucide-react";
 
 export const ContractsCard = ({ clientId }: { clientId: string }) => {
   const { t } = useTranslation("client", { keyPrefix: "details" });
@@ -54,6 +56,9 @@ export const ContractsCard = ({ clientId }: { clientId: string }) => {
             header: t('table.description'),
             value: (row) => row.description || '-'
           }
+        ]}
+        actions={[
+          row => (<Link to={`/contracts/${row.id}`}><ChevronRight /></Link>)
         ]}
       />
     </Card>

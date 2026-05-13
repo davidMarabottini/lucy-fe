@@ -5,15 +5,19 @@ import Table from "@/components/organisms/Table/Table";
 import MapContent from "@/components/molecules/MapContent/MapContent";
 
 //TODO: tipizzare correttamente
-export const MapCard = ({ data, points, dipendente}: { data?: any, points?: any[], dipendente?: any }) => {
+export const MapCard = ({ data, points, dipendente}: { data?: any, points?: any[], dipendente?: any[] }) => {
   const {clientLocation, mapLoading, mapError} = data || {};
   const { t } = useTranslation("client", { keyPrefix: "details" });
   return (
     <Card  additionalClassName={styles["p-client-detail__card"]} >
-      <strong>{t("dipendente")}</strong>
-      <p>{dipendente?.nome} {dipendente?.cognome}</p>
-      <p>{dipendente?.email}</p>
-      <p>{dipendente?.telefono}</p>
+      {dipendente?.map((d, idx) => (
+        <div key={idx}>
+          <strong>{t("dipendente")}</strong>
+          <p>{d?.nome} {d?.cognome}</p>
+          <p>{d?.email}</p>
+          <p>{d?.telefono}</p>
+        </div>
+      ))}
       <Table data={points} columns={[
         {key: 'user', header: t('table.user')},
         {key: 'latitudine', header: t('table.latitudine')},

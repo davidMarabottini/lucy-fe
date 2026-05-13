@@ -24,6 +24,15 @@ const ClientDetailPage = () => {
   const {data: mapData, isLoading: mapLoading, error: mapError} = useLibemaxTimbrature();
 
   const {cliente: clientLocation, dipendente } = mapData?.[0] || {};
+  const dipendenti = Object.values(mapData?.reduce((acc: Record<string, any>, curr) => {
+    const dip = curr.dipendente;
+    if (dip && dip.id) {
+      acc[dip.id] = dip;
+    }
+    return acc;
+  }, {}) || {});
+
+  console.log("dipendenti", dipendenti);
   const points = mapData?.flatMap(x => [{
     user: x.dipendente?.nome ? `${x.dipendente.nome} ${x.dipendente.cognome}` : '',
     latitudine: x.latitudine_start,
@@ -63,7 +72,7 @@ const ClientDetailPage = () => {
       </Card>
       <ClientInfoCard client={data} />
       <ContractsCard clientId={clientId!} />
-      <MapCard data={{clientLocation, mapLoading, mapData, mapError}} points={points} dipendente={dipendente} />
+      <MapCard data={{clientLocation, mapLoading, mapData, mapError}} points={points} dipendente={dipendenti} />
     </div>
   );
 };
