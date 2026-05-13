@@ -39,9 +39,33 @@
       "schedule": "Schedule: "
     },
     
+    "dipendente": "Dipendente",
+    "map": "Mappa",
+
+    "table": {
+      "contract_code": "Codice contratto",
+      "provider": "Fornitore",
+      "client": "Cliente",
+      "start_date": "Data inizio",
+      "end_date": "Data fine",
+      "description": "Descrizione",
+      "user": "Utente",
+      "latitudine": "Latitudine",
+      "longitudine": "Longitudine",
+      "indirizzo": "Indirizzo",
+      "cap": "CAP",
+      "citta": "Città",
+      "provincia": "Provincia",
+      "stato": "Stato",
+      "orario": "Orario",
+      "type": "Tipo"
+    },
+
     "additionalMessage": {
       "loading": "Caricamento...",
-      "errorLoading": "Errore nel caricamento del cliente"
+      "errorLoading": "Errore nel caricamento del cliente",
+      "loadingMap": "Caricamento mappa...",
+      "errorLoadingMap": "Errore nel caricamento della mappa"
     }
   }, "insert": {
     "title": "Aggiungi cliente",

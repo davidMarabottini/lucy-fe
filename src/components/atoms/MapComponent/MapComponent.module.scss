@@ -1,0 +1,26 @@
+.c-map-component {
+  width: 100%;
+  height: 800px;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+
+  &__popup-content {
+    padding: 5px;
+    font-family: sans-serif;
+    
+    strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+  }
+
+  &__distance-badge {
+    background: $color-surface;
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid $color-border;
+    font-size: 0.75rem;
+    font-weight: bold;
+  }
+}

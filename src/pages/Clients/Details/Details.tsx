@@ -4,22 +4,53 @@ import { useParams } from "react-router-dom";
 import { useClientDetail } from "@/hooks/api/useClientHooks";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { ROUTES } from "@/constants/routes";
-import { ChevronLeft, Mail, Phone, Map } from "lucide-react";
+import { ChevronLeft } from "lucide-react"; // Map
 import styles from './Details.module.scss'
 import { useTranslation } from "react-i18next";
-import TablePaginated from "@/components/organisms/TablePaginated/TablePaginated";
-import type { Contract } from "@/api/contractService";
-import { useContracts } from "@/hooks/api/ContractHooks";
+
 import clsx from "clsx";
+
+import 'maplibre-gl/dist/maplibre-gl.css';
+import { useLibemaxTimbrature } from "@/hooks/api/useLibemaxTimbratureHooks";
+// import type { LibemaxTimbratureType } from "@/api/apiLibemaxTimbrature";
+import ClientInfoCard from "./components/ClientInfoCard";
+import { ContractsCard } from "./components/ContractsCard";
+import { MapCard } from "./components/MapCard";
 
 const ClientDetailPage = () => {
   const { clientId } = useParams<{ clientId: string }>();
   const { data, isLoading, error } = useClientDetail(Number(clientId));
   const {t} = useTranslation("client", {keyPrefix: "details"});
+  const {data: mapData, isLoading: mapLoading, error: mapError} = useLibemaxTimbrature();
 
+  const {cliente: clientLocation, dipendente } = mapData?.[0] || {};
+  const points = mapData?.flatMap(x => [{
+    user: x.dipendente?.nome ? `${x.dipendente.nome} ${x.dipendente.cognome}` : '',
+    latitudine: x.latitudine_start,
+    longitudine: x.longitudine_start,
+    indirizzo: x.indirizzo_start,
+    cap: x.cap_start,
+    citta: x.citta_start,
+    provincia: x.provincia_start,
+    stato: x.stato_start,
+    orario: x.ora_inizio_arrotondata,
+    type: 'start'
+  }, {
+    user: x.dipendente?.nome ? `${x.dipendente.nome} ${x.dipendente.cognome}` : '',
+    latitudine: x.latitudine_end,
+    longitudine: x.longitudine_end,
+    indirizzo: x.indirizzo_end,
+    cap: x.cap_end,
+    citta: x.citta_end,
+    provincia: x.provincia_end,
+    stato: x.stato_end,
+    orario: x.ora_fine_arrotondata,
+    type: 'end'
+  }]) || [];
   if (isLoading) return <div>{t("additionalMessage.loading")}</div>;
   if (error) return <div>{t("additionalMessage.errorLoading")}</div>;
   if(!data) {return ""}
+
   return (
     <div>
       <Card additionalClassName={clsx(styles["p-client-detail__card"], styles["p-client-detail__card-title"])}>
@@ -30,72 +61,9 @@ const ClientDetailPage = () => {
             <LinkComponent to={ROUTES.LIBEMAX_CLIENTS}><ChevronLeft /></LinkComponent>
         </div>
       </Card>
-      <Card additionalClassName={styles["p-client-detail__card"]}>
-        <div className={styles["p-client-detail__container"]}>
-          <div>
-            <Typography variant="h2">{data.name}</Typography>
-          </div>
-
-          <div className={styles["p-client-detail__client-sheet"]}>
-            <div className={styles["p-client-detail__detail-column"]}>
-              <Typography variant="h4" className={styles['p-client-details__subtitle-section']}>{t("section.contact")}</Typography>
-              <div>
-                {data.phone && <div><Phone /> {data.phone}</div>}
-                {data.email && <div><Mail /> {data.email}</div>}
-                {data.address && <div><Map />{data.address}</div>}
-              </div>
-            </div>
-          </div>
-        </div>
-      </Card>
-
-      <Card additionalClassName={styles["p-client-detail__card"]}>
-        <Typography variant="h2" additionalClasses={styles["p-client-detail__title"]}>
-          {t("contracts")}
-        </Typography>
-        
-        <TablePaginated<Contract>
-          useQueryHook={useContracts} 
-          initialPerPage={10} 
-          filterConfig={[
-            { key: 'contract_code', placeholder: '', label: 'Cerca Codice'},
-            { key: 'description', placeholder: '', label: 'Cerca Descrizione' },
-            { key: 'client_id', placeholder: '', label: 'Cerca Cliente', value: clientId, type: 'hidden'}
-          ]}  
-          
-          columns={[
-            {
-              key: 'contract_code',
-              header: t('table.contract_code')
-            },
-            {
-              key: 'provider',
-              header: t('table.provider'),
-              value: (row) => row.provider?.name || '-'
-            },
-            {
-              key: 'client',
-              header: t('table.client'),
-              value: (row) => row.client?.name || '-'
-            },
-            {
-              key: 'start_date',
-              header: t('table.start_date'),
-              value: (row) => row.start_date ? new Date(row.start_date).toLocaleDateString('it-IT') : '-'
-            },
-            {
-              key: 'end_date',
-              header: t('table.end_date'),
-              value: (row) => row.end_date ? new Date(row.end_date).toLocaleDateString('it-IT') : '-'
-            },
-            {
-              key: 'description',
-              header: t('table.description'),
-              value: (row) => row.description || '-'
-            }
-          ]}
-        />
-      </Card>
+      <ClientInfoCard client={data} />
+      <ContractsCard clientId={clientId!} />
+      <MapCard data={{clientLocation, mapLoading, mapData, mapError}} points={points} dipendente={dipendente} />
     </div>
   );
 };
