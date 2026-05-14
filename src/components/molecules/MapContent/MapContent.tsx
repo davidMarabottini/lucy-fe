@@ -10,7 +10,7 @@ const mapGraphics = [
   { value: 'https://demotiles.maplibre.org/style.json',     label: 'Demo tiles' },
 ];
 
-const MapContent: React.FC<MapContentProps> = ({ headquarter, clockIn, className }) => {
+const MapContent: React.FC<MapContentProps> = ({ headquarter, clockIn, className, focusedPointId }) => {
   const [mapStyle, setMapStyle] = useState<string>(mapGraphics[0].value);
 
   return (
@@ -26,6 +26,7 @@ const MapContent: React.FC<MapContentProps> = ({ headquarter, clockIn, className
         workLocation={headquarter}
         checkPoints={clockIn}
         mapStyle={mapStyle}
+        focusedPointId={focusedPointId}
       />
     </div>
   );

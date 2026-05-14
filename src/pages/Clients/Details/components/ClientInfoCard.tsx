@@ -3,8 +3,9 @@ import Typography from "@/components/atoms/Typography/Typography";
 import { useTranslation } from "react-i18next";
 import styles from "../Details.module.scss";
 import { Mail, Phone } from "lucide-react";
+import type { LibemaxClientDetail } from "@/api/clientService";
 
-const ClientInfoCard = ({ client }: { client?: any }) => {
+const ClientInfoCard = ({ client }: { client?: LibemaxClientDetail }) => {
   const { t } = useTranslation("client", { keyPrefix: "details" });
   return (
     <Card additionalClassName={styles["p-client-detail__card"]}>
@@ -21,7 +22,6 @@ const ClientInfoCard = ({ client }: { client?: any }) => {
             <div>
               {client?.phone && <div><Phone /> {client.phone}</div>}
               {client?.email && <div><Mail /> {client.email}</div>}
-              {/* {cliente?.address && <div><Map />{cliente.address}</div>} */}
             </div>
           </div>
         </div>

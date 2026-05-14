@@ -11,4 +11,5 @@ export interface MapContentProps {
   clockIn: ClockInPoint[];
   trackLine?: boolean;
   className?: string;
+  focusedPointId?: string | number | null;
 }

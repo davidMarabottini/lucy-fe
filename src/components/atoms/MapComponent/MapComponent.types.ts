@@ -11,4 +11,5 @@ export interface MapComponentProps {
   checkPoints: MapPoint[]; // Entrate e Uscite
   mapStyle?: string;
   className?: string;
+  focusedPointId?: string | number | null;
 }

@@ -14,17 +14,31 @@ export interface LibemaxDipendente {
 }
 
 export interface LibemaxCliente {
-  id?: number;
-  nome?: string;
-  indirizzo?: string;
-  citta?: string;
+  archiviato?: number;
   cap?: string;
-  paese?: string;
+  citta?: string;
+  codice_gestionale?: string;
+
+  contatto?: {
+    cellulare?: string;
+    email?: string;
+    id?: number;
+    nome?: string;
+    cognome?: string;
+    telefono?: string;
+    ruolo?: string;
+  };
+
+  email?: string;
+  id?: number;
+  indirizzo?: string;
   latitudine?: string;
   longitudine?: string;
-  [key: string]: unknown;
+  nome?: string;
+  note?: string;
+  piva?: string;
+  provincia?: string;
 }
-
 export interface LibemaxTimbratura {
   id: number;
   ultima_modifica: string;

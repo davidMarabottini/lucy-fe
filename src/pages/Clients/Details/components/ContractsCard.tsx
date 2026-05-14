@@ -58,7 +58,7 @@ export const ContractsCard = ({ clientId }: { clientId: string }) => {
           }
         ]}
         actions={[
-          row => (<Link to={`/contracts/${row.id}`}><ChevronRight /></Link>)
+          row => <Link to={`/contracts/${row.id}`}><ChevronRight /></Link>
         ]}
       />
     </Card>

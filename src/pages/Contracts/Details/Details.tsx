@@ -1,6 +1,6 @@
 import Card from "@components/atoms/Card/Card";
 import Typography from "@components/atoms/Typography/Typography";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useContractDetail } from "@/hooks/api/ContractHooks"; 
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { ROUTES } from "@/constants/routes";
@@ -20,6 +20,7 @@ import type { WorkScheduleType } from "@/api/workScheduleTypeService";
 import { useWeekDays } from "@/hooks/api/WeekDaysHooks";
 import * as LucideIcons from "lucide-react";
 import Button from "@/components/atoms/Button/Button";
+import { rewriteRoute } from "@/utils/routes";
 
 const ContractDetailPage = () => {
   const {classBase, ...iconPresetRest} = ICON_PRESET;
@@ -55,7 +56,10 @@ const ContractDetailPage = () => {
       <Card additionalClassName={styles["p-contract-detail__card"]}>
         <div className={styles["p-contract-detail__container"]}>
           <div className={styles["p-contract-detail__header-info"]}>
-            <Typography variant="h3">{data.client?.name || t("no_client")}</Typography>
+            <LinkComponent style={{ display: 'flex', gap: '8px' }} to={rewriteRoute(ROUTES.CLIENT_DETAIL, {':clientId': data.client?.id.toString()})} color="primary">
+              <LucideIcons.ChevronRight size={20} />
+              <Typography variant="h3">{data.client?.name || t("no_client")}</Typography>
+            </LinkComponent>
             <Typography variant="body" className="text-gray-500">{data.description}</Typography>
           </div>
 

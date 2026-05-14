@@ -5,10 +5,10 @@ import { ERROR_KINDS } from "../useAppApi/error";
 
 const libDomain = 'libemax';
 
-export const useLibemaxTimbrature = () =>
+export const useLibemaxTimbrature = (userId: number, date: string) =>
   useAppQuery<LibemaxTimbratureType>({
-    queryKey: ['libemax-timbrature'],
-    queryFn: getLibemaxTimbrature,
+    queryKey: ['libemax-timbrature', userId, date],
+    queryFn: () => getLibemaxTimbrature(userId, date),
     errorMap: {
       [ERROR_KINDS.UNAUTHORIZED]: `${libDomain}.timbrature.401`,
       [ERROR_KINDS.SERVER]: `${libDomain}.timbrature.500`,

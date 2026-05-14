@@ -41,7 +41,7 @@
     
     "dipendente": "Dipendente",
     "map": "Mappa",
-
+    "select_date": "Seleziona data",
     "table": {
       "contract_code": "Codice contratto",
       "provider": "Fornitore",
