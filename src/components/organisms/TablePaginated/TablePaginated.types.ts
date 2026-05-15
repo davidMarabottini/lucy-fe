@@ -1,5 +1,6 @@
 import type { UseQueryResult } from "@tanstack/react-query";
 import type { TableColumn } from "../Table/Table.types";
+import type { AppError } from "@/hooks/useAppApi/error";
 
 export interface FilterConfig {
   key: string;
@@ -21,7 +22,7 @@ export interface PaginatedData<T> {
 export type PaginatedResponse<T> = T[] | PaginatedData<T>;
 
 export interface TablePaginatedProps<T extends object> {
-  useQueryHook: (params: Record<string, unknown>) => UseQueryResult<PaginatedResponse<T>, Error>;
+  useQueryHook: (params: Record<string, unknown>) => UseQueryResult<PaginatedResponse<T>, AppError>;
   columns: TableColumn<T>[];
   actions?: ((row: T) => React.ReactNode)[];
   initialPerPage?: number;

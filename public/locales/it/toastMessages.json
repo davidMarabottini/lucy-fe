@@ -70,5 +70,39 @@
   },
   "logout": {
     "success": "Logout avvenuto con successo"
+  },
+  "workSchedule": {
+    "list": {
+      "401": "Non hai i permessi per visualizzare le pianificazioni",
+      "500": "Errore del server durante il caricamento delle pianificazioni",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "client": {
+      "401": "Non hai i permessi per visualizzare le pianificazioni del cliente",
+      "500": "Errore del server durante il caricamento delle pianificazioni del cliente",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "contract": {
+      "401": "Non hai i permessi per visualizzare le pianificazioni del contratto",
+      "500": "Errore del server durante il caricamento delle pianificazioni del contratto",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "insert": {
+      "success": "Pianificazione aggiunta con successo",
+      "401": "Non hai i permessi per aggiungere una pianificazione",
+      "500": "Errore del server durante l'inserimento della pianificazione",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "delete": {
+      "success": "Pianificazione eliminata con successo",
+      "401": "Non hai i permessi per eliminare questa pianificazione",
+      "500": "Errore del server durante l'eliminazione della pianificazione",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    }
   }
 }
