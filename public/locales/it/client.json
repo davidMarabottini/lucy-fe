@@ -47,6 +47,17 @@
         "start_date": "Data inizio",
         "end_date": "Data fine",
         "description": "Descrizione"
+      },
+      "schedules": {
+        "subtitle": "Pianificazioni del contratto",
+        "table": {
+          "day": "Giorno",
+          "hours": "Ore",
+          "activity_type": "Tipo attività",
+          "note": "Note",
+          "flexible": "Flessibile",
+          "weekly_short": "sett."
+        }
       }
     },
     "workDetails": {

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppQuery } from "../useAppApi/useAppQuery";
 import { useAppMutation } from "../useAppApi/useAppMutation";
 import { ERROR_KINDS } from "../useAppApi/error";
+import type { PaginatedData } from "@/components/organisms/TablePaginated/TablePaginated.types";
 import { 
   getContracts, 
   getContractById, 
@@ -17,12 +18,10 @@ const libDomain = 'contract';
 
 // 1. LISTA CONTRATTI
 // extends { page?: number; per_page?: number; search?: string; raw?: boolean }
-// TODO: migliorare tipizzazione params
-export const useContracts = (params?: Record<string, unknown> ) =>
-  useAppQuery<Contract>({
-    // La queryKey diventa un array che include i parametri
+export const useContracts = (params?: Record<string, unknown>) =>
+  useAppQuery<PaginatedData<Contract>>({
     queryKey: ['contracts', params], 
-    queryFn: () => getContracts(params),
+    queryFn: () => getContracts(params) as Promise<PaginatedData<Contract>>,
     errorMap: {
       [ERROR_KINDS.UNAUTHORIZED]: `${libDomain}.list.401`,
       [ERROR_KINDS.SERVER]: `${libDomain}.list.500`,

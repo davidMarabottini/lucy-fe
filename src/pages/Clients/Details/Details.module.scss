@@ -41,4 +41,15 @@
   &__subtitle-section {
     margin-bottom: $space-md;
   }
+
+  &__schedules-panel {
+    margin-top: $space-lg;
+  }
+
+  &__schedules-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $space-sm;
+  }
 }
