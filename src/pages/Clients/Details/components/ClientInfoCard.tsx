@@ -10,6 +10,9 @@ const ClientInfoCard = ({ client }: { client?: LibemaxClientDetail }) => {
   return (
     <Card additionalClassName={styles["p-client-detail__card"]}>
       <div className={styles["p-client-detail__container"]}>
+        <Typography variant="h2" additionalClasses={styles["p-client-detail__title"]}>
+          {t("client.subtitle")}
+         </Typography>
         <div>
           <Typography variant="h4">{client?.name}</Typography>
         </div>

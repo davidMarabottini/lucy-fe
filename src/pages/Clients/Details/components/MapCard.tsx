@@ -10,6 +10,8 @@ import { useState } from "react";
 import Button from "@/components/atoms/Button/Button";
 import { Map, TriangleAlert } from "lucide-react";
 import { calculateDistance } from "@/utils/calculateDistance";
+import 'maplibre-gl/dist/maplibre-gl.css';
+import Typography from "@/components/atoms/Typography/Typography";
 
 //TODO: tipizzare correttamente
 export const MapCard = ({clientId}: {clientId: string}) => {
@@ -64,9 +66,12 @@ export const MapCard = ({clientId}: {clientId: string}) => {
     }
   };
 
-  const { t } = useTranslation("client", { keyPrefix: "details" });
+  const { t } = useTranslation("client", { keyPrefix: "details.workDetails" });
   return (
     <Card  additionalClassName={styles["p-client-detail__card"]} >
+      <Typography variant="h2" additionalClasses={styles["p-client-detail__title"]}>
+        {t("subtitle")}
+      </Typography>
       <DatePicker label={t("select_date")} onChange={dateChageHandler} />
       {dipendente?.map((d, idx) => (
         <div key={idx}>

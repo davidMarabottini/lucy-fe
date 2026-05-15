@@ -9,12 +9,12 @@ import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 
 export const ContractsCard = ({ clientId }: { clientId: string }) => {
-  const { t } = useTranslation("client", { keyPrefix: "details" });
+  const { t } = useTranslation("client", { keyPrefix: "details.contracts" });
 
   return (
     <Card additionalClassName={styles["p-client-detail__card"]}>
       <Typography variant="h2" additionalClasses={styles["p-client-detail__title"]}>
-        {t("contracts")}
+        {t("subtitle")}
       </Typography>
       
       <TablePaginated<Contract>

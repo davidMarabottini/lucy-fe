@@ -1,6 +1,6 @@
 import Card from "@components/atoms/Card/Card";
 import Typography from "@components/atoms/Typography/Typography";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useContractDetail } from "@/hooks/api/ContractHooks"; 
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { ROUTES } from "@/constants/routes";

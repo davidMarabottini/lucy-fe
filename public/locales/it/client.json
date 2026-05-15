@@ -23,8 +23,7 @@
       "updateError": "Errore caricamento clienti"
     }
   }, "details": {
-    "title": "Dettagli cliente",
-    "contracts": "Contratti",
+    "title": "cliente",
     
     "section": {
       "contact": "Contatti",
@@ -32,33 +31,47 @@
     },
 
     "client": {
+      "subtitle": "Dettagli",
       "address": "Indirizzo: ",
       "phone": "Telefono: ",
       "email": "Email: ",
       "hours": "Ore teoriche: ",
-      "schedule": "Schedule: "
+      "schedule": "Orario: "
     },
-    
-    "dipendente": "Dipendente",
-    "map": "Mappa",
-    "select_date": "Seleziona data",
-    "table": {
-      "contract_code": "Codice contratto",
-      "provider": "Fornitore",
-      "client": "Cliente",
-      "start_date": "Data inizio",
-      "end_date": "Data fine",
-      "description": "Descrizione",
-      "user": "Utente",
-      "latitudine": "Latitudine",
-      "longitudine": "Longitudine",
-      "indirizzo": "Indirizzo",
-      "cap": "CAP",
-      "citta": "Città",
-      "provincia": "Provincia",
-      "stato": "Stato",
-      "orario": "Orario",
-      "type": "Tipo"
+    "contracts": {
+      "subtitle": "Contratti",
+      "table": {
+        "contract_code": "Codice contratto",
+        "provider": "Fornitore",
+        "client": "Cliente",
+        "start_date": "Data inizio",
+        "end_date": "Data fine",
+        "description": "Descrizione"
+      }
+    },
+    "workDetails": {
+      "subtitle": "Dettagli timbrature",
+      "dipendente": "Dipendente",
+      "map": "Mappa",
+      "select_date": "Seleziona data",
+      "table": {
+        "contract_code": "Codice contratto",
+        "provider": "Fornitore",
+        "client": "Cliente",
+        "start_date": "Data inizio",
+        "end_date": "Data fine",
+        "description": "Descrizione",
+        "user": "Utente",
+        "latitudine": "Latitudine",
+        "longitudine": "Longitudine",
+        "indirizzo": "Indirizzo",
+        "cap": "CAP",
+        "citta": "Città",
+        "provincia": "Provincia",
+        "stato": "Stato",
+        "orario": "Orario",
+        "type": "Tipo"
+      }
     },
 
     "additionalMessage": {

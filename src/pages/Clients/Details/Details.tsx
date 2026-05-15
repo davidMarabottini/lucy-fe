@@ -8,12 +8,12 @@ import { ChevronLeft } from "lucide-react"; // Map
 import styles from './Details.module.scss'
 import { useTranslation } from "react-i18next";
 
-import clsx from "clsx";
 
-import 'maplibre-gl/dist/maplibre-gl.css';
 import ClientInfoCard from "./components/ClientInfoCard";
 import { ContractsCard } from "./components/ContractsCard";
 import { MapCard } from "./components/MapCard";
+
+import clsx from "clsx";
 
 const ClientDetailPage = () => {
   const { clientId } = useParams<{ clientId: string }>();

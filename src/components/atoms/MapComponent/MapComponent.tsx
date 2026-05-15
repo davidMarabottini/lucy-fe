@@ -4,24 +4,25 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import type { MapComponentProps, MapPoint } from './MapComponent.types.ts';
 import styles from './MapComponent.module.scss';
 import clsx from 'clsx';
-// import { calculateDistance } from '@/utils/calculateDistance.ts';
+import { calculateDistance } from '@/utils/calculateDistance.ts';
 
 const MapComponent: React.FC<MapComponentProps> = ({ workLocation, checkPoints, mapStyle, className, focusedPointId }) => {
   const [selectedPoint, setSelectedPoint] = useState<MapPoint | null>(null);
   const mapRef = useRef<MapRef>(null);
 
   useEffect(() => {
-    if (focusedPointId == null) return;
-    const point = checkPoints.find(cp => cp.id === focusedPointId)
-      ?? (workLocation.id === focusedPointId ? workLocation : null);
-    if (point) {
-      mapRef.current?.flyTo({
-        center: [point.longitude, point.latitude],
-        zoom: 16,
-        duration: 1600,
-      });
-    }
-  }, [focusedPointId]);
+  const targetId = focusedPointId || workLocation.id;
+  const point = checkPoints.find(cp => cp.id === targetId)
+    ?? (workLocation.id === targetId ? workLocation : null);
+  
+  if (point) {
+    mapRef.current?.flyTo({
+      center: [point.longitude, point.latitude],
+      zoom: focusedPointId ? 16 : 12, // Zoom più largo se è il centro aziendale di default
+      duration: 1600,
+    });
+  }
+}, [focusedPointId, workLocation]);
 
   const linesData = useMemo(() => {
     return {
@@ -63,7 +64,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ workLocation, checkPoints, 
         />
 
         {checkPoints.map(cp => (
-          <React.Fragment key={cp.id}>
+          <React.Fragment key={`${cp.id}_${cp.type}`}>
             <Marker 
               longitude={cp.longitude} 
               latitude={cp.latitude} 
@@ -73,16 +74,13 @@ const MapComponent: React.FC<MapComponentProps> = ({ workLocation, checkPoints, 
                 setSelectedPoint(cp);
               }}
             >
-              <div
-                className={clsx(
-                  styles['c-map-component__dot'],
-                  styles['c-map-component__dot--blue'],
-                  cp.id === focusedPointId && styles['c-map-component__dot--bounce']
-                )}
-              />
+              <div className={clsx(
+                styles['c-map-component__dot'],
+                styles['c-map-component__dot--blue'],
+                cp.id === focusedPointId && styles['c-map-component__dot--bounce']
+              )} />
             </Marker>
-
-            {/*<Marker 
+            <Marker 
               longitude={(workLocation.longitude + cp.longitude) / 2} 
               latitude={(workLocation.latitude + cp.latitude) / 2}
               anchor="center"
@@ -90,7 +88,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ workLocation, checkPoints, 
                <div className={styles['c-map-component__distance-badge']}>
                 {calculateDistance([workLocation.latitude, workLocation.longitude], [cp.latitude, cp.longitude])}
               </div> 
-            </Marker>*/}
+            </Marker>
           </React.Fragment>
         ))}
 
