@@ -1,52 +1,73 @@
 .c-datepicker {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  position: relative;
+  padding: $space-sm;
+  margin-top: $space-md;
 
   &__wrapper {
     position: relative;
-    display: flex;
-    align-items: center;
-    border: 1px solid var(--color-border, #ccc);
-    border-radius: 4px;
-    background: white;
+    height: 40px;
+    border-bottom: 1px solid $color-border;
     transition: border-color 0.2s;
 
     &:focus-within {
-      border-color: var(--color-primary);
+      border-color: $color-primary;
     }
 
     &--error {
-      border-color: var(--color-error);
+      border-color: $color-error;
     }
   }
 
   &__input {
     width: 100%;
-    padding: 10px 12px;
+    padding: $space-sm 0;
     border: none;
     outline: none;
     background: transparent;
-    font-size: 14px;
+    font-size: $font-base;
+  }
+
+  &__label {
+    position: relative;
+    left: 10px;
+    top: -32px;
+    transform: translateY(-50%);
+    transition: all 0.2s ease;
+    font-size: $font-base;
+    color: $color-text-muted;
+    pointer-events: none;
+    display: block;
+    white-space: nowrap;
+  }
+
+  // Float label quando il campo è a fuoco o ha un valore
+  &__wrapper:focus-within &__label,
+  &__wrapper--has-value &__label {
+    top: -62px;
+    left: 0;
+    font-size: $font-xs;
+    color: $color-primary;
   }
 
   &__icon {
     position: absolute;
-    right: 12px;
-    color: var(--color-text-muted);
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $color-text-muted;
     pointer-events: none;
   }
 
   &__error {
-    color: var(--color-error);
-    font-size: 12px;
+    color: $color-error;
+    font-size: $font-xs;
   }
 }
 
-// Global override for the picker popup (optional)
+// Global override for the picker popup
 :global(.react-datepicker) {
   font-family: inherit;
   border-radius: 8px;
   border: 1px solid #eee;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }

@@ -4,7 +4,6 @@ import {it} from "date-fns/locale/it";
 import styles from "./DatePicker.module.scss";
 import clsx from "clsx";
 import { Calendar } from "lucide-react";
-import Typography from "../Typography/Typography";
 import { useId } from "react";
 
 registerLocale("it", it);
@@ -17,7 +16,6 @@ export interface DatePickerProps {
   onChange: (date: any, event?: React.SyntheticEvent<any> | undefined) => void;
   // onChange: (dates: [Date | null, Date | null] | Date | null) => void;
   selectsRange?: boolean;
-  placeholder?: string;
   error?: string;
   required?: boolean;
   className?: string;
@@ -29,22 +27,22 @@ const DatePicker = ({
   endDate,
   onChange,
   selectsRange = false,
-  placeholder,
   error,
   required,
   className,
 }: DatePickerProps) => {
   const generatedId = useId();
+  const hasValue = !!startDate;
 
   return (
     <div className={clsx(styles["c-datepicker"], className)}>
-      {label && (
-        <Typography as="caption" additionalClasses={styles["c-datepicker__label"]}>
-          {label} {required && "*"}
-        </Typography>
-      )}
-      
-      <div className={clsx(styles["c-datepicker__wrapper"], { [styles["c-datepicker__wrapper--error"]]: !!error })}>
+      <div className={clsx(
+        styles["c-datepicker__wrapper"],
+        {
+          [styles["c-datepicker__wrapper--error"]]: !!error,
+          [styles["c-datepicker__wrapper--has-value"]]: hasValue,
+        }
+      )}>
         <ReactDatePicker
           locale="it"
           dateFormat="dd/MM/yyyy"
@@ -53,14 +51,19 @@ const DatePicker = ({
           startDate={startDate || undefined}
           endDate={endDate || undefined}
           selectsRange={selectsRange}
-          placeholderText={placeholder}
+          placeholderText=" "
           className={styles["c-datepicker__input"]}
           id={generatedId}
           autoComplete="off"
         />
+        {label && (
+          <label htmlFor={generatedId} className={styles["c-datepicker__label"]}>
+            {label} {required && "*"}
+          </label>
+        )}
         <Calendar className={styles["c-datepicker__icon"]} size={18} />
       </div>
-      
+
       {error && <span className={styles["c-datepicker__error"]}>{error}</span>}
     </div>
   );
