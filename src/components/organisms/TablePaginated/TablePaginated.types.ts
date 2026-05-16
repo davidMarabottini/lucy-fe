@@ -1,6 +1,9 @@
 import type { UseQueryResult } from "@tanstack/react-query";
 import type { TableColumn } from "../Table/Table.types";
 import type { AppError } from "@/hooks/useAppApi/error";
+import type { PaginatedData } from "@/types/utilities.types";
+
+export type { PaginatedData };
 
 export interface FilterConfig {
   key: string;
@@ -8,15 +11,6 @@ export interface FilterConfig {
   label?: string;
   value?: string;
   type?: 'text' | 'hidden';
-}
-
-export interface PaginatedData<T> {
-  has_next: boolean;
-  has_prev: boolean;
-  items: T[];
-  page: number;
-  pages: number;
-  total: number;
 }
 
 export type PaginatedResponse<T> = T[] | PaginatedData<T>;

@@ -62,8 +62,8 @@ export const useInsertWorkSchedule = () => {
   return useAppMutation({
     mutationFn: (schedule: WorkScheduleAdd) => insertWorkSchedule(schedule),
     onSuccess: (data) => {
-      queryClient.setQueryData(['result'], data)
-      queryClient.invalidateQueries(['workSchedules']);
+      queryClient.setQueryData(['result'], data);
+      queryClient.invalidateQueries({ queryKey: ['workSchedules'] });
     },
     successKey: `${libDomain}.insert.success`,
     errorMap: {
@@ -81,7 +81,7 @@ export const useDeleteWorkSchedule = () => {
   return useAppMutation({
     mutationFn: (id: number) => deleteWorkSchedule(id),
     onSuccess: () => {
-      queryClient.invalidateQueries(['workSchedules']);
+      queryClient.invalidateQueries({ queryKey: ['workSchedules'] });
     },
     successKey: `${libDomain}.delete.success`,
     errorMap: {

@@ -1,6 +1,7 @@
 import apiClient from "./apiClient";
 import type { LibemaxClient } from "./clientService";
 import type { GroupCompany } from "./groupCompanyService";
+import type { PaginatedData } from "@/types/utilities.types";
 
 
 export interface Contract {
@@ -15,23 +16,10 @@ export interface Contract {
 
 export type ContractPayload = Omit<Contract, 'id'>;
 
-//TODO: definire meglio i tipi di ritorno, magari con un oggetto paginato se serve
-export const getContracts = async (params?: Record<string, unknown>): Promise<unknown> => {
+export const getContracts = async (params?: Record<string, unknown>): Promise<PaginatedData<Contract>> => {
   const { data } = await apiClient.get('/api/contracts', { params });
   return data;
 };
-
-// export const getContracts = async (params?: { 
-//   page?: number; 
-//   per_page?: number; 
-//   search?: string; 
-//   raw?: boolean 
-// }): Promise<Contract> => {
-//   const { data } = await apiClient.get('/api/contracts', { 
-//     params
-//   });
-//   return data;
-// };
 
 
 export const getContractById = async (id: number): Promise<Contract> => {

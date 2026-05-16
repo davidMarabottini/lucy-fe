@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppQuery } from "../useAppApi/useAppQuery";
 import { useAppMutation } from "../useAppApi/useAppMutation";
 import { ERROR_KINDS } from "../useAppApi/error";
-import type { PaginatedData } from "@/components/organisms/TablePaginated/TablePaginated.types";
+import type { PaginatedData } from "@/types/utilities.types";
 import { 
   getContracts, 
   getContractById, 
@@ -21,7 +21,7 @@ const libDomain = 'contract';
 export const useContracts = (params?: Record<string, unknown>) =>
   useAppQuery<PaginatedData<Contract>>({
     queryKey: ['contracts', params], 
-    queryFn: () => getContracts(params) as Promise<PaginatedData<Contract>>,
+    queryFn: () => getContracts(params),
     errorMap: {
       [ERROR_KINDS.UNAUTHORIZED]: `${libDomain}.list.401`,
       [ERROR_KINDS.SERVER]: `${libDomain}.list.500`,
@@ -53,7 +53,7 @@ export const useInsertContract = (locNavigate?: boolean) => {
     mutationFn: insertContract,
     onSuccess: () => {
       // Invalida la lista per mostrare il nuovo contratto
-      queryClient.invalidateQueries(['contracts']);
+      queryClient.invalidateQueries({ queryKey: ['contracts'] });
       if(!locNavigate){
         navigate('/contracts');
       } 
@@ -73,8 +73,8 @@ export const useUpdateContract = (id: number) => {
   return useAppMutation({
     mutationFn: (payload: Partial<ContractPayload>) => updateContract(id, payload),
     onSuccess: (_data) => {
-      queryClient.invalidateQueries(['contracts']);
-      queryClient.invalidateQueries(['contract', id]);
+      queryClient.invalidateQueries({ queryKey: ['contracts'] });
+      queryClient.invalidateQueries({ queryKey: ['contract', id] });
     },
     successKey: `${libDomain}.update.success`,
     errorMap: {
@@ -91,7 +91,7 @@ export const useDeleteContract = () => {
   return useAppMutation({
     mutationFn: deleteContract,
     onSuccess: () => {
-      queryClient.invalidateQueries(['contracts']);
+      queryClient.invalidateQueries({ queryKey: ['contracts'] });
     },
     successKey: `${libDomain}.delete.success`,
     errorMap: {
