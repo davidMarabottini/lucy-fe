@@ -8,7 +8,6 @@ import { ChevronLeft } from "lucide-react"; // Map
 import styles from './Details.module.scss'
 import { useTranslation } from "react-i18next";
 
-
 import ClientInfoCard from "./components/ClientInfoCard";
 import { ContractsCard } from "./components/ContractsCard";
 import { MapCard } from "./components/MapCard";

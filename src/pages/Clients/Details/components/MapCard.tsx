@@ -13,7 +13,6 @@ import { calculateDistance } from "@/utils/calculateDistance";
 import 'maplibre-gl/dist/maplibre-gl.css';
 import Typography from "@/components/atoms/Typography/Typography";
 
-//TODO: tipizzare correttamente
 export const MapCard = ({clientId}: {clientId: string}) => {
   const [selectedDate, setSelectedDate] = useState<string>(
     new Date().toISOString().split('T')[0]
@@ -59,9 +58,7 @@ export const MapCard = ({clientId}: {clientId: string}) => {
 
   const dateChageHandler = (date: Date | null) => {
     if(date) {
-      console.log(date);
       const dateString = date.toISOString().split('T')[0];
-      console.log(dateString);
       setSelectedDate(dateString);
     }
   };

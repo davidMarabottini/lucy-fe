@@ -1,8 +1,9 @@
 import apiClient from "./apiClient";
+import type { WorkScheduleType } from "./workScheduleTypeService";
 
 export type WorkSchedule = {
   id: number;
-  user_id: number;
+  user_id?: number | null;
   client_id?: number | null;
   contract_id?: number | null;
   schedule_type_id: number;
@@ -11,21 +12,13 @@ export type WorkSchedule = {
   end_time?: string | null;
   weekly_hours?: number | null;
   note?: string | null;
+  work_activity_id?: number | null;
   week_day?: { id: number; name: string } | null;
   work_activity?: { id: number; name: string } | null;
+  schedule_type?: WorkScheduleType | null;
 };
 
-export type WorkScheduleAdd = {
-  user_id?: number;
-  client_id?: number;
-  contract_id?: number;
-  schedule_type_id: number;
-  week_day_id?: number;
-  start_time?: string;
-  end_time?: string;
-  weekly_hours?: number;
-  note?: string;
-};
+export type WorkScheduleAdd = Omit<WorkSchedule, 'id' | 'week_day' | 'work_activity' | 'schedule_type'>;
 
 // GET tutte le schedule
 export const getWorkSchedules = async (): Promise<WorkSchedule[]> => {

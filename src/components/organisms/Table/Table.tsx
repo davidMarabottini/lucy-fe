@@ -31,9 +31,7 @@ function Table<T extends object>({
             <div key={i} className={styles['c-table__row']} >
               
               {columns.map((col) => {
-                const content = col.value
-                  ? col.value(row)
-                  : String(row[col.key] ?? "");
+                const content = col.value ? col.value(row) : String(row[col.key] ?? "");
 
                 return (
                   <div
@@ -47,12 +45,8 @@ function Table<T extends object>({
               })}
 
               {actions && (
-                <div
-                className={styles['c-table__cell']}>
-                  {actions.map((el) => (
-                    // (row) => <Button key={name} onClick={() => action(row)} {...opt} />
-                    el(row)
-                  ))}
+                <div className={styles['c-table__cell']}>
+                  {actions.map((el) => el(row))}
                 </div>
               )}
             </div>

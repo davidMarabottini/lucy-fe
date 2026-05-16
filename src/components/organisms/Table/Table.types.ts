@@ -4,7 +4,7 @@ import type React from "react";
 export type TableColumn<T> = {
   key: keyof T | `__${string}`;
   header: string;
-  value?: (row: T) => string;
+  value?: (row: T) => string | React.ReactNode;
 };
 
 export interface TableAction<T> extends Omit<ButtonProps, 'onClick'> {

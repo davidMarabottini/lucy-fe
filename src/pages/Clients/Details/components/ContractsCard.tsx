@@ -9,8 +9,10 @@ import type { WorkSchedule } from "@/api/workScheduleService";
 import TablePaginated from "@/components/organisms/TablePaginated/TablePaginated";
 import Button from "@/components/atoms/Button/Button";
 import { Link } from "react-router-dom";
+import * as Lucide from "lucide-react";
 import { ChevronRight, List, X } from "lucide-react";
 import { useState } from "react";
+import { getTodayWeekDayId } from "@/utils/weekDay";
 
 export const ContractsCard = ({ clientId }: { clientId: string }) => {
   const { t } = useTranslation("client", { keyPrefix: "details.contracts" });
@@ -42,7 +44,6 @@ export const ContractsCard = ({ clientId }: { clientId: string }) => {
           { key: 'description', header: t('table.description'), value: (row) => row.description || '-' }
         ]}
         actions={[
-          row => <Link key="detail" to={`/contracts/${row.id}`}><ChevronRight /></Link>,
           row => (
             <Button
               key="schedules"
@@ -52,7 +53,8 @@ export const ContractsCard = ({ clientId }: { clientId: string }) => {
             >
               <List size={18} />
             </Button>
-          )
+          ),
+          row => <Link key="detail" to={`/contracts/${row.id}`}><ChevronRight /></Link>,
         ]}
       />
 
@@ -74,11 +76,27 @@ export const ContractsCard = ({ clientId }: { clientId: string }) => {
             filterConfig={[
               { key: 'contract_id', placeholder: '', value: String(selectedContract.id), type: 'hidden' }
             ]}
+
             columns={[
+              {
+                key: '__icon',
+                header: '',
+                value: (row) => {
+                  const DynamicIcon = (Lucide as unknown as Record<string, Lucide.LucideIcon>)[row?.schedule_type?.icon_name ?? 'minus'] ?? Lucide.HelpCircle;
+                  return <DynamicIcon />;
+                },
+              },
               {
                 key: 'week_day',
                 header: t('schedules.table.day'),
-                value: (row) => row.week_day?.name ?? t('schedules.table.flexible'),
+                value: (row) => (
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    {row.week_day_id != null && row.week_day_id === getTodayWeekDayId() && (
+                      <Lucide.Check size={14} color="green" />
+                    )}
+                    {row.week_day?.name ?? t('schedules.table.flexible')}
+                  </span>
+                ),
               },
               {
                 key: '__time_info',
