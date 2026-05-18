@@ -16,12 +16,11 @@ export interface DatePickerProps
   > {
   label?: string;
   error?: string;
-  required?: boolean;
   className?: string;
   selectsRange?: boolean;
 }
 
-const DatePicker = ({className, error, label, required, ...props}: DatePickerProps) => {
+const DatePicker = ({className, error, label, ...props}: DatePickerProps) => {
   const generatedId = useId();
   const hasValue = !!props.selected;
 
@@ -40,12 +39,11 @@ const DatePicker = ({className, error, label, required, ...props}: DatePickerPro
           className={styles["c-datepicker__input"]}
           id={generatedId}
           autoComplete="off"
-          required={required}
-          {...props}
+          {...(props as ReactDatePickerProps)}
         />
         {label && (
           <label htmlFor={generatedId} className={styles["c-datepicker__label"]}>
-            {label} {required && "*"}
+            {label} {props.required && "*"}
           </label>
         )}
         <Calendar className={styles["c-datepicker__icon"]} size={18} />
