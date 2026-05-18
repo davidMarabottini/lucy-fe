@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import styles from "../Details.module.scss";
 import Table from "@/components/organisms/Table/Table";
 import MapContent from "@/components/molecules/MapContent/MapContent";
-import DatePicker from "@/components/atoms/DatePicker/DatePicker";
 import { useLibemaxTimbrature } from "@/hooks/api/useLibemaxTimbratureHooks";
 import type { ClockInPoint } from "@/components/molecules/MapContent/MapContent.types";
 import { useState } from "react";
@@ -12,11 +11,10 @@ import { Map, TriangleAlert } from "lucide-react";
 import { calculateDistance } from "@/utils/calculateDistance";
 import 'maplibre-gl/dist/maplibre-gl.css';
 import Typography from "@/components/atoms/Typography/Typography";
+import { useClientDetailStore } from "@/zustand/clientDetailState";
 
 export const MapCard = ({clientId}: {clientId: string}) => {
-  const [selectedDate, setSelectedDate] = useState<string>(
-    new Date().toISOString().split('T')[0]
-  );
+  const selectedDate = useClientDetailStore((s) => s.selectedDate);
   const [selectedPoint, setSelectedPoint] = useState<string | null>(null);
 
   const {data: mapData, isLoading: mapLoading, error: mapError} = useLibemaxTimbrature(Number(clientId), selectedDate);
@@ -56,20 +54,12 @@ export const MapCard = ({clientId}: {clientId: string}) => {
     type: 'end'
   }]) || [];
 
-  const dateChageHandler = (date: Date | null) => {
-    if(date) {
-      const dateString = date.toISOString().split('T')[0];
-      setSelectedDate(dateString);
-    }
-  };
-
   const { t } = useTranslation("client", { keyPrefix: "details.workDetails" });
   return (
     <Card  additionalClassName={styles["p-client-detail__card"]} >
       <Typography variant="h2" additionalClasses={styles["p-client-detail__title"]}>
         {t("subtitle")}
       </Typography>
-      <DatePicker label={t("select_date")} onChange={dateChageHandler} />
       {dipendente?.map((d, idx) => (
         <div key={idx}>
           <strong>{t("dipendente")}</strong>

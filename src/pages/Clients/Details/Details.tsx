@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 import ClientInfoCard from "./components/ClientInfoCard";
 import { ContractsCard } from "./components/ContractsCard";
 import { MapCard } from "./components/MapCard";
+import DateFilterCard from "./components/DateFilterCard";
 
 import clsx from "clsx";
 
@@ -34,6 +35,7 @@ const ClientDetailPage = () => {
         </div>
       </Card>
       <ClientInfoCard client={data} />
+      <DateFilterCard />
       <ContractsCard clientId={clientId!} />
       <MapCard clientId={clientId!} />
     </div>

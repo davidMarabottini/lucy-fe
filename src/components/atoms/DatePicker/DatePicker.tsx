@@ -4,35 +4,25 @@ import {it} from "date-fns/locale/it";
 import styles from "./DatePicker.module.scss";
 import clsx from "clsx";
 import { Calendar } from "lucide-react";
-import { useId } from "react";
+import { useId, type ComponentProps } from "react";
 
 registerLocale("it", it);
+export type ReactDatePickerProps = ComponentProps<typeof ReactDatePicker>;
 
-export interface DatePickerProps {
+export interface DatePickerProps
+  extends Omit<
+    ReactDatePickerProps,
+    "className" | "selectsRange"
+  > {
   label?: string;
-  startDate?: Date | null;
-  endDate?: Date | null;
-  //TODO: definire meglio il tipo di onChange in base a selectsRange
-  onChange: (date: any, event?: React.SyntheticEvent<any> | undefined) => void;
-  // onChange: (dates: [Date | null, Date | null] | Date | null) => void;
-  selectsRange?: boolean;
   error?: string;
-  required?: boolean;
   className?: string;
+  selectsRange?: boolean;
 }
 
-const DatePicker = ({
-  label,
-  startDate,
-  endDate,
-  onChange,
-  selectsRange = false,
-  error,
-  required,
-  className,
-}: DatePickerProps) => {
+const DatePicker = ({className, error, label, ...props}: DatePickerProps) => {
   const generatedId = useId();
-  const hasValue = !!startDate;
+  const hasValue = !!props.selected;
 
   return (
     <div className={clsx(styles["c-datepicker"], className)}>
@@ -46,19 +36,14 @@ const DatePicker = ({
         <ReactDatePicker
           locale="it"
           dateFormat="dd/MM/yyyy"
-          selected={startDate}
-          onChange={onChange}
-          startDate={startDate || undefined}
-          endDate={endDate || undefined}
-          selectsRange={selectsRange}
-          placeholderText=" "
           className={styles["c-datepicker__input"]}
           id={generatedId}
           autoComplete="off"
+          {...(props as ReactDatePickerProps)}
         />
         {label && (
           <label htmlFor={generatedId} className={styles["c-datepicker__label"]}>
-            {label} {required && "*"}
+            {label} {props.required && "*"}
           </label>
         )}
         <Calendar className={styles["c-datepicker__icon"]} size={18} />
