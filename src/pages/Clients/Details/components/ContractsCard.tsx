@@ -13,10 +13,13 @@ import * as Lucide from "lucide-react";
 import { ChevronRight, List, X } from "lucide-react";
 import { useState } from "react";
 import { getTodayWeekDayId } from "@/utils/weekDay";
+import { useClientDetailStore } from "@/zustand/clientDetailState";
 
 export const ContractsCard = ({ clientId }: { clientId: string }) => {
   const { t } = useTranslation("client", { keyPrefix: "details.contracts" });
   const [selectedContract, setSelectedContract] = useState<Contract | null>(null);
+  const selectedDate = useClientDetailStore((s) => s.selectedDate);
+  console.log("Selected date in ContractsCard:", getTodayWeekDayId(selectedDate), new Date(selectedDate));
 
   const toggleContract = (row: Contract) =>
     setSelectedContract(prev => prev?.id === row.id ? null : row);
@@ -91,7 +94,7 @@ export const ContractsCard = ({ clientId }: { clientId: string }) => {
                 header: t('schedules.table.day'),
                 value: (row) => (
                   <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                    {row.week_day_id != null && row.week_day_id === getTodayWeekDayId() && (
+                    {row.week_day_id != null && row.week_day_id === getTodayWeekDayId(selectedDate) && (
                       <Lucide.Check size={14} color="green" />
                     )}
                     {row.week_day?.name ?? t('schedules.table.flexible')}

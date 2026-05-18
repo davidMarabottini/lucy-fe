@@ -22,6 +22,7 @@ const MapContent: React.FC<MapContentProps> = ({ headquarter, clockIn, className
         onValueChange={(value) => setMapStyle(value)}
         orientation="horizontal"
       />
+      
       <MapComponent
         workLocation={headquarter}
         checkPoints={clockIn}
