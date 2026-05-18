@@ -8,9 +8,10 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const DateFilterCard = () => {
   const { t } = useTranslation("client", { keyPrefix: "details.workDetails" });
-  const { setSelectedDate, setNextDay, setPreviousDay, selectedDate } = useClientDetailStore((s) => s);
-  // const setNextDay = useClientDetailStore((s) => s.setNextDay);
-  // const setPreviousDay = useClientDetailStore((s) => s.setPreviousDay);
+  const setSelectedDate = useClientDetailStore((s) => s.setSelectedDate);
+  const setNextDay = useClientDetailStore((s) => s.setNextDay);
+  const setPreviousDay = useClientDetailStore((s) => s.setPreviousDay);
+  const selectedDate = useClientDetailStore((s) => s.selectedDate);
 
   const handleChange = (date: Date | null) => {
     if (date) {

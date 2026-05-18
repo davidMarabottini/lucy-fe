@@ -19,7 +19,6 @@ export const ContractsCard = ({ clientId }: { clientId: string }) => {
   const { t } = useTranslation("client", { keyPrefix: "details.contracts" });
   const [selectedContract, setSelectedContract] = useState<Contract | null>(null);
   const selectedDate = useClientDetailStore((s) => s.selectedDate);
-  console.log("Selected date in ContractsCard:", getTodayWeekDayId(selectedDate), new Date(selectedDate));
 
   const toggleContract = (row: Contract) =>
     setSelectedContract(prev => prev?.id === row.id ? null : row);
