@@ -1,0 +1,75 @@
+{
+  "list": {
+    "title": "Dipendenti",
+    "table": {
+      "name": "Nome",
+      "surname": "Cognome",
+      "phone": "Telefono",
+      "email": "Email",
+      "actions": "Azioni"
+    },
+    "modal": {
+      "delete": {
+        "header": "Cancellazione dipendente",
+        "bodyQuestion": "Vuoi davvero cancellare il dipendente?",
+        "bodyTable": {
+          "id": "ID",
+          "name": "Nome",
+          "surname": "Cognome",
+          "phone": "Telefono",
+          "email": "Email"
+        }
+      }
+    },
+    "additiveMessages": {
+      "loading": "Caricamento...",
+      "updateError": "Errore caricamento dipendenti"
+    }
+  },
+  "details": {
+    "title": "Dipendente",
+    "section": {
+      "contact": "Contatti"
+    },
+    "employee": {
+      "subtitle": "Dettagli"
+    },
+    "additionalMessage": {
+      "loading": "Caricamento...",
+      "errorLoading": "Errore nel caricamento del dipendente"
+    }
+  },
+  "insert": {
+    "title": "Aggiungi dipendente",
+    "form": {
+      "name": {
+        "label": "Nome",
+        "error": {
+          "required": "Nome Richiesto"
+        }
+      },
+      "surname": {
+        "label": "Cognome",
+        "error": {
+          "required": "Cognome Richiesto"
+        }
+      },
+      "phone": {
+        "label": "Telefono",
+        "error": {
+          "required": "Telefono Richiesto"
+        }
+      },
+      "email": {
+        "label": "Email",
+        "error": {
+          "required": "Email Richiesta",
+          "errorFormat": "Email in formato errato"
+        }
+      },
+      "submit": "Aggiungi",
+      "reset": "Reset"
+    },
+    "keepInPage": "Rimani in pagina"
+  }
+}
