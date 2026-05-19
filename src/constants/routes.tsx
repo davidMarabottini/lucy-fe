@@ -13,10 +13,10 @@ import type { RouteObject } from "react-router-dom";
 
 const Login = lazy(() => import("@/pages/Login/Login"));
 const Home = lazy(() => import("@/pages/Home/Home"));
-// const LibemaxEmployees = lazy(() => import("@/pages/LibemaxEmployees/LibemaxEmployees"));
+const LibemaxEmployees = lazy(() => import("@/pages/Employees/List/List"));
+const EmployeeDetail = lazy(() => import("@/pages/Employees/Details/Details"));
+const InsertEmployee = lazy(() => import("@/pages/Employees/Insert/Insert"));
 const LibemaxClients = lazy(() => import("@/pages/Clients/List/List"));
-// const LibemaxMissingClocking = lazy(() => import("@/pages/LibemaxMissingClocking/LibemaxMissingClocking"));
-// const LibemaxRemoteClocking = lazy(() => import("@/pages/LibemaxRemoteClocking/LibemaxRemoteClocking"));
 const ClientDetail = lazy(() => import("@/pages/Clients/Details/Details"));
 const ClientInsert = lazy(() => import("@/pages/Clients/Insert/Insert"));
 const Registration = lazy(() => import("@/pages/Users/Insert/Insert"));
@@ -67,12 +67,12 @@ type StructuredMenu = Partial<
 const ROUTE_CONFIGS: readonly AppRouteObject[] = Object.freeze([
   {path: '/', Element: Home, handle: {key: 'HOME', label: 'labels.home', Icon: HomeIcon, domain: [AUTH_DOMAINS.PUBLIC, AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.MAIN]}},
   {path: '/login', Element: Login, handle: {key: 'LOGIN', label: 'labels.login', Icon: LogIn, domain: [AUTH_DOMAINS.PUBLIC], menu: [AVAILABLE_MENUS.MAIN]}},
-  // {path: '/libemax-users',  Element: LibemaxEmployees,  handle: {key: 'LIBEMAX_EMPLOYEES', label: 'labels.libemaxEmployees', Icon: UserCheck2Icon, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.MAIN]}},
   {path: '/libemax-clients', Element: LibemaxClients, handle: {key: 'LIBEMAX_CLIENTS', label: 'labels.libemaxClients', Icon: Building, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.MAIN] }},
-  // {path: '/libemax-missing-clocking', Element: LibemaxMissingClocking, handle: { key: 'LIBEMAX_MISSING_CLOCKING', label: 'labels.libemaxMissingClocking', Icon: Clock, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.MAIN]}},
-  // {path: '/libemax-remote-clocking',Element: LibemaxRemoteClocking,handle: {key: 'LIBEMAX_REMOTE_CLOCKING',label: 'labels.libemaxRemoteClocking',Icon: MapPin,domain: [AUTH_DOMAINS.PRIVATE],menu: [AVAILABLE_MENUS.MAIN]}},
   {path: '/clients/:clientId', Element: ClientDetail, handle: { key: 'CLIENT_DETAIL', domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
   {path: '/clients/insert',  Element: ClientInsert,  handle: {key: 'INSERT_CLIENT', label: 'labels.insertClient', Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
+  {path: '/libemax-employees', Element: LibemaxEmployees, handle: {key: 'LIBEMAX_EMPLOYEES', label: 'labels.libemaxEmployees', Icon: Briefcase, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.MAIN] }},
+  {path: '/employees/:employeeId', Element: EmployeeDetail, handle: {key: 'EMPLOYEE_DETAIL', domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
+  {path: '/employees/insert', Element: InsertEmployee, handle: {key: 'INSERT_EMPLOYEE', label: 'labels.insertEmployee', Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
   {path: '/registration',  Element: Registration,  handle: {key: 'REGISTRATION', label: 'labels.registration', Icon: UserCheck2Icon, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
   {path: '/users', Element: UserList, handle: {key: 'USER_LIST', label: 'labels.userList', Icon: User, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.USER]}},
   {path: '/work-activities', Element: WorkActivities, handle: {key: 'WORK_ACTIVITIES', label: 'labels.workActivities', Icon: Briefcase, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.MAIN]}},

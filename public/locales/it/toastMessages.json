@@ -104,5 +104,27 @@
       "network": "Errore di rete. Controlla la tua connessione.",
       "defaultError": "Errore sconosciuto. Riprova più tardi."
     }
+  },
+  "employees": {
+    "list": {
+      "401": "Non hai i permessi per visualizzare i dipendenti",
+      "500": "Errore del server durante il caricamento dei dipendenti",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "insert": {
+      "success": "Dipendente aggiunto con successo",
+      "401": "Non hai i permessi per aggiungere un dipendente",
+      "500": "Errore del server durante l'inserimento del dipendente",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "delete": {
+      "success": "Dipendente eliminato con successo",
+      "401": "Non hai i permessi per eliminare questo dipendente",
+      "500": "Errore del server durante l'eliminazione del dipendente",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    }
   }
 }
