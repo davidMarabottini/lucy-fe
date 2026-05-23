@@ -1,8 +1,9 @@
 import Card from "@/components/atoms/Card/Card";
 import Typography from "@/components/atoms/Typography/Typography";
 import { useTranslation } from "react-i18next";
-import styles from "../Details.module.scss";
-import { useContracts } from "@/hooks/api/ContractHooks";
+import detailStyles from "../Details.module.scss";
+import cardStyles from "./ContractsCard.module.scss";
+import { useContracts, useGetEmployeesByContract } from "@/hooks/api/ContractHooks";
 import { useContractSchedules } from "@/hooks/api/useWorkScheduleHooks";
 import type { Contract } from "@/api/contractService";
 import type { WorkSchedule } from "@/api/workScheduleService";
@@ -14,18 +15,20 @@ import { ChevronRight, List, X } from "lucide-react";
 import { useState } from "react";
 import { getTodayWeekDayId } from "@/utils/weekDay";
 import { useClientDetailStore } from "@/zustand/clientDetailState";
+import EmployeeAssignmentCard from "@/components/atoms/EmployeeAssignmentCard/EmployeeAssignmentCard";
 
 export const ContractsCard = ({ clientId }: { clientId: string }) => {
   const { t } = useTranslation("client", { keyPrefix: "details.contracts" });
   const [selectedContract, setSelectedContract] = useState<Contract | null>(null);
   const selectedDate = useClientDetailStore((s) => s.selectedDate);
+  const { data: employees } = useGetEmployeesByContract(selectedContract?.id ?? 0, selectedDate ?? '');
 
   const toggleContract = (row: Contract) =>
     setSelectedContract(prev => prev?.id === row.id ? null : row);
 
   return (
-    <Card additionalClassName={styles["p-client-detail__card"]}>
-      <Typography variant="h2" additionalClasses={styles["p-client-detail__title"]}>
+    <Card additionalClassName={detailStyles["p-client-detail__card"]}>
+      <Typography variant="h2" additionalClasses={detailStyles["p-client-detail__title"]}>
         {t("subtitle")}
       </Typography>
 
@@ -61,8 +64,8 @@ export const ContractsCard = ({ clientId }: { clientId: string }) => {
       />
 
       {selectedContract && (
-        <div className={styles["p-client-detail__schedules-panel"]}>
-          <div className={styles["p-client-detail__schedules-header"]}>
+        <div className={cardStyles["c-contracts-card__schedules-panel"]}>
+          <div className={cardStyles["c-contracts-card__schedules-header"]}>
             <Typography variant="h4">
               {t("schedules.subtitle")}: {selectedContract.contract_code}
             </Typography>
@@ -78,7 +81,6 @@ export const ContractsCard = ({ clientId }: { clientId: string }) => {
             filterConfig={[
               { key: 'contract_id', placeholder: '', value: String(selectedContract.id), type: 'hidden' }
             ]}
-
             columns={[
               {
                 key: '__icon',
@@ -92,7 +94,7 @@ export const ContractsCard = ({ clientId }: { clientId: string }) => {
                 key: 'week_day',
                 header: t('schedules.table.day'),
                 value: (row) => (
-                  <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  <span className={cardStyles["c-contracts-card__week-day-cell"]}>
                     {row.week_day_id != null && row.week_day_id === getTodayWeekDayId(selectedDate) && (
                       <Lucide.Check size={14} color="green" />
                     )}
@@ -119,6 +121,25 @@ export const ContractsCard = ({ clientId }: { clientId: string }) => {
               },
             ]}
           />
+
+          {employees && (
+            <div className={cardStyles["c-contracts-card__employees-section"]}>
+              <Typography variant="h4" additionalClasses={cardStyles["c-contracts-card__employees-title"]}>
+                {t("employees.subtitle")}
+              </Typography>
+              {employees.length > 0 ? (
+                <ul className={cardStyles["c-contracts-card__employees-list"]}>
+                  {employees.map((assignment) => (
+                    <li key={assignment.assignment_id}>
+                      <EmployeeAssignmentCard assignment={assignment} />
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <Typography variant="body">{t("employees.noEmployees")}</Typography>
+              )}
+            </div>
+          )}
         </div>
       )}
     </Card>

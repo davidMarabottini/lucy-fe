@@ -58,6 +58,10 @@
           "flexible": "Flessibile",
           "weekly_short": "sett."
         }
+      },
+      "employees": {
+        "subtitle": "Dipendenti assegnati",
+        "noEmployees": "Nessun dipendente assegnato per la data selezionata"
       }
     },
     "workDetails": {

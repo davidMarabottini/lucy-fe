@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import CardContract from "./components/CardContract";
 import CardForm from "./components/CardForm";
 import CardContractDetails from "./components/CardContractDetails";
+import CardEmployee from "./components/CardEmployee";
 
 // --- Main Page ---
 const ContractDetailPage = () => {
@@ -22,6 +23,7 @@ const ContractDetailPage = () => {
       <CardContract data={data} />
       <CardForm contractId={contractId} />
       <CardContractDetails contractId={contractId} deleteSchedule={deleteSchedule} />
+      <CardEmployee contractId={Number(contractId)} />
     </div>
   );
 };

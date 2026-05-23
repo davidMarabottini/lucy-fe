@@ -11,13 +11,14 @@ import {
   updateContract, 
   deleteContract,
   type Contract,
-  type ContractPayload
+  type ContractPayload,
+  type ContractEmployeeAssignment,
+  addEmployeeToContract,
+  getEmployeesByContract
 } from "@/api/contractService";
 
 const libDomain = 'contract';
 
-// 1. LISTA CONTRATTI
-// extends { page?: number; per_page?: number; search?: string; raw?: boolean }
 export const useContracts = (params?: Record<string, unknown>) =>
   useAppQuery<PaginatedData<Contract>>({
     queryKey: ['contracts', params], 
@@ -32,7 +33,6 @@ export const useContracts = (params?: Record<string, unknown>) =>
     placeholderData: (previousData) => previousData, 
   });
 
-// 2. DETTAGLIO CONTRATTO
 export const useContractDetail = (id: number) =>
   useAppQuery<Contract>({
     queryKey: ['contract', id],
@@ -44,7 +44,6 @@ export const useContractDetail = (id: number) =>
     },
   });
 
-// 3. INSERIMENTO
 export const useInsertContract = (locNavigate?: boolean) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -66,7 +65,6 @@ export const useInsertContract = (locNavigate?: boolean) => {
   });
 };
 
-// 4. AGGIORNAMENTO
 export const useUpdateContract = (id: number) => {
   const queryClient = useQueryClient();
 
@@ -84,7 +82,6 @@ export const useUpdateContract = (id: number) => {
   });
 };
 
-// 5. ELIMINAZIONE
 export const useDeleteContract = () => {
   const queryClient = useQueryClient();
 
@@ -100,3 +97,30 @@ export const useDeleteContract = () => {
     },
   });
 };
+
+export const useAddEmployeeToContract = (contractId: number) => {
+  const queryClient = useQueryClient();
+  return useAppMutation({
+    mutationFn: ({ workers, start_date, end_date }: { workers: number[]; start_date: string; end_date: string }) =>
+      addEmployeeToContract(contractId, workers, start_date, end_date),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['contract', contractId] });
+    },
+    successKey: `${libDomain}.addEmployee.success`,
+    errorMap: {
+      [ERROR_KINDS.SERVER]: `${libDomain}.addEmployee.500`,
+      [ERROR_KINDS.UNKNOWN]: `${libDomain}.addEmployee.defaultError`
+    },
+  });
+};
+
+export const useGetEmployeesByContract = (contractId: number, date: string) =>
+  useAppQuery<ContractEmployeeAssignment[]>({
+    queryKey: ['contractEmployees', contractId, date],
+    queryFn: () => getEmployeesByContract(contractId, date),
+    enabled: !!contractId && !!date,
+    errorMap: {
+      [ERROR_KINDS.SERVER]: `${libDomain}.employees.500`,
+      [ERROR_KINDS.UNKNOWN]: `${libDomain}.employees.defaultError`
+    },
+  });

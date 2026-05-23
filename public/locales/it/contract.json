@@ -109,7 +109,17 @@
     },
     "filters": {
       "user_label": "Filtra per Operatore"
+    },
+    "addEmployee": {
+      "title": "Aggiungi Operatore al Contratto",
+      "form": {
+        "employee": {
+          "label": "Seleziona Operatore",
+          "error": "Selezionare un operatore"
+        },
+        "reset": "Pulisci",
+        "save": "Aggiungi Operatore"
+      }    
     }
   }
-
 }

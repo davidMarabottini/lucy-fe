@@ -75,7 +75,6 @@ const InsertContract = () => {
                 rules={{ required: t('form.date_range.required') }}
               />
 
-              {/* Azienda Provider (DualListBox) */}
               <Form.FilteredDualListBox
                 className="l-grid__col l-grid__col--span-6"
                 name="provider_ids"
@@ -86,7 +85,6 @@ const InsertContract = () => {
                 }}
               />
 
-              {/* Cliente (DualListBox) */}
               <Form.FilteredDualListBox
                 className="l-grid__col l-grid__col--span-6"
                 name="client_ids"

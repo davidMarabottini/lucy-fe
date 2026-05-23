@@ -16,6 +16,20 @@ export interface Contract {
 
 export type ContractPayload = Omit<Contract, 'id'>;
 
+export interface ContractEmployeeAssignment {
+  assignment_id: number;
+  employee: {
+    email: string;
+    id: number;
+    libemax_id: number;
+    name: string;
+    phone: string;
+    surname: string;
+  };
+  end_date: string;
+  start_date: string;
+}
+
 export const getContracts = async (params?: Record<string, unknown>): Promise<PaginatedData<Contract>> => {
   const { data } = await apiClient.get('/api/contracts', { params });
   return data;
@@ -41,3 +55,21 @@ export const deleteContract = async (id: number): Promise<{ success: boolean }> 
   const { data } = await apiClient.delete<{ success: boolean }>(`/api/contracts/${id}`);
   return data;
 };
+
+export const addEmployeeToContract = async (contractId: number, workers: number[], startDate: string, endDate: string): Promise<void> => {
+  await Promise.all(
+    workers.map(employeeId =>
+      apiClient.post(`/api/employee-contracts`, {
+        contract_id: contractId,
+        employee_id: employeeId,
+        start_date: startDate,
+        end_date: endDate,
+      })
+    )
+  );
+};
+
+export const getEmployeesByContract = async (contractId: number, date: string): Promise<ContractEmployeeAssignment[]> => {
+  const { data } = await apiClient.get<ContractEmployeeAssignment[]>(`/api/employee-contracts/by-contract/${contractId}`, { params: { date } });
+  return data;
+}

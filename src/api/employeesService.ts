@@ -2,6 +2,7 @@ import apiClient from "./apiClient";
 
 export type LibemaxEmployee = {
   id: number;
+  libemax_id: number;
   name: string;
   surname: string;
   phone: string;

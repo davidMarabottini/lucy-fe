@@ -50,10 +50,7 @@ const LibemaxEmployees = () => {
           ]}
           
           columns={[
-            {
-              key: 'name',
-              header: t('table.name')
-            },
+            {key: 'name', header: t('table.name')},
             {key: 'surname', header: t('table.surname')},
             {key: 'email', header: t('table.email')},
             {key: 'phone', header: t('table.phone')},
