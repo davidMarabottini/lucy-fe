@@ -65,7 +65,7 @@ const GroupCompaniesList = () => {
             { 
               key: 'sectors', 
               header: t('table.sectors'),
-              value: (row) => row.sectors.map(s => s.name).join(', ') 
+              value: row => row.sectors.map(s => s.name).join(', ') 
             },
           ]}
           actions={[

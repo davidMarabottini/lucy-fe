@@ -1,5 +1,19 @@
 import apiClient from "./apiClient";
 
+export type EmployeeContractAssignment = {
+  assignment_id: number;
+  start_date: string;
+  end_date: string | null;
+  employee: {
+    id: number;
+    name: string;
+    surname: string;
+    email: string;
+    phone: string;
+    libemax_id: number;
+  };
+};
+
 export type LibemaxEmployee = {
   id: number;
   libemax_id: number;
@@ -32,5 +46,10 @@ export const getEmployeeDetail = async (employeeId: number): Promise<LibemaxEmpl
 
 export const deleteEmployee = async (employeeId: number): Promise<{ success: boolean }> => {
   const { data } = await apiClient.delete(`/api/employees/${employeeId}`);
+  return data;
+};
+
+export const getEmployeesByContractId = async (contractId: number, date?: string): Promise<EmployeeContractAssignment[]> => {
+  const { data } = await apiClient.get<EmployeeContractAssignment[]>(`/api/employee-contracts/by-contract/${contractId}`, { params: { date } });
   return data;
 };

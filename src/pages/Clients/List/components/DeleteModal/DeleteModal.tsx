@@ -53,6 +53,7 @@ export const DeleteModal = ({openModal, setOpenModal, curClient: idClient}: Dele
               {key: "email", header: t("modal.delete.bodyTable.email")}
             ]}
             data={[idClient]}
+            getRowKey={(row) => String(row.id)}
           />
         )}
       </Modal>)

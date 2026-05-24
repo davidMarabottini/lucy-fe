@@ -55,6 +55,7 @@ export const DeleteModal = ({openModal, setOpenModal, curEmployee}: DeleteModalP
               {key: "email", header: t("modal.delete.bodyTable.email")}
             ]}
             data={[curEmployee]}
+            actions={({id}) => id}
           />
         )}
       </Modal>)

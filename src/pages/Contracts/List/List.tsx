@@ -107,6 +107,7 @@ const ContractsList = () => {
               </Button>
             ),
           ]}
+          getRowKey={(row) => String(row.contract_code)}
         />
       </Card>
     </div>

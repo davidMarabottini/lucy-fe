@@ -17,6 +17,7 @@ function TablePaginated<T extends object>({
   actions,
   initialPerPage = 10,
   filterConfig = [],
+  getRowKey,
 }: TablePaginatedProps<T>) {
   const [page, setPage] = useState(1);
 
@@ -63,7 +64,7 @@ function TablePaginated<T extends object>({
       )}
 
       <div style={{ opacity: isPlaceholderData ? 0.6 : 1, transition: 'opacity 0.2s' }}>
-        <Table data={items} columns={columns} actions={actions} />
+        <Table data={items} columns={columns} actions={actions} getRowKey={getRowKey} />
       </div>
 
       {paginated && totalPages > 1 && (

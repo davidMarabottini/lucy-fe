@@ -1,12 +1,7 @@
-// import Button from '@/components/atoms/Button/Button';
 import type {TableProps} from './Table.types';
 import styles from './Table.module.scss';
 
-function Table<T extends object>({
-  data,
-  columns,
-  actions,
-}: TableProps<T>) {
+function Table<T extends object>({ data, columns, actions, getRowKey, additionalContainer }: TableProps<T>) {
   return (
     <div className={styles['c-table']}>
       <div className={styles['c-table__inner']}>
@@ -27,11 +22,12 @@ function Table<T extends object>({
         </div>
 
         <div style={{ display: "table-row-group" }}>
-          {data.map((row, i) => (
-            <div key={i} className={styles['c-table__row']} >
-              
+          {data.map((row, i) => {
+            const curKey = getRowKey?.(row) || i
+            return (
+            <div key={curKey} className={styles['c-table__row']} >
               {columns.map((col) => {
-                const content = col.value ? col.value(row) : String(row[col.key] ?? "");
+                const content = col.value ? col.value(row) : String(row[col.key as keyof T] ?? "");
 
                 return (
                   <div
@@ -43,14 +39,18 @@ function Table<T extends object>({
                   </div>
                 );
               })}
-
+              {additionalContainer && additionalContainer[curKey] && (
+                <div key={curKey} className={styles['c-table__cell']}>
+                  {additionalContainer[curKey](row)}
+                </div>
+              )}
               {actions && (
                 <div className={styles['c-table__cell']}>
                   {actions.map((el) => el(row))}
                 </div>
               )}
             </div>
-          ))}
+          )})}
         </div>
       </div>
     </div>

@@ -48,6 +48,7 @@ export const ContractsCard = ({ clientId }: { clientId: string }) => {
           { key: 'end_date', header: t('table.end_date'), value: (row) => row.end_date ? new Date(row.end_date).toLocaleDateString('it-IT') : '-' },
           { key: 'description', header: t('table.description'), value: (row) => row.description || '-' }
         ]}
+        getRowKey={(row) => String(row.contract_code)}
         actions={[
           row => (
             <Button
@@ -120,6 +121,7 @@ export const ContractsCard = ({ clientId }: { clientId: string }) => {
                 value: (row) => row.note ?? '-',
               },
             ]}
+            getRowKey={(row) => String(row.id)}
           />
 
           {employees && (

@@ -52,6 +52,7 @@ const CardContractDetails = ({
             value: (row) => row.note ?? '-',
           },
         ]}
+        getRowKey={(row) => String(row.id)}
         actions={[
           (row) => (
             <Button

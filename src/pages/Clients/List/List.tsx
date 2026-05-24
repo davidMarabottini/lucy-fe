@@ -57,7 +57,7 @@ const LibemaxClients = () => {
             {key: 'email', header: t('table.email')},
             {key: 'phone', header: t('table.phone')},
           ]}
-             
+          getRowKey={({id}) => id}
           actions={
             [
               (row) => (

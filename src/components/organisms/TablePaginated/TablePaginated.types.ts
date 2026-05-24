@@ -16,9 +16,12 @@ export interface FilterConfig {
 export type PaginatedResponse<T> = T[] | PaginatedData<T>;
 
 export interface TablePaginatedProps<T extends object> {
+  // TODO: valutare se è possibile tiipzzare basandosi su Table, magari con un extends
   useQueryHook: (params: Record<string, unknown>) => UseQueryResult<PaginatedResponse<T>, AppError>;
   columns: TableColumn<T>[];
   actions?: ((row: T) => React.ReactNode)[];
   initialPerPage?: number;
   filterConfig?: FilterConfig[];
+  getRowKey?: (row: T) => string | number;
+  additionalContainer?: {[key: string | number]: (row: T) => React.ReactNode};
 }
