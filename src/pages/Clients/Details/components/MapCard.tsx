@@ -13,22 +13,21 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import Typography from "@/components/atoms/Typography/Typography";
 import { useClientDetailStore } from "@/zustand/clientDetailState";
 
-export const MapCard = ({clientId}: {clientId: string}) => {
+export const MapCard = ({ clientId }: { clientId: string }) => {
   const selectedDate = useClientDetailStore((s) => s.selectedDate);
+  const selectedEmployeeLibemaxId = useClientDetailStore((s) => s.selectedEmployeeLibemaxId);
   const [selectedPoint, setSelectedPoint] = useState<string | null>(null);
 
-  const {data: mapData, isLoading: mapLoading, error: mapError} = useLibemaxTimbrature(Number(clientId), selectedDate);
+  const { data: rawMapData, isLoading: mapLoading, error: mapError } = useLibemaxTimbrature(Number(clientId), selectedDate);
+  const { t } = useTranslation("client", { keyPrefix: "details.workDetails" });
 
-  const {cliente: clientLocation } = mapData?.[0] || {};
-  const dipendente = Object.values(mapData?.reduce((acc: Record<string, any>, curr) => {
-    const dip = curr.dipendente;
-    if (dip && dip.id) {
-      acc[dip.id] = dip;
-    }
-    return acc;
-  }, {}) || {});
+  if (!selectedEmployeeLibemaxId) return null;
 
-  const points = mapData?.flatMap(x => [{
+  const mapData = rawMapData?.filter(x => x.dipendente?.id === selectedEmployeeLibemaxId) ?? [];
+  const { cliente: clientLocation } = rawMapData?.[0] || {};
+  const dipendente = mapData[0]?.dipendente;
+
+  const points = mapData.flatMap(x => [{
     id: `start_${x.id}`,
     user: x.dipendente?.nome ? `${x.dipendente.nome} ${x.dipendente.cognome}` : '',
     latitudine: x.latitudine_start,
@@ -52,50 +51,48 @@ export const MapCard = ({clientId}: {clientId: string}) => {
     stato: x.stato_end,
     orario: x.ora_fine_arrotondata,
     type: 'end'
-  }]) || [];
+  }]);
 
-  const { t } = useTranslation("client", { keyPrefix: "details.workDetails" });
   return (
-    <Card  additionalClassName={styles["p-client-detail__card"]} >
+    <Card additionalClassName={styles["p-client-detail__card"]}>
       <Typography variant="h2" additionalClasses={styles["p-client-detail__title"]}>
         {t("subtitle")}
       </Typography>
-      {dipendente?.map((d, idx) => (
-        <div key={idx}>
-          <strong>{t("dipendente")}</strong>
-          <p>{d?.nome} {d?.cognome}</p>
-          <p>{d?.email}</p>
-          <p>{d?.telefono}</p>
-        </div>
-      ))}
+
       <Table
         data={points}
         columns={[
-          {key: 'user', header: t('table.user')},
-          {key: 'latitudine', header: t('table.latitudine')},
-          {key: 'longitudine', header: t('table.longitudine')},
-          {key: 'indirizzo', header: t('table.indirizzo')},
-          {key: 'cap', header: t('table.cap')},
-          {key: 'citta', header: t('table.citta')},
-          {key: 'provincia', header: t('table.provincia')},
-          {key: 'stato', header: t('table.stato')},
-          {key: 'orario', header: t('table.orario')},
+          { key: 'latitudine', header: t('table.latitudine') },
+          { key: 'longitudine', header: t('table.longitudine') },
+          { key: 'indirizzo', header: t('table.indirizzo') },
+          { key: 'cap', header: t('table.cap') },
+          { key: 'citta', header: t('table.citta') },
+          { key: 'provincia', header: t('table.provincia') },
+          { key: 'stato', header: t('table.stato') },
+          { key: 'orario', header: t('table.orario') },
           {
             key: '__distance',
             header: t('table.distance'),
             value: (row) => {
-              const distance = calculateDistance([row.latitudine, row.longitudine], [clientLocation?.latitudine, clientLocation?.longitudine]);
-              return distance ? <div style={{ display: 'flex', gap: '8px', background: distance.endsWith('km') ? 'yellow' : 'transparent' }}>{distance}{distance.endsWith('km') ? <TriangleAlert fontSize={20} /> : ''}</div> : '-';
+              const distance = calculateDistance(
+                [Number(row.latitudine), Number(row.longitudine)],
+                [Number(clientLocation?.latitudine ?? 0), Number(clientLocation?.longitudine ?? 0)]
+              );
+              return distance
+                ? <div style={{ display: 'flex', gap: '8px', background: distance.endsWith('km') ? 'yellow' : 'transparent' }}>
+                    {distance}{distance.endsWith('km') ? <TriangleAlert size={20} /> : ''}
+                  </div>
+                : '-';
             },
-            
           },
-          {key: 'type', header: t('table.type')},
+          { key: 'type', header: t('table.type') },
         ]}
-        getRowKey={({id}) => id}
+        getRowKey={({ id }) => id}
         actions={[
           row => <Button color="custom" onClick={() => setSelectedPoint(row.id)}><Map /></Button>
         ]}
       />
+
       <div style={{ height: '800px', marginTop: '20px' }}>
         {mapLoading && <div>{t("additionalMessage.loadingMap")}</div>}
         <MapContent
@@ -131,5 +128,5 @@ export const MapCard = ({clientId}: {clientId: string}) => {
         {mapError && <div>{t("additionalMessage.errorLoadingMap")}</div>}
       </div>
     </Card>
-  )
-}
+  );
+};
