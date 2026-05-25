@@ -1,14 +1,15 @@
 import type { ButtonProps } from "@/components/atoms/Button/Button.types";
 import type React from "react";
 
+type DynamicValue<T> = (row: T) => string | number | React.ReactNode;
 export type TableColumn<T> = {
   header: string;
 } & ({
   key:  `__${string}`;
-  value: (row: T) => string;
+  value: DynamicValue<T>;
 } | {
   key: keyof T;
-  value?: (row: T) => string | React.ReactNode;
+  value?: DynamicValue<T> | React.ReactNode;
 });
 
 export interface TableAction<T> extends Omit<ButtonProps, 'onClick'> {
@@ -20,5 +21,5 @@ export type TableProps<T> = {
   columns: TableColumn<T>[];
   actions?: ((row: T) => React.ReactNode)[];
   getRowKey?: (row: T) => string | number;
-  additionalContainer?: {[key: string | number]: (row: T) => React.ReactNode};
+  additionalContainer?: (row: T) => React.ReactNode;
 };
