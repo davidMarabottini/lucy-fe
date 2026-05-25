@@ -54,6 +54,28 @@
         }
       }
     },
+    "select_date": "Seleziona data",
+    "contractDetail": {
+      "schedules": {
+        "subtitle": "Orari del contratto"
+      },
+      "timbrature": {
+        "subtitle": "Timbrature",
+        "loadingMap": "Caricamento mappa...",
+        "errorLoadingMap": "Errore nel caricamento della mappa",
+        "table": {
+          "user": "Dipendente",
+          "indirizzo": "Indirizzo",
+          "cap": "CAP",
+          "citta": "Città",
+          "provincia": "Provincia",
+          "stato": "Stato",
+          "orario": "Orario",
+          "distance": "Distanza",
+          "type": "Tipo"
+        }
+      }
+    },
     "additionalMessage": {
       "loading": "Caricamento...",
       "errorLoading": "Errore nel caricamento del dipendente"

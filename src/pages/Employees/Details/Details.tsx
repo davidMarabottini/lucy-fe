@@ -10,6 +10,8 @@ import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 import EmployeeInfoCard from "./components/EmployeeInfoCard";
 import EmployeesContractCard from "./components/EmployeesContractCard";
+import EmployeeDateFilterCard from "./components/EmployeeDateFilterCard";
+import { EmployeeContractDetailCard } from "./components/EmployeeContractDetailCard";
 
 const EmployeeDetailPage = () => {
   const { employeeId } = useParams<{ employeeId: string }>();
@@ -31,7 +33,9 @@ const EmployeeDetailPage = () => {
         </div>
       </Card>
       <EmployeeInfoCard employee={data} />
+      <EmployeeDateFilterCard />
       <EmployeesContractCard employeeId={String(data.id)} />
+      <EmployeeContractDetailCard employeeLibemaxId={data.libemax_id} />
     </div>
   );
 };
