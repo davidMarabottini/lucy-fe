@@ -25,7 +25,6 @@ export const MapCard = ({ clientId }: { clientId: string }) => {
 
   const mapData = rawMapData?.filter(x => x.dipendente?.id === selectedEmployeeLibemaxId) ?? [];
   const { cliente: clientLocation } = rawMapData?.[0] || {};
-  const dipendente = mapData[0]?.dipendente;
 
   const points = mapData.flatMap(x => [{
     id: `start_${x.id}`,

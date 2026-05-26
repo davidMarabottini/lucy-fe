@@ -24,7 +24,7 @@ function Table<T extends object>({ data, columns, actions, getRowKey, additional
 
         <div className={styles['c-table__body']}>
           {data.map((row, i) => {
-            const curKey = getRowKey?.(row) || i
+            const curKey = getRowKey?.(row) ?? i
             return (
               <Fragment key={curKey}>
                 <div className={styles['c-table__row']} >
