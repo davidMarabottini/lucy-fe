@@ -46,9 +46,15 @@ export const ContractSchedulesTable = ({ contractId, selectedDate }: ContractSch
         {
           key: '__time_info',
           header: t('schedules.table.hours'),
-          value: (row) => row.weekly_hours
-            ? `${row.weekly_hours}h ${t('schedules.table.weekly_short')}`
-            : `${row.start_time?.substring(0, 5)} - ${row.end_time?.substring(0, 5)}`,
+          value: (row) => {
+            if (row.weekly_hours) {
+              return `${row.weekly_hours}h ${t('schedules.table.weekly_short')}`;
+            }
+
+            const start = row.start_time?.substring(0, 5);
+            const end = row.end_time?.substring(0, 5);
+            return start && end ? `${start} - ${end}` : '-';
+          },
         },
         {
           key: 'work_activity',
