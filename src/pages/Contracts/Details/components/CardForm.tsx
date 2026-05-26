@@ -1,7 +1,7 @@
 import Card from "@components/atoms/Card/Card";
 import { Check, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import type { WorkScheduleAdd } from "@/api/workScheduleService";
+import type { WorkScheduleAdd } from "@/api/types";
 import { useInsertWorkSchedule } from "@/hooks/api/useWorkScheduleHooks";
 import clsx from "clsx";
 import Form from "@/components/organisms/form/Form";

@@ -5,7 +5,8 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useAppMutation } from "../useAppApi/useAppMutation";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "@/constants/routes";
-import { deleteEmployee, getEmployeeDetail, getEmployeesByContractId, getLibemaxEmployees, insertEmployee, type LibemaxEmployee, type EmployeeContractAssignment } from "@/api/employeesService";
+import { deleteEmployee, getEmployeeDetail, getEmployeesByContractId, getLibemaxEmployees, insertEmployee } from "@/api/employeesService";
+import type { LibemaxEmployee, ContractEmployeeAssignment } from "@/api/types";
 
 const libDomain = 'employees';
 
@@ -87,7 +88,7 @@ export const useEmployeeDelete = () => {
 };
 
 export const useGetEmployeesByContractId = (contractId: number, date?: string) =>
-  useAppQuery<EmployeeContractAssignment[]>({
+  useAppQuery<ContractEmployeeAssignment[]>({
     queryKey: ['employeesByContract', contractId, date],
     queryFn: () => getEmployeesByContractId(contractId, date),
     enabled: !!contractId,

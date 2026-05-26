@@ -2,7 +2,7 @@ import Card from "@components/atoms/Card/Card";
 import Typography from "@components/atoms/Typography/Typography";
 import { useGroupCompanies } from "@/hooks/api/GroupCompanyHooks";
 import styles from './List.module.scss'; 
-import { type GroupCompany } from "@/api/groupCompanyService";
+import { type GroupCompany } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
 import { FileText, PlusCircle, Trash2 } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";

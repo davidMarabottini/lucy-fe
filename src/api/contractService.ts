@@ -1,34 +1,6 @@
 import apiClient from "./apiClient";
-import type { LibemaxClient } from "./clientService";
-import type { GroupCompany } from "./groupCompanyService";
+import type { Contract, ContractPayload, ContractEmployeeAssignment } from "./types";
 import type { PaginatedData } from "@/types/utilities.types";
-
-
-export interface Contract {
-  "client": LibemaxClient,
-  "contract_code": string,
-  "description": string,
-  "end_date": string,
-  "id": number,
-  "provider": GroupCompany,
-  "start_date": string
-}
-
-export type ContractPayload = Omit<Contract, 'id'>;
-
-export interface ContractEmployeeAssignment {
-  assignment_id: number;
-  employee: {
-    email: string;
-    id: number;
-    libemax_id: number;
-    name: string;
-    phone: string;
-    surname: string;
-  };
-  end_date: string;
-  start_date: string;
-}
 
 export const getContracts = async (params?: Record<string, unknown>): Promise<PaginatedData<Contract>> => {
   const { data } = await apiClient.get('/api/contracts', { params });

@@ -2,7 +2,7 @@ import Card from "@components/atoms/Card/Card";
 import Typography from "@components/atoms/Typography/Typography";
 import { useLibemaxClients } from "@/hooks/api/useClientHooks";
 import styles from './List.module.scss'
-import type { LibemaxClient } from "@/api/clientService";
+import type { LibemaxClient } from "@/api/types";
 import { rewriteRoute } from "@/utils/routes";
 import { ROUTES } from "@/constants/routes";
 import { FileText, PlusCircle, Trash2 } from "lucide-react";

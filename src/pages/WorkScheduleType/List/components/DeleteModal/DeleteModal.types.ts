@@ -1,4 +1,4 @@
-import type { WorkScheduleType } from "@/api/workScheduleTypeService";
+import type { WorkScheduleType } from "@/api/types";
 import type { Dispatch, SetStateAction } from "react";
 
 export interface DeleteModalProps {

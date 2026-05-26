@@ -3,7 +3,7 @@ import Typography from "@/components/atoms/Typography/Typography";
 import { useTranslation } from "react-i18next";
 import styles from "../Details.module.scss";
 import { Mail, Phone } from "lucide-react";
-import type { LibemaxClientDetail } from "@/api/clientService";
+import type { LibemaxClientDetail } from "@/api/types";
 
 const ClientInfoCard = ({ client }: { client?: LibemaxClientDetail }) => {
   const { t } = useTranslation("client", { keyPrefix: "details" });

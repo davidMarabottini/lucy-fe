@@ -1,5 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query';
 import * as userService from '@/api/userService';
+import type { UserStatusResult, UsersResult } from '@/api/types';
 import { useAppMutation } from '../useAppApi/useAppMutation';
 import { ERROR_KINDS } from '../useAppApi/error';
 import { useAppQuery } from '../useAppApi/useAppQuery';
@@ -32,14 +33,14 @@ export const useInsertUser = (locNavigate?: boolean) => {
 }
 
 export const useUserStatus = () =>
-  useAppQuery<userService.UserStatusResult>({
+  useAppQuery<UserStatusResult>({
     queryKey: ['userStatus'],
     queryFn: userService.getUserStatus,
     staleTime: 1000 * 60 * 5, 
   });
 
 export const useUsers = (params?: Record<string, unknown>) =>
-  useAppQuery<userService.UsersResult[]>({
+  useAppQuery<UsersResult[]>({
     queryKey: ['users', params],
     queryFn: () => userService.getUsers(params),
     errorMap: {

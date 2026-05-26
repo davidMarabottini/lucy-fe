@@ -2,7 +2,7 @@ import Card from "@components/atoms/Card/Card";
 import Typography from "@components/atoms/Typography/Typography";
 import { useWorkActivities } from "@/hooks/api/useWorkActivity"; // Corretto path hook
 import styles from './List.module.scss'
-import { type WorkActivity } from "@/api/workActivityService";
+import { type WorkActivity } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
 import { PlusCircle, Trash2 } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";

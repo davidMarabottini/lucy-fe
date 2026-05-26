@@ -8,9 +8,9 @@ import {
   getWorkScheduleTypeById, 
   insertWorkScheduleType, 
   updateWorkScheduleType, 
-  deleteWorkScheduleType,
-  type WorkScheduleType
+  deleteWorkScheduleType
 } from "@/api/workScheduleTypeService";
+import type { WorkScheduleType } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
 
 const libDomain = 'workScheduleType';

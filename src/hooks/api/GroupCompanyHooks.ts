@@ -8,10 +8,9 @@ import {
   getGroupCompanyById, 
   insertGroupCompany, 
   updateGroupCompany, 
-  deleteGroupCompany,
-  type GroupCompany,
-  type GroupCompanyPayload
+  deleteGroupCompany
 } from "@/api/groupCompanyService";
+import type { GroupCompany, GroupCompanyPayload } from "@/api/types";
 
 const libDomain = 'groupCompany';
 

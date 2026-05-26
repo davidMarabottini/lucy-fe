@@ -1,4 +1,4 @@
-import type { LibemaxEmployee } from "@/api/employeesService";
+import type { LibemaxEmployee } from "@/api/types";
 import type { Dispatch, SetStateAction } from "react";
 
 export interface DeleteModalProps {

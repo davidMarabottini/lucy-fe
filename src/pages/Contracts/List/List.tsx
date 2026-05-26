@@ -3,7 +3,7 @@ import Typography from "@components/atoms/Typography/Typography";
 import { useContracts } from "@/hooks/api/ContractHooks";
 import styles from './List.module.scss'; 
 // import Table from "@/components/organisms/Table/Table";
-import { type Contract } from "@/api/contractService";
+import { type Contract } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
 import { FileText, PlusCircle, Trash2 } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";

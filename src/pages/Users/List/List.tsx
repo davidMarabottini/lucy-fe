@@ -9,7 +9,7 @@ import styles from './List.module.scss'
 import { useMe } from "@/hooks/api/useAuthenticationHooks";
 import Button from "@/components/atoms/Button/Button";
 import { useState } from "react";
-import type { UsersResult } from "@/api/userService";
+import type { UsersResult } from "@/api/types";
 import { DeleteModal } from "./components/DeleteModal/DeleteModal";
 import TablePaginated from "@/components/organisms/TablePaginated/TablePaginated";
 

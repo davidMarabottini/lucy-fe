@@ -1,4 +1,4 @@
-import type { UsersResult } from "@/api/userService";
+import type { UsersResult } from "@/api/types";
 import type { Dispatch, SetStateAction } from "react";
 
 export interface DeleteModalProps {

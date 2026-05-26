@@ -3,7 +3,7 @@ import Button from "@/components/atoms/Button/Button";
 import { X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useGetEmployeesByContract } from "@/hooks/api/ContractHooks";
-import type { Contract } from "@/api/contractService";
+import type { Contract } from "@/api/types";
 import cardStyles from "./ContractsCard.module.scss";
 import { ContractSchedulesTable } from "./ContractSchedulesTable.tsx";
 import { ContractEmployeesList } from "./ContractEmployeesList.tsx";

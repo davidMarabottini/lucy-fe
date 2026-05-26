@@ -10,12 +10,14 @@ import {
   insertContract, 
   updateContract, 
   deleteContract,
-  type Contract,
-  type ContractPayload,
-  type ContractEmployeeAssignment,
   addEmployeeToContract,
   getEmployeesByContract
 } from "@/api/contractService";
+import type {
+  Contract,
+  ContractPayload,
+  ContractEmployeeAssignment,
+} from "@/api/types";
 
 const libDomain = 'contract';
 

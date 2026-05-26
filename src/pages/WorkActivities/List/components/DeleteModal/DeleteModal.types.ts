@@ -1,4 +1,4 @@
-import type { WorkActivity } from "@/api/workActivityService";
+import type { WorkActivity } from "@/api/types";
 import type { Dispatch, SetStateAction } from "react";
 
 export interface DeleteModalProps {

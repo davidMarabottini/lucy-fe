@@ -1,7 +1,7 @@
 import { useClientDelete } from "@/hooks/api/useClientHooks";
 import Table from "@/components/organisms/Table/Table";
 import styles from "../../List.module.scss"
-import type { LibemaxClient } from "@/api/clientService";
+import type { LibemaxClient } from "@/api/types";
 import { Check, X } from "lucide-react";
 import { Modal } from "@/components/atoms/Modal/Modal";
 import Button from "@/components/atoms/Button/Button";

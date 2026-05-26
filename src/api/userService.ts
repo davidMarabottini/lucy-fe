@@ -1,47 +1,7 @@
 import type { RegistrationData } from "@/pages/Users/Insert/Insert.types";
 import apiClient from "../api/apiClient";
 import { MOCK_PATH } from "@/constants/api";
-import type { AvailableRolesType, AvailableStatusesType } from "@/types/contentsFormDatas.types";
-
-export interface RegistrationResult {
-    status: AvailableStatusesType;
-    "id": number,
-    message: string
-}
-
-export interface UserStatusResult {
-  user: {
-    level: number
-    nextLevelProgress: number
-    rank: string
-  }
-  contributions: {
-    mail: {
-      ham: number
-      spam: number
-    }
-    sms: {
-      ham: number
-      spam: number
-    }
-  }
-  privileges: string[]
-  badges: {
-    id: number
-    name: string
-    iconName: string
-  }[]
-}
-
-export interface UsersResult  {
-      "email": string,
-      "id": number,
-      "name": string,
-      "roles": AvailableRolesType[],
-      "surname": string,
-      "username": string
-  }
-
+import type { RegistrationResult, UserStatusResult, UsersResult } from "./types";
 
 export const insertUser = async (
   registration: RegistrationData

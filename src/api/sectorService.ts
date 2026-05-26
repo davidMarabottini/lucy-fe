@@ -1,12 +1,5 @@
 import apiClient from "./apiClient";
-
-export interface Sector {
-  id: number;
-  name: string;
-  description?: string;
-}
-
-export type SectorPayload = Omit<Sector, 'id'>;
+import type { Sector, SectorPayload } from "./types";
 
 export const getSectors = async (params?: Record<string, unknown>): Promise<Sector[]> => {
   const { data } = await apiClient.get<Sector[]>('/api/sectors', { params });

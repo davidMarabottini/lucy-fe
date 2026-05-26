@@ -8,7 +8,7 @@ import { ChevronLeft, Hash, Tag } from "lucide-react";
 import styles from './Details.module.scss';
 import { useTranslation } from "react-i18next";
 import TablePaginated from "@/components/organisms/TablePaginated/TablePaginated";
-import type { Contract } from "@/api/contractService";
+import type { Contract } from "@/api/types";
 import { useContracts } from "@/hooks/api/ContractHooks";
 import clsx from "clsx";
 

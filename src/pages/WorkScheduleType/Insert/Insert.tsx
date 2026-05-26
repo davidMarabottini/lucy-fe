@@ -9,7 +9,7 @@ import { ROUTES } from '@/constants/routes';
 import LinkComponent from '@/components/atoms/LinkComponent/LinkComponent';
 
 import { useInsertWorkScheduleType } from '@/hooks/api/WorkScheduleTypeHooks';
-import { type WorkScheduleTypePayload } from '@/api/workScheduleTypeService';
+import { type WorkScheduleTypePayload } from '@/api/types';
 import Switch from '@/components/atoms/Switch/Switch';
 import { useState } from 'react';
 import type { UseFormReturn } from 'react-hook-form';

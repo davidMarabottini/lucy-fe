@@ -1,5 +1,5 @@
 import { getLibemaxTimbrature } from "@/api/apiLibemaxTimbrature";
-import type { LibemaxTimbratureType } from "@/api/apiLibemaxTimbrature";
+import type { LibemaxTimbratureType } from "@/api/types";
 import { useAppQuery } from "../useAppApi/useAppQuery";
 import { ERROR_KINDS } from "../useAppApi/error";
 

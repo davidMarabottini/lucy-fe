@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import Typography from "@/components/atoms/Typography/Typography";
 import DetailCard from "@/components/atoms/DetailCard/DetailCard";
-import type { ContractEmployeeAssignment } from "@/api/contractService";
+import type { ContractEmployeeAssignment } from "@/api/types";
 import { useClientDetailStore } from "@/zustand/clientDetailState";
 import Button from "@/components/atoms/Button/Button";
 import { Link } from "react-router-dom";
@@ -46,7 +46,7 @@ export const ContractEmployeesList = ({ employees }: ContractEmployeesListProps)
                       <span className={listStyles["c-employee-list__date"]}>
                         <CalendarX size={12} />
                         <span className={listStyles["c-employee-list__date-label"]}>Al</span>
-                        {formatDate(end_date)}
+                        {end_date ? formatDate(end_date) : '-'}
                       </span>
                     </div>
                   }

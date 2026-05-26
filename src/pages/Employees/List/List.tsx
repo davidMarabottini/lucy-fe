@@ -1,7 +1,7 @@
 import Card from "@components/atoms/Card/Card";
 import Typography from "@components/atoms/Typography/Typography";
 import styles from './List.module.scss'
-import type { LibemaxEmployee } from "@/api/employeesService";
+import type { LibemaxEmployee } from "@/api/types";
 import { rewriteRoute } from "@/utils/routes";
 import { ROUTES } from "@/constants/routes";
 import { FileText, PlusCircle, Trash2 } from "lucide-react";
