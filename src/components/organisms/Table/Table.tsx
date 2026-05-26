@@ -1,11 +1,15 @@
 import type {TableProps} from './Table.types';
 import styles from './Table.module.scss';
+import type { CSSProperties } from 'react';
 import { Fragment } from 'react/jsx-runtime';
 
 function Table<T extends object>({ data, columns, actions, getRowKey, additionalContainer }: TableProps<T>) {
   return (
     <div className={styles['c-table']}>
-      <div className={styles['c-table__inner']} style={{ '--c-table-cols': columns.length + (actions ? 1 : 0) } as React.CSSProperties}>
+      <div
+        className={styles['c-table__inner']}
+        style={{ '--c-table-cols': columns.length + (actions ? 1 : 0) } as CSSProperties}
+      >
         <div className={styles['c-table__header']}>
           <div  className={styles['c-table__row']}>
             {columns.map((col) => (
@@ -24,7 +28,8 @@ function Table<T extends object>({ data, columns, actions, getRowKey, additional
 
         <div className={styles['c-table__body']}>
           {data.map((row, i) => {
-            const curKey = getRowKey?.(row) || i
+            const curKey = getRowKey?.(row) || i;
+            const additionalContent = additionalContainer?.(row);
             return (
               <Fragment key={curKey}>
                 <div className={styles['c-table__row']} >
@@ -43,14 +48,14 @@ function Table<T extends object>({ data, columns, actions, getRowKey, additional
                   })}
                   {actions && (
                     <div className={styles['c-table__cell']}>
-                      {actions.map((el) => el(row))}
+                      {actions.map((el) => <Fragment key={String(el)}>{el(row)}</Fragment>)}
                     </div>
                   )}
                 </div>
-              {additionalContainer?.(row) && (
+              {additionalContent && (
                 <div className={styles['c-table__sub-row']}>
                   <div className={styles['c-table__sub-cell']}>
-                    {additionalContainer?.(row)}
+                    {additionalContent}
                   </div>
                 </div>
               )}

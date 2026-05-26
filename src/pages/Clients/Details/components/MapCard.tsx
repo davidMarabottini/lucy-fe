@@ -18,7 +18,7 @@ export const MapCard = ({ clientId }: { clientId: string }) => {
   const selectedEmployeeLibemaxId = useClientDetailStore((s) => s.selectedEmployeeLibemaxId);
   const [selectedPoint, setSelectedPoint] = useState<string | null>(null);
 
-  const { data: rawMapData, isLoading: mapLoading, error: mapError } = useLibemaxTimbrature(Number(clientId), selectedDate);
+  const { data: rawMapData, isLoading: mapLoading, error: mapError } = useLibemaxTimbrature(Number(clientId), selectedDate, !!selectedEmployeeLibemaxId);
   const { t } = useTranslation("client", { keyPrefix: "details.workDetails" });
 
   if (!selectedEmployeeLibemaxId) return null;
