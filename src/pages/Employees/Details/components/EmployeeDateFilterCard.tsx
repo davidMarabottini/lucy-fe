@@ -15,13 +15,17 @@ const EmployeeDateFilterCard = () => {
 
   const handleChange = (date: Date | null) => {
     if (date) {
-      setSelectedDate(date.toISOString().split('T')[0]);
+      const y = date.getFullYear();
+      const m = String(date.getMonth() + 1).padStart(2, '0');
+      const d = String(date.getDate()).padStart(2, '0');
+      setSelectedDate(`${y}-${m}-${d}`);
     }
   };
 
   const endDate = new Date();
-  const selectedDateObj = new Date(selectedDate);
-  const isToday = selectedDateObj.toDateString() === endDate.toDateString();
+  const todayYMD = `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padStart(2, '0')}-${String(endDate.getDate()).padStart(2, '0')}`;
+  const selectedDateObj = new Date(`${selectedDate}T00:00:00`);
+  const isToday = selectedDate === todayYMD;
 
   return (
     <Card additionalClassName={styles["p-employee-detail__card"]}>
@@ -29,7 +33,7 @@ const EmployeeDateFilterCard = () => {
         <Button onClick={setPreviousDay}><ChevronLeft /></Button>
         <DatePicker
           maxDate={endDate}
-          selected={new Date(selectedDateObj)}
+          selected={selectedDateObj}
           label={t("select_date")}
           onChange={handleChange}
           endDate={endDate}
