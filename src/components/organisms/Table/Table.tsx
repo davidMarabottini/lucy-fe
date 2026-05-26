@@ -29,8 +29,10 @@ function Table<T extends object>({ data, columns, actions, getRowKey, additional
               <Fragment key={curKey}>
                 <div className={styles['c-table__row']} >
                   {columns.map((col) => {
-                    const content = col.value ? (typeof col.value === 'function' ? col.value(row) : col.value) : String(row[col.key as keyof T] ?? "");
-
+                    const content =
+                      col.value !== undefined
+                        ? (typeof col.value === 'function' ? col.value(row) : col.value)
+                        : String(row[col.key as keyof T] ?? "");
                     return (
                       <div
                         key={String(col.key)}
