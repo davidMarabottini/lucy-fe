@@ -53,10 +53,10 @@ function Table<T extends object>({ data, columns, actions, getRowKey, additional
                     </div>
                   )}
                 </div>
-              {additionalContent && (
+              {additionalContainer && (
                 <div className={styles['c-table__sub-row']}>
                   <div className={styles['c-table__sub-cell']}>
-                    {additionalContent}
+                    {additionalContainer(row)}
                   </div>
                 </div>
               )}
