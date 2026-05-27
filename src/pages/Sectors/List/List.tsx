@@ -11,7 +11,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Button from "@/components/atoms/Button/Button";
 import {DeleteModal} from "./components/DeleteModal/DeleteModal";
-import TablePaginated from "@/components/organisms/TablePaginated/TablePaginated";
+import Paginated from "@/components/organisms/Paginated/Paginated";
 
 const SectorsList = () => {
   // Utilizziamo l'hook specifico per i settori
@@ -54,29 +54,35 @@ const SectorsList = () => {
       </Card>
 
       <Card additionalClassName={styles["p-sectors__card"]}>
-        <TablePaginated<Sector>
+        <Paginated<Sector>
           useQueryHook={useSectors}
           initialPerPage={10}
           filterConfig={[
             { key: 'name', placeholder: '', label: 'Cerca Nome' },
           ]}
-          columns={[
-            { key: 'name', header: t('table.name') },
-            { key: 'description', header: t('table.description') },
-          ]}
-          actions={[
-            (row) => (
-              <Button
-                key="remove"
-                color="custom"
-                additionalClassName={styles["p-sectors__btn-delete"]}
-                onClick={() => openDeleteModalHdlr(row)}
-              >
-                <Trash2 size={18} />
-              </Button>
-            ),
-          ]}
-        />
+        >
+          {(res) => (
+            <Table
+              data={res}
+              columns={[
+                { key: 'name', header: t('table.name') },
+                { key: 'description', header: t('table.description') },
+              ]}
+              actions={[
+                (row) => (
+                  <Button
+                    key="remove"
+                    color="custom"
+                    additionalClassName={styles["p-sectors__btn-delete"]}
+                    onClick={() => openDeleteModalHdlr(row)}
+                  >
+                    <Trash2 size={18} />
+                  </Button>
+                ),
+              ]}
+            />
+          )}
+        </Paginated>
       </Card>
     </div>
   );

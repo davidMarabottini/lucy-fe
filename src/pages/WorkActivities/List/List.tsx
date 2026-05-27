@@ -10,7 +10,8 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Button from "@/components/atoms/Button/Button";
 import { DeleteModal } from "./components/DeleteModal/DeleteModal";
-import TablePaginated from "@/components/organisms/TablePaginated/TablePaginated";
+import Paginated from "@/components/organisms/Paginated/Paginated";
+import Table from "@/components/organisms/Table/Table";
 
 const WorkActivitiesList = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -41,28 +42,34 @@ const WorkActivitiesList = () => {
       </Card>
 
       <Card additionalClassName={styles["p-work-activities__card"]}>
-        <TablePaginated<WorkActivity>
+        <Paginated<WorkActivity>
           useQueryHook={useWorkActivities}
           filterConfig={[
             {key: 'name', placeholder: '', label:t("table.filter.name")}
           ]}
-          columns={[
-            { key: 'name', header: t('table.name') },
-            { key: 'description', header: t('table.description') },
-          ]}
-          actions={[
-            (row) => (
-              <Button
-                key="remove"
-                color="custom"
-                additionalClassName={styles["p-work-activities__btn-delete"]}
-                onClick={() => openDeleteModalHdlr(row)}
-              >
-                <Trash2 size={18} />
-              </Button>
-            ),
-          ]}
-        />
+        >
+          {(res) => (
+            <Table
+              data={res}
+              columns={[
+                { key: 'name', header: t('table.name') },
+                { key: 'description', header: t('table.description') },
+              ]}
+              actions={[
+                (row) => (
+                  <Button
+                    key="remove"
+                    color="custom"
+                    additionalClassName={styles["p-work-activities__btn-delete"]}
+                    onClick={() => openDeleteModalHdlr(row)}
+                  >
+                    <Trash2 size={18} />
+                  </Button>
+                ),
+              ]}
+            />
+          )}
+        </Paginated>
       </Card>
     </div>
   );

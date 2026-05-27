@@ -1,34 +1,31 @@
 import { useState } from 'react';
-import Table from '../Table/Table';
 import Button from '@/components/atoms/Button/Button';
 import Input from '@/components/atoms/Input/Input';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import styles from './TablePaginated.module.scss';
+import styles from './Paginated.module.scss';
 import { useDebounce } from '@/hooks/useDebounce';
-import type { PaginatedData, TablePaginatedProps } from './TablePaginated.types';
+import type { PaginatedData, PaginatedProps } from './Paginated.types';
 
 function isPaginatedData<T>(data: T[] | PaginatedData<T>): data is PaginatedData<T> {
   return data != null && !Array.isArray(data);
 }
 
-function TablePaginated<T extends object>({
+function Paginated<T extends object>({
   useQueryHook,
-  columns,
-  actions,
   initialPerPage = 10,
   filterConfig = [],
-  getRowKey,
-  additionalContainer,
-}: TablePaginatedProps<T>) {
+  children,
+}: PaginatedProps<T>) {
   const [page, setPage] = useState(1);
 
   const baseFilter = filterConfig.reduce(
-    (acc, f) => f.value ? ({ ...acc, [f.key]: f.value || '' }): acc, {} as Record<string, string>
+    (acc, f) => (f.value ? ({ ...acc, [f.key]: f.value || '' }) : acc),
+    {} as Record<string, string>
   );
-  
+
   const [filters, setFilters] = useState<Record<string, string>>(baseFilter);
-  
-  const nonHiddenFilters = filterConfig.filter(f => f.type !== 'hidden');
+
+  const nonHiddenFilters = filterConfig.filter((f) => f.type !== 'hidden');
   const debouncedFilters = useDebounce(filters, 1200);
 
   const { data, isLoading, isPlaceholderData } = useQueryHook({
@@ -49,9 +46,9 @@ function TablePaginated<T extends object>({
   if (isLoading) return <div>Caricamento...</div>;
 
   return (
-    <div className={styles['c-table-paginated']}>
+    <div className={styles['c-paginated']}>
       {nonHiddenFilters.length > 0 && (
-        <div className={styles['c-table-paginated__filters-grid']}>
+        <div className={styles['c-paginated__filters-grid']}>
           {nonHiddenFilters.map((filter) => (
             <Input
               key={filter.key}
@@ -65,20 +62,20 @@ function TablePaginated<T extends object>({
       )}
 
       <div style={{ opacity: isPlaceholderData ? 0.6 : 1, transition: 'opacity 0.2s' }}>
-        <Table data={items} columns={columns} actions={actions} getRowKey={getRowKey} additionalContainer={additionalContainer}  />
+        {children(items)}
       </div>
 
       {paginated && totalPages > 1 && (
-        <div className={styles['c-table-paginated__footer']}>
-          <div className={styles['c-table-paginated__pagination']}>
+        <div className={styles['c-paginated__footer']}>
+          <div className={styles['c-paginated__pagination']}>
             <Button
               onClick={() => setPage((old) => Math.max(old - 1, 1))}
               disabled={page === 1}
             >
               <ChevronLeft size={20} />
             </Button>
-            
-            <span className={styles['c-table-paginated__page-info']}>
+
+            <span className={styles['c-paginated__page-info']}>
               Pagina <strong>{page}</strong> di <strong>{totalPages}</strong>
             </span>
 
@@ -95,4 +92,4 @@ function TablePaginated<T extends object>({
   );
 }
 
-export default TablePaginated;
+export default Paginated;

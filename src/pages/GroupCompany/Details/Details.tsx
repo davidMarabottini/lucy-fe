@@ -7,10 +7,11 @@ import { ROUTES } from "@/constants/routes";
 import { ChevronLeft, Hash, Tag } from "lucide-react";
 import styles from './Details.module.scss';
 import { useTranslation } from "react-i18next";
-import TablePaginated from "@/components/organisms/TablePaginated/TablePaginated";
+import Paginated from "@/components/organisms/Paginated/Paginated";
 import type { Contract } from "@/api/types";
 import { useContracts } from "@/hooks/api/ContractHooks";
 import clsx from "clsx";
+import Table from "@/components/organisms/Table/Table";
 
 const GroupCompanyDetailPage = () => {
   const { companyId } = useParams<{ companyId: string }>();
@@ -69,7 +70,7 @@ const GroupCompanyDetailPage = () => {
           {t("contracts")}
         </Typography>
         
-        <TablePaginated<Contract>
+        <Paginated<Contract>
           useQueryHook={useContracts} 
           initialPerPage={10} 
           filterConfig={[
@@ -77,35 +78,40 @@ const GroupCompanyDetailPage = () => {
             { key: 'description', placeholder: '', label: t('filters.description') },
             { key: 'provider_company_id', value: companyId, type: 'hidden' }
           ]}  
-          
-          columns={[
-            {
-              key: 'contract_code',
-              header: t('table.contract_code')
-            },
-            {
-              key: 'client',
-              header: t('table.client'),
-              value: (row) => row.client?.name || '-'
-            },
-            {
-              key: 'start_date',
-              header: t('table.start_date'),
-              value: (row) => row.start_date ? new Date(row.start_date).toLocaleDateString('it-IT') : '-'
-            },
-            {
-              key: 'end_date',
-              header: t('table.end_date'),
-              value: (row) => row.end_date ? new Date(row.end_date).toLocaleDateString('it-IT') : '-'
-            },
-            {
-              key: 'description',
-              header: t('table.description'),
-              value: (row) => row.description || '-'
-            }
-          ]}
-          getRowKey={(row) => String(row.contract_code)}
-        />
+        >
+          {(res) => (
+            <Table
+              data={res}
+              columns={[
+                {
+                  key: 'contract_code',
+                  header: t('table.contract_code')
+                },
+                {
+                  key: 'client',
+                  header: t('table.client'),
+                  value: (row) => row.client?.name || '-'
+                },
+                {
+                  key: 'start_date',
+                  header: t('table.start_date'),
+                  value: (row) => row.start_date ? new Date(row.start_date).toLocaleDateString('it-IT') : '-'
+                },
+                {
+                  key: 'end_date',
+                  header: t('table.end_date'),
+                  value: (row) => row.end_date ? new Date(row.end_date).toLocaleDateString('it-IT') : '-'
+                },
+                {
+                  key: 'description',
+                  header: t('table.description'),
+                  value: (row) => row.description || '-'
+                }
+              ]}
+              getRowKey={(row) => String(row.contract_code)}
+            />
+          )}
+        </Paginated>
       </Card>
     </div>
   );

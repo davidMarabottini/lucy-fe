@@ -11,8 +11,9 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Button from "@/components/atoms/Button/Button";
 import { DeleteModal } from "./components/DeleteModal/DeleteModal";
-import TablePaginated from "@/components/organisms/TablePaginated/TablePaginated";
+import Paginated from "@/components/organisms/Paginated/Paginated";
 import { rewriteRoute } from "@/utils/routes";
+import Table from "@/components/organisms/Table/Table";
 
 const ContractsList = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -47,68 +48,73 @@ const ContractsList = () => {
       </Card>
 
       <Card additionalClassName={styles["p-contracts__card"]}>
-        <TablePaginated<Contract>
+        <Paginated<Contract>
           useQueryHook={useContracts} 
           initialPerPage={10} 
           filterConfig={[
             { key: 'contract_code', placeholder: '', label: 'Cerca Codice' },
             { key: 'description', placeholder: '', label: 'Cerca Descrizione' },
           ]}  
-          
-          columns={[
-            {
-              key: 'contract_code',
-              header: t('table.contract_code')
-            },
-            {
-              key: 'provider',
-              header: t('table.provider'),
-              value: (row) => row.provider_company?.name || '-'
-            },
-            {
-              key: 'client',
-              header: t('table.client'),
-              value: (row) => row.client?.name || '-'
-            },
-            {
-              key: 'start_date',
-              header: t('table.start_date'),
-              value: (row) => row.start_date ? new Date(row.start_date).toLocaleDateString('it-IT') : '-'
-            },
-            {
-              key: 'end_date',
-              header: t('table.end_date'),
-              value: (row) => row.end_date ? new Date(row.end_date).toLocaleDateString('it-IT') : '-'
-            },
-            {
-              key: 'description',
-              header: t('table.description'),
-              value: (row) => row.description || '-'
-            }
-          ]}
-          actions={[
-            (row) => (
-                <LinkComponent
-                  key="details"
-                  color='custom'
-                  to={rewriteRoute(ROUTES.CONTRACT_DETAIL, {':contractId': row.id.toString()})}
-                >
-                  <FileText />
-                </LinkComponent>
-              ),
-            (row) => (
-              <Button
-                key="remove"
-                color="custom"
-                additionalClassName={styles["p-contracts__btn-delete"]}
-                onClick={() => openDeleteModalHdlr(row)}
-              >
-                <Trash2 size={18} />
-              </Button>
-            ),
-          ]}
-          getRowKey={(row) => String(row.contract_code)}
-        />
+        >
+          {(res) => (
+            <Table
+              data={res}
+              columns={[
+                {
+                  key: 'contract_code',
+                  header: t('table.contract_code')
+                },
+                {
+                  key: 'provider',
+                  header: t('table.provider'),
+                  value: (row) => row.provider?.name || '-'
+                },
+                {
+                  key: 'client',
+                  header: t('table.client'),
+                  value: (row) => row.client?.name || '-'
+                },
+                {
+                  key: 'start_date',
+                  header: t('table.start_date'),
+                  value: (row) => row.start_date ? new Date(row.start_date).toLocaleDateString('it-IT') : '-'
+                },
+                {
+                  key: 'end_date',
+                  header: t('table.end_date'),
+                  value: (row) => row.end_date ? new Date(row.end_date).toLocaleDateString('it-IT') : '-'
+                },
+                {
+                  key: 'description',
+                  header: t('table.description'),
+                  value: (row) => row.description || '-'
+                }
+              ]}
+              actions={[
+                (row) => (
+                    <LinkComponent
+                      key="details"
+                      color='custom'
+                      to={rewriteRoute(ROUTES.CONTRACT_DETAIL, {':contractId': row.id.toString()})}
+                    >
+                      <FileText />
+                    </LinkComponent>
+                  ),
+                (row) => (
+                  <Button
+                    key="remove"
+                    color="custom"
+                    additionalClassName={styles["p-contracts__btn-delete"]}
+                    onClick={() => openDeleteModalHdlr(row)}
+                  >
+                    <Trash2 size={18} />
+                  </Button>
+                ),
+              ]}
+              getRowKey={(row) => String(row.contract_code)}
+            />
+          )}
+        </Paginated>
       </Card>
     </div>
   );

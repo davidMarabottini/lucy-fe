@@ -4,11 +4,12 @@ import { useTranslation } from "react-i18next";
 import detailStyles from "../Details.module.scss";
 import { useContracts } from "@/hooks/api/ContractHooks";
 import type { Contract } from "@/api/types";
-import TablePaginated from "@/components/organisms/TablePaginated/TablePaginated";
+import Paginated from "@/components/organisms/Paginated/Paginated";
 import Button from "@/components/atoms/Button/Button";
 import { Link } from "react-router-dom";
 import { ChevronRight, List } from "lucide-react";
 import { useEmployeeDetailStore } from "@/zustand/employeeDetailState";
+import Table from "@/components/organisms/Table/Table";
 
 export const EmployeesContractCard = ({ employeeId }: { employeeId: string }) => {
   const { t } = useTranslation("employee", { keyPrefix: "details.contracts" });
@@ -24,34 +25,40 @@ export const EmployeesContractCard = ({ employeeId }: { employeeId: string }) =>
         {t("subtitle")}
       </Typography>
 
-      <TablePaginated<Contract>
+      <Paginated<Contract>
         useQueryHook={useContracts}
         initialPerPage={10}
         filterConfig={[
           { key: 'employee_id', placeholder: '', label: '', value: employeeId, type: 'hidden' },
         ]}
-        columns={[
-          { key: 'contract_code', header: t('table.contract_code') },
-          { key: 'client', header: t('table.client'), value: (row) => row.client?.name || '-' },
-          { key: 'provider', header: t('table.provider'), value: (row) => row.provider?.name || '-' },
-          { key: 'start_date', header: t('table.start_date'), value: (row) => row.start_date ? new Date(row.start_date).toLocaleDateString('it-IT') : '-' },
-          { key: 'end_date', header: t('table.end_date'), value: (row) => row.end_date ? new Date(row.end_date).toLocaleDateString('it-IT') : '-' },
-        ]}
-        getRowKey={(row) => String(row.id)}
-        actions={[
-          row => (
-            <Button
-              key="schedules"
-              color={selectedContractId === row.id ? "primary" : "custom"}
-              onClick={() => toggleContract(row)}
-              title={t("schedules.subtitle")}
-            >
-              <List size={18} />
-            </Button>
-          ),
-          row => <Link key="detail" to={`/contracts/${row.id}`}><ChevronRight /></Link>,
-        ]}
-      />
+      >
+        {(res) => (
+          <Table
+            data={res}
+            columns={[
+              { key: 'contract_code', header: t('table.contract_code') },
+              { key: 'client', header: t('table.client'), value: (row) => row.client?.name || '-' },
+              { key: 'provider', header: t('table.provider'), value: (row) => row.provider?.name || '-' },
+              { key: 'start_date', header: t('table.start_date'), value: (row) => row.start_date ? new Date(row.start_date).toLocaleDateString('it-IT') : '-' },
+              { key: 'end_date', header: t('table.end_date'), value: (row) => row.end_date ? new Date(row.end_date).toLocaleDateString('it-IT') : '-' },
+            ]}
+            getRowKey={(row) => String(row.id)}
+            actions={[
+              row => (
+                <Button
+                  key="schedules"
+                  color={selectedContractId === row.id ? "primary" : "custom"}
+                  onClick={() => toggleContract(row)}
+                  title={t("schedules.subtitle")}
+                >
+                  <List size={18} />
+                </Button>
+              ),
+              row => <Link key="detail" to={`/contracts/${row.id}`}><ChevronRight /></Link>,
+            ]}
+          />
+        )}
+      </Paginated>
     </Card>
   );
 };
