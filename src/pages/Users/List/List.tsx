@@ -11,7 +11,8 @@ import Button from "@/components/atoms/Button/Button";
 import { useState } from "react";
 import type { UsersResult } from "@/api/types";
 import { DeleteModal } from "./components/DeleteModal/DeleteModal";
-import TablePaginated from "@/components/organisms/TablePaginated/TablePaginated";
+import Paginated from "@/components/organisms/Paginated/Paginated";
+import Table from "@/components/organisms/Table/Table";
 
 const User = () => {
   const {t} = useTranslation("user", {keyPrefix: "list"});
@@ -49,7 +50,7 @@ const User = () => {
         </div>
       </Card>
       <Card>
-        <TablePaginated<UsersResult>
+        <Paginated<UsersResult>
           useQueryHook={useUsers}
           filterConfig={[
             {key: 'name', placeholder: '', label: 'Cerca per nome'},
@@ -57,26 +58,32 @@ const User = () => {
             {key: 'username', placeholder: '', label: 'Cerca per username'},
             {key: 'email', placeholder: '', label: 'Cerca per email'}
           ]}
-          columns={[
-            {key: 'name', header: t("table.name")},
-            {key: 'surname', header: t("table.surname")},
-            {key: 'email', header: t("table.email")},
-            {key: 'username', header: t("table.username")},
-            {key: 'roles', header: t("table.roles") },
-              // render: (roles: string[]) => roles.join(", ")
-          ]}
-          actions={[
-            row => 
-              <Button
-              key="delete"
-              color="custom"
-              className={styles["p-user-list__btn-delete"]}
-              disabled={me?.id === row.id}
-              onClick={() => openDeleteModalHdlr(row)}
-              ><Trash2 /></Button>
-            
-          ]}
-          />
+        >
+          {(res) => (
+            <Table
+              data={res}
+              columns={[
+                {key: 'name', header: t("table.name")},
+                {key: 'surname', header: t("table.surname")},
+                {key: 'email', header: t("table.email")},
+                {key: 'username', header: t("table.username")},
+                {key: 'roles', header: t("table.roles") },
+                  // render: (roles: string[]) => roles.join(", ")
+              ]}
+              actions={[
+                row => 
+                  <Button
+                  key="delete"
+                  color="custom"
+                  className={styles["p-user-list__btn-delete"]}
+                  disabled={me?.id === row.id}
+                  onClick={() => openDeleteModalHdlr(row)}
+                  ><Trash2 /></Button>
+                
+              ]}
+            />
+          )}
+        </Paginated>
       </Card>
     </div>
   )
