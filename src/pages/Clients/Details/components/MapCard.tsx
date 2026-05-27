@@ -73,13 +73,17 @@ export const MapCard = ({ clientId }: { clientId: string }) => {
             key: '__distance',
             header: t('table.distance'),
             value: (row) => {
-              const distance = calculateDistance(
-                [Number(row.latitudine), Number(row.longitudine)],
-                [Number(clientLocation?.latitudine ?? 0), Number(clientLocation?.longitudine ?? 0)]
-              );
-              return distance
-                ? <div style={{ display: 'flex', gap: '8px', background: distance.endsWith('km') ? 'yellow' : 'transparent' }}>
-                    {distance}{distance.endsWith('km') ? <TriangleAlert size={20} /> : ''}
+              const lat1 = Number(row.latitudine);
+              const lon1 = Number(row.longitudine);
+              const lat2 = Number(clientLocation?.latitudine ?? NaN);
+              const lon2 = Number(clientLocation?.longitudine ?? NaN);
+              if (!Number.isFinite(lat1) || !Number.isFinite(lon1) || !Number.isFinite(lat2) || !Number.isFinite(lon2)) {
+                return '-';
+              }
+              const distance = calculateDistance([lat1, lon1], [lat2, lon2]);
+              return distance && distance.result && distance.result !== 'NaN m'
+                ? <div style={{ display: 'flex', gap: '8px', background: distance.unit === 'km' ? 'yellow' : 'transparent' }}>
+                    {distance.result}{distance.unit === 'km' ? <TriangleAlert size={20} /> : ''}
                   </div>
                 : '-';
             },

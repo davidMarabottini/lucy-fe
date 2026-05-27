@@ -25,7 +25,7 @@ export const EmployeeContractDetailCard = ({ employeeLibemaxId }: EmployeeContra
   const setSelectedContractId = useEmployeeDetailStore((s) => s.setSelectedContractId);
   const [selectedPoint, setSelectedPoint] = useState<string | null>(null);
 
-  const { data: rawMapData, isLoading: mapLoading, error: mapError } = useLibemaxTimbrature(employeeLibemaxId, selectedDate);
+  const { data: rawMapData, isLoading: mapLoading, error: mapError } = useLibemaxTimbrature(employeeLibemaxId, selectedDate, !!selectedContractId);
 
   if (!selectedContractId) return null;
 
@@ -93,8 +93,8 @@ export const EmployeeContractDetailCard = ({ employeeLibemaxId }: EmployeeContra
                 [Number(clientLocation?.latitudine ?? 0), Number(clientLocation?.longitudine ?? 0)]
               );
               return distance
-                ? <div style={{ display: 'flex', gap: '8px', background: distance.endsWith('km') ? 'yellow' : 'transparent' }}>
-                    {distance}{distance.endsWith('km') ? <TriangleAlert size={20} /> : ''}
+                ? <div style={{ display: 'flex', gap: '8px', background: distance.unit === 'km' ? 'yellow' : 'transparent' }}>
+                    {distance.result}{distance.unit === 'km' ? <TriangleAlert size={20} /> : ''}
                   </div>
                 : '-';
             },
