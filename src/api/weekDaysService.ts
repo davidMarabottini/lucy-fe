@@ -1,10 +1,5 @@
 import apiClient from "../api/apiClient";
-
-export interface WeekDay {
-  id: number;
-  name: string;
-  order: number; // Utile se il backend lo fornisce per l'ordinamento
-}
+import type { WeekDay } from "./types";
 
 export const getWeekDays = async (): Promise<WeekDay[]> => {
   const { data } = await apiClient.get<WeekDay[]>("/api/week-days");

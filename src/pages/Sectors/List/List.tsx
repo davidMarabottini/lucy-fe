@@ -3,7 +3,7 @@ import Typography from "@components/atoms/Typography/Typography";
 import { useSectors } from "@/hooks/api/useSectors"; // Hook creato precedentemente
 import styles from './List.module.scss'; // Riutilizziamo lo stesso stile o uno dedicato
 import Table from "@/components/organisms/Table/Table";
-import { type Sector } from "@/api/sectorService";
+import { type Sector } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
 import { PlusCircle, Trash2 } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";

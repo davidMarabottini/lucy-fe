@@ -29,28 +29,43 @@
     }
   }
 
+  &__body {
+    display: block;
+  }
+
+  &__sub-row {
+    display: block;
+  }
+
+  &__sub-cell {
+    display: block;
+    padding: 0;
+  }
+
   @include mq($bp-tablet) {
     overflow-x: auto;
 
     &__inner {
-      display: table;
+      display: grid;
+      grid-template-columns: repeat(var(--c-table-cols, 1), 1fr);
       width: 100%;
-      border-collapse: collapse;
     }
 
     &__header {
-      display: table-header-group;
+      display: contents;
       font-weight: bold;
     }
 
+    &__body {
+      display: contents;
+    }
+
     &__row {
-      display: table-row;
-      padding: 0;
-      border: none;
+      display: contents;
     }
 
     &__cell {
-      display: table-cell;
+      display: block;
       padding: 8px;
       border-bottom: 1px solid #eee;
       white-space: nowrap;
@@ -59,39 +74,16 @@
         content: none;
       }
     }
+
+    &__sub-row {
+      display: block;
+      grid-column: 1 / -1;
+    }
+
+    &__sub-cell {
+      display: block;
+      padding: 0;
+      border-bottom: 1px solid #eee;
+    }
   }
 }
-
-// .c-table {
-//   width: 100%;
-//   overflow-x: auto;
-
-//   &__inner {
-//     min-width: 600px;
-//     display: table;
-//     width: 100%;
-//     border-collapse: collapse;
-//   }
-
-//   &__header {
-//     display: table-header-group;
-//     font-weight: bold;
-//   }
-
-//   &__row {
-//     display: table-row;
-//     width: 100%;
-//   }
-
-//   &__cell {
-//     display: table-cell;
-//     padding: 8px;
-//     border-bottom: 1px solid #eee;
-//     white-space: nowrap;
-//   }
-//   @include mq($bp-tablet) {
-//     &__inner {
-//       min-width: 100%;
-//     }
-//   }
-// }

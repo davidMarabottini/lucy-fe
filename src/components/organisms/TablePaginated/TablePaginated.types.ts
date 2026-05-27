@@ -21,4 +21,6 @@ export interface TablePaginatedProps<T extends object> {
   actions?: ((row: T) => React.ReactNode)[];
   initialPerPage?: number;
   filterConfig?: FilterConfig[];
+  getRowKey?: (row: T) => string | number;
+  additionalContainer?: (row: T) => React.ReactNode;
 }

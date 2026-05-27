@@ -2,7 +2,7 @@ import Card from "@components/atoms/Card/Card";
 import Typography from "@components/atoms/Typography/Typography";
 import { useTranslation } from "react-i18next";
 import TablePaginated from "@/components/organisms/TablePaginated/TablePaginated";
-import type { WorkSchedule } from "@/api/workScheduleService";
+import type { WorkSchedule } from "@/api/types";
 import { useContractSchedules } from "@/hooks/api/useWorkScheduleHooks";
 import Button from "@/components/atoms/Button/Button";
 import { Trash2 } from "lucide-react";
@@ -52,6 +52,7 @@ const CardContractDetails = ({
             value: (row) => row.note ?? '-',
           },
         ]}
+        getRowKey={(row) => String(row.id)}
         actions={[
           (row) => (
             <Button

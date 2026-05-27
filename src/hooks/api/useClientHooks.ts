@@ -1,4 +1,5 @@
-import { getClientDetail, getLibemaxClients, insertClient, deleteClient, type LibemaxClient } from "@/api/clientService";
+import { getClientDetail, getLibemaxClients, insertClient, deleteClient } from "@/api/clientService";
+import type { LibemaxClient } from "@/api/types";
 import { useAppQuery } from "../useAppApi/useAppQuery";
 import { ERROR_KINDS } from "../useAppApi/error";
 import { useQueryClient } from "@tanstack/react-query";

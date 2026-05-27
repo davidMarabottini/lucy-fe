@@ -8,21 +8,19 @@ import TablePaginated from "@/components/organisms/TablePaginated/TablePaginated
 import Button from "@/components/atoms/Button/Button";
 import { Link } from "react-router-dom";
 import { ChevronRight, List } from "lucide-react";
-import { useState } from "react";
-import { useClientDetailStore } from "@/zustand/clientDetailState";
-import { ContractDetailPanel } from "./ContractDetailPanel.tsx";
+import { useEmployeeDetailStore } from "@/zustand/employeeDetailState";
 
-export const ContractsCard = ({ clientId }: { clientId: string }) => {
-  const { t } = useTranslation("client", { keyPrefix: "details.contracts" });
-  const [selectedContract, setSelectedContract] = useState<Contract | null>(null);
-  const selectedDate = useClientDetailStore((s) => s.selectedDate);
+export const EmployeesContractCard = ({ employeeId }: { employeeId: string }) => {
+  const { t } = useTranslation("employee", { keyPrefix: "details.contracts" });
+  const selectedContractId = useEmployeeDetailStore((s) => s.selectedContractId);
+  const setSelectedContractId = useEmployeeDetailStore((s) => s.setSelectedContractId);
 
   const toggleContract = (row: Contract) =>
-    setSelectedContract(prev => prev?.id === row.id ? null : row);
+    setSelectedContractId(selectedContractId === row.id ? null : row.id);
 
   return (
-    <Card additionalClassName={detailStyles["p-client-detail__card"]}>
-      <Typography variant="h2" additionalClasses={detailStyles["p-client-detail__title"]}>
+    <Card additionalClassName={detailStyles["p-employee-detail__card"]}>
+      <Typography variant="h2" additionalClasses={detailStyles["p-employee-detail__title"]}>
         {t("subtitle")}
       </Typography>
 
@@ -30,24 +28,21 @@ export const ContractsCard = ({ clientId }: { clientId: string }) => {
         useQueryHook={useContracts}
         initialPerPage={10}
         filterConfig={[
-          { key: 'contract_code', placeholder: '', label: 'Cerca Codice' },
-          { key: 'description', placeholder: '', label: 'Cerca Descrizione' },
-          { key: 'client_id', placeholder: '', label: 'Cerca Cliente', value: clientId, type: 'hidden' }
+          { key: 'employee_id', placeholder: '', label: '', value: employeeId, type: 'hidden' },
         ]}
         columns={[
           { key: 'contract_code', header: t('table.contract_code') },
-          { key: 'provider', header: t('table.provider'), value: (row) => row.provider?.name || '-' },
           { key: 'client', header: t('table.client'), value: (row) => row.client?.name || '-' },
+          { key: 'provider', header: t('table.provider'), value: (row) => row.provider?.name || '-' },
           { key: 'start_date', header: t('table.start_date'), value: (row) => row.start_date ? new Date(row.start_date).toLocaleDateString('it-IT') : '-' },
           { key: 'end_date', header: t('table.end_date'), value: (row) => row.end_date ? new Date(row.end_date).toLocaleDateString('it-IT') : '-' },
-          { key: 'description', header: t('table.description'), value: (row) => row.description || '-' }
         ]}
-        getRowKey={(row) => String(row.contract_code)}
+        getRowKey={(row) => String(row.id)}
         actions={[
           row => (
             <Button
               key="schedules"
-              color="custom"
+              color={selectedContractId === row.id ? "primary" : "custom"}
               onClick={() => toggleContract(row)}
               title={t("schedules.subtitle")}
             >
@@ -56,16 +51,9 @@ export const ContractsCard = ({ clientId }: { clientId: string }) => {
           ),
           row => <Link key="detail" to={`/contracts/${row.id}`}><ChevronRight /></Link>,
         ]}
-        additionalContainer={(row) =>
-          selectedContract?.id === row.id ? (
-            <ContractDetailPanel
-              contract={selectedContract}
-              selectedDate={selectedDate}
-              onClose={() => setSelectedContract(null)}
-            />
-          ) : null
-        }
       />
     </Card>
   );
 };
+
+export default EmployeesContractCard;

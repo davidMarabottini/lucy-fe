@@ -7,10 +7,9 @@ import {
   insertWorkSchedule,
   getClientSchedules,
   getContractSchedules,
-  type WorkSchedule,
-  type WorkScheduleAdd,
   deleteWorkSchedule
 } from "@/api/workScheduleService";
+import type { WorkSchedule, WorkScheduleAdd } from "@/api/types";
 
 const libDomain = "workSchedule";
 

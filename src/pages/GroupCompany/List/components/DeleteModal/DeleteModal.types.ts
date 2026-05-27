@@ -1,4 +1,4 @@
-import type { GroupCompany } from "@/api/groupCompanyService";
+import type { GroupCompany } from "@/api/types";
 import type { Dispatch, SetStateAction } from "react";
 
 export interface DeleteModalProps {

@@ -1,17 +1,5 @@
 import apiClient from "./apiClient";
-
-export type PeriodType = 'DAY' | 'WEEK' | 'MONTH' | 'YEAR' | 'FIXED' | 'NONE';
-
-export interface WorkScheduleType {
-  id: number;
-  name: string;
-  description?: string;
-  frequency?: number;
-  period: PeriodType;
-  icon_name: string;
-}
-
-export type WorkScheduleTypePayload = Omit<WorkScheduleType, 'id'>;
+import type { WorkScheduleType, WorkScheduleTypePayload } from "./types";
 
 export const getWorkScheduleTypes = async (): Promise<WorkScheduleType[]> => {
   const { data } = await apiClient.get<WorkScheduleType[]>('/api/work-schedule-types');

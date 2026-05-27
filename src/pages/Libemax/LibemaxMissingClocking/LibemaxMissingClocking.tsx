@@ -3,7 +3,7 @@ import Typography from "@components/atoms/Typography/Typography";
 import { useMissingClockin } from "@/hooks/api/useLibemaxHooks";
 import styles from './LibemaxMissingClocking.module.scss';
 import Table from "@/components/organisms/Table/Table";
-import type { MissingClockin } from "@/api/apiLibemaxIntegration";
+import type { MissingClockin } from "@/api/types";
 import { useTranslation } from "react-i18next";
 
 const MissingClockin = () => {

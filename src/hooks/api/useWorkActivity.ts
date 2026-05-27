@@ -2,9 +2,9 @@ import {
   getWorkActivities, 
   getActivityById, 
   insertWorkActivity, 
-  deleteWorkActivity, 
-  type WorkActivity, 
+  deleteWorkActivity
 } from "@/api/workActivityService";
+import type { WorkActivity } from "@/api/types";
 import { useAppQuery } from "../useAppApi/useAppQuery";
 import { ERROR_KINDS } from "../useAppApi/error";
 import { useQueryClient } from "@tanstack/react-query";

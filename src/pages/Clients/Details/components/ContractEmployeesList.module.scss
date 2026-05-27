@@ -1,0 +1,80 @@
+.c-employee-list {
+  &__dates {
+    display: flex;
+    gap: $space-md;
+    font-size: 0.78rem;
+    color: $color-text-muted-dark;
+  }
+
+  &__date {
+    display: flex;
+    align-items: center;
+    gap: $space-xs;
+
+    svg {
+      color: $color-text-muted;
+      flex-shrink: 0;
+    }
+  }
+
+  &__date-label {
+    font-weight: 600;
+    color: $color-text-muted;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  &__body {
+    display: flex;
+    align-items: flex-start;
+    gap: $space-md;
+  }
+
+  &__avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: $color-primary;
+    color: $color-surface;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+    text-transform: uppercase;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: $space-xxs;
+    min-width: 0;
+  }
+
+  &__name {
+    font-weight: 600;
+    color: $color-text-main;
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  &__libemax-id {
+    font-size: 0.72rem;
+    color: $color-text-muted;
+  }
+
+  &__contact {
+    display: flex;
+    align-items: center;
+    gap: $space-xs;
+    font-size: 0.82rem;
+    color: $color-text-muted-dark;
+
+    svg {
+      flex-shrink: 0;
+      color: $color-text-muted;
+    }
+  }
+}

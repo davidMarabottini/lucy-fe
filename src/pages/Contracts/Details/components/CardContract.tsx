@@ -5,7 +5,7 @@ import { ROUTES } from "@/constants/routes";
 import { ChevronLeft, Calendar, Briefcase } from "lucide-react";
 import { ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import type { Contract } from "@/api/contractService";
+import type { Contract } from "@/api/types";
 import { rewriteRoute } from "@/utils/routes";
 import clsx from "clsx";
 import styles from "../Details.module.scss";

@@ -1,4 +1,5 @@
-import { getLibemaxUsers, getMissingClockin, getRemoteClockin, type LibemaxUser, type MissingClockin, type RemoteClockin } from "@/api/apiLibemaxIntegration";
+import { getLibemaxUsers, getMissingClockin, getRemoteClockin } from "@/api/apiLibemaxIntegration";
+import type { LibemaxUser, MissingClockin, RemoteClockin } from "@/api/types";
 import { useAppQuery } from "../useAppApi/useAppQuery";
 import { ERROR_KINDS } from "../useAppApi/error";
 

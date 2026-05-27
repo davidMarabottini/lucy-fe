@@ -10,7 +10,7 @@ import { ROUTES } from '@/constants/routes';
 import LinkComponent from '@/components/atoms/LinkComponent/LinkComponent';
 import { useInsertGroupCompany } from '@/hooks/api/GroupCompanyHooks';
 import { useSectors } from '@/hooks/api/useSectors';
-import { type GroupCompanyPayload } from '@/api/groupCompanyService';
+import { type GroupCompanyPayload } from '@/api/types';
 import Switch from '@/components/atoms/Switch/Switch';
 import { useState } from 'react';
 import type { UseFormReturn } from 'react-hook-form';

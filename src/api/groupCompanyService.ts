@@ -1,19 +1,5 @@
 import apiClient from "./apiClient";
-import { type Sector } from "./sectorService"; // Importiamo Sector per il dettaglio
-
-export interface GroupCompany {
-  id: number;
-  name: string;
-  vat_number: string;
-  sectors: Sector[]; // Il backend restituisce gli oggetti Sector completi
-}
-
-// Payload per l'invio dati (usiamo gli ID dei settori)
-export interface GroupCompanyPayload {
-  name: string;
-  vat_number: string;
-  sector_ids: number[]; // Array di ID per la relazione Many-to-Many
-}
+import type { GroupCompany, GroupCompanyPayload } from "./types";
 
 export const getGroupCompanies = async (params?: Record<string, unknown>): Promise<GroupCompany[]> => {
   const { data } = await apiClient.get<GroupCompany[]>('/api/group-company', {params});

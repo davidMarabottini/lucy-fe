@@ -1,7 +1,7 @@
 import { useDeleteUser } from "@/hooks/api/useUserHooks";
 import Table from "@/components/organisms/Table/Table";
 import styles from "../../List.module.scss"
-import type { UsersResult } from "@/api/userService";
+import type { UsersResult } from "@/api/types";
 import { Check, X } from "lucide-react";
 import { Modal } from "@/components/atoms/Modal/Modal";
 import Button from "@/components/atoms/Button/Button";

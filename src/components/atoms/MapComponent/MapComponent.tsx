@@ -86,7 +86,18 @@ const MapComponent: React.FC<MapComponentProps> = ({ workLocation, checkPoints, 
               anchor="center"
             >
                <div className={styles['c-map-component__distance-badge']}>
-                {calculateDistance([workLocation.latitude, workLocation.longitude], [cp.latitude, cp.longitude])}
+                {
+                  Number.isFinite(workLocation.latitude) && Number.isFinite(workLocation.longitude) &&
+                  Number.isFinite(cp.latitude) && Number.isFinite(cp.longitude)
+                    ? (() => {
+                        const distance = calculateDistance(
+                          [workLocation.latitude, workLocation.longitude],
+                          [cp.latitude, cp.longitude]
+                        );
+                        return distance && distance.result && distance.result !== 'NaN m' ? distance.result : '-';
+                      })()
+                    : '-'
+                }
               </div> 
             </Marker>
           </React.Fragment>

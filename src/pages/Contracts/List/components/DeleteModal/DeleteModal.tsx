@@ -6,7 +6,7 @@ import Button from "@/components/atoms/Button/Button";
 import { useTranslation } from "react-i18next";
 import type { DeleteModalProps } from "./DeleteModal.types";
 import Table from "@/components/organisms/Table/Table";
-import type { Contract } from "@/api/contractService";
+import type { Contract } from "@/api/types";
 
 export const DeleteModal = ({ 
   openModal, 
@@ -66,6 +66,7 @@ export const DeleteModal = ({
             { key: 'start_date', header: t('bodyTable.start_date'), value: (row) => row.start_date ? new Date(row.start_date).toLocaleDateString('it-IT') : '-' },
             { key: 'end_date', header: t('bodyTable.end_date'), value: (row) => row.end_date ? new Date(row.end_date).toLocaleDateString('it-IT') : '-' },
           ]}
+          getRowKey={(row) => String(row.contract_code)}
           data={[curContract]}
         />
       )}

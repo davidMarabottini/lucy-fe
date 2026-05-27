@@ -34,6 +34,48 @@
     "employee": {
       "subtitle": "Dettagli"
     },
+    "contracts": {
+      "subtitle": "Contratti",
+      "table": {
+        "contract_code": "Codice Contratto",
+        "client": "Cliente",
+        "provider": "Azienda Provider",
+        "start_date": "Data Inizio",
+        "end_date": "Data Scadenza"
+      },
+      "employees": {
+        "subtitle": "Colleghi assegnati",
+        "noEmployees": "Nessun dipendente assegnato a questo contratto",
+        "table": {
+          "name": "Nominativo",
+          "email": "Email",
+          "start_date": "Data Inizio",
+          "end_date": "Data Fine"
+        }
+      }
+    },
+    "select_date": "Seleziona data",
+    "contractDetail": {
+      "schedules": {
+        "subtitle": "Orari del contratto"
+      },
+      "timbrature": {
+        "subtitle": "Timbrature",
+        "loadingMap": "Caricamento mappa...",
+        "errorLoadingMap": "Errore nel caricamento della mappa",
+        "table": {
+          "user": "Dipendente",
+          "indirizzo": "Indirizzo",
+          "cap": "CAP",
+          "citta": "Città",
+          "provincia": "Provincia",
+          "stato": "Stato",
+          "orario": "Orario",
+          "distance": "Distanza",
+          "type": "Tipo"
+        }
+      }
+    },
     "additionalMessage": {
       "loading": "Caricamento...",
       "errorLoading": "Errore nel caricamento del dipendente"

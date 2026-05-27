@@ -1,4 +1,4 @@
-import type { Sector } from "@/api/sectorService";
+import type { Sector } from "@/api/types";
 import type { Dispatch, SetStateAction } from "react";
 
 export interface DeleteModalProps {

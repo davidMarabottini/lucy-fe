@@ -5,6 +5,8 @@ export interface ClientDetailState {
   setSelectedDate: (date: string) => void;
   setNextDay: () => void;
   setPreviousDay: () => void;
+  selectedEmployeeLibemaxId: number | null;
+  setSelectedEmployeeLibemaxId: (id: number | null) => void;
 }
 
 export const useClientDetailStore = create<ClientDetailState>((set) => ({
@@ -20,4 +22,6 @@ export const useClientDetailStore = create<ClientDetailState>((set) => ({
     prevDate.setDate(prevDate.getDate() - 1);
     return { selectedDate: prevDate.toISOString().split('T')[0] };
   }),
+  selectedEmployeeLibemaxId: null,
+  setSelectedEmployeeLibemaxId: (id) => set({ selectedEmployeeLibemaxId: id }),
 }));

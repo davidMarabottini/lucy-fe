@@ -1,7 +1,7 @@
 import { useEmployeeDelete } from "@/hooks/api/useEmployeesHooks";
 import Table from "@/components/organisms/Table/Table";
 import styles from "../../List.module.scss"
-import type { LibemaxEmployee } from "@/api/employeesService";
+import type { LibemaxEmployee } from "@/api/types";
 import { Check, X } from "lucide-react";
 import { Modal } from "@/components/atoms/Modal/Modal";
 import Button from "@/components/atoms/Button/Button";

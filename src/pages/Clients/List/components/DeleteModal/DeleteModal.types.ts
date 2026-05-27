@@ -1,4 +1,4 @@
-import type { LibemaxClient } from "@/api/clientService";
+import type { LibemaxClient } from "@/api/types";
 import type { Dispatch, SetStateAction } from "react";
 
 export interface DeleteModalProps {

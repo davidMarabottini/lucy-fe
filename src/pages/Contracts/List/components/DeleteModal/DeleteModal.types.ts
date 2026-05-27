@@ -1,4 +1,4 @@
-import type { Contract } from "@/api/contractService";
+import type { Contract } from "@/api/types";
 import type { Dispatch, SetStateAction } from "react";
 
 export interface DeleteModalProps {

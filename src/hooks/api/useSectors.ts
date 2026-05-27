@@ -8,9 +8,9 @@ import {
   getSectorById, 
   insertSector, 
   updateSector, 
-  deleteSector,
-  type Sector
+  deleteSector
 } from "@/api/sectorService";
+import type { Sector } from "@/api/types";
 
 const libDomain = 'sector';
 

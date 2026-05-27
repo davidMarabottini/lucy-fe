@@ -17,6 +17,8 @@ function TablePaginated<T extends object>({
   actions,
   initialPerPage = 10,
   filterConfig = [],
+  getRowKey,
+  additionalContainer,
 }: TablePaginatedProps<T>) {
   const [page, setPage] = useState(1);
 
@@ -27,7 +29,7 @@ function TablePaginated<T extends object>({
   const [filters, setFilters] = useState<Record<string, string>>(baseFilter);
   
   const nonHiddenFilters = filterConfig.filter(f => f.type !== 'hidden');
-  const debouncedFilters = useDebounce(filters, 500);
+  const debouncedFilters = useDebounce(filters, 1200);
 
   const { data, isLoading, isPlaceholderData } = useQueryHook({
     page,
@@ -63,7 +65,7 @@ function TablePaginated<T extends object>({
       )}
 
       <div style={{ opacity: isPlaceholderData ? 0.6 : 1, transition: 'opacity 0.2s' }}>
-        <Table data={items} columns={columns} actions={actions} />
+        <Table data={items} columns={columns} actions={actions} getRowKey={getRowKey} additionalContainer={additionalContainer}  />
       </div>
 
       {paginated && totalPages > 1 && (

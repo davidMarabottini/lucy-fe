@@ -1,14 +1,15 @@
 import { getLibemaxTimbrature } from "@/api/apiLibemaxTimbrature";
-import type { LibemaxTimbratureType } from "@/api/apiLibemaxTimbrature";
+import type { LibemaxTimbratureType } from "@/api/types";
 import { useAppQuery } from "../useAppApi/useAppQuery";
 import { ERROR_KINDS } from "../useAppApi/error";
 
 const libDomain = 'libemax';
 
-export const useLibemaxTimbrature = (userId: number, date: string) =>
+export const useLibemaxTimbrature = (userId: number, date: string, enabled = true) =>
   useAppQuery<LibemaxTimbratureType>({
     queryKey: ['libemax-timbrature', userId, date],
     queryFn: () => getLibemaxTimbrature(userId, date),
+    enabled,
     errorMap: {
       [ERROR_KINDS.UNAUTHORIZED]: `${libDomain}.timbrature.401`,
       [ERROR_KINDS.SERVER]: `${libDomain}.timbrature.500`,

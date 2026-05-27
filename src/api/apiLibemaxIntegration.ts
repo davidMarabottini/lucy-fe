@@ -1,31 +1,5 @@
 import apiClient from "./apiClient";
-
-export type LibemaxUser = {
-  id: number;
-  name: string;
-  email?: string;
-  phone?: string;
-  theoretical_hours?: number | null;
-  total_hours?: number | null;
-};
-
-export type MissingClockin = {
-  id: number;
-  name: string;
-  expected_time: string;
-  phone?: string;
-  delay: number;
-};
-
-export type RemoteClockin = {
-  id: number;
-  name: string;
-  time: string;
-  location: string;
-  phone?: string;
-  theoretical_hours?: number | null;
-  distance: number;
-};
+import type { LibemaxUser, MissingClockin, RemoteClockin } from "./types";
 
 export const getLibemaxUsers = async (): Promise<LibemaxUser[]> => {
   const { data } = await apiClient.get("/api/libemax/users");

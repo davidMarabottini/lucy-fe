@@ -6,7 +6,7 @@ import Button from "@/components/atoms/Button/Button";
 import { useTranslation } from "react-i18next";
 import type { DeleteModalProps } from "./DeleteModal.types";
 import Table from "@/components/organisms/Table/Table";
-import type { GroupCompany } from "@/api/groupCompanyService";
+import type { GroupCompany } from "@/api/types";
 
 export const DeleteModal = ({ 
   openModal, 

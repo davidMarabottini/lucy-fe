@@ -4,7 +4,7 @@ import Typography from "@components/atoms/Typography/Typography";
 import { useRemoteClockin } from "@/hooks/api/useLibemaxHooks";
 import styles from './LibemaxRemoteClocking.module.scss';
 import Table from "@/components/organisms/Table/Table";
-import type { RemoteClockin } from "@/api/apiLibemaxIntegration";
+import type { RemoteClockin } from "@/api/types";
 import { useTranslation } from "react-i18next";
 
 const RemoteClockin = () => {

@@ -7,7 +7,7 @@ import Button from "@/components/atoms/Button/Button";
 import { useTranslation } from "react-i18next";
 import type { DeleteModalProps } from "./DeleteModal.types";
 import Table from "@/components/organisms/Table/Table";
-import type { Sector } from "@/api/sectorService";
+import type { Sector } from "@/api/types";
 
 export const DeleteModal = ({openModal, setOpenModal, curSector}: DeleteModalProps) => {
   const {mutate: deleteSector} = useDeleteSector();

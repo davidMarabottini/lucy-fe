@@ -1,21 +1,6 @@
 import apiClient from "./apiClient";
+import type { WorkActivity, WorkActivityAdd } from "./types";
 
-// Tipo per l'attività esistente (quella che arriva dal DB con ID)
-export type WorkActivity = {
-  id: number;
-  name: string;
-  description: string;
-};
-
-// Tipo per la creazione/modifica (ID opzionale o assente)
-export type WorkActivityAdd = {
-  name: string;
-  description: string;
-};
-
-/**
- * GET - Recupera tutte le attività dal catalogo
- */
 export const getWorkActivities = async (params?: Record<string, unknown>): Promise<WorkActivity[]> => {
   const { data } = await apiClient.get("/api/activities", {params});
   return data;

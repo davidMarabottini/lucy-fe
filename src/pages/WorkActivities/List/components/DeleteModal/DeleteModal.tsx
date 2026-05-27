@@ -5,7 +5,7 @@ import { Modal } from "@/components/atoms/Modal/Modal";
 import Button from "@/components/atoms/Button/Button";
 import { useTranslation } from "react-i18next";
 import type { DeleteModalProps } from "./DeleteModal.types";
-import type { WorkActivity } from "@/api/workActivityService";
+import type { WorkActivity } from "@/api/types";
 import Table from "@/components/organisms/Table/Table";
 
 export const DeleteModal = ({openModal, setOpenModal, curWorkActivity: curWorkActivity}: DeleteModalProps) => {

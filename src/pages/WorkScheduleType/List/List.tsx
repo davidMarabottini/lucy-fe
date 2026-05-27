@@ -3,7 +3,7 @@ import Typography from "@components/atoms/Typography/Typography";
 import { useWorkScheduleTypes } from "@/hooks/api/WorkScheduleTypeHooks";
 import styles from './List.module.scss'; 
 import Table from "@/components/organisms/Table/Table";
-import { type WorkScheduleType } from "@/api/workScheduleTypeService";
+import { type WorkScheduleType } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
 import { PlusCircle, Trash2, HelpCircle } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
