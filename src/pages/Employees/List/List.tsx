@@ -2,17 +2,15 @@ import Card from "@components/atoms/Card/Card";
 import Typography from "@components/atoms/Typography/Typography";
 import styles from './List.module.scss'
 import type { LibemaxEmployee } from "@/api/types";
-import { rewriteRoute } from "@/utils/routes";
 import { ROUTES } from "@/constants/routes";
-import { FileText, PlusCircle, Trash2 } from "lucide-react";
+import {  PlusCircle } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { DeleteModal } from "./components/DeleteModal/DeleteModal";
-import Button from "@/components/atoms/Button/Button";
 import Paginated from "@/components/organisms/Paginated/Paginated";
 import { useEmployeesList } from "@/hooks/api/useEmployeesHooks";
-import Table from "@/components/organisms/Table/Table";
+import EmployeeDetailCard from "./components/EmployeeDetailCard/EmployeeDetailCard";
 
 const LibemaxEmployees = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -44,46 +42,23 @@ const LibemaxEmployees = () => {
       <Card additionalClassName={styles["p-libemax-employees__card"]}>
         <Paginated<LibemaxEmployee>
           useQueryHook={useEmployeesList} 
-          initialPerPage={10} 
+          initialPerPage={20} 
           filterConfig={[
             { key: 'name', placeholder: '', label: 'Cerca Nome' },
             { key: 'email', placeholder: '', label: 'Cerca Email' },
           ]}
         >
           {(res) => (
-            <Table
-              data={res}
-              columns={[
-                {key: 'name', header: t('table.name')},
-                {key: 'surname', header: t('table.surname')},
-                {key: 'email', header: t('table.email')},
-                {key: 'phone', header: t('table.phone')},
-              ]}
-              getRowKey={({id}) => id}
-              actions={
-                [
-                  (row) => (
-                    <LinkComponent
-                      key="details"
-                      color='custom'
-                      to={rewriteRoute(ROUTES.EMPLOYEE_DETAIL, {':employeeId': row.id.toString()})}
-                    >
-                      <FileText />
-                    </LinkComponent>
-                  ),
-                  (row) => (
-                    <Button
-                      key="remove"
-                      color="custom"
-                      additionalClassName={styles["p-libemax-employees__btn-delete"]}
-                      onClick={() => openDeleteModalHdlr(row)}
-                    >
-                      <Trash2 />
-                    </Button>
-                  ),
-                ]
+            <div className={styles["p-libemax-employees__grid"]}>
+              {
+                res.map((employee) =>
+                  <EmployeeDetailCard
+                    key={employee.libemax_id}
+                    employee={employee}
+                    toggleDelete={openDeleteModalHdlr}
+                  />)
               }
-            />
+            </div>
           )}
         </Paginated>
       </Card>
