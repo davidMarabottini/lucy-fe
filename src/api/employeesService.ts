@@ -28,3 +28,9 @@ export const getEmployeesByContractId = async (contractId: number, date?: string
   const { data } = await apiClient.get<ContractEmployeeAssignment[]>(`/api/employee-contracts/by-contract/${contractId}`, { params: { date } });
   return data;
 };
+
+
+export const getAllEmployeesByContractId = async (contractId: number): Promise<ContractEmployeeAssignment[]> => {
+  const { data } = await apiClient.get<ContractEmployeeAssignment[]>(`/api/employee-contracts/get-all-by-contract/${contractId}`);
+  return data;
+};

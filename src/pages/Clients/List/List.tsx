@@ -3,16 +3,14 @@ import Typography from "@components/atoms/Typography/Typography";
 import { useLibemaxClients } from "@/hooks/api/useClientHooks";
 import styles from './List.module.scss'
 import type { LibemaxClient } from "@/api/types";
-import { rewriteRoute } from "@/utils/routes";
 import { ROUTES } from "@/constants/routes";
-import { FileText, PlusCircle, Trash2 } from "lucide-react";
+import { PlusCircle } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { DeleteModal } from "./components/DeleteModal/DeleteModal";
-import Button from "@/components/atoms/Button/Button";
 import Paginated from "@/components/organisms/Paginated/Paginated";
-import Table from "@/components/organisms/Table/Table";
+import ClientDetailCard from "./components/ClientDetailCard/ClientDetailCard";
 
 const LibemaxClients = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -47,48 +45,22 @@ const LibemaxClients = () => {
       <Card additionalClassName={styles["p-libemax-clients__card"]}>
         <Paginated<LibemaxClient>
           useQueryHook={useLibemaxClients} 
-          initialPerPage={10} 
+          initialPerPage={20} 
           filterConfig={[
             { key: 'name', placeholder: '', label: 'Cerca Nome' },
             { key: 'email', placeholder: '', label: 'Cerca Email' },
           ]}
         >
           {(res) => (
-            <Table
-              data={res}
-              columns={[
-                {
-                  key: 'name',
-                  header: t('table.name')
-                },
-                {key: 'email', header: t('table.email')},
-                {key: 'phone', header: t('table.phone')},
-              ]}
-              getRowKey={({id}) => id}
-              actions={
-                [
-                  (row) => (
-                    <LinkComponent
-                      key="details"
-                      color='custom'
-                      to={rewriteRoute(ROUTES.CLIENT_DETAIL, {':clientId': row.id.toString()})}
-                    >
-                      <FileText />
-                    </LinkComponent>
-                  ),
-                  (row) => (
-                    <Button
-                      key="remove"
-                      color="custom"
-                      additionalClassName={styles["p-libemax-clients__btn-delete"]}
-                      onClick={() => openDeleteModalHdlr(row)}
-                    >
-                      <Trash2 />
-                    </Button>
-                  ),
-                ]
-              }
-            />
+            <div className={styles["p-libemax-clients__grid"]}>
+            {res.map(client =>
+              <ClientDetailCard
+                key={client.id}
+                client={client}
+                toggleDelete={openDeleteModalHdlr}
+              />
+            )}
+            </div>
           )}
         </Paginated>
       </Card>

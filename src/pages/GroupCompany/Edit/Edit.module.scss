@@ -1,4 +1,4 @@
-.p-libemax-employees {
+.p-edit-company {
   &__card-title {
     margin-top: $space-lg;
     margin-bottom: $space-lg;
@@ -19,19 +19,15 @@
     text-transform: uppercase;
   }
 
-  &__btn-delete {
-    color: $color-error;
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+    padding: $space-lg;
   }
 
-  &__modal-confirm-btn {
-    color: $color-success;
-  }
-  
-  &__modal-reject-btn {
-    color: $color-error;
-  }
-
-  &__grid {
-    @include create-card-grid(( $bp-tablet: 2, $bp-wide: 4 ));
+  &__button {
+    @include flex-center;
+    gap: $space-sm;
   }
 }

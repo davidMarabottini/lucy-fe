@@ -1,8 +1,8 @@
 import clsx from "clsx";
 import styles from "./DetailCard.module.scss";
-import type { DetailCard } from "./DetailCard.types";
+import type { DetailCardProps } from "./DetailCard.types";
 
-const DetailCard = ({ header, body, actions, isSelected }: DetailCard) => {
+const DetailCard = ({ header, body, actions, isSelected }: DetailCardProps) => {
   return (
     <div className={clsx(styles["c-detail-card"], isSelected && styles["c-detail-card--selected"])}>
       <div className={styles["c-detail-card__header"]}>

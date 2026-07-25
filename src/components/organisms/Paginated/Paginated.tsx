@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '@/components/atoms/Button/Button';
 import Input from '@/components/atoms/Input/Input';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -28,6 +28,10 @@ function Paginated<T extends object>({
   const nonHiddenFilters = filterConfig.filter((f) => f.type !== 'hidden');
   const debouncedFilters = useDebounce(filters, 1200);
 
+  useEffect(() => {
+    setPage(1);
+  }, [debouncedFilters]);
+
   const { data, isLoading, isPlaceholderData } = useQueryHook({
     page,
     per_page: initialPerPage,
@@ -40,7 +44,6 @@ function Paginated<T extends object>({
 
   const handleFilterChange = (key: string, value: string) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
-    setPage(1);
   };
 
   if (isLoading) return <div>Caricamento...</div>;
@@ -65,7 +68,7 @@ function Paginated<T extends object>({
         {children(items)}
       </div>
 
-      {paginated && totalPages > 1 && (
+      {paginated  && (
         <div className={styles['c-paginated__footer']}>
           <div className={styles['c-paginated__pagination']}>
             <Button

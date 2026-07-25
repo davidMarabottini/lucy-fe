@@ -55,3 +55,16 @@
 @mixin typography_h4{@include typography((0: $font-md, $bp-tablet: $font-lg), $font-weight-medium, $line-height-tight)}
 @mixin typography_body{@include typography($font-md, $font-weight-medium, $line-height-tight)}
 @mixin typography_small{@include typography($font-sm, $font-weight-medium, $line-height-tight)}
+
+
+@mixin create-card-grid($config) {
+  display: grid;
+  gap: $space-md;
+  grid-template-columns: repeat(1, 1fr);
+
+  @each $breakpoint, $cols in $config {
+    @media (min-width: $breakpoint) {
+      grid-template-columns: repeat($cols, 1fr);
+    }
+  }
+}

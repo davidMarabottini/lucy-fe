@@ -121,5 +121,23 @@
         "save": "Aggiungi Operatore"
       }    
     }
+  },
+  "setDetails": {
+    "title": "Dettaglio Set Contratto",
+    "loading": "Caricamento dettagli set contratto...",
+    "errorLoading": "Errore durante il caricamento del set contratto.",
+    "fields": {
+      "period": "Periodo",
+      "provider": "Fornitore"
+    },
+    "table": {
+      "title": "Attività del Set Contratto",
+      "operator": "Operatore",
+      "day": "Giorno",
+      "hours": "Orario / Ore",
+      "activity_type": "Tipo Attività",
+      "flexible": "Flessibile",
+      "weekly_short": "sett."
+    }
   }
 }

@@ -33,6 +33,7 @@ const ContractList = lazy(() => import("@/pages/Contracts/List/List"));
 const ContractDetail = lazy(() => import("@/pages/Contracts/Details/Details"));
 const WorkScheduleTypeInsert = lazy(() => import("@/pages/WorkScheduleType/Insert/Insert"));
 const WorkScheduleTypeList = lazy(() => import("@/pages/WorkScheduleType/List/List"));
+const SetDetails = lazy(() => import("@/pages/Contracts/SetDetails/SetDetails"));
 
 export type RouteHandle = {
   key: string;
@@ -88,6 +89,7 @@ const ROUTE_CONFIGS: readonly AppRouteObject[] = Object.freeze([
   {path: '/contracts', Element: ContractList, handle: {key: 'CONTRACT_LIST', label: 'labels.contractList', Icon: Briefcase, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.MAIN]}},
   {path: '/contracts/insert', Element: ContractInsert, handle: {key: 'CONTRACT_INSERT', label: 'labels.contractInsert', Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
   {path: '/contracts/:contractId', Element: ContractDetail, handle: {key: 'CONTRACT_DETAIL', domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
+  {path: '/contracts/set/:contractId', Element: SetDetails, handle: {key: 'CONTRACT_SET_DETAILS', domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
 ]);
 
 export type TStructRoute = ValueOf<typeof AUTH_DOMAINS> | `${ValueOf<typeof AUTH_DOMAINS>}__${ValueOf<typeof AUTH_DOMAINS>}`

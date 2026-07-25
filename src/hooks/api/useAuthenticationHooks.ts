@@ -14,7 +14,10 @@ export const useLogin = () => {
     mutationFn: authService.login,
     onSuccess: (data) => {
       queryClient.setQueryData(['me'], data.user);
-      queryClient.invalidateQueries({ queryKey: ['me'] });
+      // queryClient.invalidateQueries({ queryKey: ['me'] });
+      // setTimeout(() => {
+      //   queryClient.invalidateQueries({ queryKey: ['me'] });
+      // }, 200);
     },
     successKey: `${authDomain}.login.success`,
     errorMap: {

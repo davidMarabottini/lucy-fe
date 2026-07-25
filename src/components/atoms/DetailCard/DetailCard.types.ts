@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-export interface DetailCard {
+export interface DetailCardProps {
   header: ReactNode;
   body: ReactNode;
   actions?: ReactNode[];

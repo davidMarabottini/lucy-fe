@@ -10,7 +10,8 @@ import { useTranslation } from "react-i18next";
 import { DeleteModal } from "./components/DeleteModal/DeleteModal";
 import Paginated from "@/components/organisms/Paginated/Paginated";
 import { useEmployeesList } from "@/hooks/api/useEmployeesHooks";
-import EmployeeDetailCard from "./components/EmployeeDetailCard/EmployeeDetailCard";
+// import EmployeeDetailCard from "./components/EmployeeDetailCard/EmployeeDetailCard";
+import EmployeeDetailsCard from "@/components/molecules/DetailCards/EmployeeDetailsCard/EmployeeDetailsCard";
 
 const LibemaxEmployees = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -52,11 +53,12 @@ const LibemaxEmployees = () => {
             <div className={styles["p-libemax-employees__grid"]}>
               {
                 res.map((employee) =>
-                  <EmployeeDetailCard
+                  <EmployeeDetailsCard
                     key={employee.libemax_id}
                     employee={employee}
                     toggleDelete={openDeleteModalHdlr}
-                  />)
+                  />
+                )
               }
             </div>
           )}

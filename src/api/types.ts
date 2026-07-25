@@ -204,7 +204,7 @@ export interface Contract {
   description: string;
   end_date: string;
   id: number;
-  provider: GroupCompany;
+  provider_company: GroupCompany;
   start_date: string;
 }
 

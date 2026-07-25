@@ -29,6 +29,7 @@ function Table<T extends object>({ data, columns, actions, getRowKey, additional
         <div className={styles['c-table__body']}>
           {data.map((row, i) => {
             const curKey = getRowKey?.(row) ?? i
+            
             return (
               <Fragment key={curKey}>
                 <div className={styles['c-table__row']} >
@@ -49,7 +50,7 @@ function Table<T extends object>({ data, columns, actions, getRowKey, additional
                   })}
                   {actions && (
                     <div className={styles['c-table__cell']}>
-                      {actions.map((el) => <Fragment key={String(el)}>{el(row)}</Fragment>)}
+                      {actions.map((el) => <Fragment key={String(el(row))}>{el(row)}</Fragment>)}
                     </div>
                   )}
                 </div>

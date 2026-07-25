@@ -2,10 +2,9 @@ import Card from "@components/atoms/Card/Card";
 import Typography from "@components/atoms/Typography/Typography";
 import { useContracts } from "@/hooks/api/ContractHooks";
 import styles from './List.module.scss'; 
-// import Table from "@/components/organisms/Table/Table";
 import { type Contract } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
-import { FileText, PlusCircle, Trash2 } from "lucide-react";
+import { FileText, Option, PlusCircle, Settings2, Trash2 } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -65,9 +64,9 @@ const ContractsList = () => {
                   header: t('table.contract_code')
                 },
                 {
-                  key: 'provider',
+                  key: 'provider_company',
                   header: t('table.provider'),
-                  value: (row) => row.provider?.name || '-'
+                  value: (row) => row.provider_company?.name || '-'
                 },
                 {
                   key: 'client',
@@ -107,9 +106,18 @@ const ContractsList = () => {
                     additionalClassName={styles["p-contracts__btn-delete"]}
                     onClick={() => openDeleteModalHdlr(row)}
                   >
-                    <Trash2 size={18} />
+                    <Trash2 />
                   </Button>
                 ),
+                // (row) => (
+                //   <LinkComponent
+                //     key="setDetails"
+                //     color='custom'
+                //     to={rewriteRoute(ROUTES.CONTRACT_SET_DETAILS, { ':contractId': row.id.toString() })}
+                //   >
+                //     <Settings2 />
+                //   </LinkComponent>
+                // )
               ]}
               getRowKey={(row) => String(row.contract_code)}
             />

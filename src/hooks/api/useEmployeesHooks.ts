@@ -5,7 +5,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useAppMutation } from "../useAppApi/useAppMutation";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "@/constants/routes";
-import { deleteEmployee, getEmployeeDetail, getEmployeesByContractId, getLibemaxEmployees, insertEmployee } from "@/api/employeesService";
+import { deleteEmployee, getAllEmployeesByContractId, getEmployeeDetail, getEmployeesByContractId, getLibemaxEmployees, insertEmployee } from "@/api/employeesService";
 import type { LibemaxEmployee, ContractEmployeeAssignment } from "@/api/types";
 
 const libDomain = 'employees';
@@ -91,6 +91,17 @@ export const useGetEmployeesByContractId = (contractId: number, date?: string) =
   useAppQuery<ContractEmployeeAssignment[]>({
     queryKey: ['employeesByContract', contractId, date],
     queryFn: () => getEmployeesByContractId(contractId, date),
+    enabled: !!contractId,
+    errorMap: {
+      [ERROR_KINDS.SERVER]: `${libDomain}.contractEmployees.500`,
+      [ERROR_KINDS.UNKNOWN]: `${libDomain}.contractEmployees.defaultError`
+    },
+  });
+
+  export const useGetAllEmployeesByContractId = (contractId: number) =>
+  useAppQuery<ContractEmployeeAssignment[]>({
+    queryKey: ['allEmployeesByContract', contractId],
+    queryFn: () => getAllEmployeesByContractId(contractId),
     enabled: !!contractId,
     errorMap: {
       [ERROR_KINDS.SERVER]: `${libDomain}.contractEmployees.500`,
