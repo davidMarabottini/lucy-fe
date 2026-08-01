@@ -1,10 +1,8 @@
 import Card from "@/components/atoms/Card/Card";
-import DatePicker from "@/components/atoms/DatePicker/DatePicker";
 import { useTranslation } from "react-i18next";
 import styles from "../Details.module.scss";
 import { useClientDetailStore } from "@/zustand/clientDetailState";
-import Button from "@/components/atoms/Button/Button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import DateNavigatorCard from "@/components/molecules/DateFilterCard/DateNavigatorCard";
 
 const DateFilterCard = () => {
   const { t } = useTranslation("client", { keyPrefix: "details.workDetails" });
@@ -13,29 +11,24 @@ const DateFilterCard = () => {
   const setPreviousDay = useClientDetailStore((s) => s.setPreviousDay);
   const selectedDate = useClientDetailStore((s) => s.selectedDate);
 
-  const handleChange = (date: Date | null) => {
+    const handleChange = (date: Date | null) => {
     if (date) {
-      setSelectedDate(date.toISOString().split('T')[0]);
+      const y = date.getFullYear();
+      const m = String(date.getMonth() + 1).padStart(2, '0');
+      const d = String(date.getDate()).padStart(2, '0');
+      setSelectedDate(`${y}-${m}-${d}`);
     }
   };
 
-  const endDate = new Date();
-  const selectedDateObj = new Date(selectedDate);
-  const isToday = selectedDateObj.toDateString() === endDate.toDateString();
-
   return (
     <Card additionalClassName={styles["p-client-detail__card"]}>
-      <div style={{ display: 'flex', gap: '32px' }}>
-        <Button onClick={setPreviousDay}><ChevronLeft /></Button>
-        <DatePicker
-          maxDate={endDate}
-          selected={new Date(selectedDateObj)}
-          label={t("select_date")}
-          onChange={handleChange}
-          endDate={endDate}
-        />
-        <Button onClick={setNextDay} disabled={isToday}><ChevronRight /></Button>
-      </div>
+      <DateNavigatorCard
+        label={t("select_date")}
+        onNextDay={setNextDay}
+        onPreviousDay={setPreviousDay}
+        selectedDate={selectedDate}
+        onSelectDate={handleChange}
+      />
     </Card>
   );
 };

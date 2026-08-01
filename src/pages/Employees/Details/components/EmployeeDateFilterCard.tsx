@@ -1,10 +1,8 @@
 import Card from "@/components/atoms/Card/Card";
-import DatePicker from "@/components/atoms/DatePicker/DatePicker";
 import { useTranslation } from "react-i18next";
 import styles from "../Details.module.scss";
 import { useEmployeeDetailStore } from "@/zustand/employeeDetailState";
-import Button from "@/components/atoms/Button/Button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import DateNavigatorCard from "@/components/molecules/DateFilterCard/DateNavigatorCard";
 
 const EmployeeDateFilterCard = () => {
   const { t } = useTranslation("employee", { keyPrefix: "details" });
@@ -22,24 +20,15 @@ const EmployeeDateFilterCard = () => {
     }
   };
 
-  const endDate = new Date();
-  const todayYMD = `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padStart(2, '0')}-${String(endDate.getDate()).padStart(2, '0')}`;
-  const selectedDateObj = new Date(`${selectedDate}T00:00:00`);
-  const isToday = selectedDate === todayYMD;
-
   return (
     <Card additionalClassName={styles["p-employee-detail__card"]}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Button onClick={setPreviousDay}><ChevronLeft /></Button>
-        <DatePicker
-          maxDate={endDate}
-          selected={selectedDateObj}
-          label={t("select_date")}
-          onChange={handleChange}
-          endDate={endDate}
-        />
-        <Button onClick={setNextDay} disabled={isToday}><ChevronRight /></Button>
-      </div>
+      <DateNavigatorCard
+        label={t("select_date")}
+        onNextDay={setNextDay}
+        onPreviousDay={setPreviousDay}
+        selectedDate={selectedDate}
+        onSelectDate={handleChange}
+      />
     </Card>
   );
 };
