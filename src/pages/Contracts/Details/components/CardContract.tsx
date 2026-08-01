@@ -34,19 +34,19 @@ const CardContract = ({ data }: { data: Contract }) => {
               <ChevronRight size={20} />
               <Typography variant="h3">{data.client?.name || t("no_client")}</Typography>
             </LinkComponent>
-            <Typography variant="body" className="text-gray-500">{data.description}</Typography>
+            <Typography variant="body" className={styles["p-contract-detail__description"]}>{data.description}</Typography>
           </div>
 
           <div className={styles["p-contract-detail__info-grid"]}>
-            <div className="flex items-center gap-2">
+            <div className={styles["p-contract-detail__info-detail"]}>
               <Calendar size={18} />
               <strong>{t("fields.period")}:</strong>
               {data.start_date ? new Date(data.start_date).toLocaleDateString('it-IT') : '...'} -
               {data.end_date ? new Date(data.end_date).toLocaleDateString('it-IT') : t("ongoing")}
             </div>
-            <div className="flex items-center gap-2">
+            <div className={styles["p-contract-detail__info-detail"]}>
               <Briefcase size={18} />
-              <strong>{t("fields.provider")}:</strong> {data.provider?.name}
+              <strong>{t("fields.provider")}:</strong> {data.provider_company?.name}
             </div>
           </div>
         </div>

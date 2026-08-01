@@ -13,13 +13,13 @@ function Table<T extends object>({ data, columns, actions, getRowKey, additional
         <div className={styles['c-table__header']}>
           <div  className={styles['c-table__row']}>
             {columns.map((col) => (
-              <div key={String(col.key)} className={styles['c-table__cell']}>
+              <div key={String(col.key)} className={styles['c-table__cell']} title={col.header}>
                 {col.header}
               </div>
             ))}
 
             {actions && (
-              <div className={styles['c-table__cell']}>
+              <div className={styles['c-table__cell']} title="Azioni">
                 Azioni
               </div>
             )}
@@ -42,7 +42,8 @@ function Table<T extends object>({ data, columns, actions, getRowKey, additional
                       <div
                         key={String(col.key)}
                         className={styles['c-table__cell']}
-                        data-label={col.header}  
+                        data-label={col.header}
+                        title={typeof content === 'string' ? content : undefined}
                       >
                         {content}
                       </div>

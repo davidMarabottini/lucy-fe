@@ -23,12 +23,41 @@
   &__container {
     display: flex;
     flex-direction: column;
-    gap: $space-md;
+    gap: $space-lg;
+  }
+
+  &__header-info {
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+  }
+
+  &__info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+    border-top: 1px solid $color-border;
+    padding-top: $space-lg;
+  }
+
+  &__info-detail {
+    display: flex;
+    gap: $space-sm;
+  }
+
+  &__description {
+    color: $color-text-muted;
+    white-space: pre-wrap;
   }
 
   &__client-sheet {
      display: flex;
      gap: 32px;
+  }
+
+  &__contract-form-btns-row {
+    display: flex;
+    gap: $space-md;
   }
 
   &__detail-column {
@@ -40,5 +69,14 @@
 
   &__subtitle-section {
     margin-bottom: $space-md;
+  }
+
+  &__date-row {
+    display: flex;
+    gap: $space-md;
+  }
+
+  &__date {
+    width: 100%;
   }
 }

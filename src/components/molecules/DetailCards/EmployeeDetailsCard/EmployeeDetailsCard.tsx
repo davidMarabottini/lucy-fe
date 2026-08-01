@@ -14,18 +14,18 @@ const EmployeeDetailsCard = ({ employee, toggleDelete }: { employee: LibemaxEmpl
     <DetailCard
       header={<div>{name} {surname}</div>}
       body={
-        <div>
+        <div className={styles["c-employees-details-card__body"]}>
           <div>
             ID Libemax: {libemax_id}
           </div>
           {phone && (
-            <div>
+            <div className={styles["c-employees-details-card__icon-text"]}>
               <Phone size={12} />
               {phone}
             </div>
           )}
           {email && (
-            <div >
+            <div className={styles["c-employees-details-card__icon-text"]} >
               <Mail size={12} />
               {email}
             </div>

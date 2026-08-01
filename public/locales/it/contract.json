@@ -85,6 +85,9 @@
         "label": "Giorno della Settimana",
         "error": "Selezionare un giorno"
       },
+      "note": {
+        "label": "Note / Descrizione Attività"
+      },
       "start": {
         "label": "Orario Inizio",
         "error": "Orario di inizio obbligatorio"
@@ -102,6 +105,7 @@
       "day": "Giorno",
       "hours": "Orario / Ore",
       "activity_type": "Tipo Attività",
+      "note": "Note",
       "actions": "Azioni",
       "view_details": "Vedi",
       "flexible": "Flessibile",
@@ -116,6 +120,14 @@
         "employee": {
           "label": "Seleziona Operatore",
           "error": "Selezionare un operatore"
+        },
+        "start_date": {
+          "label": "Data Inizio",
+          "error": "Selezionare una data di inizio"
+        },
+        "end_date": {
+          "label": "Data Fine",
+          "error": "Selezionare una data di fine"
         },
         "reset": "Pulisci",
         "save": "Aggiungi Operatore"

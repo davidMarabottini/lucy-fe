@@ -13,4 +13,8 @@ export interface FilteredDualListProps {
   error?: string;
   className?: string;
   maxSelections?: number;
+  filterLabels?: {
+    available?: string;
+    selected?: string;
+  };
 }

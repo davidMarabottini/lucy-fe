@@ -59,93 +59,98 @@ export const EmployeeContractDetailCard = ({ employeeLibemaxId }: EmployeeContra
 
   return (
     <Card additionalClassName={detailStyles["p-employee-detail__card"]}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-md)' }}>
-        <Typography variant="h2" additionalClasses={detailStyles["p-employee-detail__title"]}>
-          {t("schedules.subtitle")}
-        </Typography>
-        <Button color="custom" onClick={() => setSelectedContractId(null)}>
-          <X size={18} />
-        </Button>
-      </div>
+      <div className={detailStyles['p-employee-detail__contract-detail']}>
+        <div>
+          <div className={detailStyles['p-employee-detail__contract-detail-subtitle']}>
+            <Typography variant="h2" additionalClasses={detailStyles["p-employee-detail__title"]}>
+              {t("schedules.subtitle")}
+            </Typography>
+            <Button color="custom" onClick={() => setSelectedContractId(null)}>
+              <X size={18} />
+            </Button>
+          </div>
 
-      <ContractSchedulesTable contractId={selectedContractId} selectedDate={selectedDate} />
+          <ContractSchedulesTable contractId={selectedContractId} selectedDate={selectedDate} />
+        </div>
+        <div>
+          <Typography variant="h2" additionalClasses={detailStyles["p-employee-detail__title"]}>
+            {t("timbrature.subtitle")}
+          </Typography>
 
-      <Typography variant="h2" additionalClasses={detailStyles["p-employee-detail__title"]} style={{ marginTop: 'var(--space-lg)' }}>
-        {t("timbrature.subtitle")}
-      </Typography>
+          <Table
+            data={points}
+            columns={[
+              { key: 'user', header: t('timbrature.table.user') },
+              { key: 'indirizzo', header: t('timbrature.table.indirizzo') },
+              { key: 'cap', header: t('timbrature.table.cap') },
+              { key: 'citta', header: t('timbrature.table.citta') },
+              { key: 'provincia', header: t('timbrature.table.provincia') },
+              { key: 'stato', header: t('timbrature.table.stato') },
+              { key: 'orario', header: t('timbrature.table.orario') },
+              {
+                key: '__distance',
+                header: t('timbrature.table.distance'),
+                value: (row) => {
+                  const lat1 = Number(row.latitudine);
+                  const lon1 = Number(row.longitudine);
+                  const lat2 = Number(clientLocation?.latitudine ?? NaN);
+                  const lon2 = Number(clientLocation?.longitudine ?? NaN);
 
-      <Table
-        data={points}
-        columns={[
-          { key: 'user', header: t('timbrature.table.user') },
-          { key: 'indirizzo', header: t('timbrature.table.indirizzo') },
-          { key: 'cap', header: t('timbrature.table.cap') },
-          { key: 'citta', header: t('timbrature.table.citta') },
-          { key: 'provincia', header: t('timbrature.table.provincia') },
-          { key: 'stato', header: t('timbrature.table.stato') },
-          { key: 'orario', header: t('timbrature.table.orario') },
-          {
-            key: '__distance',
-            header: t('timbrature.table.distance'),
-            value: (row) => {
-              const lat1 = Number(row.latitudine);
-              const lon1 = Number(row.longitudine);
-              const lat2 = Number(clientLocation?.latitudine ?? NaN);
-              const lon2 = Number(clientLocation?.longitudine ?? NaN);
+                  if (!Number.isFinite(lat1) || !Number.isFinite(lon1) || !Number.isFinite(lat2) || !Number.isFinite(lon2)) {
+                    return '-';
+                  }
 
-              if (!Number.isFinite(lat1) || !Number.isFinite(lon1) || !Number.isFinite(lat2) || !Number.isFinite(lon2)) {
-                return '-';
+                  const distance = calculateDistance([lat1, lon1], [lat2, lon2]);
+                  return distance && distance.result && distance.result !== 'NaN m'
+                    ? <div style={{ display: 'flex', gap: '8px', background: distance.unit === 'km' ? 'yellow' : 'transparent' }}>
+                        {distance.result}{distance.unit === 'km' ? <TriangleAlert size={20} /> : ''}
+                      </div>
+                    : '-';
+                },
+              },
+              { key: 'type', header: t('timbrature.table.type') },
+            ]}
+            getRowKey={({ id }) => id}
+            actions={[
+              row => <Button color="custom" onClick={() => setSelectedPoint(row.id)}><MapIcon /></Button>
+            ]}
+          />
+
+          <div className={detailStyles['p-employee-detail__contract-detail-map']}>
+            {mapLoading && <div>{t("timbrature.loadingMap")}</div>}
+            <MapContent
+              headquarter={{
+                id: 'client_location',
+                latitude: Number.parseFloat(clientLocation?.latitudine || '0'),
+                longitude: Number.parseFloat(clientLocation?.longitudine || '0'),
+                label: clientLocation?.nome,
+                description: `
+                  ${clientLocation?.nome || ''}
+                  ${clientLocation?.indirizzo || ''}
+                  ${clientLocation?.citta || ''} ${clientLocation?.cap || ''}
+                `
+              }}
+              clockIn={
+                points.map((p) => ({
+                  id: p.id,
+                  latitude: Number.parseFloat(p.latitudine) || 0,
+                  longitude: Number.parseFloat(p.longitudine) || 0,
+                  label: p.indirizzo,
+                  description: `
+                    ${p.user || ''}
+                    ${p.indirizzo || ''}
+                    ${p.citta || ''} ${p.cap || ''}
+                    ${p.provincia || ''} ${p.stato || ''}
+                    ${p.type === 'start' ? 'Entrata' : 'Uscita'}
+                    ${p.orario ? `Timbratura ore ${p.orario}` : ''}
+                  `
+                })) as ClockInPoint[]
               }
-
-              const distance = calculateDistance([lat1, lon1], [lat2, lon2]);
-              return distance && distance.result && distance.result !== 'NaN m'
-                ? <div style={{ display: 'flex', gap: '8px', background: distance.unit === 'km' ? 'yellow' : 'transparent' }}>
-                    {distance.result}{distance.unit === 'km' ? <TriangleAlert size={20} /> : ''}
-                  </div>
-                : '-';
-            },
-          },
-          { key: 'type', header: t('timbrature.table.type') },
-        ]}
-        getRowKey={({ id }) => id}
-        actions={[
-          row => <Button color="custom" onClick={() => setSelectedPoint(row.id)}><MapIcon /></Button>
-        ]}
-      />
-
-      <div style={{ height: '800px', marginTop: '20px' }}>
-        {mapLoading && <div>{t("timbrature.loadingMap")}</div>}
-        <MapContent
-          headquarter={{
-            id: 'client_location',
-            latitude: Number.parseFloat(clientLocation?.latitudine || '0'),
-            longitude: Number.parseFloat(clientLocation?.longitudine || '0'),
-            label: clientLocation?.nome,
-            description: `
-              ${clientLocation?.nome || ''}
-              ${clientLocation?.indirizzo || ''}
-              ${clientLocation?.citta || ''} ${clientLocation?.cap || ''}
-            `
-          }}
-          clockIn={
-            points.map((p) => ({
-              id: p.id,
-              latitude: Number.parseFloat(p.latitudine) || 0,
-              longitude: Number.parseFloat(p.longitudine) || 0,
-              label: p.indirizzo,
-              description: `
-                ${p.user || ''}
-                ${p.indirizzo || ''}
-                ${p.citta || ''} ${p.cap || ''}
-                ${p.provincia || ''} ${p.stato || ''}
-                ${p.type === 'start' ? 'Entrata' : 'Uscita'}
-                ${p.orario ? `Timbratura ore ${p.orario}` : ''}
-              `
-            })) as ClockInPoint[]
-          }
-          focusedPointId={selectedPoint}
-        />
-        {mapError && <div>{t("timbrature.errorLoadingMap")}</div>}
+              focusedPointId={selectedPoint}
+            />
+            {mapError && <div>{t("timbrature.errorLoadingMap")}</div>}
+          </div>
+        </div>
       </div>
     </Card>
   );

@@ -1,5 +1,5 @@
-.c-employees-details-card {
-    &__body {
+.c-clients-details-card {
+  &__body {
     display: flex;
     flex-direction: column;
     gap: $space-sm;
@@ -11,9 +11,6 @@
   }
   
   &__btn-delete {
-    color: $color-error;
-  }
-    &__btn-delete {
     color: $color-error;
   }
 }

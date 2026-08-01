@@ -1,6 +1,9 @@
 .p-employee-detail {
   &__card {
     margin-top: $space-lg;
+    display: flex;
+    flex-direction: column;
+    gap: $space-lg;
   }
   &__card-title {
     display: flex;
@@ -40,5 +43,21 @@
 
   &__subtitle-section {
     margin-bottom: $space-md;
+  }
+
+  &__contract-detail {
+    display: flex;
+    flex-direction: column;
+    gap: $space-xl;
+  }
+
+  &__contract-detail-subtitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+   &__contract-detail-map {
+    padding-top: $space-lg;
   }
 }

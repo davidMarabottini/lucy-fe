@@ -27,8 +27,8 @@ const CardEmployee = ({ contractId }: { contractId: number }) => {
   }
   return (
     <>
-      <Card additionalClassName={clsx(styles["p-contract-detail__card"], styles["p-contract-detail__card-title"])}>
-        <Typography variant="h2">{t("addEmployee.title")}</Typography>
+      <Card additionalClassName={clsx(styles["p-contract-detail__card"])}>
+        <Typography className={styles["p-contract-detail__card-title"]} variant="h2">{t("addEmployee.title")}</Typography>
         <Form onSubmit={onSubmit}
           defaultValues={{
             workers: [],
@@ -43,15 +43,22 @@ const CardEmployee = ({ contractId }: { contractId: number }) => {
                 name="workers"
                 label={t("addEmployee.form.employee.label")}
                 options={employees.map(employee => ({ label: `${employee.name} ${employee.surname} (libemax: ${employee.libemax_id})`, id: employee.id }))}
+                rules={{ required: t("addEmployee.form.employee.error") }}
               />
+              <div className={styles["p-contract-detail__date-row"]}>
               <Form.DatePicker
                 name="start_date"
+                className={styles["p-contract-detail__date"]}
                 label={t("addEmployee.form.start_date.label")}
+                rules={{ required: t("addEmployee.form.start_date.error") }}
               />
               <Form.DatePicker
                 name="end_date"
+                className={styles["p-contract-detail__date"]}
                 label={t("addEmployee.form.end_date.label")}
+                rules={{ required: t("addEmployee.form.end_date.error") }}
               />
+              </div>
               <Button type="submit">{t("addEmployee.form.save")}</Button>
             </Stack>
           }

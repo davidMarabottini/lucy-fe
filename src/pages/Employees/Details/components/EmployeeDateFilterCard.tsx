@@ -29,7 +29,7 @@ const EmployeeDateFilterCard = () => {
 
   return (
     <Card additionalClassName={styles["p-employee-detail__card"]}>
-      <div style={{ display: 'flex', gap: '32px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Button onClick={setPreviousDay}><ChevronLeft /></Button>
         <DatePicker
           maxDate={endDate}

@@ -2,7 +2,9 @@
   &__filters {
     display: flex;
     gap: 1.5rem;
-    align-items: stretch;
-    // min-height: 250px;
+    justify-content: space-between;
+  }
+  &__filter-input {
+    width: 100%;
   }
 }

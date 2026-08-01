@@ -5,7 +5,7 @@ import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { ROUTES } from "@/constants/routes";
 import { rewriteRoute } from "@/utils/routes";
 import { Link, Mail, Phone, Trash2 } from "lucide-react";
-import styles from '../../List.module.scss'
+import styles from './ClientDetailCard.module.scss';
 
 
 const ClientDetailCard = ({ client, toggleDelete }: { client: LibemaxClient, toggleDelete: (client: LibemaxClient) => void }) => {
@@ -14,18 +14,18 @@ const ClientDetailCard = ({ client, toggleDelete }: { client: LibemaxClient, tog
     <DetailCard
       header={<div>{name}</div>}
       body={
-        <div>
+        <div className={styles["c-clients-details-card__body"]}>
           <div>
             ID Libemax: {libemax_id}
           </div>
           {phone && (
-            <div>
+            <div className={styles["c-clients-details-card__icon-text"]}>
               <Phone size={12} />
               {phone}
             </div>
           )}
           {email && (
-            <div >
+            <div className={styles["c-clients-details-card__icon-text"]}>
               <Mail size={12} />
               {email}
             </div>
@@ -37,13 +37,13 @@ const ClientDetailCard = ({ client, toggleDelete }: { client: LibemaxClient, tog
             <Link size={16} />
           </LinkComponent>,
           <Button
-          key="remove"
-          color="custom"
-          additionalClassName={styles["p-libemax-clients__btn-delete"]}
-          onClick={() => toggleDelete(client)}
-        >
-          <Trash2 />
-        </Button>
+            key="remove"
+            color="custom"
+            additionalClassName={styles["c-clients-details-card__btn-delete"]}
+            onClick={() => toggleDelete(client)}
+          >
+            <Trash2 />
+          </Button>
       ]}
     />
   )

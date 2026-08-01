@@ -112,7 +112,7 @@ const CardForm = ({ contractId }: { contractId: string }) => {
                 />
               </div>
 
-              <div className="flex justify-end gap-2 pt-4">
+              <div className={styles["p-contract-detail__contract-form-btns-row"]}>
                 <Form.Button type="reset" color="secondary" autoDisabled={false}>
                   <X size={16} /> {t("form.reset")}
                 </Form.Button>

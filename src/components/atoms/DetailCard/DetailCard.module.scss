@@ -21,6 +21,9 @@
     padding: $space-sm $space-md;
     background-color: $color-surface;
     border-bottom: 1px solid $color-border;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
   }
 
   &__body {
