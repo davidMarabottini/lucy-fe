@@ -1,33 +1,26 @@
 import Card from "@/components/atoms/Card/Card";
 import Typography from "@/components/atoms/Typography/Typography";
-import { useTranslation } from "react-i18next";
 import styles from "../Details.module.scss";
-import { Mail, Phone } from "lucide-react";
+import { Building, Mail, Phone } from "lucide-react";
 import type { LibemaxClientDetail } from "@/api/types";
 
 const ClientInfoCard = ({ client }: { client?: LibemaxClientDetail }) => {
-  const { t } = useTranslation("client", { keyPrefix: "details" });
   return (
     <Card additionalClassName={styles["p-client-detail__card"]}>
-      <div className={styles["p-client-detail__container"]}>
-        <Typography variant="h2" additionalClasses={styles["p-client-detail__title"]}>
-          {t("client.subtitle")}
-         </Typography>
-        <div>
-          <Typography variant="h4">{client?.name}</Typography>
-        </div>
-
-        <div className={styles["p-client-detail__client-sheet"]}>
-          <div className={styles["p-client-detail__detail-column"]}>
-            <Typography variant="h4" className={styles['p-client-details__subtitle-section']}>
-              {t("section.contact")}
-            </Typography>
+      <div className={styles["p-client-detail__container"]} style={{ flexDirection: 'row' }}>
+        <Building size={180} className={styles["p-client-detail__icon"]} style={{ borderRadius: "100%", background: "#f0f0f0",  padding: '24px'}} />
+          <div>
             <div>
-              {client?.phone && <div><Phone /> {client.phone}</div>}
-              {client?.email && <div><Mail /> {client.email}</div>}
+              <Typography variant="h1">{client?.name}</Typography>
+            </div>
+
+            <div className={styles["p-client-detail__client-sheet"]} style={{ flexDirection: 'row', gap: '16px', alignItems: 'center', marginTop: '32px', marginLeft: '32px' }}>
+              <div>
+                {client?.phone && <div><Phone /> {client.phone}</div>}
+                {client?.email && <div><Mail /> {client.email}</div>}
+              </div>
             </div>
           </div>
-        </div>
       </div>
     </Card>
   );

@@ -59,17 +59,18 @@
     "defaultError": "Si è verificato un errore imprevisto",
     "keepInPage": "Rimani in pagina"
   },
-  
   "details": {
     "title": "Dettaglio Contratto",
     "no_client": "Cliente non specificato",
+    "contract_code": "Codice Contratto: {{contract_code}}",
     "ongoing": "In corso",
     "activities_list": "Pianificazione Attività",
     "loading": "Caricamento dettagli contratto...",
     "errorLoading": "Errore durante il caricamento del contratto.",
     "fields": {
       "period": "Periodo",
-      "provider": "Fornitore"
+      "provider": "Fornitore",
+      "client": "Cliente"
     },
     "form": {
       "add_activity": "Aggiungi Nuova Attività",

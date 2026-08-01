@@ -2,8 +2,7 @@ import Card from "@components/atoms/Card/Card";
 import Typography from "@components/atoms/Typography/Typography";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { ROUTES } from "@/constants/routes";
-import { ChevronLeft, Calendar, Briefcase } from "lucide-react";
-import { ChevronRight } from "lucide-react";
+import { ChevronLeft, Calendar, Briefcase, File } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import type { Contract } from "@/api/types";
 import { rewriteRoute } from "@/utils/routes";
@@ -24,21 +23,15 @@ const CardContract = ({ data }: { data: Contract }) => {
       </Card>
 
       <Card additionalClassName={styles["p-contract-detail__card"]}>
-        <div className={styles["p-contract-detail__container"]}>
-          <div className={styles["p-contract-detail__header-info"]}>
-            <LinkComponent
-              style={{ display: 'flex', gap: '8px' }}
-              to={rewriteRoute(ROUTES.CLIENT_DETAIL, { ':clientId': data.client?.id.toString() })}
-              color="primary"
-            >
-              <ChevronRight size={20} />
-              <Typography variant="h3">{data.client?.name || t("no_client")}</Typography>
-            </LinkComponent>
-            <Typography variant="body" className={styles["p-contract-detail__description"]}>{data.description}</Typography>
-          </div>
-
-          <div className={styles["p-contract-detail__info-grid"]}>
-            <div className={styles["p-contract-detail__info-detail"]}>
+        <div className={styles["p-contract-detail__container"]} style={{ flexDirection: 'row' }}>
+          <File size={180} className={styles["p-contract-detail__icon"]} style={{ borderRadius: "100%", background: "#f0f0f0",  padding: '24px'}} />
+          <div>
+            <div>
+              <Typography variant="h1">{t("contract_code", { contract_code: data.contract_code })}</Typography>
+            </div>
+            <div className={styles["p-contract-detail__contract-sheet"]} style={{ flexDirection: 'row', gap: '16px', alignItems: 'center', marginTop: '32px', marginLeft: '32px' }}>
+              <div>
+                <div className={styles["p-contract-detail__info-detail"]}>
               <Calendar size={18} />
               <strong>{t("fields.period")}:</strong>
               {data.start_date ? new Date(data.start_date).toLocaleDateString('it-IT') : '...'} -
@@ -46,9 +39,23 @@ const CardContract = ({ data }: { data: Contract }) => {
             </div>
             <div className={styles["p-contract-detail__info-detail"]}>
               <Briefcase size={18} />
+              <strong>{t("fields.client")}:</strong> 
+              <LinkComponent
+              style={{ display: 'flex', gap: '8px' }}
+              to={rewriteRoute(ROUTES.CLIENT_DETAIL, { ':clientId': data.client?.id.toString() })}
+              color="primary"
+            >{data.client?.name}</LinkComponent>
+            </div>
+            <div className={styles["p-contract-detail__info-detail"]}>
+              <Briefcase size={18} />
               <strong>{t("fields.provider")}:</strong> {data.provider_company?.name}
             </div>
+              </div>
+            </div>
           </div>
+            <div className={styles["p-contract-detail__description"]} style={{ borderLeft: '4px solid #f0f0f0', marginLeft: '32px', paddingLeft: '32px' }}>
+              <Typography variant="h4">{data.description}</Typography>
+            </div>
         </div>
       </Card>
     </>
