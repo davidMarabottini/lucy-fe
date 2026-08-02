@@ -8,17 +8,28 @@ import { Check, ChevronLeft, X } from 'lucide-react';
 import { ROUTES } from '@/constants/routes';
 import LinkComponent from '@/components/atoms/LinkComponent/LinkComponent';
 
-import { useInsertWorkScheduleType } from '@/hooks/api/WorkScheduleTypeHooks';
+import { useInsertWorkScheduleType, useUpdateWorkScheduleType, useWorkScheduleTypeDetail } from '@/hooks/api/WorkScheduleTypeHooks';
 import { type WorkScheduleTypePayload } from '@/api/types';
 import Switch from '@/components/atoms/Switch/Switch';
 import { useState } from 'react';
 import type { UseFormReturn } from 'react-hook-form';
 import * as LucideIcons from 'lucide-react';
+import { useParams } from 'react-router-dom';
 
 const InsertWorkScheduleType = () => {
+  const { idWorkScheduleType: workScheduleTypeIdParams } = useParams<{ idWorkScheduleType?: string }>();
+  const workScheduleTypeId = workScheduleTypeIdParams ? parseInt(workScheduleTypeIdParams, 10) : undefined;
+  const isEditMode = Boolean(workScheduleTypeId);
+
   const [locNavigate, setLockNavigate] = useState<boolean>(false)
   const { t } = useTranslation('workScheduleType', { keyPrefix: 'insert' });
+
+  const { data: workScheduleTypeData, isFetched: isFetchedWorkScheduleType } = useWorkScheduleTypeDetail(
+    workScheduleTypeId ?? 0,
+    { enabled: isEditMode }
+  );
   const { mutate: insertType } = useInsertWorkScheduleType(locNavigate);
+  const { mutate: editType } = useUpdateWorkScheduleType(workScheduleTypeId);
 
   const iconOptions = Object.keys(LucideIcons)
     .filter((key) => key !== 'createLucideIcon') // Filtra utility interne
@@ -30,6 +41,8 @@ const InsertWorkScheduleType = () => {
   );
 
   const onSubmit = (values: any, methods: UseFormReturn<any>) => {
+    const { dirtyFields } = methods.formState;
+
     const payload: WorkScheduleTypePayload = {
       name: values.name,
       description: values.description,
@@ -37,6 +50,16 @@ const InsertWorkScheduleType = () => {
       period: values.period,
       icon_name: values.icon_name || 'Clock',
     };
+
+    if (isEditMode) {
+      const modifiedData = Object.keys(dirtyFields).reduce((acc, key) => {
+        acc[key] = payload[key as keyof WorkScheduleTypePayload];
+        return acc;
+      }, {} as Partial<WorkScheduleTypePayload>);
+
+      editType(modifiedData);
+      return;
+    }
 
     insertType(payload);
 
@@ -62,16 +85,26 @@ const InsertWorkScheduleType = () => {
         </div>
       </Card>
 
-      <Card>
+      {(!isEditMode || isFetchedWorkScheduleType) && <Card>
         <Form 
           onSubmit={onSubmit} 
-          defaultValues={{ 
-            name: '', 
-            description: '', 
-            frequency: 1, 
-            period: 'NONE', 
-            icon_name: 'Clock' 
-          }}
+          defaultValues={
+            !isEditMode
+              ? {
+                  name: '',
+                  description: '',
+                  frequency: 1,
+                  period: 'NONE',
+                  icon_name: 'Clock'
+                }
+              : {
+                  name: workScheduleTypeData?.name ?? '',
+                  description: workScheduleTypeData?.description ?? '',
+                  frequency: workScheduleTypeData?.frequency ?? 1,
+                  period: workScheduleTypeData?.period ?? 'NONE',
+                  icon_name: workScheduleTypeData?.icon_name ?? 'Clock'
+                }
+          }
         >
           <Stack spacing='lg'>
             <div className="l-grid">
@@ -130,13 +163,13 @@ const InsertWorkScheduleType = () => {
             </div>
           </Stack>
         </Form>
-          <Switch
+          {!isEditMode && <Switch
             onChange={res => setLockNavigate(!!res)}
             value={locNavigate}
             label={t('keepInPage')}
             additionalClassName={styles['p-insert-client__keep-in-page']}
-          />
-      </Card>
+          />}
+      </Card>}
     </div>
   );
 };

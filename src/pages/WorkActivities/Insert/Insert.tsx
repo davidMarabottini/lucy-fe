@@ -4,7 +4,7 @@ import styles from "./Insert.module.scss";
 import { useTranslation } from 'react-i18next';
 import Form from '@components/organisms/form/Form';
 import Stack from '@components/atoms/Stack/Stack';
-import { useInsertWorkActivity } from '@/hooks/api/useWorkActivity'; // Hook corretto
+import { useInsertWorkActivity, useUpdateWorkActivity, useWorkActivityDetail } from '@/hooks/api/useWorkActivity';
 import Typography from '@components/atoms/Typography/Typography';
 import { Check, ChevronLeft, X } from 'lucide-react';
 import { ROUTES } from '@/constants/routes';
@@ -12,6 +12,7 @@ import LinkComponent from '@/components/atoms/LinkComponent/LinkComponent';
 import Switch from '@/components/atoms/Switch/Switch';
 import { useState } from 'react';
 import type { UseFormReturn } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 
 // Tipo locale per il form basato sul tuo nuovo modello DB
 type WorkActivityForm = {
@@ -20,18 +21,40 @@ type WorkActivityForm = {
 };
 
 const InsertWorkActivity = () => {
+  const { idActivity: activityIdParams } = useParams<{ idActivity?: string }>();
+  const activityId = activityIdParams ? parseInt(activityIdParams, 10) : undefined;
+  const isEditMode = Boolean(activityId);
+
   const [locNavigate, setLockNavigate] = useState<boolean>(false)
   const { t } = useTranslation('workActivity', {keyPrefix: 'insert'});
+
+  const { data: activityData, isFetched: isFetchedActivity } = useWorkActivityDetail(activityId ?? 0, { enabled: isEditMode });
   const { mutate: insertActivity, error } = useInsertWorkActivity(locNavigate);
+  const { mutate: editActivity, error: editError } = useUpdateWorkActivity(activityId);
 
   const onSubmit = (payload: WorkActivityForm, methods: UseFormReturn<WorkActivityForm>) => {
+    const { dirtyFields } = methods.formState;
+
+    if (isEditMode) {
+      const modifiedData = Object.keys(dirtyFields).reduce((acc, key) => {
+        acc[key] = payload[key as keyof WorkActivityForm];
+        return acc;
+      }, {} as Partial<WorkActivityForm>);
+
+      editActivity(modifiedData);
+      return;
+    }
+
     insertActivity(payload);
     methods.reset();
   };
 
-  const init: WorkActivityForm = {
+  const init: WorkActivityForm = !isEditMode ? {
     name: '',
     description: '',
+  } : {
+    name: activityData?.name ?? '',
+    description: activityData?.description ?? '',
   };
 
   const btnClass = clsx(styles['p-insert-activity__button'], "l-grid__col l-grid__col--span-6");
@@ -47,9 +70,9 @@ const InsertWorkActivity = () => {
         </div>
       </Card>
 
-      <Card additionalClassName={clsx(styles['p-insert-activity'], "l-grid__col l-grid__col--span-12")}>
+      {(!isEditMode || isFetchedActivity) && <Card additionalClassName={clsx(styles['p-insert-activity'], "l-grid__col l-grid__col--span-12")}>
         <div className={styles["p-insert-activity__container"]}>
-          {error && <Typography color="error">{t("form.error.generic")}</Typography>}
+          {(error || editError) && <Typography color="error">{t("form.error.generic")}</Typography>}
           
           <Form<WorkActivityForm>
             defaultValues={init}
@@ -93,14 +116,14 @@ const InsertWorkActivity = () => {
               </div>
             </Stack>
           </Form>
-          <Switch
+          {!isEditMode && <Switch
             onChange={res => setLockNavigate(!!res)}
             value={locNavigate}
             label={t('keepInPage')}
             additionalClassName={styles['p-insert-activity__keep-in-page']}
-          />
+          />}
         </div>
-      </Card>
+      </Card>}
     </div>
   );
 };

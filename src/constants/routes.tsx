@@ -37,8 +37,8 @@ const SetDetails = lazy(() => import("@/pages/Contracts/SetDetails/SetDetails"))
 
 export type RouteHandle = {
   key: string;
-  label: string;
-  Icon: LucideIcon;
+  label?: string;
+  Icon?: LucideIcon;
   domain: ValueOf<typeof AUTH_DOMAINS>[];
   menu: ValueOf<typeof AVAILABLE_MENUS>[];
 } & ({
@@ -49,7 +49,7 @@ export type RouteHandle = {
 });
 
 export type AppRouteObject = MarkRequired<RouteObject, 'path'> & {
-  Element?: LazyExoticComponent<() => React.JSX.Element>;
+  Element?: LazyExoticComponent<() => React.JSX.Element | null>;
   handle: RouteHandle;
 }
 
@@ -75,21 +75,27 @@ const ROUTE_CONFIGS: readonly AppRouteObject[] = Object.freeze([
   {path: '/libemax-employees', Element: LibemaxEmployees, handle: {key: 'LIBEMAX_EMPLOYEES', label: 'labels.libemaxEmployees', Icon: Briefcase, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.MAIN] }},
   {path: '/employees/:employeeId', Element: EmployeeDetail, handle: {key: 'EMPLOYEE_DETAIL', domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
   {path: '/employees/insert', Element: InsertEmployee, handle: {key: 'INSERT_EMPLOYEE', label: 'labels.insertEmployee', Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
+  {path: '/employees/edit/:idEmployee', Element: InsertEmployee, handle: {key: 'EDIT_EMPLOYEE', label: 'labels.insertEmployee', Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
   {path: '/users/add',  Element: Registration,  handle: {key: 'REGISTRATION', label: 'labels.registration', Icon: UserCheck2Icon, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
   {path: '/users/edit/:userId',  Element: Registration,  handle: {key: 'UPDATE_USER', label: 'labels.registration', Icon: UserCheck2Icon, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
   {path: '/users/list', Element: UserList, handle: {key: 'USER_LIST', label: 'labels.userList', Icon: User, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.USER]}},
   {path: '/work-activities', Element: WorkActivities, handle: {key: 'WORK_ACTIVITIES', label: 'labels.workActivities', Icon: Briefcase, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.MAIN]}},
   {path: '/work-activities/insert', Element: WorkActivitiesInsert, handle: {key: 'WORK_ACTIVITIES_INSERT', label: 'labels.workActivities/insert', Icon: Briefcase, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
+  {path: '/work-activities/edit/:idActivity', Element: WorkActivitiesInsert, handle: {key: 'WORK_ACTIVITIES_EDIT', label: 'labels.workActivities/insert', Icon: Briefcase, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
   {path: '/sectors', Element: SectorList, handle: {key: 'SECTORS', label: 'labels.sectors', Icon: Layers, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.MAIN]}},
   {path: '/sectors/insert', Element: SectorInsert, handle: {key: 'SECTOR_INSERT', label: 'labels.sectorInsert', Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
+  {path: '/sectors/edit/:idSector', Element: SectorInsert, handle: {key: 'SECTOR_EDIT', label: 'labels.sectorInsert', Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
   {path: '', handle: {key: 'LOGOUT', label: 'labels.logout', Icon: LogOutIcon, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.USER], isOnlyMenu: true, menuAction: (logout: () => void) => logout() } },
   {path: '/group-companies', Element: GroupCompanyList, handle: {key: 'GROUP_COMPANIES', label: 'labels.groupCompanies', Icon: Building, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.MAIN]}},
   {path: '/group-companies/:companyId', Element: GroupCompanyDetails, handle: {key: 'GROUP_COMPANY_DETAIL', domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
   {path: '/group-companies/insert', Element: GroupCompanyInsert, handle: {key: 'GROUP_COMPANY_INSERT', label: 'labels.groupCompanyInsert', Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
+  {path: '/group-companies/edit/:idCompany', Element: GroupCompanyInsert, handle: {key: 'GROUP_COMPANY_EDIT', label: 'labels.groupCompanyInsert', Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
   {path: '/work-schedule-types', Element: WorkScheduleTypeList, handle: {key: 'WORK_SCHEDULE_TYPE_LIST', label: 'labels.workScheduleTypes', Icon: Layers, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.MAIN]}},
   {path: '/work-schedule-types/insert', Element: WorkScheduleTypeInsert, handle: {key: 'WORK_SCHEDULE_TYPE_INSERT', label: 'labels.workScheduleTypeInsert', Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
+  {path: '/work-schedule-types/edit/:idWorkScheduleType', Element: WorkScheduleTypeInsert, handle: {key: 'WORK_SCHEDULE_TYPE_EDIT', label: 'labels.workScheduleTypeInsert', Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
   {path: '/contracts', Element: ContractList, handle: {key: 'CONTRACT_LIST', label: 'labels.contractList', Icon: Briefcase, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.MAIN]}},
   {path: '/contracts/insert', Element: ContractInsert, handle: {key: 'CONTRACT_INSERT', label: 'labels.contractInsert', Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
+  {path: '/contracts/edit/:idContract', Element: ContractInsert, handle: {key: 'CONTRACT_EDIT', label: 'labels.contractInsert', Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
   {path: '/contracts/:contractId', Element: ContractDetail, handle: {key: 'CONTRACT_DETAIL', domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
   {path: '/contracts/set/:contractId', Element: SetDetails, handle: {key: 'CONTRACT_SET_DETAILS', domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
 ]);

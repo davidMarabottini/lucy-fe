@@ -4,7 +4,7 @@ import { useGroupCompanies } from "@/hooks/api/GroupCompanyHooks";
 import styles from './List.module.scss'; 
 import { type GroupCompany } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
-import { FileText, PlusCircle, Trash2 } from "lucide-react";
+import { Edit2, FileText, PlusCircle, Trash2 } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -83,13 +83,22 @@ const GroupCompaniesList = () => {
                     </LinkComponent>
                   ),
                 (row) => (
+                    <LinkComponent
+                      key="edit"
+                      color='custom'
+                      to={rewriteRoute(ROUTES.GROUP_COMPANY_EDIT, {':idCompany': row.id.toString()})}
+                    >
+                      <Edit2 />
+                    </LinkComponent>
+                  ),
+                (row) => (
                   <Button
                     key="remove"
                     color="custom"
                     additionalClassName={styles["p-companies__btn-delete"]}
                     onClick={() => openDeleteModalHdlr(row)}
                   >
-                    <Trash2 size={18} />
+                    <Trash2  />
                   </Button>
                 ),
               ]}

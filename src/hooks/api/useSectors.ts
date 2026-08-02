@@ -27,7 +27,7 @@ export const useSectors = (params?: Record<string, unknown>) =>
     staleTime: 1000 * 60 * 60,
   });
 
-export const useSectorDetail = (id: number) =>
+export const useSectorDetail = (id: number, options?: { enabled?: boolean }) =>
   useAppQuery({
     queryKey: ['sector', id],
     queryFn: () => getSectorById(id),
@@ -36,6 +36,7 @@ export const useSectorDetail = (id: number) =>
       [ERROR_KINDS.SERVER]: `${libDomain}.detail.500`,
       [ERROR_KINDS.UNKNOWN]: `${libDomain}.detail.defaultError`
     },
+    ...options,
   });
 
 export const useInsertSector = (locNavigate?: boolean) => {
@@ -58,14 +59,16 @@ export const useInsertSector = (locNavigate?: boolean) => {
   });
 };
 
-export const useUpdateSector = () => {
+export const useUpdateSector = (sectorId?: number) => {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   return useAppMutation({
-    mutationFn: updateSector,
-    onSuccess: (data) => {
-      queryClient.invalidateQueries(['sectors']);
-      queryClient.invalidateQueries(['sector', data.id]);
+    mutationFn: (payload: Record<string, unknown>) => updateSector(sectorId!, payload),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['sectors'] });
+      queryClient.invalidateQueries({ queryKey: ['sector', sectorId] });
+      navigate('/sectors');
     },
     successKey: `${libDomain}.update.success`,
     errorMap: {
@@ -90,44 +93,3 @@ export const useDeleteSector = () => {
     },
   });
 };
-
-
-
-// import * as SectorService from "@/api/sectorService";
-// import { useAppQuery } from "../useAppApi/useAppQuery";
-// import { ERROR_KINDS } from "../useAppApi/error";
-// import { useQueryClient } from "@tanstack/react-query";
-// import { useAppMutation } from "../useAppApi/useAppMutation";
-// import type { Sector } from "@/api/sectorService";
-
-// const libDomain = 'sector';
-
-// export const useSectors = () =>
-//   useAppQuery<Sector[]>({
-//     queryKey: ['sectors'],
-//     queryFn: SectorService.getSectors,
-//     errorMap: {
-//       [ERROR_KINDS.UNAUTHORIZED]: `${libDomain}.list.401`,
-//       [ERROR_KINDS.SERVER]: `${libDomain}.list.500`,
-//       [ERROR_KINDS.NETWORK]: `${libDomain}.list.network`,
-//       [ERROR_KINDS.UNKNOWN]: `${libDomain}.list.defaultError`
-//     },
-//     staleTime: 1000 * 60 * 60, // I settori cambiano raramente
-//   });
-
-// export const useInsertSector = () => {
-//   const queryClient = useQueryClient();
-
-//   return useAppMutation({
-//     mutationFn: SectorService.insertSector,
-//     onSuccess: () => {
-//       queryClient.invalidateQueries(['sectors']);
-//     },
-//     successKey: `${libDomain}.insert.success`,
-//     errorMap: {
-//       [ERROR_KINDS.UNAUTHORIZED]: `${libDomain}.insert.401`,
-//       [ERROR_KINDS.SERVER]: `${libDomain}.insert.500`,
-//       [ERROR_KINDS.UNKNOWN]: `${libDomain}.insert.defaultError`
-//     },
-//   });
-// };

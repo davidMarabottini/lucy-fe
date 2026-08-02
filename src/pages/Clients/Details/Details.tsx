@@ -22,7 +22,7 @@ const ClientDetailPage = () => {
   
   if (isLoading) return <div>{t("additionalMessage.loading")}</div>;
   if (error) return <div>{t("additionalMessage.errorLoading")}</div>;
-  if(!data) {return ""}
+  if(!data) {return null}
 
   return (
     <div>

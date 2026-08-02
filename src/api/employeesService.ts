@@ -15,9 +15,10 @@ export const insertEmployee = async (
 }
 
 export const editEmployee = async (
-  employee: LibemaxAddEmployee
+  employeeId: number,
+  employee: Partial<LibemaxAddEmployee>
 ): Promise<LibemaxAddEmployee> => {
-  const {data} = await apiClient.post('/api/employees/:employeeId', employee)
+  const {data} = await apiClient.put(`/api/employees/${employeeId}`, employee)
 
   return data
 }

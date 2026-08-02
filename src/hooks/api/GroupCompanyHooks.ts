@@ -29,7 +29,7 @@ export const useGroupCompanies = (params?: Record<string, unknown>) =>
   });
 
 // 2. DETTAGLIO SOCIETÀ
-export const useGroupCompanyDetail = (id: number) =>
+export const useGroupCompanyDetail = (id: number, options?: { enabled?: boolean }) =>
   useAppQuery({
     queryKey: ['group-company', id],
     queryFn: () => getGroupCompanyById(id),
@@ -38,6 +38,7 @@ export const useGroupCompanyDetail = (id: number) =>
       [ERROR_KINDS.SERVER]: `${libDomain}.detail.500`,
       [ERROR_KINDS.UNKNOWN]: `${libDomain}.detail.defaultError`
     },
+    ...options,
   });
 
 // 3. INSERIMENTO
@@ -63,14 +64,16 @@ export const useInsertGroupCompany = (lockNavigate?: boolean) => {
 };
 
 // 4. AGGIORNAMENTO
-export const useUpdateGroupCompany = (id: number) => {
+export const useUpdateGroupCompany = (id?: number) => {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   return useAppMutation({
-    mutationFn: (payload: Partial<GroupCompanyPayload>) => updateGroupCompany(id, payload),
+    mutationFn: (payload: Partial<GroupCompanyPayload>) => updateGroupCompany(id!, payload),
     onSuccess: (_data) => {
-      queryClient.invalidateQueries(['group-companies']);
-      queryClient.invalidateQueries(['group-company', id]);
+      queryClient.invalidateQueries({ queryKey: ['group-companies'] });
+      queryClient.invalidateQueries({ queryKey: ['group-company', id] });
+      navigate('/group-companies');
     },
     successKey: `${libDomain}.update.success`,
     errorMap: {

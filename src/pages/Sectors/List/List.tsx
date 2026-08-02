@@ -5,13 +5,14 @@ import styles from './List.module.scss'; // Riutilizziamo lo stesso stile o uno 
 import Table from "@/components/organisms/Table/Table";
 import { type Sector } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
-import { PlusCircle, Trash2 } from "lucide-react";
+import { Edit2, PlusCircle, Trash2 } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Button from "@/components/atoms/Button/Button";
 import {DeleteModal} from "./components/DeleteModal/DeleteModal";
 import Paginated from "@/components/organisms/Paginated/Paginated";
+import { rewriteRoute } from "@/utils/routes";
 
 const SectorsList = () => {
   // Utilizziamo l'hook specifico per i settori
@@ -69,6 +70,15 @@ const SectorsList = () => {
                 { key: 'description', header: t('table.description') },
               ]}
               actions={[
+                (row) => (
+                  <LinkComponent
+                    key="edit"
+                    color="custom"
+                    to={rewriteRoute(ROUTES.SECTOR_EDIT, { ':idSector': row.id.toString() })}
+                  >
+                    <Edit2 size={18} />
+                  </LinkComponent>
+                ),
                 (row) => (
                   <Button
                     key="remove"

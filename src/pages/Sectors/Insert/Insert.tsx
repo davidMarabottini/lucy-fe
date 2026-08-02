@@ -4,7 +4,7 @@ import styles from "./Insert.module.scss";
 import { useTranslation } from 'react-i18next';
 import Form from '@components/organisms/form/Form';
 import Stack from '@components/atoms/Stack/Stack';
-import { useInsertSector } from '@/hooks/api/useSectors'; // Hook specifico per i settori
+import { useInsertSector, useSectorDetail, useUpdateSector } from '@/hooks/api/useSectors';
 import Typography from '@components/atoms/Typography/Typography';
 import { Check, ChevronLeft, X } from 'lucide-react';
 import { ROUTES } from '@/constants/routes';
@@ -13,20 +13,43 @@ import { type SectorPayload } from '@/api/types';
 import Switch from '@/components/atoms/Switch/Switch';
 import { useState } from 'react';
 import type { UseFormReturn } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 
 const InsertSector = () => {
+  const { idSector: sectorIdParams } = useParams<{ idSector?: string }>();
+  const sectorId = sectorIdParams ? parseInt(sectorIdParams, 10) : undefined;
+  const isEditMode = Boolean(sectorId);
+
   const [locNavigate, setLockNavigate] = useState<boolean>(false)
   const { t } = useTranslation('sector', { keyPrefix: 'insert' });
+
+  const { data: sectorData, isFetched: isFetchedSector } = useSectorDetail(sectorId ?? 0, { enabled: isEditMode });
   const { mutate: insertSector, error } = useInsertSector(locNavigate);
+  const { mutate: editSector, error: editError } = useUpdateSector(sectorId);
 
   const onSubmit = (payload: SectorPayload, methods: UseFormReturn<SectorPayload>) => {
+    const { dirtyFields } = methods.formState;
+
+    if (isEditMode) {
+      const modifiedData = Object.keys(dirtyFields).reduce((acc, key) => {
+        acc[key] = payload[key as keyof SectorPayload];
+        return acc;
+      }, {} as Partial<SectorPayload>);
+
+      editSector(modifiedData);
+      return;
+    }
+
     insertSector(payload);
     methods.reset();
   };
 
-  const init: SectorPayload = {
+  const init: SectorPayload = !isEditMode ? {
     name: '',
     description: '',
+  } : {
+    name: sectorData?.name ?? '',
+    description: sectorData?.description ?? '',
   };
 
   const btnClass = clsx(styles['p-insert-sector__button'], "l-grid__col l-grid__col--span-6");
@@ -42,9 +65,9 @@ const InsertSector = () => {
         </div>
       </Card>
 
-      <Card additionalClassName={clsx(styles['p-insert-sector'], "l-grid__col l-grid__col--span-12")}>
+      {(!isEditMode || isFetchedSector) && <Card additionalClassName={clsx(styles['p-insert-sector'], "l-grid__col l-grid__col--span-12")}>
         <div className={styles["p-insert-sector__container"]}>
-          {error && <Typography color="error">{t("form.error.generic")}</Typography>}
+          {(error || editError) && <Typography color="error">{t("form.error.generic")}</Typography>}
           
           <Form<SectorPayload>
             defaultValues={init}
@@ -87,14 +110,14 @@ const InsertSector = () => {
               </div>
             </Stack>
           </Form>
-          <Switch
+          {!isEditMode && <Switch
             onChange={res => setLockNavigate(!!res)}
             value={locNavigate}
             label={t('keepInPage')}
             additionalClassName={styles['p-insert-sector__keep-in-page']}
-          />
+          />}
         </div>
-      </Card>
+      </Card>}
     </div>
   );
 };

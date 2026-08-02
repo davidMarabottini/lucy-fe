@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import Form from '@components/organisms/form/Form';
 import Stack from '@components/atoms/Stack/Stack';
 import type { LibemaxEmployeeForm } from './Insert.types';
-import { useInsertEmployee } from '@/hooks/api/useEmployeesHooks';
+import { useEmployeeDetail, useInsertEmployee, useUpdateEmployee } from '@/hooks/api/useEmployeesHooks';
 import { VALIDATIONS_EMAIL } from '@constants/validations';
 import Typography from '@components/atoms/Typography/Typography';
 import { Check, ChevronLeft, X } from 'lucide-react';
@@ -14,22 +14,47 @@ import LinkComponent from '@/components/atoms/LinkComponent/LinkComponent';
 import { useState } from 'react';
 import Switch from '@/components/atoms/Switch/Switch';
 import type { UseFormReturn } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 
 const InsertEmployee = () => {
+  const { idEmployee: employeeIdParams } = useParams<{ idEmployee?: string }>();
+  const employeeId = employeeIdParams ? parseInt(employeeIdParams, 10) : undefined;
+  const isEditMode = Boolean(employeeId);
+
   const [locNavigate, setLockNavigate] = useState<boolean>(false)
   const {t} = useTranslation("employee", {keyPrefix: "insert"});
+
+  const { data: employeeData, isFetched: isFetchedEmployee } = useEmployeeDetail(employeeId ?? 0, { enabled: isEditMode });
   const {mutate: insertEmployee, error} = useInsertEmployee(locNavigate);
+  const {mutate: editEmployee, error: editError} = useUpdateEmployee(employeeId);
 
   const onSubmit = (payload: LibemaxEmployeeForm, methods: UseFormReturn<LibemaxEmployeeForm>) => {
+    const { dirtyFields } = methods.formState;
+
+    if (isEditMode) {
+      const modifiedData = Object.keys(dirtyFields).reduce((acc, key) => {
+        acc[key] = payload[key as keyof LibemaxEmployeeForm];
+        return acc;
+      }, {} as Partial<LibemaxEmployeeForm>);
+
+      editEmployee(modifiedData);
+      return;
+    }
+
     insertEmployee(payload);
     methods.reset();
   };
 
-  const init: LibemaxEmployeeForm = {
+  const init: LibemaxEmployeeForm = !isEditMode ? {
     name: '',
     surname: '',
     phone: '',
     email: '',
+  } : {
+    name: employeeData?.name ?? '',
+    surname: employeeData?.surname ?? '',
+    phone: employeeData?.phone ?? '',
+    email: employeeData?.email ?? '',
   };
 
   const btnClass = clsx(styles['p-insert-employee__button'], "l-grid__col l-grid__col--span-6");
@@ -44,9 +69,10 @@ const InsertEmployee = () => {
             <LinkComponent to={ROUTES.LIBEMAX_EMPLOYEES}><ChevronLeft /></LinkComponent>
         </div>
       </Card>
-      <Card additionalClassName={clsx(styles['p-insert-employee'], "l-grid__col l-grid__col--span-12")}>
+
+      {(!isEditMode || isFetchedEmployee) && <Card additionalClassName={clsx(styles['p-insert-employee'], "l-grid__col l-grid__col--span-12")}>
         <div className={styles["p-insert-employee__container"]}>
-          {error && <Typography>errore</Typography>}
+          {(error || editError) && <Typography>errore</Typography>}
           <Form<LibemaxEmployeeForm>
             defaultValues={init}
             onSubmit={onSubmit}
@@ -101,14 +127,14 @@ const InsertEmployee = () => {
               </div>
             </Stack>
           </Form>
-          <Switch
+          {!isEditMode && <Switch
             onChange={res => setLockNavigate(!!res)}
             value={locNavigate}
             label={t('keepInPage')}
             additionalClassName={styles['p-insert-employee__keep-in-page']}
-          />
+          />}
         </div>
-      </Card>
+      </Card>}
     </div>
   );
 };

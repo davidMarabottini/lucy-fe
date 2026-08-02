@@ -16,7 +16,7 @@ export const insertWorkScheduleType = async (payload: WorkScheduleTypePayload): 
   return data;
 };
 
-export const updateWorkScheduleType = async ({ id, ...payload }: WorkScheduleType): Promise<WorkScheduleType> => {
+export const updateWorkScheduleType = async (id: number, payload: Partial<WorkScheduleTypePayload>): Promise<WorkScheduleType> => {
   const { data } = await apiClient.put<WorkScheduleType>(`/api/work-schedule-types/${id}`, payload);
   return data;
 };

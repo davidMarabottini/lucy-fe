@@ -9,17 +9,24 @@ import { ROUTES } from '@/constants/routes';
 import LinkComponent from '@/components/atoms/LinkComponent/LinkComponent';
 
 // Hooks
-import { useInsertContract } from '@/hooks/api/ContractHooks';
+import { useContractDetail, useInsertContract, useUpdateContract } from '@/hooks/api/ContractHooks';
 import { useGroupCompanies } from '@/hooks/api/GroupCompanyHooks';
 import { useLibemaxClients } from '@/hooks/api/useClientHooks'; // Assumendo esista questo hook
 import Switch from '@/components/atoms/Switch/Switch';
 import { useState } from 'react';
 import type { UseFormReturn } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 
 const InsertContract = () => {
+  const { idContract: contractIdParams } = useParams<{ idContract?: string }>();
+  const contractId = contractIdParams ? parseInt(contractIdParams, 10) : undefined;
+  const isEditMode = Boolean(contractId);
+
   const [locNavigate, setLockNavigate] = useState<boolean>(false)
   const { t } = useTranslation('contract', { keyPrefix: 'insert' });
+  const { data: contractData, isFetched: isFetchedContract } = useContractDetail(contractId ?? 0, { enabled: isEditMode });
   const { mutate: insertContract } = useInsertContract(locNavigate);
+  const { mutate: editContract } = useUpdateContract(contractId);
   
   // Dati per le DualListBox
   const { data: companies } = useGroupCompanies();
@@ -27,6 +34,8 @@ const InsertContract = () => {
 
   // TODO: definire meglio i tipi di values in base al form
   const onSubmit = (values: any, methods: UseFormReturn<any>) => {
+    const { dirtyFields } = methods.formState;
+
     // Trasformiamo il range del DatePicker in start/end date per il backend
     const [start, end] = values.date_range || [null, null];
     
@@ -38,6 +47,30 @@ const InsertContract = () => {
       start_date: start?.toISOString().split('T')[0],
       end_date: end?.toISOString().split('T')[0],
     };
+
+    if (isEditMode) {
+      const modifiedData: Record<string, unknown> = {};
+
+      if (dirtyFields.contract_code) {
+        modifiedData.contract_code = payload.contract_code;
+      }
+      if (dirtyFields.description) {
+        modifiedData.description = payload.description;
+      }
+      if (dirtyFields.provider_ids) {
+        modifiedData.group_company_id = payload.group_company_id;
+      }
+      if (dirtyFields.client_ids) {
+        modifiedData.client_id = payload.client_id;
+      }
+      if (dirtyFields.date_range) {
+        modifiedData.start_date = payload.start_date;
+        modifiedData.end_date = payload.end_date;
+      }
+
+      editContract(modifiedData as any);
+      return;
+    }
 
     insertContract(payload);
 
@@ -53,8 +86,24 @@ const InsertContract = () => {
         </div>
       </Card>
 
-      <Card>
-        <Form onSubmit={onSubmit} defaultValues={{ contract_code: '', provider_ids: [], client_ids: [], date_range: [null, null], description: '' }}>
+      {(!isEditMode || isFetchedContract) && <Card>
+        <Form
+          onSubmit={onSubmit}
+          defaultValues={
+            !isEditMode
+              ? { contract_code: '', provider_ids: [], client_ids: [], date_range: [null, null], description: '' }
+              : {
+                  contract_code: contractData?.contract_code ?? '',
+                  provider_ids: contractData?.provider_company?.id ? [contractData.provider_company.id] : [],
+                  client_ids: contractData?.client?.id ? [contractData.client.id] : [],
+                  date_range: [
+                    contractData?.start_date ? new Date(contractData.start_date) : null,
+                    contractData?.end_date ? new Date(contractData.end_date) : null,
+                  ],
+                  description: contractData?.description ?? ''
+                }
+          }
+        >
           <Stack spacing='lg'>
             <div className="l-grid">
               
@@ -116,13 +165,13 @@ const InsertContract = () => {
             </div>
           </Stack>
         </Form>
-        <Switch
+        {!isEditMode && <Switch
           onChange={res => setLockNavigate(!!res)}
           value={locNavigate}
           label={t('keepInPage')}
           additionalClassName={styles['p-insert-contract__keep-in-page']}
-        />
-      </Card>
+        />}
+      </Card>}
     </div>
   );
 };

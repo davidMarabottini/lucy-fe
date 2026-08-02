@@ -16,7 +16,7 @@ export const insertSector = async (payload: SectorPayload): Promise<Sector> => {
   return data;
 };
 
-export const updateSector = async ({ id, ...payload }: Sector): Promise<Sector> => {
+export const updateSector = async (id: number, payload: Partial<SectorPayload>): Promise<Sector> => {
   const { data } = await apiClient.put<Sector>(`/api/sectors/${id}`, payload);
   return data;
 };

@@ -29,9 +29,6 @@
   &__btn-edit {
     padding: $space-sm;
     margin-left: $space-sm;
-    &:not(:disabled){
-      color: $color-success;
-    }
   }
 
 

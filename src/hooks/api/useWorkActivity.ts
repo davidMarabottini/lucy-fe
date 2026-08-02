@@ -2,6 +2,7 @@ import {
   getWorkActivities, 
   getActivityById, 
   insertWorkActivity, 
+  updateWorkActivity,
   deleteWorkActivity
 } from "@/api/workActivityService";
 import type { WorkActivity } from "@/api/types";
@@ -10,6 +11,7 @@ import { ERROR_KINDS } from "../useAppApi/error";
 import { useQueryClient } from "@tanstack/react-query";
 import { useAppMutation } from "../useAppApi/useAppMutation";
 import { useNavigate } from "react-router-dom";
+import { ROUTES } from "@/constants/routes";
 
 const libDomain = 'workActivity';
 
@@ -26,7 +28,7 @@ export const useWorkActivities = (params?: Record<string, unknown>) =>
     staleTime: 1000 * 60 * 60,
   });
 
-export const useWorkActivityDetail = (activityId: number) =>
+export const useWorkActivityDetail = (activityId: number, options?: { enabled?: boolean }) =>
   useAppQuery({
     queryKey: ["work-activity", activityId],
     queryFn: () => getActivityById(activityId),
@@ -37,6 +39,7 @@ export const useWorkActivityDetail = (activityId: number) =>
       [ERROR_KINDS.NETWORK]: `${libDomain}.detail.network`,
       [ERROR_KINDS.UNKNOWN]: `${libDomain}.detail.defaultError`
     },
+    ...options,
   });
 
 export const useInsertWorkActivity = (locNavigate?: boolean) => {
@@ -57,6 +60,27 @@ export const useInsertWorkActivity = (locNavigate?: boolean) => {
       [ERROR_KINDS.SERVER]: `${libDomain}.insert.500`,
       [ERROR_KINDS.NETWORK]: `${libDomain}.insert.network`,
       [ERROR_KINDS.UNKNOWN]: `${libDomain}.insert.defaultError`
+    },
+  });
+};
+
+export const useUpdateWorkActivity = (activityId?: number) => {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
+  return useAppMutation({
+    mutationFn: (payload: Record<string, unknown>) => updateWorkActivity(activityId!, payload),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['work-activities'] });
+      queryClient.invalidateQueries({ queryKey: ['work-activity', activityId] });
+      navigate(ROUTES.WORK_ACTIVITIES);
+    },
+    successKey: `${libDomain}.update.success`,
+    errorMap: {
+      [ERROR_KINDS.UNAUTHORIZED]: `${libDomain}.update.401`,
+      [ERROR_KINDS.SERVER]: `${libDomain}.update.500`,
+      [ERROR_KINDS.NETWORK]: `${libDomain}.update.network`,
+      [ERROR_KINDS.UNKNOWN]: `${libDomain}.update.defaultError`
     },
   });
 };

@@ -4,7 +4,7 @@ import DetailCard from "@/components/atoms/DetailCard/DetailCard";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { ROUTES } from "@/constants/routes";
 import { rewriteRoute } from "@/utils/routes";
-import { Link, Mail, Phone, Trash2 } from "lucide-react";
+import { Edit2, Link, Mail, Phone, Trash2 } from "lucide-react";
 import styles from './EmployeeDetailsCard.module.scss';
 
 
@@ -34,7 +34,10 @@ const EmployeeDetailsCard = ({ employee, toggleDelete }: { employee: LibemaxEmpl
       }
       actions={[
           <LinkComponent key="details" to={rewriteRoute(ROUTES.EMPLOYEE_DETAIL, {':employeeId': libemax_id.toString()})}>
-            <Link size={16} />
+            <Link />
+          </LinkComponent>,
+          <LinkComponent key="edit" to={rewriteRoute(ROUTES.EDIT_EMPLOYEE, { ':idEmployee': libemax_id.toString() })}>
+            <Edit2 />
           </LinkComponent>,
           <Button
           key="remove"

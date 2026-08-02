@@ -18,6 +18,7 @@ import type {
   ContractPayload,
   ContractEmployeeAssignment,
 } from "@/api/types";
+import { ROUTES } from "@/constants/routes";
 
 const libDomain = 'contract';
 
@@ -35,7 +36,7 @@ export const useContracts = (params?: Record<string, unknown>) =>
     placeholderData: (previousData) => previousData, 
   });
 
-export const useContractDetail = (id: number) =>
+export const useContractDetail = (id: number, options?: { enabled?: boolean }) =>
   useAppQuery<Contract>({
     queryKey: ['contract', id],
     queryFn: () => getContractById(id),
@@ -44,6 +45,7 @@ export const useContractDetail = (id: number) =>
       [ERROR_KINDS.SERVER]: `${libDomain}.detail.500`,
       [ERROR_KINDS.UNKNOWN]: `${libDomain}.detail.defaultError`
     },
+    ...options,
   });
 
 export const useInsertContract = (locNavigate?: boolean) => {
@@ -67,14 +69,16 @@ export const useInsertContract = (locNavigate?: boolean) => {
   });
 };
 
-export const useUpdateContract = (id: number) => {
+export const useUpdateContract = (id?: number) => {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   return useAppMutation({
-    mutationFn: (payload: Partial<ContractPayload>) => updateContract(id, payload),
+    mutationFn: (payload: Partial<ContractPayload>) => updateContract(id!, payload),
     onSuccess: (_data) => {
       queryClient.invalidateQueries({ queryKey: ['contracts'] });
       queryClient.invalidateQueries({ queryKey: ['contract', id] });
+      navigate(ROUTES.CONTRACT_LIST);
     },
     successKey: `${libDomain}.update.success`,
     errorMap: {

@@ -28,7 +28,7 @@ export const useWorkScheduleTypes = () =>
     staleTime: 1000 * 60 * 60, // Cambiano raramente, teniamoli in cache un'ora
   });
 
-export const useWorkScheduleTypeDetail = (id: number) =>
+export const useWorkScheduleTypeDetail = (id: number, options?: { enabled?: boolean }) =>
   useAppQuery({
     queryKey: ['workScheduleType', id],
     queryFn: () => getWorkScheduleTypeById(id),
@@ -37,6 +37,7 @@ export const useWorkScheduleTypeDetail = (id: number) =>
       [ERROR_KINDS.SERVER]: `${libDomain}.detail.500`,
       [ERROR_KINDS.UNKNOWN]: `${libDomain}.detail.defaultError`
     },
+    ...options,
   });
 
 export const useInsertWorkScheduleType = (locNavigate?: boolean) => {
@@ -60,14 +61,16 @@ export const useInsertWorkScheduleType = (locNavigate?: boolean) => {
   });
 };
 
-export const useUpdateWorkScheduleType = () => {
+export const useUpdateWorkScheduleType = (workScheduleTypeId?: number) => {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   return useAppMutation({
-    mutationFn: updateWorkScheduleType,
-    onSuccess: (data) => {
-      queryClient.invalidateQueries(['workScheduleTypes']);
-      queryClient.invalidateQueries(['workScheduleType', data.id]);
+    mutationFn: (payload: Record<string, unknown>) => updateWorkScheduleType(workScheduleTypeId!, payload),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['workScheduleTypes'] });
+      queryClient.invalidateQueries({ queryKey: ['workScheduleType', workScheduleTypeId] });
+      navigate(ROUTES.WORK_SCHEDULE_TYPE_LIST || '/work-schedule-types');
     },
     successKey: `${libDomain}.update.success`,
     errorMap: {

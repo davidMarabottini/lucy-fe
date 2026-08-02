@@ -45,7 +45,7 @@ export const useInsertEmployee = (lockNavigate?: boolean) => {
     mutationFn: insertEmployee,
     onSuccess: data => {
       queryClient.setQueryData(['result'], data)
-      queryClient.invalidateQueries(['libemax-employees']);
+      queryClient.invalidateQueries({ queryKey: ['libemax-employees'] });
       if(!lockNavigate){
         navigate(ROUTES.LIBEMAX_EMPLOYEES)
       }
@@ -66,13 +66,11 @@ export const useInsertEmployee = (lockNavigate?: boolean) => {
     const navigate = useNavigate();
 
     return useAppMutation({
-      // TODO: cambiare con qualcosa tipo Partial<UsersResult>
-      mutationFn: (data: any) => editEmployee(employeeId!, data),
+      mutationFn: (data: Record<string, unknown>) => editEmployee(employeeId!, data),
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ['libemax-employees'] });
-        // queryClient.invalidateQueries({ queryKey: ['userDetail', employeeId] });
-      
-          navigate(ROUTES.LIBEMAX_EMPLOYEES);
+        queryClient.invalidateQueries({ queryKey: ['employee', employeeId] });
+        navigate(ROUTES.LIBEMAX_EMPLOYEES);
       },
     });
   };
@@ -84,13 +82,14 @@ export const useEmployeeDelete = () => {
     mutationFn: (employeeId: number) => deleteEmployee(employeeId),
 
     onSuccess: (_) => {
-      queryClient.invalidateQueries(['libemax-employees']);
+      queryClient.invalidateQueries({ queryKey: ['libemax-employees'] });
     },
 
-    onError: (error: any) => {
+    onError: (error: unknown) => {
       console.error("DELETE ERROR:", error);
-      console.error("STATUS:", error?.response?.status);
-      console.error("DATA:", error?.response?.data);
+      const apiError = error as { response?: { status?: unknown; data?: unknown } };
+      console.error("STATUS:", apiError?.response?.status);
+      console.error("DATA:", apiError?.response?.data);
     },
 
     successKey: `${libDomain}.delete.success`,

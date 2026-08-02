@@ -8,20 +8,39 @@ import Typography from '@components/atoms/Typography/Typography';
 import { Check, ChevronLeft, X } from 'lucide-react';
 import { ROUTES } from '@/constants/routes';
 import LinkComponent from '@/components/atoms/LinkComponent/LinkComponent';
-import { useInsertGroupCompany } from '@/hooks/api/GroupCompanyHooks';
+import { useGroupCompanyDetail, useInsertGroupCompany, useUpdateGroupCompany } from '@/hooks/api/GroupCompanyHooks';
 import { useSectors } from '@/hooks/api/useSectors';
 import { type GroupCompanyPayload } from '@/api/types';
 import Switch from '@/components/atoms/Switch/Switch';
 import { useState } from 'react';
 import type { UseFormReturn } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 
 const InsertGroupCompany = () => {
+  const { idCompany: companyIdParams } = useParams<{ idCompany?: string }>();
+  const companyId = companyIdParams ? parseInt(companyIdParams, 10) : undefined;
+  const isEditMode = Boolean(companyId);
+
   const [locNavigate, setLockNavigate] = useState<boolean>(false)
   const { t } = useTranslation('groupCompany', { keyPrefix: 'insert' });
+  const { data: companyData, isFetched: isFetchedCompany } = useGroupCompanyDetail(companyId ?? 0, { enabled: isEditMode });
   const { mutate: insertCompany } = useInsertGroupCompany(locNavigate);
+  const { mutate: editCompany } = useUpdateGroupCompany(companyId);
   const { data: availableSectors } = useSectors();
 
   const onSubmit = (values: GroupCompanyPayload,  methods: UseFormReturn<GroupCompanyPayload>) => {
+    const { dirtyFields } = methods.formState;
+
+    if (isEditMode) {
+      const modifiedData = Object.keys(dirtyFields).reduce((acc, key) => {
+        acc[key] = values[key as keyof GroupCompanyPayload];
+        return acc;
+      }, {} as Partial<GroupCompanyPayload>);
+
+      editCompany(modifiedData);
+      return;
+    }
+
     insertCompany(values);
     methods.reset()
   };
@@ -38,10 +57,18 @@ const InsertGroupCompany = () => {
         </div>
       </Card>
 
-      <Card additionalClassName="l-grid__col l-grid__col--span-12">
+      {(!isEditMode || isFetchedCompany) && <Card additionalClassName="l-grid__col l-grid__col--span-12">
         <Form<GroupCompanyPayload>
           onSubmit={onSubmit}
-          defaultValues={{ name: '', vat_number: '', sector_ids: [] }}
+          defaultValues={
+            !isEditMode
+              ? { name: '', vat_number: '', sector_ids: [] }
+              : {
+                  name: companyData?.name ?? '',
+                  vat_number: companyData?.vat_number ?? '',
+                  sector_ids: companyData?.sectors?.map((sector) => sector.id) ?? [],
+                }
+          }
         >
           <Stack spacing='lg'>
             <div className="l-grid">
@@ -81,13 +108,13 @@ const InsertGroupCompany = () => {
             </div>
           </Stack>
         </Form>
-        <Switch
+        {!isEditMode && <Switch
           onChange={res => setLockNavigate(!!res)}
           value={locNavigate}
           label={t('keepInPage')}
           additionalClassName={styles['p-insert-company__keep-in-page']}
-        />
-      </Card>
+        />}
+      </Card>}
     </div>
   );
 };
