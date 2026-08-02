@@ -71,6 +71,7 @@ const ROUTE_CONFIGS: readonly AppRouteObject[] = Object.freeze([
   {path: '/libemax-clients', Element: LibemaxClients, handle: {key: 'LIBEMAX_CLIENTS', label: 'labels.libemaxClients', Icon: Building, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.MAIN] }},
   {path: '/clients/:clientId', Element: ClientDetail, handle: { key: 'CLIENT_DETAIL', domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
   {path: '/clients/insert',  Element: ClientInsert,  handle: {key: 'INSERT_CLIENT', label: 'labels.insertClient', Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
+  {path: '/clients/edit/:idClient',  Element: ClientInsert,  handle: {key: 'EDIT_CLIENT', label: 'labels.insertClient', Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
   {path: '/libemax-employees', Element: LibemaxEmployees, handle: {key: 'LIBEMAX_EMPLOYEES', label: 'labels.libemaxEmployees', Icon: Briefcase, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.MAIN] }},
   {path: '/employees/:employeeId', Element: EmployeeDetail, handle: {key: 'EMPLOYEE_DETAIL', domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
   {path: '/employees/insert', Element: InsertEmployee, handle: {key: 'INSERT_EMPLOYEE', label: 'labels.insertEmployee', Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},

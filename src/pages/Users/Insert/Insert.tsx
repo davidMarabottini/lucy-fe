@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Card from '@components/atoms/Card/Card';
 import clsx from 'clsx';
@@ -12,8 +12,6 @@ import { VALIDATIONS_EMAIL } from '@constants/validations';
 import { ROUTES } from '@constants/routes';
 import Typography from '@components/atoms/Typography/Typography';
 import { Check, ChevronLeft, X } from 'lucide-react';
-import { ICON_PRESET } from '@/components/atoms/RadioBtn/presets/icon.presets';
-import { useOptions } from '@/hooks/useOptions';
 import LinkComponent from '@/components/atoms/LinkComponent/LinkComponent';
 import Switch from '@/components/atoms/Switch/Switch';
 import type { UseFormReturn } from 'react-hook-form';
@@ -27,9 +25,9 @@ const Registration = () => {
   
   const { t } = useTranslation("user", { keyPrefix: "insert" });
   
-  const { data: userData, isLoading: isLoadingUser } = useUserDetail(userId ?? 0, {
-  enabled: isEditMode,
-});
+  const { data: userData, isLoading: isLoadingUser, isFetched: isFetchedUser } = useUserDetail(userId ?? 0, {
+    enabled: isEditMode,
+  });
   
   const { mutate: insertUser, error: insertError } = useInsertUser(locNavigate);
 
@@ -56,18 +54,22 @@ const Registration = () => {
     }
   };
 
-  const init = {
+  const init = !isEditMode ? {
     name: '',
     surname: '',
-    gender: 'O' as const,
+    // gender: 'O' as const,
     email: '',
     username: '',
     password: '',
     repeatPassword: '',
+  } : {
+    name: userData?.name || '',
+    surname: userData?.surname || '',
+    // gender: userData?.gender || 'O',
+    email: userData?.email || '',
+    username: userData?.username || '',
   };
 
-  const { classBase, ...iconPresetRest } = ICON_PRESET;
-  const { gender } = useOptions();
   const btnClass = clsx(styles['p-insert-user__button'], "l-grid__col l-grid__col--span-6");
 
   if (isEditMode && isLoadingUser) {
@@ -85,7 +87,7 @@ const Registration = () => {
         </div>
       </Card>
       
-      <Card additionalClassName={clsx(styles['p-insert-user'], "l-grid__col l-grid__col--span-12")}>
+      {(!isEditMode || isFetchedUser )&& <Card additionalClassName={clsx(styles['p-insert-user'], "l-grid__col l-grid__col--span-12")}>
         <div className={styles["p-insert-user__container"]}>
           {(insertError || editError) && <Typography>errore</Typography>}
           
@@ -93,22 +95,6 @@ const Registration = () => {
             defaultValues={init}
             onSubmit={onSubmit}
           >
-            {(methods) => {
-              useEffect(() => {
-                if (isEditMode && userData) {
-                  methods.reset({
-                    name: userData.name ?? '',
-                    surname: userData.surname ?? '',
-                    gender: userData.gender ?? 'O',
-                    email: userData.email ?? '',
-                    username: userData.username ?? '',
-                    password: '',
-                    repeatPassword: '',
-                  });
-                }
-              }, [methods]);
-
-              return (
                 <Stack spacing='md'>
                   <div className="l-grid">
                     <Form.Input
@@ -122,15 +108,6 @@ const Registration = () => {
                       name="surname"
                       label={t('form.surname.label')}
                       rules={{ required: t('form.surname.error.required') }}
-                    />
-                    <Form.RadioBtn
-                      name="gender"
-                      label={t("form.gender.label")}
-                      className={clsx(classBase, "l-grid__col l-grid__col--span-6")}
-                      rules={{ required: t('form.gender.error.required') }}
-                      gap="lg"
-                      options={gender}
-                      {...iconPresetRest}
                     />
                     <Form.Input
                       className="l-grid__col l-grid__col--span-6"
@@ -174,7 +151,6 @@ const Registration = () => {
                         />
                       </>
                     )}
-                    <div></div>
                     <Form.Button
                       additionalClassName={btnClass}
                       type="submit"
@@ -188,22 +164,20 @@ const Registration = () => {
                       color='secondary'
                       autoDisabled={false}
                     >
-                      <X size={16} /> Reset
+                      <X size={16} /> {t("form.reset")}
                     </Form.Button>
                   </div>
                 </Stack>
-              );
-            }}
           </Form>
 
-          <Switch
+          {!isEditMode && <Switch
             onChange={res => setLockNavigate(!!res)}
             value={locNavigate}
             label={t('keepInPage')}
             additionalClassName={styles['p-insert-user__keep-in-page']}
-          />
+          />}
         </div>
-      </Card>
+      </Card>}
     </div>
   );
 };

@@ -5,6 +5,7 @@ import { useAppMutation } from '../useAppApi/useAppMutation';
 import { ERROR_KINDS } from '../useAppApi/error';
 import { useAppQuery } from '../useAppApi/useAppQuery';
 import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '@/constants/routes';
 
 const domain = 'me';
 
@@ -19,7 +20,7 @@ export const useInsertUser = (locNavigate?: boolean) => {
       queryClient.invalidateQueries(['users']);
 
       if (!locNavigate) {
-        navigate('/users');
+        navigate(ROUTES.USER_LIST);
       }
     },
     successKey: `${domain}.insert.success`,
@@ -68,13 +69,15 @@ export const useUsers = (params?: Record<string, unknown>) =>
 
   export const useUpdateUser = (userId?: number) => {
     const queryClient = useQueryClient();
+    const navigate = useNavigate();
 
     return useAppMutation({
-      //TODO: sostituire any
-      mutationFn: (data: any) => userService.updateUser(userId!, data),
+      mutationFn: (data: Partial<UsersResult>) => userService.updateUser(userId!, data),
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ['users'] });
         queryClient.invalidateQueries({ queryKey: ['userDetail', userId] });
+      
+          navigate(ROUTES.USER_LIST);
       },
     });
   };
@@ -85,7 +88,7 @@ export const useUsers = (params?: Record<string, unknown>) =>
     return useAppMutation({
       mutationFn: userService.deleteUser,
       onSuccess: () => {
-        queryClient.invalidateQueries(['users', params]);
+        queryClient.invalidateQueries(['users']);
       },
       successKey: `${domain}.delete.success`,
       errorMap: {

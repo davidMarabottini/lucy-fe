@@ -73,7 +73,8 @@
         "required": "Password Richiesta"
       }
     },
-    "submit": "Registrati"
+    "submit": "Salva",
+    "reset": "Resetta"
   },
   "keepInPage": "Rimani sulla pagina"
 }
