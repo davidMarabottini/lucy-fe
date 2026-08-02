@@ -5,7 +5,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useAppMutation } from "../useAppApi/useAppMutation";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "@/constants/routes";
-import { deleteEmployee, getAllEmployeesByContractId, getEmployeeDetail, getEmployeesByContractId, getLibemaxEmployees, insertEmployee } from "@/api/employeesService";
+import { deleteEmployee, getAllEmployeesByContractId, getEmployeeDetail, getEmployeesByContractId, getLibemaxEmployees, insertEmployee, editEmployee } from "@/api/employeesService";
 import type { LibemaxEmployee, ContractEmployeeAssignment } from "@/api/types";
 
 const libDomain = 'employees';
@@ -23,7 +23,7 @@ export const useEmployeesList = (params?: Record<string, unknown>) =>
     staleTime: 1000 * 60 * 60,
   });
 
-export const useEmployeeDetail = (employeeId: number) =>
+export const useEmployeeDetail = (employeeId: number, options?: { enabled?: boolean }) =>
   useAppQuery<LibemaxEmployee>({
     queryKey: ['employee', employeeId],
     queryFn: () => getEmployeeDetail(employeeId),
@@ -34,6 +34,7 @@ export const useEmployeeDetail = (employeeId: number) =>
       [ERROR_KINDS.NETWORK]: `${libDomain}.detail.network`,
       [ERROR_KINDS.UNKNOWN]: `${libDomain}.detail.defaultError`
     },
+    ...options,
   });
 
 export const useInsertEmployee = (lockNavigate?: boolean) => {
@@ -58,7 +59,23 @@ export const useInsertEmployee = (lockNavigate?: boolean) => {
       [ERROR_KINDS.UNKNOWN]: `${libDomain}.insert.defaultError`
     },
   })
-  }
+}
+
+  export const useUpdateEmployee = (employeeId?: number) => {
+    const queryClient = useQueryClient();
+    const navigate = useNavigate();
+
+    return useAppMutation({
+      // TODO: cambiare con qualcosa tipo Partial<UsersResult>
+      mutationFn: (data: any) => editEmployee(employeeId!, data),
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['libemax-employees'] });
+        // queryClient.invalidateQueries({ queryKey: ['userDetail', employeeId] });
+      
+          navigate(ROUTES.LIBEMAX_EMPLOYEES);
+      },
+    });
+  };
 
 export const useEmployeeDelete = () => {
   const queryClient = useQueryClient();

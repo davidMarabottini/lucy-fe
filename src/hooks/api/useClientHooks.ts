@@ -1,5 +1,5 @@
-import { getClientDetail, getLibemaxClients, insertClient, deleteClient } from "@/api/clientService";
-import type { LibemaxClient } from "@/api/types";
+import { getClientDetail, getLibemaxClients, insertClient, deleteClient, updateClient } from "@/api/clientService";
+import type { LibemaxAddClient, LibemaxClient } from "@/api/types";
 import { useAppQuery } from "../useAppApi/useAppQuery";
 import { ERROR_KINDS } from "../useAppApi/error";
 import { useQueryClient } from "@tanstack/react-query";
@@ -57,7 +57,21 @@ export const useLibemaxClients = (params?: Record<string, unknown>) =>
       [ERROR_KINDS.UNKNOWN]: `${libDomain}.insert.defaultError`
     },
   })
-  }
+}
+
+  export const useUpdateClient = (clientId?: number) => {
+    const queryClient = useQueryClient();
+    const navigate = useNavigate();
+
+    return useAppMutation({
+      mutationFn: (data: LibemaxAddClient) => updateClient(clientId!, data),
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['libemax-clients'] });
+        queryClient.invalidateQueries({ queryKey: ['client', clientId] });
+        navigate(ROUTES.LIBEMAX_CLIENTS);
+      },
+    });
+  };
 
 export const useClientDelete = () => {
   const queryClient = useQueryClient();

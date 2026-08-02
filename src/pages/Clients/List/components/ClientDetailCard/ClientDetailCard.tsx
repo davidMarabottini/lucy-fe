@@ -4,7 +4,7 @@ import DetailCard from "@/components/atoms/DetailCard/DetailCard";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { ROUTES } from "@/constants/routes";
 import { rewriteRoute } from "@/utils/routes";
-import { Link, Mail, Phone, Trash2 } from "lucide-react";
+import { Edit2, Link, Mail, Phone, Trash2 } from "lucide-react";
 import styles from './ClientDetailCard.module.scss';
 
 
@@ -43,7 +43,13 @@ const ClientDetailCard = ({ client, toggleDelete }: { client: LibemaxClient, tog
             onClick={() => toggleDelete(client)}
           >
             <Trash2 />
-          </Button>
+          </Button>,
+          <LinkComponent
+            key="edit"
+            to={rewriteRoute(ROUTES.EDIT_CLIENT, {':idClient': libemax_id?.toString() ?? ''})}
+          >
+            <Edit2 size={16} />
+          </LinkComponent>,
       ]}
     />
   )

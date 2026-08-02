@@ -14,6 +14,15 @@ export const insertEmployee = async (
   return data
 }
 
+export const editEmployee = async (
+  employee: LibemaxAddEmployee
+): Promise<LibemaxAddEmployee> => {
+  const {data} = await apiClient.post('/api/employees/:employeeId', employee)
+
+  return data
+}
+
+
 export const getEmployeeDetail = async (employeeId: number): Promise<LibemaxEmployee> => {
   const { data } = await apiClient.get(`/api/employees/${employeeId}`);
   return data;

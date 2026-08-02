@@ -76,7 +76,7 @@ const ROUTE_CONFIGS: readonly AppRouteObject[] = Object.freeze([
   {path: '/employees/:employeeId', Element: EmployeeDetail, handle: {key: 'EMPLOYEE_DETAIL', domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
   {path: '/employees/insert', Element: InsertEmployee, handle: {key: 'INSERT_EMPLOYEE', label: 'labels.insertEmployee', Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
   {path: '/users/add',  Element: Registration,  handle: {key: 'REGISTRATION', label: 'labels.registration', Icon: UserCheck2Icon, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
-  {path: '/users/update/:userId',  Element: Registration,  handle: {key: 'UPDATE_USER', label: 'labels.registration', Icon: UserCheck2Icon, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
+  {path: '/users/edit/:userId',  Element: Registration,  handle: {key: 'UPDATE_USER', label: 'labels.registration', Icon: UserCheck2Icon, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
   {path: '/users/list', Element: UserList, handle: {key: 'USER_LIST', label: 'labels.userList', Icon: User, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.USER]}},
   {path: '/work-activities', Element: WorkActivities, handle: {key: 'WORK_ACTIVITIES', label: 'labels.workActivities', Icon: Briefcase, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.MAIN]}},
   {path: '/work-activities/insert', Element: WorkActivitiesInsert, handle: {key: 'WORK_ACTIVITIES_INSERT', label: 'labels.workActivities/insert', Icon: Briefcase, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},

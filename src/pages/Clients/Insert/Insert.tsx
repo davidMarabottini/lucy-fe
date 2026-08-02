@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import Form from '@components/organisms/form/Form';
 import Stack from '@components/atoms/Stack/Stack';
 import type { LibemaxClientForm } from './Insert.types';
-import { useInsertClient } from '@/hooks/api/useClientHooks';
+import { useClientDetail, useInsertClient, useUpdateClient } from '@/hooks/api/useClientHooks';
 import { VALIDATIONS_EMAIL } from '@constants/validations';
 import Typography from '@components/atoms/Typography/Typography';
 import { Check, ChevronLeft, X } from 'lucide-react';
@@ -14,22 +14,43 @@ import LinkComponent from '@/components/atoms/LinkComponent/LinkComponent';
 import { useState } from 'react';
 import Switch from '@/components/atoms/Switch/Switch';
 import type { UseFormReturn } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
+// import { useEmployeeDetail } from '@/hooks/api/useEmployeesHooks';
 
 const InsertClient = () => {
+  const { idClient: clientIdParams } = useParams<{ idClient?: string }>();
+  const clientId = clientIdParams ? parseInt(clientIdParams, 10) : undefined;
+  const isEditMode = Boolean(clientId);
+
   const [locNavigate, setLockNavigate] = useState<boolean>(false)
   const {t} = useTranslation("client", {keyPrefix: "insert"});
+  
+  const { data: clientData, isLoading: isLoadingClient, isFetched: isFetchedClient } = useClientDetail(clientId ?? 0, {enabled: isEditMode});
+  
   const {mutate: insertClient, error} = useInsertClient(locNavigate);
-
+  const {mutate: editClient, error: editError} = useUpdateClient(clientId)
+  
   const onSubmit = (payload: LibemaxClientForm, methods: UseFormReturn<LibemaxClientForm>) => {
-    insertClient(payload);
-    methods.reset();
+    const { dirtyFields } = methods.formState;
+
+    if(isEditMode) {
+      const modifiedData = Object.keys(dirtyFields).reduce((acc, key) => {
+        acc[key] = payload[key as keyof LibemaxClientForm];
+        return acc;
+      }, {} as Partial<LibemaxClientForm>);
+
+      editClient(modifiedData);
+    } else {
+      insertClient(payload);
+      methods.reset();
+    }
   };
 
-  const init = {
+  const init = !isEditMode ? {
     name: '',
     mail: '',
     phone: '',
-  }
+  } : clientData;
 
   const btnClass = clsx(styles['p-insert-client__button'], "l-grid__col l-grid__col--span-6");
 
@@ -38,12 +59,13 @@ const InsertClient = () => {
       <Card additionalClassName={styles["p-insert-client__card-title"]}>
         <div className={styles["p-insert-client__card-title-internal"]}>
             <Typography variant="h2" additionalClasses={styles["p-insert-client__title"]}>
-              {t("title")}
+              {t(isEditMode ? "title.edit" : "title.create")}
             </Typography>
             <LinkComponent to={ROUTES.LIBEMAX_CLIENTS}><ChevronLeft /></LinkComponent>
         </div>
       </Card>
-      <Card additionalClassName={clsx(styles['p-insert-client'], "l-grid__col l-grid__col--span-12")}>
+
+      {(!isEditMode || isFetchedClient)&& <Card additionalClassName={clsx(styles['p-insert-client'], "l-grid__col l-grid__col--span-12")}>
         <div className={styles["p-insert-client__container"]}>
           {error && <Typography>errore</Typography>}
           <Form<LibemaxClientForm>
@@ -96,14 +118,14 @@ const InsertClient = () => {
               </div>
             </Stack>
           </Form>
-          <Switch
+          {!isEditMode && <Switch
             onChange={res => setLockNavigate(!!res)}
             value={locNavigate}
             label={t('keepInPage')}
             additionalClassName={styles['p-insert-client__keep-in-page']}
-          />
+          />}
         </div>
-      </Card>
+      </Card>}
     </div>
   );
 };

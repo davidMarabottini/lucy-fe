@@ -14,6 +14,14 @@ export const insertClient = async (
   return data
 }
 
+export const updateClient = async (
+  clientId: number,
+  client: LibemaxAddClient,
+): Promise<LibemaxAddClient> => {
+  const {data} = await apiClient.put(`/api/clients/${clientId}`, client)
+
+  return data
+}
 
 export const getClientDetail = async (clientId: number): Promise<LibemaxClientDetail> => {
   const { data } = await apiClient.get(`/api/clients/${clientId}`);

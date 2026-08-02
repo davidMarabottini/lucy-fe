@@ -57,7 +57,6 @@ const Registration = () => {
   const init = !isEditMode ? {
     name: '',
     surname: '',
-    // gender: 'O' as const,
     email: '',
     username: '',
     password: '',
@@ -65,7 +64,6 @@ const Registration = () => {
   } : {
     name: userData?.name || '',
     surname: userData?.surname || '',
-    // gender: userData?.gender || 'O',
     email: userData?.email || '',
     username: userData?.username || '',
   };
@@ -87,7 +85,7 @@ const Registration = () => {
         </div>
       </Card>
       
-      {(!isEditMode || isFetchedUser )&& <Card additionalClassName={clsx(styles['p-insert-user'], "l-grid__col l-grid__col--span-12")}>
+      {(!isEditMode || isFetchedUser)&& <Card additionalClassName={clsx(styles['p-insert-user'], "l-grid__col l-grid__col--span-12")}>
         <div className={styles["p-insert-user__container"]}>
           {(insertError || editError) && <Typography>errore</Typography>}
           
@@ -95,79 +93,79 @@ const Registration = () => {
             defaultValues={init}
             onSubmit={onSubmit}
           >
-                <Stack spacing='md'>
-                  <div className="l-grid">
+            <Stack spacing='md'>
+              <div className="l-grid">
+                <Form.Input
+                  className="l-grid__col l-grid__col--span-6"
+                  name="name"
+                  label={t('form.name.label')}
+                  rules={{ required: t('form.name.error.required') }}
+                />
+                <Form.Input
+                  className="l-grid__col l-grid__col--span-6"
+                  name="surname"
+                  label={t('form.surname.label')}
+                  rules={{ required: t('form.surname.error.required') }}
+                />
+                <Form.Input
+                  className="l-grid__col l-grid__col--span-6"
+                  name="email"
+                  label={t('form.email.label')}
+                  rules={{
+                    required: t('form.email.error.required'),
+                    pattern: {
+                      value: VALIDATIONS_EMAIL,
+                      message: t('form.email.error.errorFormat'),
+                    },
+                  }}
+                />
+                <Form.Input
+                  className="l-grid__col l-grid__col--span-6"
+                  name="username"
+                  label={t('form.username.label')}
+                  rules={{ required: t('form.username.error.required') }}
+                />
+                {!isEditMode && (
+                  <>
                     <Form.Input
                       className="l-grid__col l-grid__col--span-6"
-                      name="name"
-                      label={t('form.name.label')}
-                      rules={{ required: t('form.name.error.required') }}
-                    />
-                    <Form.Input
-                      className="l-grid__col l-grid__col--span-6"
-                      name="surname"
-                      label={t('form.surname.label')}
-                      rules={{ required: t('form.surname.error.required') }}
-                    />
-                    <Form.Input
-                      className="l-grid__col l-grid__col--span-6"
-                      name="email"
-                      label={t('form.email.label')}
+                      name="password"
+                      label={t('form.password.label')}
+                      type="password"
                       rules={{
-                        required: t('form.email.error.required'),
-                        pattern: {
-                          value: VALIDATIONS_EMAIL,
-                          message: t('form.email.error.errorFormat'),
-                        },
+                        required: t('form.password.error.required'),
                       }}
                     />
                     <Form.Input
                       className="l-grid__col l-grid__col--span-6"
-                      name="username"
-                      label={t('form.username.label')}
-                      rules={{ required: t('form.username.error.required') }}
+                      name="repeatPassword"
+                      label={t('form.repeatPassword.label')}
+                      type="password"
+                      rules={{
+                        required: t('form.repeatPassword.error.required'),
+                        validate: (value, formValues) => 
+                          !value && !formValues.password ? true : value === formValues.password || t('form.error.passwordsDoNotMatch')
+                      }}
                     />
-                    {!isEditMode && (
-                      <>
-                        <Form.Input
-                          className="l-grid__col l-grid__col--span-6"
-                          name="password"
-                          label={t('form.password.label')}
-                          type="password"
-                          rules={{
-                            required: t('form.password.error.required'),
-                          }}
-                        />
-                        <Form.Input
-                          className="l-grid__col l-grid__col--span-6"
-                          name="repeatPassword"
-                          label={t('form.repeatPassword.label')}
-                          type="password"
-                          rules={{
-                            required: t('form.repeatPassword.error.required'),
-                            validate: (value, formValues) => 
-                              !value && !formValues.password ? true : value === formValues.password || t('form.error.passwordsDoNotMatch')
-                          }}
-                        />
-                      </>
-                    )}
-                    <Form.Button
-                      additionalClassName={btnClass}
-                      type="submit"
-                      autoDisabled={false}
-                    >
-                      <Check size={16} /> {t("form.submit")}
-                    </Form.Button>
-                    <Form.Button
-                      additionalClassName={btnClass}
-                      type="reset"
-                      color='secondary'
-                      autoDisabled={false}
-                    >
-                      <X size={16} /> {t("form.reset")}
-                    </Form.Button>
-                  </div>
-                </Stack>
+                  </>
+                )}
+                <Form.Button
+                  additionalClassName={btnClass}
+                  type="submit"
+                  autoDisabled={false}
+                >
+                  <Check size={16} /> {t("form.submit")}
+                </Form.Button>
+                <Form.Button
+                  additionalClassName={btnClass}
+                  type="reset"
+                  color='secondary'
+                  autoDisabled={false}
+                >
+                  <X size={16} /> {t("form.reset")}
+                </Form.Button>
+              </div>
+            </Stack>
           </Form>
 
           {!isEditMode && <Switch

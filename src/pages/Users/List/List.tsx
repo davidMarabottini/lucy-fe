@@ -43,9 +43,7 @@ const User = () => {
             >
               {t("title")}
             </Typography>
-            <LinkComponent
-              to={ROUTES.REGISTRATION}
-            >
+            <LinkComponent to={ROUTES.REGISTRATION}>
               <PlusCircle />
             </LinkComponent>
         </div>
@@ -87,7 +85,6 @@ const User = () => {
                     className={styles["p-user-list__btn-edit"]}
                      to={rewriteRoute(ROUTES.UPDATE_USER, {':userId': row.id.toString()})}
                   ><Edit2 /></LinkComponent>,
-                
               ]}
             />
           )}

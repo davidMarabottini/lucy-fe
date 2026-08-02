@@ -77,7 +77,7 @@ export const useUsers = (params?: Record<string, unknown>) =>
         queryClient.invalidateQueries({ queryKey: ['users'] });
         queryClient.invalidateQueries({ queryKey: ['userDetail', userId] });
       
-          navigate(ROUTES.USER_LIST);
+        navigate(ROUTES.USER_LIST);
       },
     });
   };
