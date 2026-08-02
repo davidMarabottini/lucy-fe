@@ -18,8 +18,19 @@ export const getUserStatus = async (): Promise<UserStatusResult> => {
   return data;
 };
 
+export const getUserDetail = async (userId: number): Promise<UsersResult> => {
+  const { data } = await apiClient.get(`/api/users/${userId}`);
+  return data;
+}
+
 export const getUsers = async (params?: Record<string, unknown>): Promise<UsersResult[]> => {
   const { data } = await apiClient.get('/api/users', { params });
+  return data;
+};
+
+// todo: cambia tipizzazione su user altrimenti è n casino
+export const updateUser = async (userId: number, user: RegistrationData) => {
+  const { data } = await apiClient.put(`/api/users/${userId}`, user);
   return data;
 };
 

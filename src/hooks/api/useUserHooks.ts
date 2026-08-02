@@ -52,6 +52,33 @@ export const useUsers = (params?: Record<string, unknown>) =>
     staleTime: 1000 * 60 * 60,
   });
 
+  export const useUserDetail = (userId: number, options?: { enabled?: boolean }) =>
+  useAppQuery<UsersResult>({
+    queryKey: ['userDetail', userId],
+    queryFn: () => userService.getUserDetail(userId),
+    errorMap: {
+      [ERROR_KINDS.UNAUTHORIZED]: `${domain}.missingClockin.401`,
+      [ERROR_KINDS.SERVER]: `${domain}.missingClockin.500`,
+      [ERROR_KINDS.NETWORK]: `${domain}.missingClockin.network`,
+      [ERROR_KINDS.UNKNOWN]: `${domain}.missingClockin.defaultError`
+    },
+    staleTime: 1000 * 60 * 60,
+    ...options,
+  });
+
+  export const useUpdateUser = (userId?: number) => {
+    const queryClient = useQueryClient();
+
+    return useAppMutation({
+      //TODO: sostituire any
+      mutationFn: (data: any) => userService.updateUser(userId!, data),
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['users'] });
+        queryClient.invalidateQueries({ queryKey: ['userDetail', userId] });
+      },
+    });
+  };
+
   export const useDeleteUser = () => {
     const queryClient = useQueryClient();
 

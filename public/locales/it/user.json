@@ -21,7 +21,8 @@
     }
   }
 }, "insert": {
-  "title": "Registraione",
+  "title": "Inserisci utente",
+  "titleEdit": "Modifica utente",
   "form": {
     "name": {
       "label": "Nome",

@@ -3,7 +3,7 @@ import { useUsers } from "@/hooks/api/useUserHooks";
 import Typography from "@/components/atoms/Typography/Typography";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { ROUTES } from "@/constants/routes";
-import { PlusCircle, Trash2 } from "lucide-react";
+import { Edit2, PlusCircle, Trash2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import styles from './List.module.scss'
 import { useMe } from "@/hooks/api/useAuthenticationHooks";
@@ -13,6 +13,7 @@ import type { UsersResult } from "@/api/types";
 import { DeleteModal } from "./components/DeleteModal/DeleteModal";
 import Paginated from "@/components/organisms/Paginated/Paginated";
 import Table from "@/components/organisms/Table/Table";
+import { rewriteRoute } from "@/utils/routes";
 
 const User = () => {
   const {t} = useTranslation("user", {keyPrefix: "list"});
@@ -73,12 +74,19 @@ const User = () => {
               actions={[
                 row => 
                   <Button
-                  key="delete"
-                  color="custom"
-                  className={styles["p-user-list__btn-delete"]}
-                  disabled={me?.id === row.id}
-                  onClick={() => openDeleteModalHdlr(row)}
-                  ><Trash2 /></Button>
+                    key="delete"
+                    color="custom"
+                    className={styles["p-user-list__btn-delete"]}
+                    disabled={me?.id === row.id}
+                    onClick={() => openDeleteModalHdlr(row)}
+                  ><Trash2 /></Button>,
+                row => 
+                  <LinkComponent
+                    key="edit"
+                    color="custom"
+                    className={styles["p-user-list__btn-edit"]}
+                     to={rewriteRoute(ROUTES.UPDATE_USER, {':userId': row.id.toString()})}
+                  ><Edit2 /></LinkComponent>,
                 
               ]}
             />

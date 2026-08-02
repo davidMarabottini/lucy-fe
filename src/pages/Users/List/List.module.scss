@@ -19,9 +19,21 @@
     text-transform: uppercase;
   }
 
-  &__btn-delete:not(:disabled) {
-    color: $color-error;
-  } 
+  &__btn-delete{
+    padding: $space-sm;
+    &:not(:disabled) {
+      color: $color-error;
+    }
+  }
+
+  &__btn-edit {
+    padding: $space-sm;
+    margin-left: $space-sm;
+    &:not(:disabled){
+      color: $color-success;
+    }
+  }
+
 
   &__modal-confirm-btn {
     color: $color-success;
