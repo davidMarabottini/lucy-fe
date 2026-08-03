@@ -34,14 +34,14 @@ const GroupCompanyDetailPage = () => {
         </div>
       </Card>
       <Card additionalClassName={styles["p-company-detail__card"]}>
-      <div className={styles["p-company-detail__container"]} style={{ flexDirection: 'row' }}>
-        <Building size={180} className={styles["p-company-detail__icon"]} style={{ borderRadius: "100%", background: "#f0f0f0",  padding: '24px'}} />
+      <div className={styles["p-company-detail__container"]}>
+        <Building size={180} className={styles["p-company-detail__icon"]} />
         <div>
           <div>
             <Typography variant="h1">{data?.name}</Typography>
           </div>
 
-          <div style={{display: 'flex', flexDirection: 'row', gap: '16px', alignItems: 'center', marginTop: '32px', marginLeft: '32px' }}>
+          <div className={styles["p-company-detail__client-sheet"]}>
             <div>
               {data.vat_number && (
                 <div>
@@ -55,7 +55,7 @@ const GroupCompanyDetailPage = () => {
                   {data.sectors.map(s => s.name).join(", ")}
                 </div>
               )}
-              </div>
+            </div>
             </div>
         </div>
       </div>

@@ -13,6 +13,7 @@ import type { ClockInPoint } from "@/components/molecules/MapContent/MapContent.
 import { useState } from "react";
 import { calculateDistance } from "@/utils/calculateDistance";
 import 'maplibre-gl/dist/maplibre-gl.css';
+import clsx from "clsx";
 
 interface EmployeeContractDetailCardProps {
   employeeLibemaxId: number;
@@ -102,7 +103,7 @@ export const EmployeeContractDetailCard = ({ employeeLibemaxId }: EmployeeContra
 
                   const distance = calculateDistance([lat1, lon1], [lat2, lon2]);
                   return distance && distance.result && distance.result !== 'NaN m'
-                    ? <div style={{ display: 'flex', gap: '8px', background: distance.unit === 'km' ? 'yellow' : 'transparent' }}>
+                    ? <div className={clsx(detailStyles["p-employee-detail__distance-pill"], {[detailStyles["p-employee-detail__distance-pill--alert"]]: distance.unit === 'km'})}>
                         {distance.result}{distance.unit === 'km' ? <TriangleAlert size={20} /> : ''}
                       </div>
                     : '-';

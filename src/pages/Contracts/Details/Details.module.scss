@@ -2,6 +2,13 @@
   &__card {
     margin-top: $space-lg;
   }
+
+  &__icon {
+    border-radius: 50%;
+    background: $color-canvas;
+    padding: $space-md;
+    flex-shrink: 0;
+  }
   &__card-title {
     display: flex;
     justify-content: center;
@@ -22,7 +29,7 @@
 
   &__container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: $space-lg;
   }
 
@@ -48,11 +55,18 @@
   &__description {
     color: $color-text-muted;
     white-space: pre-wrap;
+     border-left: 4px solid $color-canvas;
+     margin-left: $space-xl;
+     padding-left: $space-xl;
   }
 
   &__client-sheet {
      display: flex;
-     gap: 32px;
+      flex-direction: row;
+      gap: $space-md;
+      align-items: center;
+      margin-top: $space-xl;
+      margin-left: $space-xl;
   }
 
   &__contract-form-btns-row {

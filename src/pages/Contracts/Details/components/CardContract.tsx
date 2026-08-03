@@ -23,13 +23,13 @@ const CardContract = ({ data }: { data: Contract }) => {
       </Card>
 
       <Card additionalClassName={styles["p-contract-detail__card"]}>
-        <div className={styles["p-contract-detail__container"]} style={{ flexDirection: 'row' }}>
-          <File size={180} className={styles["p-contract-detail__icon"]} style={{ borderRadius: "100%", background: "#f0f0f0",  padding: '24px'}} />
+        <div className={styles["p-contract-detail__container"]}>
+          <File size={180} className={styles["p-contract-detail__icon"]} />
           <div>
             <div>
               <Typography variant="h1">{t("contract_code", { contract_code: data.contract_code })}</Typography>
             </div>
-            <div className={styles["p-contract-detail__contract-sheet"]} style={{ flexDirection: 'row', gap: '16px', alignItems: 'center', marginTop: '32px', marginLeft: '32px' }}>
+            <div className={styles["p-contract-detail__client-sheet"]}>
               <div>
                 <div className={styles["p-contract-detail__info-detail"]}>
               <Calendar size={18} />
@@ -41,7 +41,6 @@ const CardContract = ({ data }: { data: Contract }) => {
               <Briefcase size={18} />
               <strong>{t("fields.client")}:</strong> 
               <LinkComponent
-              style={{ display: 'flex', gap: '8px' }}
               to={rewriteRoute(ROUTES.CLIENT_DETAIL, { ':clientId': data.client?.id.toString() })}
               color="primary"
             >{data.client?.name}</LinkComponent>
@@ -53,7 +52,7 @@ const CardContract = ({ data }: { data: Contract }) => {
               </div>
             </div>
           </div>
-            <div className={styles["p-contract-detail__description"]} style={{ borderLeft: '4px solid #f0f0f0', marginLeft: '32px', paddingLeft: '32px' }}>
+            <div className={styles["p-contract-detail__description"]}>
               <Typography variant="h4">{data.description}</Typography>
             </div>
         </div>

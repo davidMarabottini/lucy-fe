@@ -5,6 +5,25 @@
     flex-direction: column;
     gap: $space-lg;
   }
+
+  &__icon {
+    border-radius: 50%;
+    background: $color-canvas;
+    padding: $space-md;
+    flex-shrink: 0;
+  }
+
+  &__distance-pill {
+    display: flex;
+    gap: $space-xs;
+  }
+
+  &__distance-pill--alert {
+    background: $color-warning;
+    color: $color-warning-text;
+    border-radius: 4px;
+    padding: $space-xs;
+  }
   &__card-title {
     display: flex;
     justify-content: center;
@@ -25,13 +44,17 @@
 
   &__container {
     display: flex;
-    flex-direction: column;
+     flex-direction: row;
     gap: $space-md;
   }
 
   &__employee-sheet {
      display: flex;
-     gap: 32px;
+      flex-direction: row;
+      gap: $space-md;
+      align-items: center;
+      margin-top: $space-xl;
+      margin-left: $space-xl;
   }
 
   &__detail-column {

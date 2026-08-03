@@ -12,6 +12,7 @@ import { calculateDistance } from "@/utils/calculateDistance";
 import 'maplibre-gl/dist/maplibre-gl.css';
 import Typography from "@/components/atoms/Typography/Typography";
 import { useClientDetailStore } from "@/zustand/clientDetailState";
+import clsx from "clsx";
 
 export const MapCard = ({ clientId }: { clientId: string }) => {
   const selectedDate = useClientDetailStore((s) => s.selectedDate);
@@ -82,7 +83,7 @@ export const MapCard = ({ clientId }: { clientId: string }) => {
               }
               const distance = calculateDistance([lat1, lon1], [lat2, lon2]);
               return distance && distance.result && distance.result !== 'NaN m'
-                ? <div style={{ display: 'flex', gap: '8px', background: distance.unit === 'km' ? 'yellow' : 'transparent' }}>
+                ? <div className={clsx(styles["p-client-detail__distance-pill"], distance.unit === 'km' && styles["p-client-detail__distance-pill--alert"])}>
                     {distance.result}{distance.unit === 'km' ? <TriangleAlert size={20} /> : ''}
                   </div>
                 : '-';
@@ -96,7 +97,7 @@ export const MapCard = ({ clientId }: { clientId: string }) => {
         ]}
       />
 
-      <div style={{ height: '800px', marginTop: '20px' }}>
+      <div className={styles["p-client-detail__map-wrapper"]}>
         {mapLoading && <div>{t("additionalMessage.loadingMap")}</div>}
         <MapContent
           headquarter={{
