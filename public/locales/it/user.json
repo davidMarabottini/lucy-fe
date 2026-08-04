@@ -77,5 +77,19 @@
     "reset": "Resetta"
   },
   "keepInPage": "Rimani sulla pagina"
+}, "details": {
+  "title": "Dettagli utente",
+  "fields": {
+    "name": "Nome",
+    "surname": "Cognome",
+    "birthday": "Data di nascita",
+    "gender": "Genere",
+    "email": "Email",
+    "username": "Username",
+    "roles": "Ruoli"
+  },
+  "editButton": "Modifica",
+  "deleteButton": "Elimina",
+  "cancelButton": "Annulla"
 }
 }

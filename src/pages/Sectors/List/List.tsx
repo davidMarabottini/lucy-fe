@@ -5,7 +5,7 @@ import styles from './List.module.scss'; // Riutilizziamo lo stesso stile o uno 
 import Table from "@/components/organisms/Table/Table";
 import { type Sector } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
-import { Edit2, PlusCircle, Trash2 } from "lucide-react";
+import { Edit2, Eye, PlusCircle, Trash2 } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -89,6 +89,15 @@ const SectorsList = () => {
                     <Trash2 size={18} />
                   </Button>
                 ),
+                row => 
+                  <LinkComponent
+                    key="details"
+                    color="custom"
+                    className={styles["p-sectors__btn-details"]}
+                     to={rewriteRoute(ROUTES.SECTOR_DETAIL, {':idSector': row.id.toString()})}
+                  >
+                    <Eye />
+                  </LinkComponent>,
               ]}
             />
           )}

@@ -4,7 +4,7 @@ import { useContracts } from "@/hooks/api/ContractHooks";
 import styles from './List.module.scss'; 
 import { type Contract } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
-import { Edit2, FileText, Option, PlusCircle, Settings2, Trash2 } from "lucide-react";
+import { Edit2, FileText, PlusCircle, Trash2 } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";

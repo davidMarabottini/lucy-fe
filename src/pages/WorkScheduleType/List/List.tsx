@@ -104,6 +104,13 @@ const WorkScheduleTypeList = () => {
                 <Trash2 size={18} />
               </Button>
             ),
+            row => 
+                  <LinkComponent
+                    key="details"
+                    color="custom"
+                    className={styles["p-wst__btn-details"]}
+                     to={rewriteRoute(ROUTES.WORK_SCHEDULE_TYPE_DETAILS, {':idWorkScheduleType': row.id.toString()})}
+                  ><Icons.Eye /></LinkComponent>,
           ]}
         />
       </Card>

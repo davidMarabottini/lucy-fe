@@ -26,5 +26,15 @@
     "submitButton": "Salva",
     "cancelButton": "Annulla",
     "keepInPage":"Tieni in pagina"
+  },
+  "details": {
+    "title": "Dettagli attività lavorativa",
+    "fields": {
+      "name":  "Nome",
+      "description": "Descrizione"
+    },
+    "editButton": "Modifica",
+    "deleteButton": "Elimina",
+    "cancelButton": "Annulla"
   }
 }

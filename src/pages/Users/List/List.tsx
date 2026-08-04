@@ -3,7 +3,7 @@ import { useUsers } from "@/hooks/api/useUserHooks";
 import Typography from "@/components/atoms/Typography/Typography";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { ROUTES } from "@/constants/routes";
-import { Edit2, PlusCircle, Trash2 } from "lucide-react";
+import { Edit2, Eye, PlusCircle, Trash2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import styles from './List.module.scss'
 import { useMe } from "@/hooks/api/useAuthenticationHooks";
@@ -85,6 +85,13 @@ const User = () => {
                     className={styles["p-user-list__btn-edit"]}
                      to={rewriteRoute(ROUTES.UPDATE_USER, {':userId': row.id.toString()})}
                   ><Edit2 /></LinkComponent>,
+                row => 
+                  <LinkComponent
+                    key="details"
+                    color="custom"
+                    className={styles["p-user-list__btn-details"]}
+                     to={rewriteRoute(ROUTES.USER_DETAILS, {':userId': row.id.toString()})}
+                  ><Eye /></LinkComponent>,
               ]}
             />
           )}

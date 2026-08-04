@@ -21,6 +21,12 @@
     },
     "delete": {
       "title": "Elimina Tipologia",
+      "bodyTable": {
+        "name": "Nome Tipologia",
+        "period": "Periodicità Controllo",
+        "frequency": "Frequenza",
+        "description": "Descrizione"
+      },
       "bodyQuestion": "Sei sicuro di voler eliminare questa tipologia? Assicurati che non sia collegata a contratti attivi.",
       "success": "Tipologia eliminata con successo",
       "500": "Errore del server durante l'eliminazione",
@@ -62,5 +68,18 @@
     "success": "Tipologia creata con successo",
     "500": "Errore interno del server",
     "defaultError": "Si è verificato un errore imprevisto"
+  },
+  "details": {
+    "title": "Dettagli Tipologia Orario",
+    "fields": {
+      "name": "Nome Tipologia",
+      "icon_name": "Icona (Lucide Name)",
+      "period": "Tipo di Controllo / Periodo",
+      "frequency": "Frequenza (Ogni quanti periodi)",
+      "description": "Descrizione / Note"
+    },
+    "editButton": "Modifica Tipologia",
+    "deleteButton": "Elimina Tipologia",
+    "cancelButton": "Annulla"
   }
 }

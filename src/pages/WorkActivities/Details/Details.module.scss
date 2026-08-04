@@ -1,0 +1,55 @@
+.p-work-activity-detail {
+  &__card {
+    margin-top: $space-lg;
+  }
+
+  &__icon {
+    border-radius: 50%;
+    background: $color-canvas;
+    padding: $space-md;
+    flex-shrink: 0;
+  }
+  &__card-title {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__card-title-internal {
+     display: flex;
+     justify-content: space-between;
+     width: 100%;
+  }
+
+  &__title {
+    font-size: 2rem;
+    margin: 0;
+    color: $color-text-main;
+    text-transform: uppercase;
+  }
+
+  &__container {
+    display: flex;
+     flex-direction: row;
+    gap: $space-md;
+  }
+
+  &__client-sheet {
+     display: flex;
+      flex-direction: row;
+      gap: $space-md;
+      align-items: center;
+      margin-top: $space-xl;
+      margin-left: $space-xl;
+  }
+
+  &__detail-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+  }
+
+  &__subtitle-section {
+    margin-bottom: $space-md;
+  }
+}
