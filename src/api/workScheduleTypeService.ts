@@ -1,8 +1,8 @@
 import apiClient from "./apiClient";
 import type { WorkScheduleType, WorkScheduleTypePayload } from "./types";
 
-export const getWorkScheduleTypes = async (): Promise<WorkScheduleType[]> => {
-  const { data } = await apiClient.get<WorkScheduleType[]>('/api/work-schedule-types');
+export const getWorkScheduleTypes = async (params?: Record<string, unknown>): Promise<WorkScheduleType[]> => {
+  const { data } = await apiClient.get<WorkScheduleType[]>('/api/work-schedule-types', { params });
   return data;
 };
 

@@ -13,9 +13,10 @@ import { DeleteModal } from "./components/DeleteModal/DeleteModal";
 import Paginated from "@/components/organisms/Paginated/Paginated";
 import { rewriteRoute } from "@/utils/routes";
 import Table from "@/components/organisms/Table/Table";
+import DetailCard from "@/components/atoms/DetailCard/DetailCard";
+import { useViewStore } from "@/zustand/listViewAsCard";
 
 const GroupCompaniesList = () => {
-  const { data: companies, isLoading, error } = useGroupCompanies();
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [curCompany, setCurCompany] = useState<GroupCompany | undefined>();
 
@@ -25,10 +26,6 @@ const GroupCompaniesList = () => {
     setCurCompany(company);
     setOpenModal(true);
   };
-
-  if (isLoading) return <div className={styles["p-companies__loading"]}>{t("additiveMessages.loading")}</div>;
-  if (error) return <Typography color="error">{t("additiveMessages.updateError")}</Typography>;
-  if (!companies) return null;
 
   return (
     <div className={styles["p-companies"]}>
@@ -60,50 +57,93 @@ const GroupCompaniesList = () => {
             { key: 'email', placeholder: '', label: 'Cerca Email' },
           ]}
         >
-          {(res) => (
-            <Table
-              data={res}
-              columns={[
-                { key: 'name', header: t('table.name') },
-                { key: 'vat_number', header: t('table.vat_number') },
-                { 
-                  key: 'sectors', 
-                  header: t('table.sectors'),
-                  value: row => row.sectors.map(s => s.name).join(', ') 
-                },
-              ]}
-              actions={[
-                (row) => (
-                    <LinkComponent
-                      key="details"
-                      color='custom'
-                      to={rewriteRoute(ROUTES.GROUP_COMPANY_DETAIL, {':companyId': row.id.toString()})}
+          {(res) => {
+            const isCardView = useViewStore.getState().isCardView;
+
+            return isCardView ? (
+              <div className={styles["p-companies__grid"]}>
+                {res.map((company) => (
+                  <DetailCard
+                    key={company.id}
+                    header={<div>{company.name}</div>}
+                    body={
+                      <div>
+                        <div>{t('table.vat_number')}: {company.vat_number}</div>
+                        <div>{t('table.sectors')}: {company.sectors.map((s) => s.name).join(', ') || '-'}</div>
+                      </div>
+                    }
+                    actions={[
+                      <LinkComponent
+                        key="details"
+                        color='custom'
+                        to={rewriteRoute(ROUTES.GROUP_COMPANY_DETAIL, {':companyId': company.id.toString()})}
+                      >
+                        <FileText />
+                      </LinkComponent>,
+                      <LinkComponent
+                        key="edit"
+                        color='custom'
+                        to={rewriteRoute(ROUTES.GROUP_COMPANY_EDIT, {':idCompany': company.id.toString()})}
+                      >
+                        <Edit2 />
+                      </LinkComponent>,
+                      <Button
+                        key="remove"
+                        color="custom"
+                        additionalClassName={styles["p-companies__btn-delete"]}
+                        onClick={() => openDeleteModalHdlr(company)}
+                      >
+                        <Trash2 />
+                      </Button>,
+                    ]}
+                  />
+                ))}
+              </div>
+            ) : (
+              <Table
+                data={res}
+                columns={[
+                  { key: 'name', header: t('table.name') },
+                  { key: 'vat_number', header: t('table.vat_number') },
+                  {
+                    key: 'sectors',
+                    header: t('table.sectors'),
+                    value: row => row.sectors.map(s => s.name).join(', ')
+                  },
+                ]}
+                actions={[
+                  (row) => (
+                      <LinkComponent
+                        key="details"
+                        color='custom'
+                        to={rewriteRoute(ROUTES.GROUP_COMPANY_DETAIL, {':companyId': row.id.toString()})}
+                      >
+                        <FileText />
+                      </LinkComponent>
+                    ),
+                  (row) => (
+                      <LinkComponent
+                        key="edit"
+                        color='custom'
+                        to={rewriteRoute(ROUTES.GROUP_COMPANY_EDIT, {':idCompany': row.id.toString()})}
+                      >
+                        <Edit2 />
+                      </LinkComponent>
+                    ),
+                  (row) => (
+                    <Button
+                      key="remove"
+                      color="custom"
+                      additionalClassName={styles["p-companies__btn-delete"]}
+                      onClick={() => openDeleteModalHdlr(row)}
                     >
-                      <FileText />
-                    </LinkComponent>
+                      <Trash2  />
+                    </Button>
                   ),
-                (row) => (
-                    <LinkComponent
-                      key="edit"
-                      color='custom'
-                      to={rewriteRoute(ROUTES.GROUP_COMPANY_EDIT, {':idCompany': row.id.toString()})}
-                    >
-                      <Edit2 />
-                    </LinkComponent>
-                  ),
-                (row) => (
-                  <Button
-                    key="remove"
-                    color="custom"
-                    additionalClassName={styles["p-companies__btn-delete"]}
-                    onClick={() => openDeleteModalHdlr(row)}
-                  >
-                    <Trash2  />
-                  </Button>
-                ),
-              ]}
-            />
-          )}
+                ]}
+              />
+            );
+          }}
         </Paginated>
       </Card>
     </div>

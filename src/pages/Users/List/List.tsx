@@ -14,6 +14,8 @@ import { DeleteModal } from "./components/DeleteModal/DeleteModal";
 import Paginated from "@/components/organisms/Paginated/Paginated";
 import Table from "@/components/organisms/Table/Table";
 import { rewriteRoute } from "@/utils/routes";
+import DetailCard from "@/components/atoms/DetailCard/DetailCard";
+import { useViewStore } from "@/zustand/listViewAsCard";
 
 const User = () => {
   const {t} = useTranslation("user", {keyPrefix: "list"});
@@ -58,43 +60,89 @@ const User = () => {
             {key: 'email', placeholder: '', label: 'Cerca per email'}
           ]}
         >
-          {(res) => (
-            <Table
-              data={res}
-              columns={[
-                {key: 'name', header: t("table.name")},
-                {key: 'surname', header: t("table.surname")},
-                {key: 'email', header: t("table.email")},
-                {key: 'username', header: t("table.username")},
-                {key: 'roles', header: t("table.roles") },
-                  // render: (roles: string[]) => roles.join(", ")
-              ]}
-              actions={[
-                row => 
-                  <Button
-                    key="delete"
-                    color="custom"
-                    className={styles["p-user-list__btn-delete"]}
-                    disabled={me?.id === row.id}
-                    onClick={() => openDeleteModalHdlr(row)}
-                  ><Trash2 /></Button>,
-                row => 
-                  <LinkComponent
-                    key="edit"
-                    color="custom"
-                    className={styles["p-user-list__btn-edit"]}
-                     to={rewriteRoute(ROUTES.UPDATE_USER, {':userId': row.id.toString()})}
-                  ><Edit2 /></LinkComponent>,
-                row => 
-                  <LinkComponent
-                    key="details"
-                    color="custom"
-                    className={styles["p-user-list__btn-details"]}
-                     to={rewriteRoute(ROUTES.USER_DETAILS, {':userId': row.id.toString()})}
-                  ><Eye /></LinkComponent>,
-              ]}
-            />
-          )}
+          {(res) => {
+            const isCardView = useViewStore.getState().isCardView;
+
+            return isCardView ? (
+              <div className={styles["p-user-list__grid"]}>
+                {res.map((user) => (
+                  <DetailCard
+                    key={user.id}
+                    header={<div>{user.name} {user.surname}</div>}
+                    body={
+                      <div>
+                        <div>{user.email}</div>
+                        <div>{user.username}</div>
+                        <div>{user.roles.join(', ')}</div>
+                      </div>
+                    }
+                    actions={[
+                      <Button
+                        key="delete"
+                        color="custom"
+                        className={styles["p-user-list__btn-delete"]}
+                        disabled={me?.id === user.id}
+                        onClick={() => openDeleteModalHdlr(user)}
+                      >
+                        <Trash2 />
+                      </Button>,
+                      <LinkComponent
+                        key="edit"
+                        color="custom"
+                        className={styles["p-user-list__btn-edit"]}
+                        to={rewriteRoute(ROUTES.UPDATE_USER, {':userId': user.id.toString()})}
+                      >
+                        <Edit2 />
+                      </LinkComponent>,
+                      <LinkComponent
+                        key="details"
+                        color="custom"
+                        className={styles["p-user-list__btn-details"]}
+                        to={rewriteRoute(ROUTES.USER_DETAILS, {':userId': user.id.toString()})}
+                      >
+                        <Eye />
+                      </LinkComponent>,
+                    ]}
+                  />
+                ))}
+              </div>
+            ) : (
+              <Table
+                data={res}
+                columns={[
+                  {key: 'name', header: t("table.name")},
+                  {key: 'surname', header: t("table.surname")},
+                  {key: 'email', header: t("table.email")},
+                  {key: 'username', header: t("table.username")},
+                  {key: 'roles', header: t("table.roles") },
+                ]}
+                actions={[
+                  row => 
+                    <Button
+                      key="delete"
+                      color="custom"
+                      className={styles["p-user-list__btn-delete"]}
+                      disabled={me?.id === row.id}
+                      onClick={() => openDeleteModalHdlr(row)}
+                    ><Trash2 /></Button>,
+                  row => 
+                    <LinkComponent
+                      key="edit"
+                      color="custom"
+                      className={styles["p-user-list__btn-edit"]}
+                       to={rewriteRoute(ROUTES.UPDATE_USER, {':userId': row.id.toString()})}
+                    ><Edit2 /></LinkComponent>,
+                  row => 
+                    <LinkComponent
+                      key="details"
+                      color="custom"
+                      className={styles["p-user-list__btn-details"]}
+                       to={rewriteRoute(ROUTES.USER_DETAILS, {':userId': row.id.toString()})}
+                    ><Eye /></LinkComponent>,
+                ]}
+              />
+            );
+          }}
         </Paginated>
       </Card>
     </div>

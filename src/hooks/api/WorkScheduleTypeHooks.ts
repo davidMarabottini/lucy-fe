@@ -15,10 +15,10 @@ import { ROUTES } from "@/constants/routes";
 
 const libDomain = 'workScheduleType';
 
-export const useWorkScheduleTypes = () =>
+export const useWorkScheduleTypes = (params?: Record<string, unknown>) =>
   useAppQuery<WorkScheduleType[]>({
-    queryKey: ['workScheduleTypes'],
-    queryFn: getWorkScheduleTypes,
+    queryKey: ['workScheduleTypes', params],
+    queryFn: () => getWorkScheduleTypes(params),
     errorMap: {
       [ERROR_KINDS.UNAUTHORIZED]: `${libDomain}.list.401`,
       [ERROR_KINDS.SERVER]: `${libDomain}.list.500`,

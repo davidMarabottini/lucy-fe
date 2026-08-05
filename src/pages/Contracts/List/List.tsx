@@ -13,6 +13,8 @@ import { DeleteModal } from "./components/DeleteModal/DeleteModal";
 import Paginated from "@/components/organisms/Paginated/Paginated";
 import { rewriteRoute } from "@/utils/routes";
 import Table from "@/components/organisms/Table/Table";
+import DetailCard from "@/components/atoms/DetailCard/DetailCard";
+import { useViewStore } from "@/zustand/listViewAsCard";
 
 const ContractsList = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -55,82 +57,119 @@ const ContractsList = () => {
             { key: 'description', placeholder: '', label: 'Cerca Descrizione' },
           ]}  
         >
-          {(res) => (
-            <Table
-              data={res}
-              columns={[
-                {
-                  key: 'contract_code',
-                  header: t('table.contract_code')
-                },
-                {
-                  key: 'provider_company',
-                  header: t('table.provider'),
-                  value: (row) => row.provider_company?.name || '-'
-                },
-                {
-                  key: 'client',
-                  header: t('table.client'),
-                  value: (row) => row.client?.name || '-'
-                },
-                {
-                  key: 'start_date',
-                  header: t('table.start_date'),
-                  value: (row) => row.start_date ? new Date(row.start_date).toLocaleDateString('it-IT') : '-'
-                },
-                {
-                  key: 'end_date',
-                  header: t('table.end_date'),
-                  value: (row) => row.end_date ? new Date(row.end_date).toLocaleDateString('it-IT') : '-'
-                },
-                {
-                  key: 'description',
-                  header: t('table.description'),
-                  value: (row) => row.description || '-'
-                }
-              ]}
-              actions={[
-                (row) => (
+          {(res) => {
+            const isCardView = useViewStore.getState().isCardView;
+
+            return isCardView ? (
+              <div className={styles["p-contracts__grid"]}>
+                {res.map((contract) => (
+                  <DetailCard
+                    key={contract.id}
+                    header={<div>{contract.contract_code}</div>}
+                    body={
+                      <div>
+                        <div>{t('table.provider')}: {contract.provider_company?.name || '-'}</div>
+                        <div>{t('table.client')}: {contract.client?.name || '-'}</div>
+                        <div>{t('table.start_date')}: {contract.start_date ? new Date(contract.start_date).toLocaleDateString('it-IT') : '-'}</div>
+                        <div>{t('table.end_date')}: {contract.end_date ? new Date(contract.end_date).toLocaleDateString('it-IT') : '-'}</div>
+                        <div>{t('table.description')}: {contract.description || '-'}</div>
+                      </div>
+                    }
+                    actions={[
+                      <LinkComponent
+                        key="details"
+                        color='custom'
+                        to={rewriteRoute(ROUTES.CONTRACT_DETAIL, {':contractId': contract.id.toString()})}
+                      >
+                        <FileText />
+                      </LinkComponent>,
+                      <LinkComponent
+                        key="edit"
+                        color='custom'
+                        to={rewriteRoute(ROUTES.CONTRACT_EDIT, { ':idContract': contract.id.toString() })}
+                      >
+                        <Edit2 />
+                      </LinkComponent>,
+                      <Button
+                        key="remove"
+                        color="custom"
+                        additionalClassName={styles["p-contracts__btn-delete"]}
+                        onClick={() => openDeleteModalHdlr(contract)}
+                      >
+                        <Trash2 />
+                      </Button>,
+                    ]}
+                  />
+                ))}
+              </div>
+            ) : (
+              <Table
+                data={res}
+                columns={[
+                  {
+                    key: 'contract_code',
+                    header: t('table.contract_code')
+                  },
+                  {
+                    key: 'provider_company',
+                    header: t('table.provider'),
+                    value: (row) => row.provider_company?.name || '-'
+                  },
+                  {
+                    key: 'client',
+                    header: t('table.client'),
+                    value: (row) => row.client?.name || '-'
+                  },
+                  {
+                    key: 'start_date',
+                    header: t('table.start_date'),
+                    value: (row) => row.start_date ? new Date(row.start_date).toLocaleDateString('it-IT') : '-'
+                  },
+                  {
+                    key: 'end_date',
+                    header: t('table.end_date'),
+                    value: (row) => row.end_date ? new Date(row.end_date).toLocaleDateString('it-IT') : '-'
+                  },
+                  {
+                    key: 'description',
+                    header: t('table.description'),
+                    value: (row) => row.description || '-'
+                  }
+                ]}
+                actions={[
+                  (row) => (
+                      <LinkComponent
+                        key="details"
+                        color='custom'
+                        to={rewriteRoute(ROUTES.CONTRACT_DETAIL, {':contractId': row.id.toString()})}
+                      >
+                        <FileText />
+                      </LinkComponent>
+                    ),
+                  (row) => (
                     <LinkComponent
-                      key="details"
+                      key="edit"
                       color='custom'
-                      to={rewriteRoute(ROUTES.CONTRACT_DETAIL, {':contractId': row.id.toString()})}
+                      to={rewriteRoute(ROUTES.CONTRACT_EDIT, { ':idContract': row.id.toString() })}
                     >
-                      <FileText />
+                      <Edit2 />
                     </LinkComponent>
                   ),
-                (row) => (
-                  <LinkComponent
-                    key="edit"
-                    color='custom'
-                    to={rewriteRoute(ROUTES.CONTRACT_EDIT, { ':idContract': row.id.toString() })}
-                  >
-                    <Edit2 />
-                  </LinkComponent>
-                ),
-                (row) => (
-                  <Button
-                    key="remove"
-                    color="custom"
-                    additionalClassName={styles["p-contracts__btn-delete"]}
-                    onClick={() => openDeleteModalHdlr(row)}
-                  >
-                    <Trash2 />
-                  </Button>
-                ),
-                // (row) => (
-                //   <LinkComponent
-                //     key="setDetails"
-                //     color='custom'
-                //     to={rewriteRoute(ROUTES.CONTRACT_SET_DETAILS, { ':contractId': row.id.toString() })}
-                //   >
-                //     <Settings2 />
-                //   </LinkComponent>
-                // )
-              ]}
-              getRowKey={(row) => String(row.contract_code)}
-            />
-          )}
+                  (row) => (
+                    <Button
+                      key="remove"
+                      color="custom"
+                      additionalClassName={styles["p-contracts__btn-delete"]}
+                      onClick={() => openDeleteModalHdlr(row)}
+                    >
+                      <Trash2 />
+                    </Button>
+                  ),
+                ]}
+                getRowKey={(row) => String(row.contract_code)}
+              />
+            );
+          }}
         </Paginated>
       </Card>
     </div>

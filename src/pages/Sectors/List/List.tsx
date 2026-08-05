@@ -13,6 +13,8 @@ import Button from "@/components/atoms/Button/Button";
 import {DeleteModal} from "./components/DeleteModal/DeleteModal";
 import Paginated from "@/components/organisms/Paginated/Paginated";
 import { rewriteRoute } from "@/utils/routes";
+import DetailCard from "@/components/atoms/DetailCard/DetailCard";
+import { useViewStore } from "@/zustand/listViewAsCard";
 
 const SectorsList = () => {
   // Utilizziamo l'hook specifico per i settori
@@ -62,45 +64,84 @@ const SectorsList = () => {
             { key: 'name', placeholder: '', label: 'Cerca Nome' },
           ]}
         >
-          {(res) => (
-            <Table
-              data={res}
-              columns={[
-                { key: 'name', header: t('table.name') },
-                { key: 'description', header: t('table.description') },
-              ]}
-              actions={[
-                (row) => (
-                  <LinkComponent
-                    key="edit"
-                    color="custom"
-                    to={rewriteRoute(ROUTES.SECTOR_EDIT, { ':idSector': row.id.toString() })}
-                  >
-                    <Edit2 size={18} />
-                  </LinkComponent>
-                ),
-                (row) => (
-                  <Button
-                    key="remove"
-                    color="custom"
-                    additionalClassName={styles["p-sectors__btn-delete"]}
-                    onClick={() => openDeleteModalHdlr(row)}
-                  >
-                    <Trash2 size={18} />
-                  </Button>
-                ),
-                row => 
-                  <LinkComponent
-                    key="details"
-                    color="custom"
-                    className={styles["p-sectors__btn-details"]}
-                     to={rewriteRoute(ROUTES.SECTOR_DETAIL, {':idSector': row.id.toString()})}
-                  >
-                    <Eye />
-                  </LinkComponent>,
-              ]}
-            />
-          )}
+          {(res) => {
+            const isCardView = useViewStore.getState().isCardView;
+
+            return isCardView ? (
+              <div className={styles["p-sectors__grid"]}>
+                {res.map((sector) => (
+                  <DetailCard
+                    key={sector.id}
+                    header={<div>{sector.name}</div>}
+                    body={<div>{sector.description || '-'}</div>}
+                    actions={[
+                      <LinkComponent
+                        key="edit"
+                        color="custom"
+                        to={rewriteRoute(ROUTES.SECTOR_EDIT, { ':idSector': sector.id.toString() })}
+                      >
+                        <Edit2 size={18} />
+                      </LinkComponent>,
+                      <Button
+                        key="remove"
+                        color="custom"
+                        additionalClassName={styles["p-sectors__btn-delete"]}
+                        onClick={() => openDeleteModalHdlr(sector)}
+                      >
+                        <Trash2 size={18} />
+                      </Button>,
+                      <LinkComponent
+                        key="details"
+                        color="custom"
+                        className={styles["p-sectors__btn-details"]}
+                        to={rewriteRoute(ROUTES.SECTOR_DETAIL, {':idSector': sector.id.toString()})}
+                      >
+                        <Eye />
+                      </LinkComponent>,
+                    ]}
+                  />
+                ))}
+              </div>
+            ) : (
+              <Table
+                data={res}
+                columns={[
+                  { key: 'name', header: t('table.name') },
+                  { key: 'description', header: t('table.description') },
+                ]}
+                actions={[
+                  (row) => (
+                    <LinkComponent
+                      key="edit"
+                      color="custom"
+                      to={rewriteRoute(ROUTES.SECTOR_EDIT, { ':idSector': row.id.toString() })}
+                    >
+                      <Edit2 size={18} />
+                    </LinkComponent>
+                  ),
+                  (row) => (
+                    <Button
+                      key="remove"
+                      color="custom"
+                      additionalClassName={styles["p-sectors__btn-delete"]}
+                      onClick={() => openDeleteModalHdlr(row)}
+                    >
+                      <Trash2 size={18} />
+                    </Button>
+                  ),
+                  row => 
+                    <LinkComponent
+                      key="details"
+                      color="custom"
+                      className={styles["p-sectors__btn-details"]}
+                       to={rewriteRoute(ROUTES.SECTOR_DETAIL, {':idSector': row.id.toString()})}
+                    >
+                      <Eye />
+                    </LinkComponent>,
+                ]}
+              />
+            );
+          }}
         </Paginated>
       </Card>
     </div>
