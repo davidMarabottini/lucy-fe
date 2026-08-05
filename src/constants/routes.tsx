@@ -40,7 +40,7 @@ const UsersDetailPage = lazy(() => import("@/pages/Users/Details/Details"));
 const WorkActivitiesDetails = lazy(() => import("@/pages/WorkActivities/Details/Details"));
 const SectorDetailPage = lazy(() => import("@/pages/Sectors/Details/Details"));
 const WorkScheduleTypeDetails = lazy(() => import("@/pages/WorkScheduleType/Details/Details"));
-
+const Settings = lazy(() => import("@/pages/Settings/Settings"));
 export type RouteHandle = {
   key: string;
   label?: string;
@@ -102,6 +102,7 @@ const ROUTE_CONFIGS: readonly AppRouteObject[] = Object.freeze([
   {path: '/work-schedule-types', Element: WorkScheduleTypeList, handle: {key: 'WORK_SCHEDULE_TYPE_LIST', label: 'labels.workScheduleTypes', Icon: Layers, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.MAIN]}},
   {path: '/work-schedule-types/insert', Element: WorkScheduleTypeInsert, handle: {key: 'WORK_SCHEDULE_TYPE_INSERT', label: 'labels.workScheduleTypeInsert', Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
   {path: '/work-schedule-types/edit/:idWorkScheduleType', Element: WorkScheduleTypeInsert, handle: {key: 'WORK_SCHEDULE_TYPE_EDIT', label: 'labels.workScheduleTypeInsert', Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
+  {path: '/settings', Element: Settings, handle: {key: 'SETTINGS', label: 'labels.settings', Icon: Layers, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.USER]}},
   {path: '/work-schedule-types/:idWorkScheduleType', Element: WorkScheduleTypeDetails, handle: {key: 'WORK_SCHEDULE_TYPE_DETAILS', domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
 
   {path: '/contracts', Element: ContractList, handle: {key: 'CONTRACT_LIST', label: 'labels.contractList', Icon: Briefcase, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.MAIN]}},
