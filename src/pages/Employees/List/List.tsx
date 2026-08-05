@@ -76,21 +76,21 @@ const LibemaxEmployees = () => {
                   
                 ]}
                  actions={[
-          ({id}) => <LinkComponent key="details" to={rewriteRoute(ROUTES.EMPLOYEE_DETAIL, {':employeeId': id.toString()})}>
-            <Eye />
-          </LinkComponent>,
-          ({id}) => <LinkComponent key="edit" to={rewriteRoute(ROUTES.EDIT_EMPLOYEE, { ':idEmployee': id.toString() })}>
-            <Edit2 />
-          </LinkComponent>,
-          (employee) => <Button
-          key="remove"
-          color="custom"
-          additionalClassName={styles["c-employees-details-card__btn-delete"]}
-          onClick={() => openDeleteModalHdlr(employee)}
-        >
-          <Trash2 />
-        </Button>
-      ]}
+                    ({id}) => <LinkComponent key="details" to={rewriteRoute(ROUTES.EMPLOYEE_DETAIL, {':employeeId': id.toString()})}>
+                      <Eye />
+                    </LinkComponent>,
+                    ({id}) => <LinkComponent key="edit" to={rewriteRoute(ROUTES.EDIT_EMPLOYEE, { ':idEmployee': id.toString() })}>
+                      <Edit2 />
+                    </LinkComponent>,
+                    (employee) => <Button
+                    key="remove"
+                    color="custom"
+                    additionalClassName={styles["c-employees-details-card__btn-delete"]}
+                    onClick={() => openDeleteModalHdlr(employee)}
+                  >
+                    <Trash2 />
+                  </Button>
+                ]}
               />
             )
           }}
