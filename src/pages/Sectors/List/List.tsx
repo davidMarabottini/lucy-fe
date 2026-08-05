@@ -29,6 +29,7 @@ const SectorsList = () => {
     setCurSector(sector);
     setOpenModal(true);
   };
+  const isCardView = useViewStore((state) => state.isCardView)
 
   // if (isLoading) return <div className={styles["p-sectors__loading"]}>{t("additiveMessages.loading")}</div>;
   // if (error) return <Typography color="error">{t("additiveMessages.updateError")}</Typography>;
@@ -65,8 +66,6 @@ const SectorsList = () => {
           ]}
         >
           {(res) => {
-            const isCardView = useViewStore.getState().isCardView;
-
             return isCardView ? (
               <div className={styles["p-sectors__grid"]}>
                 {res.map((sector) => (

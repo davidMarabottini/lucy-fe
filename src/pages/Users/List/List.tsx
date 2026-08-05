@@ -24,11 +24,13 @@ const User = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [curClient, setCurClient] = useState<UsersResult | undefined>()
 
-    const openDeleteModalHdlr = (client: UsersResult) => {
-      console.log(client);
-      setCurClient(client);
-      setOpenModal(true);
-    }
+  const openDeleteModalHdlr = (client: UsersResult) => {
+    console.log(client);
+    setCurClient(client);
+    setOpenModal(true);
+  }
+
+  const isCardView = useViewStore((state) => state.isCardView)
 
   return (
     <div>
@@ -61,8 +63,6 @@ const User = () => {
           ]}
         >
           {(res) => {
-            const isCardView = useViewStore.getState().isCardView;
-
             return isCardView ? (
               <div className={styles["p-user-list__grid"]}>
                 {res.map((user) => (

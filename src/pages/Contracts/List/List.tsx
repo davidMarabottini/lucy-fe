@@ -27,6 +27,8 @@ const ContractsList = () => {
     setOpenModal(true);
   };
 
+  const isCardView = useViewStore((state) => state.isCardView)
+
   return (
     <div className={styles["p-contracts"]}>
       {curContract && (
@@ -58,8 +60,6 @@ const ContractsList = () => {
           ]}  
         >
           {(res) => {
-            const isCardView = useViewStore.getState().isCardView;
-
             return isCardView ? (
               <div className={styles["p-contracts__grid"]}>
                 {res.map((contract) => (

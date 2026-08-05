@@ -28,6 +28,8 @@ const LibemaxClients = () => {
     setOpenModal(true);
   }
 
+  const isCardView = useViewStore((state) => state.isCardView)
+
   return (
     <div className="p-libemax-clients">
       {curClient && (
@@ -57,8 +59,6 @@ const LibemaxClients = () => {
           ]}
         >
           {(res) => {
-            const isCardView = useViewStore.getState().isCardView;
-
             return isCardView ? (
               <div className={styles["p-libemax-clients__grid"]}>
                 {res.map(client =>

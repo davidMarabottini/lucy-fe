@@ -10,6 +10,7 @@ import type { MenuItemConfiguration } from "@/components/molecules/MenuManager/M
 import type { MenuItem } from "@/constants/routes";
 import { useTranslation } from "react-i18next";
 import { DropDownHead } from "@/components/molecules/Dropdown/Dropdown";
+import { useOpenSettingsModal } from "@/zustand/openSettingsModal";
 
 const SubMenu = ({ item, onClose }: { item: MenuItem, onClose: () => void }) => {
   const {t} = useTranslation("menu");
@@ -38,9 +39,16 @@ const UserMenu = () => {
   const {mutate: logout} = useLogout();
   const [isOpen, setIsOpen] = useState(false);
   const userMenuOpen = clsx({[style['c-user-menu__chevron-opened']]: isOpen});
+  const openedSettings = useOpenSettingsModal(state => state.openedSettings);
+
+  const settingClickHdlr = () => {
+    setIsOpen(false);
+    openedSettings();
+  };
 
   const menuConfig: MenuItemConfiguration = {
     LOGOUT: {clickHdlr:() => logout(''), kind: 'action'},
+    SETTINGS: {clickHdlr: settingClickHdlr, kind: 'toggle'},
     USER: {template: (item) => <SubMenu item={item} onClose={() => setIsOpen(false)} />, kind: 'toggle'}
   }
   return (

@@ -27,6 +27,8 @@ const GroupCompaniesList = () => {
     setOpenModal(true);
   };
 
+  const isCardView = useViewStore((state) => state.isCardView)
+
   return (
     <div className={styles["p-companies"]}>
       {curCompany && (
@@ -57,9 +59,7 @@ const GroupCompaniesList = () => {
             { key: 'email', placeholder: '', label: 'Cerca Email' },
           ]}
         >
-          {(res) => {
-            const isCardView = useViewStore.getState().isCardView;
-
+          {(res) => {            
             return isCardView ? (
               <div className={styles["p-companies__grid"]}>
                 {res.map((company) => (

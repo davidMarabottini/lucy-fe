@@ -28,6 +28,8 @@ const WorkScheduleTypeList = () => {
     setOpenModal(true);
   };
 
+  const isCardView = useViewStore((state) => state.isCardView)
+
   return (
     <div className={styles["p-wst"]}>
       {curType && (
@@ -57,8 +59,6 @@ const WorkScheduleTypeList = () => {
           ]}
         >
           {(res) => {
-            const isCardView = useViewStore.getState().isCardView;
-
             return isCardView ? (
               <div className={styles["p-wst__grid"]}>
                 {res.map((type) => {
