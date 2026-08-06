@@ -22,7 +22,7 @@ export const useLibemaxClients = (params?: Record<string, unknown>) =>
     staleTime: 1000 * 60 * 60,
   });
 
-  export const useClientDetail = (clientId: number) =>
+  export const useClientDetail = (clientId: number, options?: { enabled?: boolean }) =>
     useAppQuery({
       queryKey: ["client", clientId],
       queryFn: () => getClientDetail(clientId),
@@ -33,31 +33,32 @@ export const useLibemaxClients = (params?: Record<string, unknown>) =>
         [ERROR_KINDS.NETWORK]: `${libDomain}.cilentDetails.network`,
         [ERROR_KINDS.UNKNOWN]: `${libDomain}.cilentDetails.defaultError`
       },
+      ...options,
     });
 
   export const useInsertClient = (lockNavigate?: boolean) => {
     const queryClient = useQueryClient();
     const navigate = useNavigate();
 
-  return useAppMutation({
-    mutationFn: insertClient,
-    onSuccess: data => {
-      queryClient.setQueryData(['result'], data)
-      queryClient.invalidateQueries(['libemax-clients'])
-      if(!lockNavigate){
-        navigate(ROUTES.LIBEMAX_CLIENTS)
-      }
+    return useAppMutation({
+      mutationFn: insertClient,
+      onSuccess: data => {
+        queryClient.setQueryData(['result'], data)
+        queryClient.invalidateQueries(['libemax-clients'])
+        if(!lockNavigate){
+          navigate(ROUTES.LIBEMAX_CLIENTS)
+        }
 
-    },
-    successKey: `${libDomain}.insert.success`,
-    errorMap: {
-      [ERROR_KINDS.UNAUTHORIZED]: `${libDomain}.insert.401`,
-      [ERROR_KINDS.SERVER]: `${libDomain}.insert.500`,
-      [ERROR_KINDS.NETWORK]: `${libDomain}.insert.network`,
-      [ERROR_KINDS.UNKNOWN]: `${libDomain}.insert.defaultError`
-    },
-  })
-}
+      },
+      successKey: `${libDomain}.insert.success`,
+      errorMap: {
+        [ERROR_KINDS.UNAUTHORIZED]: `${libDomain}.insert.401`,
+        [ERROR_KINDS.SERVER]: `${libDomain}.insert.500`,
+        [ERROR_KINDS.NETWORK]: `${libDomain}.insert.network`,
+        [ERROR_KINDS.UNKNOWN]: `${libDomain}.insert.defaultError`
+      },
+    })
+  }
 
   export const useUpdateClient = (clientId?: number) => {
     const queryClient = useQueryClient();
