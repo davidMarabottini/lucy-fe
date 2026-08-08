@@ -43,8 +43,8 @@ export const EmployeesContractCard = ({ employeeId }: { employeeId: string }) =>
               { key: 'end_date', header: t('table.end_date'), value: (row) => row.end_date ? new Date(row.end_date).toLocaleDateString('it-IT') : '-' },
             ]}
             getRowKey={(row) => String(row.id)}
-            actions={[
-              row => (
+            actions={row => [
+               (
                 <Button
                   key="schedules"
                   color={selectedContractId === row.id ? "primary" : "custom"}

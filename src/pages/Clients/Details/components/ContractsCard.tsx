@@ -11,7 +11,7 @@ import { ChevronRight, List } from "lucide-react";
 import { useState } from "react";
 import { useClientDetailStore } from "@/zustand/clientDetailState";
 import { ContractDetailPanel } from "./ContractDetailPanel.tsx";
-import Table from "@/components/organisms/Table/Table";
+import Table from "@/components/organisms/Table/Table.tsx";
 
 export const ContractsCard = ({ clientId }: { clientId: string }) => {
   const { t } = useTranslation("client", { keyPrefix: "details.contracts" });
@@ -48,8 +48,8 @@ export const ContractsCard = ({ clientId }: { clientId: string }) => {
               { key: 'description', header: t('table.description'), value: (row) => row.description || '-' }
             ]}
             getRowKey={(row) => String(row.contract_code)}
-            actions={[
-              row => (
+            actions={row => [
+               (
                 <Button
                   key="schedules"
                   color="custom"
@@ -59,7 +59,7 @@ export const ContractsCard = ({ clientId }: { clientId: string }) => {
                   <List size={18} />
                 </Button>
               ),
-              row => <Link key="detail" to={`/contracts/${row.id}`}><ChevronRight /></Link>,
+              <Link key="detail" to={`/contracts/${row.id}`}><ChevronRight /></Link>,
             ]}
             additionalContainer={(row) =>
               selectedContract?.id === row.id ? (

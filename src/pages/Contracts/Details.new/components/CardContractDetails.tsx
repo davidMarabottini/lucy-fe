@@ -80,8 +80,8 @@ const CardContractDetails = ({
                 },
               ]}
               getRowKey={(row) => String(row.id)}
-              actions={[
-                (row) => (
+              actions={(row) => [
+                 (
                   <Button
                     key="remove"
                     color="custom"
@@ -107,7 +107,6 @@ const CardContractDetails = ({
             <Plus />
           </Button>
         </div>
-        {console.log('davidlog', assignedEmployees)}
         <div className={styles["p-contract-detail__assigned-employees"]}>
           {assignedEmployees && assignedEmployees.length > 0 ? (
             assignedEmployees.map((assignment) => (<div><EmployeeContractDetailsCard

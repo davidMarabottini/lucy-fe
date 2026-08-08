@@ -96,8 +96,8 @@ const WorkActivitiesList = () => {
                   { key: 'name', header: t('table.name') },
                   { key: 'description', header: t('table.description') },
                 ]}
-                actions={[
-                  (row) => (
+                actions={(row) => [
+                   
                     <LinkComponent
                       key="edit"
                       color="custom"
@@ -105,8 +105,8 @@ const WorkActivitiesList = () => {
                     >
                       <Edit2 size={18} />
                     </LinkComponent>
-                  ),
-                  (row) => (
+                  ,
+                  
                     <Button
                       key="remove"
                       color="custom"
@@ -115,14 +115,15 @@ const WorkActivitiesList = () => {
                     >
                       <Trash2 size={18} />
                     </Button>
-                  ),
-                  row => 
+                  ,
+                  
                     <LinkComponent
                       key="details"
                       color="custom"
                       className={styles["p-work-activities__btn-details"]}
                        to={rewriteRoute(ROUTES.WORK_ACTIVITIES_DETAILS, {':idActivity': row.id.toString()})}
                     ><Eye /></LinkComponent>,
+                  ,
                 ]}
               />
             );

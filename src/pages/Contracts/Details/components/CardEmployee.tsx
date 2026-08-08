@@ -21,9 +21,14 @@ const CardEmployee = ({ contractId }: { contractId: number }) => {
   const {data: employees, isLoading, error, isSuccess} = useEmployeesList();
   const {t} = useTranslation("contract", { keyPrefix: "details" });
   const { mutate: addEmployeeToContract } = useAddEmployeeToContract(contractId);
-  const onSubmit = (values: AddEmployeeFormValues) => {
-    if (!values.start_date || !values.end_date) return;
-    addEmployeeToContract({ workers: values.workers, start_date: values.start_date, end_date: values.end_date });
+  const onSubmit = (values: Omit<AddEmployeeFormValues, "start_date" | "end_date"> & { range_date: [string | null, string | null] }) => {
+    const [start_date, end_date] = values.range_date || [];
+    if (!start_date || !end_date) return;
+    addEmployeeToContract({
+      workers: values.workers,
+      start_date,
+      end_date
+    });
   }
   return (
     <>
@@ -32,8 +37,7 @@ const CardEmployee = ({ contractId }: { contractId: number }) => {
         <Form onSubmit={onSubmit}
           defaultValues={{
             workers: [],
-            start_date: null,
-            end_date: null,
+            range_date: [null, null]
           }}>
           {isLoading && <div>Loading...</div>}
           {error && <div>{t("addEmployee.form.employee.error")}</div>}
@@ -47,17 +51,18 @@ const CardEmployee = ({ contractId }: { contractId: number }) => {
               />
               <div className={styles["p-contract-detail__date-row"]}>
               <Form.DatePicker
-                name="start_date"
+                name="range_date"
                 className={styles["p-contract-detail__date"]}
                 label={t("addEmployee.form.start_date.label")}
                 rules={{ required: t("addEmployee.form.start_date.error") }}
+                selectsRange={true}
               />
-              <Form.DatePicker
+              {/* <Form.DatePicker
                 name="end_date"
                 className={styles["p-contract-detail__date"]}
                 label={t("addEmployee.form.end_date.label")}
                 rules={{ required: t("addEmployee.form.end_date.error") }}
-              />
+              /> */}
               </div>
               <Button type="submit">{t("addEmployee.form.save")}</Button>
             </Stack>

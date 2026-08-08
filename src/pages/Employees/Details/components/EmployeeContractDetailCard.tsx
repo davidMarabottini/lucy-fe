@@ -112,8 +112,8 @@ export const EmployeeContractDetailCard = ({ employeeLibemaxId }: EmployeeContra
               { key: 'type', header: t('timbrature.table.type') },
             ]}
             getRowKey={({ id }) => id}
-            actions={[
-              row => <Button color="custom" onClick={() => setSelectedPoint(row.id)}><MapIcon /></Button>
+            actions={row => [
+               <Button color="custom" onClick={() => setSelectedPoint(row.id)}><MapIcon /></Button>
             ]}
           />
 

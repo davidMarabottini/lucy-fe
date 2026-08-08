@@ -4,7 +4,7 @@ import { useContracts } from "@/hooks/api/ContractHooks";
 import styles from './List.module.scss'; 
 import { type Contract } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
-import { Edit2, FileText, PlusCircle, Trash2 } from "lucide-react";
+import { Edit2, Eye, PlusCircle, Trash2 } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -28,6 +28,37 @@ const ContractsList = () => {
   };
 
   const isCardView = useViewStore((state) => state.isCardView)
+  const actions = (contract: Contract) => [
+    <LinkComponent
+      key="details"
+      color='custom'
+      to={rewriteRoute(ROUTES.CONTRACT_DETAIL, {':contractId': contract.id.toString()})}
+    >
+      <Eye />
+    </LinkComponent>,
+    <LinkComponent
+      key="edit"
+      color='custom'
+      to={rewriteRoute(ROUTES.CONTRACT_EDIT, { ':idContract': contract.id.toString() })}
+    >
+      <Edit2 />
+    </LinkComponent>,
+    <Button
+      key="remove"
+      color="custom"
+      additionalClassName={(styles["p-contracts__btn-delete"])}
+      onClick={() => openDeleteModalHdlr(contract)}
+      asChild
+    >
+      <LinkComponent
+      key="details"
+      color='custom'
+      to={rewriteRoute(ROUTES.CONTRACT_DETAIL, {':contractId': contract.id.toString()})}
+    >
+      <Trash2 />
+      </LinkComponent>
+    </Button>,
+  ]
 
   return (
     <div className={styles["p-contracts"]}>
@@ -75,30 +106,7 @@ const ContractsList = () => {
                         <div>{t('table.description')}: {contract.description || '-'}</div>
                       </div>
                     }
-                    actions={[
-                      <LinkComponent
-                        key="details"
-                        color='custom'
-                        to={rewriteRoute(ROUTES.CONTRACT_DETAIL, {':contractId': contract.id.toString()})}
-                      >
-                        <FileText />
-                      </LinkComponent>,
-                      <LinkComponent
-                        key="edit"
-                        color='custom'
-                        to={rewriteRoute(ROUTES.CONTRACT_EDIT, { ':idContract': contract.id.toString() })}
-                      >
-                        <Edit2 />
-                      </LinkComponent>,
-                      <Button
-                        key="remove"
-                        color="custom"
-                        additionalClassName={styles["p-contracts__btn-delete"]}
-                        onClick={() => openDeleteModalHdlr(contract)}
-                      >
-                        <Trash2 />
-                      </Button>,
-                    ]}
+                    actions={actions(contract)}
                   />
                 ))}
               </div>
@@ -136,36 +144,37 @@ const ContractsList = () => {
                     value: (row) => row.description || '-'
                   }
                 ]}
-                actions={[
-                  (row) => (
-                      <LinkComponent
-                        key="details"
-                        color='custom'
-                        to={rewriteRoute(ROUTES.CONTRACT_DETAIL, {':contractId': row.id.toString()})}
-                      >
-                        <FileText />
-                      </LinkComponent>
-                    ),
-                  (row) => (
-                    <LinkComponent
-                      key="edit"
-                      color='custom'
-                      to={rewriteRoute(ROUTES.CONTRACT_EDIT, { ':idContract': row.id.toString() })}
-                    >
-                      <Edit2 />
-                    </LinkComponent>
-                  ),
-                  (row) => (
-                    <Button
-                      key="remove"
-                      color="custom"
-                      additionalClassName={styles["p-contracts__btn-delete"]}
-                      onClick={() => openDeleteModalHdlr(row)}
-                    >
-                      <Trash2 />
-                    </Button>
-                  ),
-                ]}
+                actions={actions}
+                // actions={[
+                //   (row) => (
+                //       <LinkComponent
+                //         key="details"
+                //         color='custom'
+                //         to={rewriteRoute(ROUTES.CONTRACT_DETAIL, {':contractId': row.id.toString()})}
+                //       >
+                //         <FileText />
+                //       </LinkComponent>
+                //     ),
+                //   (row) => (
+                //     <LinkComponent
+                //       key="edit"
+                //       color='custom'
+                //       to={rewriteRoute(ROUTES.CONTRACT_EDIT, { ':idContract': row.id.toString() })}
+                //     >
+                //       <Edit2 />
+                //     </LinkComponent>
+                //   ),
+                //   (row) => (
+                //     <Button
+                //       key="remove"
+                //       color="custom"
+                //       additionalClassName={styles["p-contracts__btn-delete"]}
+                //       onClick={() => openDeleteModalHdlr(row)}
+                //     >
+                //       <Trash2 />
+                //     </Button>
+                //   ),
+                // ]}
                 getRowKey={(row) => String(row.contract_code)}
               />
             );

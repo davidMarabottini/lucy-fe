@@ -135,8 +135,8 @@ const WorkScheduleTypeList = () => {
                     value: (row) => row.description || '-'
                   }
                 ]}
-                actions={[
-                  (row) => (
+                actions={(row) =>[
+                   (
                     <LinkComponent
                       key="edit"
                       color="custom"
@@ -145,7 +145,7 @@ const WorkScheduleTypeList = () => {
                       <Edit2 size={18} />
                     </LinkComponent>
                   ),
-                  (row) => (
+                  (
                     <Button
                       key="remove"
                       color="custom"
@@ -155,7 +155,6 @@ const WorkScheduleTypeList = () => {
                       <Trash2 size={18} />
                     </Button>
                   ),
-                  row =>
                     <LinkComponent
                       key="details"
                       color="custom"

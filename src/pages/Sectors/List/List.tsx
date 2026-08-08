@@ -108,8 +108,8 @@ const SectorsList = () => {
                   { key: 'name', header: t('table.name') },
                   { key: 'description', header: t('table.description') },
                 ]}
-                actions={[
-                  (row) => (
+                actions={(row) => [
+                  (
                     <LinkComponent
                       key="edit"
                       color="custom"
@@ -118,7 +118,7 @@ const SectorsList = () => {
                       <Edit2 size={18} />
                     </LinkComponent>
                   ),
-                  (row) => (
+                  (
                     <Button
                       key="remove"
                       color="custom"
@@ -128,7 +128,7 @@ const SectorsList = () => {
                       <Trash2 size={18} />
                     </Button>
                   ),
-                  row => 
+                  (
                     <LinkComponent
                       key="details"
                       color="custom"
@@ -136,7 +136,8 @@ const SectorsList = () => {
                        to={rewriteRoute(ROUTES.SECTOR_DETAIL, {':idSector': row.id.toString()})}
                     >
                       <Eye />
-                    </LinkComponent>,
+                    </LinkComponent>
+                  ),
                 ]}
               />
             );

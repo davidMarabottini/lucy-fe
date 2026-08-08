@@ -51,7 +51,7 @@ function Table<T extends object>({ data, columns, actions, getRowKey, additional
                   })}
                   {actions && (
                     <div className={styles['c-table__cell']}>
-                      {actions.map((el) => <Fragment key={String(el(row))}>{el(row)}</Fragment>)}
+                      {actions(row).map((el, index) => <Fragment key={index}>{el}</Fragment>)}
                     </div>
                   )}
                 </div>

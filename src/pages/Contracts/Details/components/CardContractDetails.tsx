@@ -58,8 +58,8 @@ const CardContractDetails = ({
               },
             ]}
             getRowKey={(row) => String(row.id)}
-            actions={[
-              (row) => (
+            actions={(row) =>[
+               (
                 <Button
                   key="remove"
                   color="custom"

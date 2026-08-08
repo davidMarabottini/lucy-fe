@@ -116,8 +116,8 @@ const User = () => {
                   {key: 'username', header: t("table.username")},
                   {key: 'roles', header: t("table.roles") },
                 ]}
-                actions={[
-                  row => 
+                actions={row => [
+                  
                     <Button
                       key="delete"
                       color="custom"
@@ -125,14 +125,12 @@ const User = () => {
                       disabled={me?.id === row.id}
                       onClick={() => openDeleteModalHdlr(row)}
                     ><Trash2 /></Button>,
-                  row => 
                     <LinkComponent
                       key="edit"
                       color="custom"
                       className={styles["p-user-list__btn-edit"]}
                        to={rewriteRoute(ROUTES.UPDATE_USER, {':userId': row.id.toString()})}
                     ><Edit2 /></LinkComponent>,
-                  row => 
                     <LinkComponent
                       key="details"
                       color="custom"

@@ -4,18 +4,18 @@ import { useLibemaxClients } from "@/hooks/api/useClientHooks";
 import styles from './List.module.scss'
 import type { LibemaxClient } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
-import { PlusCircle } from "lucide-react";
+import { Mail, Phone, PlusCircle } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { DeleteModal } from "./components/DeleteModal/DeleteModal";
 import Paginated from "@/components/organisms/Paginated/Paginated";
-import ClientDetailCard from "./components/ClientDetailCard/ClientDetailCard";
 import Table from "@/components/organisms/Table/Table";
 import { useViewStore } from "@/zustand/listViewAsCard";
 import { Edit2, Eye, Trash2 } from "lucide-react";
 import Button from "@/components/atoms/Button/Button";
 import { rewriteRoute } from "@/utils/routes";
+import DetailCard from "@/components/atoms/DetailCard/DetailCard";
 
 const LibemaxClients = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -29,6 +29,23 @@ const LibemaxClients = () => {
   }
 
   const isCardView = useViewStore((state) => state.isCardView)
+
+  const actions = (client: LibemaxClient) => [
+      <LinkComponent key="details" to={rewriteRoute(ROUTES.CLIENT_DETAIL, { ':clientId': client.id.toString() })}>
+        <Eye />
+      </LinkComponent>,
+      <LinkComponent key="edit" to={rewriteRoute(ROUTES.EDIT_CLIENT, { ':idClient': client.id.toString() })}>
+        <Edit2 />
+      </LinkComponent>,
+      <Button
+        key="remove"
+        color="custom"
+        additionalClassName={styles["p-libemax-clients__btn-delete"]}
+        onClick={() => openDeleteModalHdlr(client)}
+      >
+        <Trash2 />
+      </Button>,
+  ];
 
   return (
     <div className="p-libemax-clients">
@@ -58,14 +75,31 @@ const LibemaxClients = () => {
             { key: 'email', placeholder: '', label: 'Cerca Email' },
           ]}
         >
-          {(res) => {
-            return isCardView ? (
+          {(res) => isCardView ? (
               <div className={styles["p-libemax-clients__grid"]}>
-                {res.map(client =>
-                  <ClientDetailCard
-                    key={client.id}
-                    client={client}
-                    toggleDelete={openDeleteModalHdlr}
+                {res.map((client) =>
+                    <DetailCard
+                    header={<div>{client.name}</div>}
+                    body={
+                      <div className={styles["c-clients-details-card__body"]}>
+                        <div>
+                          ID Libemax: {client.id}
+                        </div>
+                        {client.phone && (
+                          <div className={styles["c-clients-details-card__icon-text"]}>
+                            <Phone size={12} />
+                            {client.phone}
+                          </div>
+                        )}
+                        {client.email && (
+                          <div className={styles["c-clients-details-card__icon-text"]}>
+                            <Mail size={12} />
+                            {client.email}
+                          </div>
+                        )}
+                      </div>
+                    }
+                    actions={actions(client)}
                   />
                 )}
               </div>
@@ -78,31 +112,9 @@ const LibemaxClients = () => {
                   { key: "email", header: t("table.email") },
                   { key: "phone", header: t("table.phone") },
                 ]}
-                actions={[
-                  ({ id }) => (
-                    <LinkComponent key="details" to={rewriteRoute(ROUTES.CLIENT_DETAIL, { ':clientId': id.toString() })}>
-                      <Eye />
-                    </LinkComponent>
-                  ),
-                  ({ id }) => (
-                    <LinkComponent key="edit" to={rewriteRoute(ROUTES.EDIT_CLIENT, { ':idClient': id.toString() })}>
-                      <Edit2 />
-                    </LinkComponent>
-                  ),
-                  (client) => (
-                    <Button
-                      key="remove"
-                      color="custom"
-                      additionalClassName={styles["p-libemax-clients__btn-delete"]}
-                      onClick={() => openDeleteModalHdlr(client)}
-                    >
-                      <Trash2 />
-                    </Button>
-                  ),
-                ]}
+                actions={actions}
               />
-            );
-          }}
+            )}
         </Paginated>
       </Card>
     </div>

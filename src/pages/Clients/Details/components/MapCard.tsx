@@ -92,8 +92,8 @@ export const MapCard = ({ clientId }: { clientId: string }) => {
           { key: 'type', header: t('table.type') },
         ]}
         getRowKey={({ id }) => id}
-        actions={[
-          row => <Button color="custom" onClick={() => setSelectedPoint(row.id)}><Map /></Button>
+        actions={row =>  [
+           <Button color="custom" onClick={() => setSelectedPoint(row.id)}><Map /></Button>
         ]}
       />
 

@@ -111,8 +111,8 @@ const GroupCompaniesList = () => {
                     value: row => row.sectors.map(s => s.name).join(', ')
                   },
                 ]}
-                actions={[
-                  (row) => (
+                actions={(row) =>[
+                   (
                       <LinkComponent
                         key="details"
                         color='custom'
@@ -121,7 +121,7 @@ const GroupCompaniesList = () => {
                         <FileText />
                       </LinkComponent>
                     ),
-                  (row) => (
+                   (
                       <LinkComponent
                         key="edit"
                         color='custom'
@@ -130,7 +130,7 @@ const GroupCompaniesList = () => {
                         <Edit2 />
                       </LinkComponent>
                     ),
-                  (row) => (
+                   (
                     <Button
                       key="remove"
                       color="custom"

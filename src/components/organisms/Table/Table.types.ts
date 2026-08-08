@@ -19,7 +19,7 @@ export interface TableAction<T> extends Omit<ButtonProps, 'onClick'> {
 export type TableProps<T> = {
   data: T[];
   columns: TableColumn<T>[];
-  actions?: ((row: T) => React.ReactNode)[];
+  actions?: (row: T) => (React.ReactNode[]);
   getRowKey?: (row: T) => string | number;
   additionalContainer?: (row: T) => React.ReactNode;
 };
