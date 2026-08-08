@@ -5,7 +5,7 @@ import type { LibemaxEmployee } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
 import {  Edit2, Eye, Mail, Phone, PlusCircle, Trash2 } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { DeleteModal } from "./components/DeleteModal/DeleteModal";
 import Paginated from "@/components/organisms/Paginated/Paginated";
@@ -29,7 +29,7 @@ const LibemaxEmployees = () => {
 
   const isCardView = useViewStore((state) => state.isCardView)
 
-  const actions = useCallback((employee: LibemaxEmployee) => [
+  const actions = (employee: LibemaxEmployee) => [
     <LinkComponent key="details" to={rewriteRoute(ROUTES.EMPLOYEE_DETAIL, {':employeeId': employee.id.toString()})}>
       <Eye />
     </LinkComponent>,
@@ -44,10 +44,10 @@ const LibemaxEmployees = () => {
     >
       <Trash2 />
     </Button>
-  ], []);
+  ];
 
   return (
-    <div className="p-libemax-employees">
+    <div className={styles["p-libemax-employees"]}>
       <DeleteModal openModal={openModal}
         setOpenModal={setOpenModal}
         curEmployee={curEmployee}

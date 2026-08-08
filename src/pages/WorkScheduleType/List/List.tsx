@@ -30,6 +30,32 @@ const WorkScheduleTypeList = () => {
 
   const isCardView = useViewStore((state) => state.isCardView)
 
+  const actions = (type: WorkScheduleType) => [
+    <LinkComponent
+      key="edit"
+      color="custom"
+      to={rewriteRoute(ROUTES.WORK_SCHEDULE_TYPE_EDIT, { ':idWorkScheduleType': type.id.toString() })}
+    >
+      <Edit2 size={18} />
+    </LinkComponent>,
+    <Button
+      key="remove"
+      color="custom"
+      additionalClassName={styles["p-wst__btn-delete"]}
+      onClick={() => openDeleteModalHdlr(type)}
+    >
+      <Trash2 size={18} />
+    </Button>,
+    <LinkComponent
+      key="details"
+      color="custom"
+      className={styles["p-wst__btn-details"]}
+      to={rewriteRoute(ROUTES.WORK_SCHEDULE_TYPE_DETAILS, {':idWorkScheduleType': type.id.toString()})}
+    >
+      <Icons.Eye />
+    </LinkComponent>,
+  ]
+
   return (
     <div className={styles["p-wst"]}>
       {curType && (
@@ -74,31 +100,7 @@ const WorkScheduleTypeList = () => {
                           <div>{t('table.description')}: {type.description || '-'}</div>
                         </div>
                       }
-                      actions={[
-                        <LinkComponent
-                          key="edit"
-                          color="custom"
-                          to={rewriteRoute(ROUTES.WORK_SCHEDULE_TYPE_EDIT, { ':idWorkScheduleType': type.id.toString() })}
-                        >
-                          <Edit2 size={18} />
-                        </LinkComponent>,
-                        <Button
-                          key="remove"
-                          color="custom"
-                          additionalClassName={styles["p-wst__btn-delete"]}
-                          onClick={() => openDeleteModalHdlr(type)}
-                        >
-                          <Trash2 size={18} />
-                        </Button>,
-                        <LinkComponent
-                          key="details"
-                          color="custom"
-                          className={styles["p-wst__btn-details"]}
-                          to={rewriteRoute(ROUTES.WORK_SCHEDULE_TYPE_DETAILS, {':idWorkScheduleType': type.id.toString()})}
-                        >
-                          <Icons.Eye />
-                        </LinkComponent>,
-                      ]}
+                      actions={actions(type)}
                     />
                   );
                 })}
@@ -135,33 +137,7 @@ const WorkScheduleTypeList = () => {
                     value: (row) => row.description || '-'
                   }
                 ]}
-                actions={(row) =>[
-                   (
-                    <LinkComponent
-                      key="edit"
-                      color="custom"
-                      to={rewriteRoute(ROUTES.WORK_SCHEDULE_TYPE_EDIT, { ':idWorkScheduleType': row.id.toString() })}
-                    >
-                      <Edit2 size={18} />
-                    </LinkComponent>
-                  ),
-                  (
-                    <Button
-                      key="remove"
-                      color="custom"
-                      additionalClassName={styles["p-wst__btn-delete"]}
-                      onClick={() => openDeleteModalHdlr(row)}
-                    >
-                      <Trash2 size={18} />
-                    </Button>
-                  ),
-                    <LinkComponent
-                      key="details"
-                      color="custom"
-                      className={styles["p-wst__btn-details"]}
-                      to={rewriteRoute(ROUTES.WORK_SCHEDULE_TYPE_DETAILS, {':idWorkScheduleType': row.id.toString()})}
-                    ><Icons.Eye /></LinkComponent>,
-                ]}
+                actions={actions}
               />
             );
           }}

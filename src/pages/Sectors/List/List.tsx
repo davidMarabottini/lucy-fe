@@ -31,6 +31,32 @@ const SectorsList = () => {
   };
   const isCardView = useViewStore((state) => state.isCardView)
 
+  const actions = (sector: Sector) => [
+    <LinkComponent
+      key="edit"
+      color="custom"
+      to={rewriteRoute(ROUTES.SECTOR_EDIT, { ':idSector': sector.id.toString() })}
+    >
+      <Edit2 size={18} />
+    </LinkComponent>,
+    <Button
+      key="remove"
+      color="custom"
+      additionalClassName={styles["p-sectors__btn-delete"]}
+      onClick={() => openDeleteModalHdlr(sector)}
+    >
+      <Trash2 size={18} />
+    </Button>,
+    <LinkComponent
+      key="details"
+      color="custom"
+      className={styles["p-sectors__btn-details"]}
+      to={rewriteRoute(ROUTES.SECTOR_DETAIL, {':idSector': sector.id.toString()})}
+    >
+      <Eye />
+    </LinkComponent>,
+  ]
+
   // if (isLoading) return <div className={styles["p-sectors__loading"]}>{t("additiveMessages.loading")}</div>;
   // if (error) return <Typography color="error">{t("additiveMessages.updateError")}</Typography>;
   // if (!sectors) return null;
@@ -73,31 +99,7 @@ const SectorsList = () => {
                     key={sector.id}
                     header={<div>{sector.name}</div>}
                     body={<div>{sector.description || '-'}</div>}
-                    actions={[
-                      <LinkComponent
-                        key="edit"
-                        color="custom"
-                        to={rewriteRoute(ROUTES.SECTOR_EDIT, { ':idSector': sector.id.toString() })}
-                      >
-                        <Edit2 size={18} />
-                      </LinkComponent>,
-                      <Button
-                        key="remove"
-                        color="custom"
-                        additionalClassName={styles["p-sectors__btn-delete"]}
-                        onClick={() => openDeleteModalHdlr(sector)}
-                      >
-                        <Trash2 size={18} />
-                      </Button>,
-                      <LinkComponent
-                        key="details"
-                        color="custom"
-                        className={styles["p-sectors__btn-details"]}
-                        to={rewriteRoute(ROUTES.SECTOR_DETAIL, {':idSector': sector.id.toString()})}
-                      >
-                        <Eye />
-                      </LinkComponent>,
-                    ]}
+                    actions={actions(sector)}
                   />
                 ))}
               </div>
@@ -108,37 +110,7 @@ const SectorsList = () => {
                   { key: 'name', header: t('table.name') },
                   { key: 'description', header: t('table.description') },
                 ]}
-                actions={(row) => [
-                  (
-                    <LinkComponent
-                      key="edit"
-                      color="custom"
-                      to={rewriteRoute(ROUTES.SECTOR_EDIT, { ':idSector': row.id.toString() })}
-                    >
-                      <Edit2 size={18} />
-                    </LinkComponent>
-                  ),
-                  (
-                    <Button
-                      key="remove"
-                      color="custom"
-                      additionalClassName={styles["p-sectors__btn-delete"]}
-                      onClick={() => openDeleteModalHdlr(row)}
-                    >
-                      <Trash2 size={18} />
-                    </Button>
-                  ),
-                  (
-                    <LinkComponent
-                      key="details"
-                      color="custom"
-                      className={styles["p-sectors__btn-details"]}
-                       to={rewriteRoute(ROUTES.SECTOR_DETAIL, {':idSector': row.id.toString()})}
-                    >
-                      <Eye />
-                    </LinkComponent>
-                  ),
-                ]}
+                actions={actions}
               />
             );
           }}

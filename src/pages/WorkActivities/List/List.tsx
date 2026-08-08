@@ -27,6 +27,34 @@ const WorkActivitiesList = () => {
     setOpenModal(true);
   };
 
+  const isCardView = useViewStore((state) => state.isCardView)
+
+  const actions = (activity: WorkActivity) => [
+    <LinkComponent
+      key="edit"
+      color="custom"
+      to={rewriteRoute(ROUTES.WORK_ACTIVITIES_EDIT, { ':idActivity': activity.id.toString() })}
+    >
+      <Edit2 size={18} />
+    </LinkComponent>,
+    <Button
+      key="remove"
+      color="custom"
+      additionalClassName={styles["p-work-activities__btn-delete"]}
+      onClick={() => openDeleteModalHdlr(activity)}
+    >
+      <Trash2 size={18} />
+    </Button>,
+    <LinkComponent
+      key="details"
+      color="custom"
+      className={styles["p-work-activities__btn-details"]}
+      to={rewriteRoute(ROUTES.WORK_ACTIVITIES_DETAILS, {':idActivity': activity.id.toString()})}
+    >
+      <Eye />
+    </LinkComponent>,
+  ]
+
   return (
     <div className={styles["p-work-activities"]}>
       {curActivity && (
@@ -51,41 +79,14 @@ const WorkActivitiesList = () => {
             {key: 'name', placeholder: '', label:t("table.filter.name")}
           ]}
         >
-          {(res) => {
-            const isCardView = useViewStore.getState().isCardView;
-
-            return isCardView ? (
+          {(res) =>  isCardView ? (
               <div className={styles["p-work-activities__grid"]}>
                 {res.map((activity) => (
                   <DetailCard
                     key={activity.id}
                     header={<div>{activity.name}</div>}
                     body={<div>{activity.description || '-'}</div>}
-                    actions={[
-                      <LinkComponent
-                        key="edit"
-                        color="custom"
-                        to={rewriteRoute(ROUTES.WORK_ACTIVITIES_EDIT, { ':idActivity': activity.id.toString() })}
-                      >
-                        <Edit2 size={18} />
-                      </LinkComponent>,
-                      <Button
-                        key="remove"
-                        color="custom"
-                        additionalClassName={styles["p-work-activities__btn-delete"]}
-                        onClick={() => openDeleteModalHdlr(activity)}
-                      >
-                        <Trash2 size={18} />
-                      </Button>,
-                      <LinkComponent
-                        key="details"
-                        color="custom"
-                        className={styles["p-work-activities__btn-details"]}
-                        to={rewriteRoute(ROUTES.WORK_ACTIVITIES_DETAILS, {':idActivity': activity.id.toString()})}
-                      >
-                        <Eye />
-                      </LinkComponent>,
-                    ]}
+                    actions={actions(activity)}
                   />
                 ))}
               </div>
@@ -96,38 +97,10 @@ const WorkActivitiesList = () => {
                   { key: 'name', header: t('table.name') },
                   { key: 'description', header: t('table.description') },
                 ]}
-                actions={(row) => [
-                   
-                    <LinkComponent
-                      key="edit"
-                      color="custom"
-                      to={rewriteRoute(ROUTES.WORK_ACTIVITIES_EDIT, { ':idActivity': row.id.toString() })}
-                    >
-                      <Edit2 size={18} />
-                    </LinkComponent>
-                  ,
-                  
-                    <Button
-                      key="remove"
-                      color="custom"
-                      additionalClassName={styles["p-work-activities__btn-delete"]}
-                      onClick={() => openDeleteModalHdlr(row)}
-                    >
-                      <Trash2 size={18} />
-                    </Button>
-                  ,
-                  
-                    <LinkComponent
-                      key="details"
-                      color="custom"
-                      className={styles["p-work-activities__btn-details"]}
-                       to={rewriteRoute(ROUTES.WORK_ACTIVITIES_DETAILS, {':idActivity': row.id.toString()})}
-                    ><Eye /></LinkComponent>,
-                  ,
-                ]}
+                actions={actions}
               />
-            );
-          }}
+            )
+          }
         </Paginated>
       </Card>
     </div>

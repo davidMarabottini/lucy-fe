@@ -32,6 +32,34 @@ const User = () => {
 
   const isCardView = useViewStore((state) => state.isCardView)
 
+  const actions = (user: UsersResult) => [
+    <Button
+      key="delete"
+      color="custom"
+      className={styles["p-user-list__btn-delete"]}
+      disabled={me?.id === user.id}
+      onClick={() => openDeleteModalHdlr(user)}
+    >
+      <Trash2 />
+    </Button>,
+    <LinkComponent
+      key="edit"
+      color="custom"
+      className={styles["p-user-list__btn-edit"]}
+      to={rewriteRoute(ROUTES.UPDATE_USER, {':userId': user.id.toString()})}
+    >
+      <Edit2 />
+    </LinkComponent>,
+    <LinkComponent
+      key="details"
+      color="custom"
+      className={styles["p-user-list__btn-details"]}
+      to={rewriteRoute(ROUTES.USER_DETAILS, {':userId': user.id.toString()})}
+    >
+      <Eye />
+    </LinkComponent>,
+  ]
+
   return (
     <div>
       {curClient && <DeleteModal
@@ -76,33 +104,7 @@ const User = () => {
                         <div>{user.roles.join(', ')}</div>
                       </div>
                     }
-                    actions={[
-                      <Button
-                        key="delete"
-                        color="custom"
-                        className={styles["p-user-list__btn-delete"]}
-                        disabled={me?.id === user.id}
-                        onClick={() => openDeleteModalHdlr(user)}
-                      >
-                        <Trash2 />
-                      </Button>,
-                      <LinkComponent
-                        key="edit"
-                        color="custom"
-                        className={styles["p-user-list__btn-edit"]}
-                        to={rewriteRoute(ROUTES.UPDATE_USER, {':userId': user.id.toString()})}
-                      >
-                        <Edit2 />
-                      </LinkComponent>,
-                      <LinkComponent
-                        key="details"
-                        color="custom"
-                        className={styles["p-user-list__btn-details"]}
-                        to={rewriteRoute(ROUTES.USER_DETAILS, {':userId': user.id.toString()})}
-                      >
-                        <Eye />
-                      </LinkComponent>,
-                    ]}
+                    actions={actions(user)}
                   />
                 ))}
               </div>
@@ -116,28 +118,7 @@ const User = () => {
                   {key: 'username', header: t("table.username")},
                   {key: 'roles', header: t("table.roles") },
                 ]}
-                actions={row => [
-                  
-                    <Button
-                      key="delete"
-                      color="custom"
-                      className={styles["p-user-list__btn-delete"]}
-                      disabled={me?.id === row.id}
-                      onClick={() => openDeleteModalHdlr(row)}
-                    ><Trash2 /></Button>,
-                    <LinkComponent
-                      key="edit"
-                      color="custom"
-                      className={styles["p-user-list__btn-edit"]}
-                       to={rewriteRoute(ROUTES.UPDATE_USER, {':userId': row.id.toString()})}
-                    ><Edit2 /></LinkComponent>,
-                    <LinkComponent
-                      key="details"
-                      color="custom"
-                      className={styles["p-user-list__btn-details"]}
-                       to={rewriteRoute(ROUTES.USER_DETAILS, {':userId': row.id.toString()})}
-                    ><Eye /></LinkComponent>,
-                ]}
+                actions={actions}
               />
             );
           }}

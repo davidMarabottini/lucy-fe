@@ -29,6 +29,31 @@ const GroupCompaniesList = () => {
 
   const isCardView = useViewStore((state) => state.isCardView)
 
+  const actions = (company: GroupCompany) => [
+    <LinkComponent
+      key="details"
+      color='custom'
+      to={rewriteRoute(ROUTES.GROUP_COMPANY_DETAIL, {':companyId': company.id.toString()})}
+    >
+      <FileText />
+    </LinkComponent>,
+    <LinkComponent
+      key="edit"
+      color='custom'
+      to={rewriteRoute(ROUTES.GROUP_COMPANY_EDIT, {':idCompany': company.id.toString()})}
+    >
+      <Edit2 />
+    </LinkComponent>,
+    <Button
+      key="remove"
+      color="custom"
+      additionalClassName={styles["p-companies__btn-delete"]}
+      onClick={() => openDeleteModalHdlr(company)}
+    >
+      <Trash2 />
+    </Button>,
+  ]
+
   return (
     <div className={styles["p-companies"]}>
       {curCompany && (
@@ -72,30 +97,7 @@ const GroupCompaniesList = () => {
                         <div>{t('table.sectors')}: {company.sectors.map((s) => s.name).join(', ') || '-'}</div>
                       </div>
                     }
-                    actions={[
-                      <LinkComponent
-                        key="details"
-                        color='custom'
-                        to={rewriteRoute(ROUTES.GROUP_COMPANY_DETAIL, {':companyId': company.id.toString()})}
-                      >
-                        <FileText />
-                      </LinkComponent>,
-                      <LinkComponent
-                        key="edit"
-                        color='custom'
-                        to={rewriteRoute(ROUTES.GROUP_COMPANY_EDIT, {':idCompany': company.id.toString()})}
-                      >
-                        <Edit2 />
-                      </LinkComponent>,
-                      <Button
-                        key="remove"
-                        color="custom"
-                        additionalClassName={styles["p-companies__btn-delete"]}
-                        onClick={() => openDeleteModalHdlr(company)}
-                      >
-                        <Trash2 />
-                      </Button>,
-                    ]}
+                    actions={actions(company)}
                   />
                 ))}
               </div>
@@ -111,36 +113,7 @@ const GroupCompaniesList = () => {
                     value: row => row.sectors.map(s => s.name).join(', ')
                   },
                 ]}
-                actions={(row) =>[
-                   (
-                      <LinkComponent
-                        key="details"
-                        color='custom'
-                        to={rewriteRoute(ROUTES.GROUP_COMPANY_DETAIL, {':companyId': row.id.toString()})}
-                      >
-                        <FileText />
-                      </LinkComponent>
-                    ),
-                   (
-                      <LinkComponent
-                        key="edit"
-                        color='custom'
-                        to={rewriteRoute(ROUTES.GROUP_COMPANY_EDIT, {':idCompany': row.id.toString()})}
-                      >
-                        <Edit2 />
-                      </LinkComponent>
-                    ),
-                   (
-                    <Button
-                      key="remove"
-                      color="custom"
-                      additionalClassName={styles["p-companies__btn-delete"]}
-                      onClick={() => openDeleteModalHdlr(row)}
-                    >
-                      <Trash2  />
-                    </Button>
-                  ),
-                ]}
+                actions={actions}
               />
             );
           }}
