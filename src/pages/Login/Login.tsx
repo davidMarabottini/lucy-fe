@@ -11,7 +11,7 @@ type LoginData = {username: string, password: string};
 
 const Login = () => {
   const { mutate: login } = useLogin();
-  const {t} = useTranslation('login');
+  const {t} = useTranslation('features/login');
 
   const onSubmit = (values: LoginData) => {
     login(values);

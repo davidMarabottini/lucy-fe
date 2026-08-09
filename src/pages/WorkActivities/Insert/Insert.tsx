@@ -26,7 +26,7 @@ const InsertWorkActivity = () => {
   const isEditMode = Boolean(activityId);
 
   const [locNavigate, setLockNavigate] = useState<boolean>(false)
-  const { t } = useTranslation('workActivity', {keyPrefix: 'insert'});
+  const { t } = useTranslation('features/workActivity', {keyPrefix: 'insert'});
 
   const { data: activityData, isFetched: isFetchedActivity } = useWorkActivityDetail(activityId ?? 0, { enabled: isEditMode });
   const { mutate: insertActivity, error } = useInsertWorkActivity(locNavigate);

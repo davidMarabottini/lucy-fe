@@ -22,7 +22,9 @@
     "title": "Inserisci attività lavorativa",
     "form": {
       "name": {"label": "Nome"},
-      "description": {"label": "Descrizione"}
+      "description": {"label": "Descrizione"},
+      "submit": "Salva",
+      "reset": "Annulla"
     },
     "submitButton": "Salva",
     "cancelButton": "Annulla",
