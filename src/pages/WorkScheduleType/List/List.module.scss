@@ -19,10 +19,6 @@
     text-transform: uppercase;
   }
 
-  &__btn-delete {
-    color: $color-error;
-  }
-
   &__grid {
     @include create-card-grid(( $bp-tablet: 2, $bp-wide: 4 ));
   }

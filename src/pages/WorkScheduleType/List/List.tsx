@@ -5,7 +5,7 @@ import styles from './List.module.scss';
 import Table from "@/components/organisms/Table/Table";
 import { type WorkScheduleType } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
-import { Edit2, PlusCircle, Trash2, HelpCircle } from "lucide-react";
+import { Edit2, Eye, PlusCircle, Trash2, HelpCircle } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -32,8 +32,17 @@ const WorkScheduleTypeList = () => {
 
   const actions = (type: WorkScheduleType) => [
     <LinkComponent
+      key="details"
+      color="custom"
+      className="t-btn-link"
+      to={rewriteRoute(ROUTES.WORK_SCHEDULE_TYPE_DETAILS, {':idWorkScheduleType': type.id.toString()})}
+    >
+      <Eye />
+    </LinkComponent>,
+    <LinkComponent
       key="edit"
       color="custom"
+      className="t-btn-link"
       to={rewriteRoute(ROUTES.WORK_SCHEDULE_TYPE_EDIT, { ':idWorkScheduleType': type.id.toString() })}
     >
       <Edit2 size={18} />
@@ -41,19 +50,11 @@ const WorkScheduleTypeList = () => {
     <Button
       key="remove"
       color="custom"
-      additionalClassName={styles["p-wst__btn-delete"]}
+      additionalClassName="t-btn-link t-btn-delete"
       onClick={() => openDeleteModalHdlr(type)}
     >
       <Trash2 size={18} />
     </Button>,
-    <LinkComponent
-      key="details"
-      color="custom"
-      className={styles["p-wst__btn-details"]}
-      to={rewriteRoute(ROUTES.WORK_SCHEDULE_TYPE_DETAILS, {':idWorkScheduleType': type.id.toString()})}
-    >
-      <Icons.Eye />
-    </LinkComponent>,
   ]
 
   return (

@@ -32,6 +32,7 @@ const ContractsList = () => {
     <LinkComponent
       key="details"
       color='custom'
+      className="t-btn-link"
       to={rewriteRoute(ROUTES.CONTRACT_DETAIL, {':contractId': contract.id.toString()})}
     >
       <Eye />
@@ -39,6 +40,7 @@ const ContractsList = () => {
     <LinkComponent
       key="edit"
       color='custom'
+      className="t-btn-link"
       to={rewriteRoute(ROUTES.CONTRACT_EDIT, { ':idContract': contract.id.toString() })}
     >
       <Edit2 />
@@ -46,7 +48,7 @@ const ContractsList = () => {
     <Button
       key="remove"
       color="custom"
-      additionalClassName={styles["p-contracts__btn-delete"]}
+      additionalClassName="t-btn-link t-btn-delete"
       onClick={() => openDeleteModalHdlr(contract)}
     >
       <Trash2 />

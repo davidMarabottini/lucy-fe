@@ -33,8 +33,17 @@ const SectorsList = () => {
 
   const actions = (sector: Sector) => [
     <LinkComponent
+      key="details"
+      color="custom"
+      className="t-btn-link"
+      to={rewriteRoute(ROUTES.SECTOR_DETAIL, {':idSector': sector.id.toString()})}
+    >
+      <Eye />
+    </LinkComponent>,
+    <LinkComponent
       key="edit"
       color="custom"
+      className="t-btn-link"
       to={rewriteRoute(ROUTES.SECTOR_EDIT, { ':idSector': sector.id.toString() })}
     >
       <Edit2 size={18} />
@@ -42,19 +51,11 @@ const SectorsList = () => {
     <Button
       key="remove"
       color="custom"
-      additionalClassName={styles["p-sectors__btn-delete"]}
+      additionalClassName="t-btn-link t-btn-delete"
       onClick={() => openDeleteModalHdlr(sector)}
     >
       <Trash2 size={18} />
     </Button>,
-    <LinkComponent
-      key="details"
-      color="custom"
-      className={styles["p-sectors__btn-details"]}
-      to={rewriteRoute(ROUTES.SECTOR_DETAIL, {':idSector': sector.id.toString()})}
-    >
-      <Eye />
-    </LinkComponent>,
   ]
 
   // if (isLoading) return <div className={styles["p-sectors__loading"]}>{t("additiveMessages.loading")}</div>;

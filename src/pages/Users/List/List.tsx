@@ -33,31 +33,31 @@ const User = () => {
   const isCardView = useViewStore((state) => state.isCardView)
 
   const actions = (user: UsersResult) => [
+    <LinkComponent
+      key="details"
+      color="custom"
+      className="t-btn-link"
+      to={rewriteRoute(ROUTES.USER_DETAILS, {':userId': user.id.toString()})}
+    >
+      <Eye />
+    </LinkComponent>,
+    <LinkComponent
+      key="edit"
+      color="custom"
+      className="t-btn-link"
+      to={rewriteRoute(ROUTES.UPDATE_USER, {':userId': user.id.toString()})}
+    >
+      <Edit2 />
+    </LinkComponent>,
     <Button
       key="delete"
       color="custom"
-      className={styles["p-user-list__btn-delete"]}
+      additionalClassName="t-btn-link t-btn-delete"
       disabled={me?.id === user.id}
       onClick={() => openDeleteModalHdlr(user)}
     >
       <Trash2 />
     </Button>,
-    <LinkComponent
-      key="edit"
-      color="custom"
-      className={styles["p-user-list__btn-edit"]}
-      to={rewriteRoute(ROUTES.UPDATE_USER, {':userId': user.id.toString()})}
-    >
-      <Edit2 />
-    </LinkComponent>,
-    <LinkComponent
-      key="details"
-      color="custom"
-      className={styles["p-user-list__btn-details"]}
-      to={rewriteRoute(ROUTES.USER_DETAILS, {':userId': user.id.toString()})}
-    >
-      <Eye />
-    </LinkComponent>,
   ]
 
   return (

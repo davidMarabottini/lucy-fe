@@ -30,16 +30,24 @@ const LibemaxEmployees = () => {
   const isCardView = useViewStore((state) => state.isCardView)
 
   const actions = (employee: LibemaxEmployee) => [
-    <LinkComponent key="details" to={rewriteRoute(ROUTES.EMPLOYEE_DETAIL, {':employeeId': employee.id.toString()})}>
+    <LinkComponent
+      key="details"
+      className="t-btn-link"
+      to={rewriteRoute(ROUTES.EMPLOYEE_DETAIL, {':employeeId': employee.id.toString()})}
+    >
       <Eye />
     </LinkComponent>,
-    <LinkComponent key="edit" to={rewriteRoute(ROUTES.EDIT_EMPLOYEE, { ':idEmployee': employee.id.toString() })}>
+    <LinkComponent
+      key="edit"
+      className="t-btn-link"
+      to={rewriteRoute(ROUTES.EDIT_EMPLOYEE, { ':idEmployee': employee.id.toString() })}
+    >
       <Edit2 />
     </LinkComponent>,
     <Button
       key="remove"
       color="custom"
-      additionalClassName={styles["c-employees-details-card__btn-delete"]}
+      additionalClassName="t-btn-link t-btn-delete"
       onClick={() => openDeleteModalHdlr(employee)}
     >
       <Trash2 />

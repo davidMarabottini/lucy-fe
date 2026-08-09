@@ -33,6 +33,7 @@ const GroupCompaniesList = () => {
     <LinkComponent
       key="details"
       color='custom'
+      className="t-btn-link"
       to={rewriteRoute(ROUTES.GROUP_COMPANY_DETAIL, {':companyId': company.id.toString()})}
     >
       <FileText />
@@ -40,6 +41,7 @@ const GroupCompaniesList = () => {
     <LinkComponent
       key="edit"
       color='custom'
+      className="t-btn-link"
       to={rewriteRoute(ROUTES.GROUP_COMPANY_EDIT, {':idCompany': company.id.toString()})}
     >
       <Edit2 />
@@ -47,7 +49,7 @@ const GroupCompaniesList = () => {
     <Button
       key="remove"
       color="custom"
-      additionalClassName={styles["p-companies__btn-delete"]}
+      additionalClassName="t-btn-link t-btn-delete"
       onClick={() => openDeleteModalHdlr(company)}
     >
       <Trash2 />

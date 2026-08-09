@@ -31,16 +31,24 @@ const LibemaxClients = () => {
   const isCardView = useViewStore((state) => state.isCardView)
 
   const actions = (client: LibemaxClient) => [
-      <LinkComponent key="details" to={rewriteRoute(ROUTES.CLIENT_DETAIL, { ':clientId': client.id.toString() })}>
+      <LinkComponent
+        key="details"
+        className="t-btn-link"
+        to={rewriteRoute(ROUTES.CLIENT_DETAIL, { ':clientId': client.id.toString() })}
+      >
         <Eye />
       </LinkComponent>,
-      <LinkComponent key="edit" to={rewriteRoute(ROUTES.EDIT_CLIENT, { ':idClient': client.id.toString() })}>
+      <LinkComponent
+        key="edit"
+        className="t-btn-link"
+        to={rewriteRoute(ROUTES.EDIT_CLIENT, { ':idClient': client.id.toString() })}
+      >
         <Edit2 />
       </LinkComponent>,
       <Button
         key="remove"
         color="custom"
-        additionalClassName={styles["p-libemax-clients__btn-delete"]}
+        additionalClassName="t-btn-link t-btn-delete"
         onClick={() => openDeleteModalHdlr(client)}
       >
         <Trash2 />

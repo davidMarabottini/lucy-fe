@@ -31,28 +31,29 @@ const WorkActivitiesList = () => {
 
   const actions = (activity: WorkActivity) => [
     <LinkComponent
-      key="edit"
-      color="custom"
-      to={rewriteRoute(ROUTES.WORK_ACTIVITIES_EDIT, { ':idActivity': activity.id.toString() })}
-    >
-      <Edit2 size={18} />
-    </LinkComponent>,
-    <Button
-      key="remove"
-      color="custom"
-      additionalClassName={styles["p-work-activities__btn-delete"]}
-      onClick={() => openDeleteModalHdlr(activity)}
-    >
-      <Trash2 size={18} />
-    </Button>,
-    <LinkComponent
       key="details"
       color="custom"
-      className={styles["p-work-activities__btn-details"]}
+      className="t-btn-link"
       to={rewriteRoute(ROUTES.WORK_ACTIVITIES_DETAILS, {':idActivity': activity.id.toString()})}
     >
       <Eye />
     </LinkComponent>,
+    <LinkComponent
+      key="edit"
+      color="custom"
+      className="t-btn-link"
+      to={rewriteRoute(ROUTES.WORK_ACTIVITIES_EDIT, { ':idActivity': activity.id.toString() })}
+    >
+      <Edit2 />
+    </LinkComponent>,
+    <Button
+      key="remove"
+      color="custom"
+      additionalClassName="t-btn-link t-btn-delete"
+      onClick={() => openDeleteModalHdlr(activity)}
+    >
+      <Trash2 />
+    </Button>,
   ]
 
   return (

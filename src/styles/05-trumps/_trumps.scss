@@ -1,0 +1,9 @@
+@use "../abstracts" as *;
+
+.t-btn-link {
+  padding: $space-sm!important;
+  background-color: transparent!important;
+}
+.t-btn-delete {
+  color: $color-error!important;
+}
