@@ -5,7 +5,7 @@ import { useClientDetailStore } from "@/zustand/clientDetailState";
 import DateNavigatorCard from "@/components/molecules/DateFilterCard/DateNavigatorCard";
 
 const DateFilterCard = () => {
-  const { t } = useTranslation("client", { keyPrefix: "details.workDetails" });
+  const { t } = useTranslation("features/client", { keyPrefix: "details.workDetails" });
   const setSelectedDate = useClientDetailStore((s) => s.setSelectedDate);
   const setNextDay = useClientDetailStore((s) => s.setNextDay);
   const setPreviousDay = useClientDetailStore((s) => s.setPreviousDay);

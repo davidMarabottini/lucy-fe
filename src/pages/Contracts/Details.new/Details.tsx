@@ -9,7 +9,7 @@ const ContractDetailPage = () => {
   const { contractId } = useParams<{ contractId: string }>();
   const { data, isLoading, error } = useContractDetail(Number(contractId));
   const { mutate: deleteSchedule } = useDeleteWorkSchedule();
-  const { t } = useTranslation("contract", { keyPrefix: "details" });
+  const { t } = useTranslation("features/contract", { keyPrefix: "details" });
 
   if (isLoading) return <div>{t("additionalMessage.loading")}</div>;
   if (error) return <div>{t("additionalMessage.errorLoading")}</div>;

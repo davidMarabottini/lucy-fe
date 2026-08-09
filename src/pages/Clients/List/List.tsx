@@ -21,7 +21,7 @@ const LibemaxClients = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [curClient, setCurClient] = useState<LibemaxClient | undefined>()
 
-  const {t} = useTranslation("client", {keyPrefix: "list"});
+  const {t} = useTranslation("features/client", {keyPrefix: "list"});
 
   const openDeleteModalHdlr = (client: LibemaxClient) => {
     setCurClient(client);

@@ -21,7 +21,7 @@ const WorkScheduleTypeList = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [curType, setCurType] = useState<WorkScheduleType | undefined>();
 
-  const { t } = useTranslation("workScheduleType", { keyPrefix: "list" });
+  const { t } = useTranslation("features/workScheduleType", { keyPrefix: "list" });
 
   const openDeleteModalHdlr = (type: WorkScheduleType) => {
     setCurType(type);

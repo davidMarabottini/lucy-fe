@@ -4,7 +4,7 @@ import { useGroupCompanies } from "@/hooks/api/GroupCompanyHooks";
 import styles from './List.module.scss'; 
 import { type GroupCompany } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
-import { Edit2, FileText, PlusCircle, Trash2 } from "lucide-react";
+import { Edit2, Eye, PlusCircle, Trash2 } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -20,7 +20,7 @@ const GroupCompaniesList = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [curCompany, setCurCompany] = useState<GroupCompany | undefined>();
 
-  const { t } = useTranslation("groupCompany", { keyPrefix: "list" });
+  const { t } = useTranslation("features/groupCompany", { keyPrefix: "list" });
 
   const openDeleteModalHdlr = (company: GroupCompany) => {
     setCurCompany(company);
@@ -36,7 +36,7 @@ const GroupCompaniesList = () => {
       className="t-btn-link"
       to={rewriteRoute(ROUTES.GROUP_COMPANY_DETAIL, {':companyId': company.id.toString()})}
     >
-      <FileText />
+      <Eye />
     </LinkComponent>,
     <LinkComponent
       key="edit"

@@ -5,9 +5,16 @@ import { type ModalProp } from "./Modal.types";
 
 export const Modal = ({header, children, btnList, open, setOpen}: ModalProp) => {
   if(!open) return null
+
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    // Chiude solo se il click è avvenuto esattamente sul backdrop e non sui suoi figli
+    if (e.target === e.currentTarget) {
+      setOpen(false);
+    }
+  }
   
   return (
-    <div className={styles["c-modal__backDrop"]}>
+    <div className={styles["c-modal__backDrop"]} onClick={handleBackdropClick}>
       <div className={styles["c-modal__main"]}>
           <div className={styles["c-modal__header"]}>
             <div>{header}</div>

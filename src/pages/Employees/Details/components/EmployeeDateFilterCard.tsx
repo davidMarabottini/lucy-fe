@@ -5,7 +5,7 @@ import { useEmployeeDetailStore } from "@/zustand/employeeDetailState";
 import DateNavigatorCard from "@/components/molecules/DateFilterCard/DateNavigatorCard";
 
 const EmployeeDateFilterCard = () => {
-  const { t } = useTranslation("employee", { keyPrefix: "details" });
+  const { t } = useTranslation("features/employee", { keyPrefix: "details" });
   const setSelectedDate = useEmployeeDetailStore((s) => s.setSelectedDate);
   const setNextDay = useEmployeeDetailStore((s) => s.setNextDay);
   const setPreviousDay = useEmployeeDetailStore((s) => s.setPreviousDay);

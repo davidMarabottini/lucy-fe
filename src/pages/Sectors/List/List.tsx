@@ -17,13 +17,10 @@ import DetailCard from "@/components/atoms/DetailCard/DetailCard";
 import { useViewStore } from "@/zustand/listViewAsCard";
 
 const SectorsList = () => {
-  // Utilizziamo l'hook specifico per i settori
-  // const { data: sectors, isLoading, error } = useSectors();
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [curSector, setCurSector] = useState<Sector | undefined>();
 
-  // Namespace i18n dedicato ai settori
-  const { t } = useTranslation("sector", { keyPrefix: "list" });
+  const { t } = useTranslation("features/sector", { keyPrefix: "list" });
 
   const openDeleteModalHdlr = (sector: Sector) => {
     setCurSector(sector);

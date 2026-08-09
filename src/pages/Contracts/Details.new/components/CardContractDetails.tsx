@@ -24,7 +24,7 @@ const CardContractDetails = ({
   contractId: string;
   deleteSchedule: (id: number) => void;
 }) => {
-  const { t } = useTranslation("contract", { keyPrefix: "details" });
+  const { t } = useTranslation("features/contract", { keyPrefix: "details" });
   
   // Stati per il controllo delle modali
   const [openScheduleModal, setOpenScheduleModal] = useState<boolean>(false);

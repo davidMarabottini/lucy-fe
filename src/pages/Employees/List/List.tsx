@@ -20,7 +20,7 @@ const LibemaxEmployees = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [curEmployee, setCurEmployee] = useState<LibemaxEmployee | undefined>()
 
-  const {t} = useTranslation("employee", {keyPrefix: "list"});
+  const {t} = useTranslation("features/employee", {keyPrefix: "list"});
 
   const openDeleteModalHdlr = (employee: LibemaxEmployee) => {
     setCurEmployee(employee);

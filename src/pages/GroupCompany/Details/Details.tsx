@@ -16,7 +16,7 @@ import Table from "@/components/organisms/Table/Table";
 const GroupCompanyDetailPage = () => {
   const { companyId } = useParams<{ companyId: string }>();
   const { data, isLoading, error } = useGroupCompanyDetail(Number(companyId));
-  const { t } = useTranslation("groupCompany", { keyPrefix: "details" });
+  const { t } = useTranslation("features/groupCompany", { keyPrefix: "details" });
 
   if (isLoading) return <div>{t("additionalMessage.loading")}</div>;
   if (error) return <div>{t("additionalMessage.errorLoading")}</div>;

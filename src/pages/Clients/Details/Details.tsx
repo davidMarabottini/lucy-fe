@@ -18,7 +18,7 @@ import clsx from "clsx";
 const ClientDetailPage = () => {
   const { clientId } = useParams<{ clientId: string }>();
   const { data, isLoading, error } = useClientDetail(Number(clientId));
-  const {t} = useTranslation("client", {keyPrefix: "details"});
+  const {t} = useTranslation("features/client", {keyPrefix: "details"});
   
   if (isLoading) return <div>{t("additionalMessage.loading")}</div>;
   if (error) return <div>{t("additionalMessage.errorLoading")}</div>;

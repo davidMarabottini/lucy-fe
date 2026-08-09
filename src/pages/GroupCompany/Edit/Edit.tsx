@@ -19,7 +19,7 @@ const EditGroupCompany = () => {
   const idNumber = Number(companyId);
   const navigate = useNavigate();
   
-  const { t } = useTranslation('groupCompany', { keyPrefix: 'edit' }); // Assicurati di avere il keyPrefix "edit" nelle traduzioni
+  const { t } = useTranslation("features/groupCompany", { keyPrefix: 'edit' }); // Assicurati di avere il keyPrefix "edit" nelle traduzioni
   const { data: companyData, isLoading, error } = useGroupCompanyDetail(idNumber);
   const { mutate: updateCompany } = useUpdateGroupCompany(idNumber);
   const { data: availableSectors } = useSectors();

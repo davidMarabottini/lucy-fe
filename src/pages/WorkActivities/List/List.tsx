@@ -20,7 +20,7 @@ const WorkActivitiesList = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [curActivity, setCurActivity] = useState<WorkActivity | undefined>();
 
-  const { t } = useTranslation("workActivity", {keyPrefix: "list"});
+  const { t } = useTranslation("features/workActivity", {keyPrefix: "list"});
 
   const openDeleteModalHdlr = (activity: WorkActivity) => {
     setCurActivity(activity);

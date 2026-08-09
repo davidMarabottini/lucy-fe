@@ -96,7 +96,10 @@
       "errorLoadingMap": "Errore nel caricamento della mappa"
     }
   }, "insert": {
-    "title": "Aggiungi cliente",
+    "title": {
+      "create": "Aggiungi cliente",
+      "edit": "Modifica cliente"
+    },
     "form": {
       "name": {
         "label": "Nome",

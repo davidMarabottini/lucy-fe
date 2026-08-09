@@ -22,7 +22,7 @@ const InsertWorkScheduleType = () => {
   const isEditMode = Boolean(workScheduleTypeId);
 
   const [locNavigate, setLockNavigate] = useState<boolean>(false)
-  const { t } = useTranslation('workScheduleType', { keyPrefix: 'insert' });
+  const { t } = useTranslation("features/workScheduleType", { keyPrefix: 'insert' });
 
   const { data: workScheduleTypeData, isFetched: isFetchedWorkScheduleType } = useWorkScheduleTypeDetail(
     workScheduleTypeId ?? 0,

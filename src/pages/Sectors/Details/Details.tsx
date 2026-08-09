@@ -14,7 +14,7 @@ const SectorDetailPage = () => {
   const sectorId = sectorIdParams ? parseInt(sectorIdParams, 10) : 0;
 
   const { data, isLoading, error } = useSectorDetail(sectorId);
-  const { t } = useTranslation("sector", { keyPrefix: "details" });
+  const { t } = useTranslation("features/sector", { keyPrefix: "details" });
 
   if (isLoading) return <div>{t("additionalMessage.loading")}</div>;
   if (error) return <div>{t("additionalMessage.errorLoading")}</div>;

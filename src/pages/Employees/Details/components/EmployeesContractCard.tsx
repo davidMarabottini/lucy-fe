@@ -12,7 +12,7 @@ import { useEmployeeDetailStore } from "@/zustand/employeeDetailState";
 import Table from "@/components/organisms/Table/Table";
 
 export const EmployeesContractCard = ({ employeeId }: { employeeId: string }) => {
-  const { t } = useTranslation("employee", { keyPrefix: "details.contracts" });
+  const { t } = useTranslation("features/employee", { keyPrefix: "details.contracts" });
   const selectedContractId = useEmployeeDetailStore((s) => s.selectedContractId);
   const setSelectedContractId = useEmployeeDetailStore((s) => s.setSelectedContractId);
 

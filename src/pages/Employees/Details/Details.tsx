@@ -16,7 +16,7 @@ import { EmployeeContractDetailCard } from "./components/EmployeeContractDetailC
 const EmployeeDetailPage = () => {
   const { employeeId } = useParams<{ employeeId: string }>();
   const { data, isLoading, error } = useEmployeeDetail(Number(employeeId));
-  const { t } = useTranslation("employee", { keyPrefix: "details" });
+  const { t } = useTranslation("features/employee", { keyPrefix: "details" });
 
   if (isLoading) return <div>{t("additionalMessage.loading")}</div>;
   if (error) return <div>{t("additionalMessage.errorLoading")}</div>;

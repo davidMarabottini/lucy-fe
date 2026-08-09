@@ -12,7 +12,7 @@ import clsx from "clsx";
 const UsersDetailPage = () => {
   const { userId } = useParams<{ userId: string }>();
   const { data, isLoading, error } = useUserDetail(Number(userId));
-  const { t } = useTranslation("user", { keyPrefix: "details" });
+  const { t } = useTranslation("features/user", { keyPrefix: "details" });
 
   if (isLoading) return <div>{t("additionalMessage.loading")}</div>;
   if (error) return <div>{t("additionalMessage.errorLoading")}</div>;

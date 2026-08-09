@@ -15,7 +15,6 @@ import { useState } from 'react';
 import Switch from '@/components/atoms/Switch/Switch';
 import type { UseFormReturn } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
-// import { useEmployeeDetail } from '@/hooks/api/useEmployeesHooks';
 
 const InsertClient = () => {
   const { idClient: clientIdParams } = useParams<{ idClient?: string }>();
@@ -23,12 +22,12 @@ const InsertClient = () => {
   const isEditMode = Boolean(clientId);
 
   const [locNavigate, setLockNavigate] = useState<boolean>(false)
-  const {t} = useTranslation("client", {keyPrefix: "insert"});
+  const {t} = useTranslation("features/client", {keyPrefix: "insert"});
   
-  const { data: clientData, isLoading: isLoadingClient, isFetched: isFetchedClient } = useClientDetail(clientId ?? 0, {enabled: isEditMode});
+  const { data: clientData, isFetched: isFetchedClient } = useClientDetail(clientId ?? 0, {enabled: isEditMode});
   
   const {mutate: insertClient, error} = useInsertClient(locNavigate);
-  const {mutate: editClient, error: editError} = useUpdateClient(clientId)
+  const {mutate: editClient} = useUpdateClient(clientId)
   
   const onSubmit = (payload: LibemaxClientForm, methods: UseFormReturn<LibemaxClientForm>) => {
     const { dirtyFields } = methods.formState;

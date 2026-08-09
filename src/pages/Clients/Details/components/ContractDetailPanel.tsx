@@ -15,7 +15,7 @@ interface ContractDetailPanelProps {
 }
 
 export const ContractDetailPanel = ({ contract, selectedDate, onClose }: ContractDetailPanelProps) => {
-  const { t } = useTranslation("client", { keyPrefix: "details.contracts" });
+  const { t } = useTranslation("features/client", { keyPrefix: "details.contracts" });
   const { data: employees } = useGetEmployeesByContract(contract.id, selectedDate);
 
   return (

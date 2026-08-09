@@ -10,7 +10,7 @@ import type { DeleteModalProps } from "./DeleteModal.types";
 
 export const DeleteModal = ({openModal, setOpenModal, curEmployee}: DeleteModalProps) => {
   const {mutate: deleteEmployee} = useEmployeeDelete();
-  const {t} = useTranslation("employee", {keyPrefix: "list"});
+  const {t} = useTranslation("features/employee", {keyPrefix: "list"});
 
   const confirmDeleteEmployeeHdlr = () => {
     if(curEmployee) {

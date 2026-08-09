@@ -18,7 +18,7 @@ export const DeleteModal = ({
   const { mutate: deleteContract } = useDeleteContract();
   
   // Namespace "groupCompany" con il prefisso corretto per la modale di eliminazione
-  const { t } = useTranslation("contract", { keyPrefix: "list.delete" });
+  const { t } = useTranslation("features/contract", { keyPrefix: "list.delete" });
 
   const confirmDeleteHdlr = () => {
     if (curContract) {

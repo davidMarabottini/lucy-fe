@@ -13,7 +13,7 @@ interface ContractEmployeesListProps {
 }
 
 export const ContractEmployeesList = ({ employees }: ContractEmployeesListProps) => {
-  const { t } = useTranslation("client", { keyPrefix: "details.contracts.employees" });
+  const { t } = useTranslation("features/client", { keyPrefix: "details.contracts.employees" });
   const selectedEmployeeLibemaxId = useClientDetailStore((s) => s.selectedEmployeeLibemaxId);
   const setSelectedEmployeeLibemaxId = useClientDetailStore((s) => s.setSelectedEmployeeLibemaxId);
 

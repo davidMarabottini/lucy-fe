@@ -14,7 +14,7 @@ import { ContractDetailPanel } from "./ContractDetailPanel.tsx";
 import Table from "@/components/organisms/Table/Table.tsx";
 
 export const ContractsCard = ({ clientId }: { clientId: string }) => {
-  const { t } = useTranslation("client", { keyPrefix: "details.contracts" });
+  const { t } = useTranslation("features/client", { keyPrefix: "details.contracts" });
   const [selectedContract, setSelectedContract] = useState<Contract | null>(null);
   const selectedDate = useClientDetailStore((s) => s.selectedDate);
 

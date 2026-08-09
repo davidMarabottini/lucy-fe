@@ -15,7 +15,7 @@ const SetDetails = () => {
   const { contractId } = useParams<{ contractId: string }>();
 
   const { data, isLoading, error } = useContractDetail(Number(contractId));
-  const { t } = useTranslation("contract", { keyPrefix: "setDetails" });
+  const { t } = useTranslation("features/contract", { keyPrefix: "setDetails" });
   
   if (isLoading) return <div>{t("additionalMessage.loading")}</div>;
   if (error) return <div>{t("additionalMessage.errorLoading")}</div>;

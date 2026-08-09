@@ -23,7 +23,7 @@ const Registration = () => {
 
   const [locNavigate, setLockNavigate] = useState<boolean>(false);
   
-  const { t } = useTranslation("user", { keyPrefix: "insert" });
+  const { t } = useTranslation("features/user", { keyPrefix: "insert" });
   
   const { data: userData, isLoading: isLoadingUser, isFetched: isFetchedUser } = useUserDetail(userId ?? 0, {
     enabled: isEditMode,

@@ -15,7 +15,7 @@ const WorkScheduleTypeDetailPage = () => {
   const workScheduleTypeId = workScheduleTypeIdParams ? parseInt(workScheduleTypeIdParams, 10) : 0;
 
   const { data, isLoading, error } = useWorkScheduleTypeDetail(workScheduleTypeId);
-  const { t } = useTranslation("workScheduleType", { keyPrefix: "details" });
+  const { t } = useTranslation("features/workScheduleType", { keyPrefix: "details" });
 
   if (isLoading) return <div>{t("additionalMessage.loading")}</div>;
   if (error) return <div>{t("additionalMessage.errorLoading")}</div>;

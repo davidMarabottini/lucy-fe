@@ -13,7 +13,7 @@ interface ContractSchedulesTableProps {
 }
 
 export const ContractSchedulesTable = ({ contractId, selectedDate }: ContractSchedulesTableProps) => {
-  const { t } = useTranslation("client", { keyPrefix: "details.contracts" });
+  const { t } = useTranslation("features/client", { keyPrefix: "details.contracts" });
 
   return (
     <Paginated<WorkSchedule>

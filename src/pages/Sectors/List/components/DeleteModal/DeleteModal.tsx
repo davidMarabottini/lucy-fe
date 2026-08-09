@@ -11,7 +11,7 @@ import type { Sector } from "@/api/types";
 
 export const DeleteModal = ({openModal, setOpenModal, curSector}: DeleteModalProps) => {
   const {mutate: deleteSector} = useDeleteSector();
-  const {t} = useTranslation("sector", {keyPrefix: "list.delete"});
+  const {t} = useTranslation("features/sector", {keyPrefix: "list.delete"});
   const confirmDeleteUserHdlr = () => {
     if(curSector) {
       deleteSector(curSector.id);

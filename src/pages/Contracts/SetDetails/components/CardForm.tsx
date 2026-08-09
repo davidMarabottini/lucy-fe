@@ -22,7 +22,7 @@ type WorkScheduleFormValues = {
 };
 
 const CardForm = ({ contractId }: { contractId: string }) => {
-  const { t } = useTranslation("contract", { keyPrefix: "details" });
+  const { t } = useTranslation("features/contract", { keyPrefix: "details" });
   const { classBase, ...iconPresetRest } = ICON_PRESET;
   const { data: scheduleTypes } = useWorkScheduleTypes();
   const { data: weekDays } = useWeekDays();

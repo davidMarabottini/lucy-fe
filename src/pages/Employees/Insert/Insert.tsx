@@ -22,7 +22,7 @@ const InsertEmployee = () => {
   const isEditMode = Boolean(employeeId);
 
   const [locNavigate, setLockNavigate] = useState<boolean>(false)
-  const {t} = useTranslation("employee", {keyPrefix: "insert"});
+  const {t} = useTranslation("features/employee", {keyPrefix: "insert"});
 
   const { data: employeeData, isFetched: isFetchedEmployee } = useEmployeeDetail(employeeId ?? 0, { enabled: isEditMode });
   const {mutate: insertEmployee, error} = useInsertEmployee(locNavigate);

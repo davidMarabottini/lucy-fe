@@ -16,7 +16,7 @@ const CardContractDetails = ({
   contractId: string;
   deleteSchedule: (id: number) => void;
 }) => {
-  const { t } = useTranslation("contract", { keyPrefix: "details" });
+  const { t } = useTranslation("features/contract", { keyPrefix: "details" });
   return (
     <Card additionalClassName={styles["p-contract-detail__card"]}>
       <Typography variant="h2" additionalClasses={styles["p-contract-detail__title"]}>

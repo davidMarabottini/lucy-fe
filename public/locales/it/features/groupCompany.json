@@ -45,7 +45,8 @@
       },
       "submit": "Salva",
       "reset": "Annulla"
-    }
+    },
+    "keepInPage": "Rimani in questa pagina"
   },
   "details": {
     "title": "Dettagli Società",

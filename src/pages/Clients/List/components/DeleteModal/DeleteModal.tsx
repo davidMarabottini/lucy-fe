@@ -10,7 +10,7 @@ import type { DeleteModalProps } from "./DeleteModal.types";
 
 export const DeleteModal = ({openModal, setOpenModal, curClient: idClient}: DeleteModalProps) => {
   const {mutate: deleteClient} = useClientDelete();
-  const {t} = useTranslation("libemaxClient");
+  const {t} = useTranslation("features/client", {keyPrefix: "list"});
       const confirmDeleteClientHdlr = () => {
     if(idClient) {
       deleteClient(idClient.id);

@@ -21,7 +21,7 @@ const InsertSector = () => {
   const isEditMode = Boolean(sectorId);
 
   const [locNavigate, setLockNavigate] = useState<boolean>(false)
-  const { t } = useTranslation('sector', { keyPrefix: 'insert' });
+  const { t } = useTranslation("features/sector", { keyPrefix: 'insert' });
 
   const { data: sectorData, isFetched: isFetchedSector } = useSectorDetail(sectorId ?? 0, { enabled: isEditMode });
   const { mutate: insertSector, error } = useInsertSector(locNavigate);

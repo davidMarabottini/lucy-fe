@@ -18,14 +18,13 @@ import DetailCard from "@/components/atoms/DetailCard/DetailCard";
 import { useViewStore } from "@/zustand/listViewAsCard";
 
 const User = () => {
-  const {t} = useTranslation("user", {keyPrefix: "list"});
+  const {t} = useTranslation("features/user", {keyPrefix: "list"});
   const { data: me } = useMe()
 
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [curClient, setCurClient] = useState<UsersResult | undefined>()
 
   const openDeleteModalHdlr = (client: UsersResult) => {
-    console.log(client);
     setCurClient(client);
     setOpenModal(true);
   }

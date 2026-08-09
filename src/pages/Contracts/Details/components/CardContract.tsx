@@ -10,7 +10,7 @@ import clsx from "clsx";
 import styles from "../Details.module.scss";
 
 const CardContract = ({ data }: { data: Contract }) => {
-  const { t } = useTranslation("contract", { keyPrefix: "details" });
+  const { t } = useTranslation("features/contract", { keyPrefix: "details" });
   return (
     <>
       <Card additionalClassName={clsx(styles["p-contract-detail__card"], styles["p-contract-detail__card-title"])}>

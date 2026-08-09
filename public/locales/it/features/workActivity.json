@@ -8,6 +8,7 @@
       "actions": "Azioni"
     },
     "delete": {
+      "header": "Elimina attività lavorativa",
       "bodyQuestion": "Sei sicuro di voler eliminare questa attività lavorativa?",
       "bodyTable": {
         "name": "Nome",

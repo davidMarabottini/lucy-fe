@@ -18,7 +18,7 @@ export const DeleteModal = ({
   const { mutate: deleteCompany } = useDeleteGroupCompany();
   
   // Namespace "groupCompany" con il prefisso corretto per la modale di eliminazione
-  const { t } = useTranslation("groupCompany", { keyPrefix: "list.delete" });
+  const { t } = useTranslation("features/groupCompany", { keyPrefix: "list.delete" });
 
   const confirmDeleteHdlr = () => {
     if (curGroupCompany) {

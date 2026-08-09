@@ -10,7 +10,7 @@ import Table from "@/components/organisms/Table/Table";
 
 export const DeleteModal = ({openModal, setOpenModal, curWorkActivity: curWorkActivity}: DeleteModalProps) => {
   const {mutate: deleteWorkActivity} = useWorkActivityDelete();
-  const {t} = useTranslation("workActivity", {keyPrefix: "list.delete"});
+  const {t} = useTranslation("features/workActivity", {keyPrefix: "list.delete"});
   const confirmDeleteUserHdlr = () => {
     if(curWorkActivity) {
       deleteWorkActivity(curWorkActivity.id);
@@ -43,12 +43,12 @@ export const DeleteModal = ({openModal, setOpenModal, curWorkActivity: curWorkAc
           </Button>
         ]}
       >
-        <div>{t("curWorkActivitybodyQuestion")}</div>
+        <div>{t("bodyQuestion")}</div>
         {curWorkActivity && (
           <Table<WorkActivity>
             columns={[
-              {key: 'name', header: t("curWorkActivitybodyTable.name")},
-              {key: 'description', header: t("curWorkActivitybodyTable.description")},
+              {key: 'name', header: t("bodyTable.name")},
+              {key: 'description', header: t("bodyTable.description")},
             ]}
             data={[curWorkActivity]}
           />

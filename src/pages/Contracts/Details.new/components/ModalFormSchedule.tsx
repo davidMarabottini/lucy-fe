@@ -26,7 +26,7 @@ type WorkScheduleFormValues = {
 };
 
 const ModalFormSchedule = ({ openModal, setOpenModal, contractId }: ModalFormScheduleProps) => {
-  const { t } = useTranslation("contract", { keyPrefix: "details" });
+  const { t } = useTranslation("features/contract", { keyPrefix: "details" });
   const { data: scheduleTypes } = useWorkScheduleTypes();
   const { data: weekDays } = useWeekDays();
   const { mutate: insertSchedule } = useInsertWorkSchedule();

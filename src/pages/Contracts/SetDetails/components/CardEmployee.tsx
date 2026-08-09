@@ -24,7 +24,7 @@ type AddEmployeeFormValues = {
 const CardEmployee = ({ contractId }: { contractId: number }) => {
   
   const {data: employees, isLoading, error, isSuccess} = useEmployeesList();
-  const {t} = useTranslation("contract", { keyPrefix: "details" });
+  const {t} = useTranslation("features/contract", { keyPrefix: "details" });
   const { mutate: addEmployeeToContract } = useAddEmployeeToContract(contractId);
   const { data: assignedEmployees, isLoading: isAssignedEmployeesLoading, error: assignedEmployeesError } = useGetAllEmployeesByContractId(contractId);
   const onSubmit = (values: AddEmployeeFormValues) => {

@@ -19,7 +19,7 @@ type AddEmployeeFormValues = {
 
 const CardEmployee = ({ contractId }: { contractId: number }) => {
   const {data: employees, isLoading, error, isSuccess} = useEmployeesList();
-  const {t} = useTranslation("contract", { keyPrefix: "details" });
+  const {t} = useTranslation("features/contract", { keyPrefix: "details" });
   const { mutate: addEmployeeToContract } = useAddEmployeeToContract(contractId);
   const onSubmit = (values: Omit<AddEmployeeFormValues, "start_date" | "end_date"> & { range_date: [string | null, string | null] }) => {
     const [start_date, end_date] = values.range_date || [];

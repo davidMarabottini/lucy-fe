@@ -20,7 +20,7 @@ interface EmployeeContractDetailCardProps {
 }
 
 export const EmployeeContractDetailCard = ({ employeeLibemaxId }: EmployeeContractDetailCardProps) => {
-  const { t } = useTranslation("employee", { keyPrefix: "details.contractDetail" });
+  const { t } = useTranslation("features/employee", { keyPrefix: "details.contractDetail" });
   const selectedContractId = useEmployeeDetailStore((s) => s.selectedContractId);
   const selectedDate = useEmployeeDetailStore((s) => s.selectedDate);
   const setSelectedContractId = useEmployeeDetailStore((s) => s.setSelectedContractId);

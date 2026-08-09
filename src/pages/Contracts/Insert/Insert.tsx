@@ -23,7 +23,7 @@ const InsertContract = () => {
   const isEditMode = Boolean(contractId);
 
   const [locNavigate, setLockNavigate] = useState<boolean>(false)
-  const { t } = useTranslation('contract', { keyPrefix: 'insert' });
+  const { t } = useTranslation("features/contract", { keyPrefix: 'insert' });
   const { data: contractData, isFetched: isFetchedContract } = useContractDetail(contractId ?? 0, { enabled: isEditMode });
   const { mutate: insertContract } = useInsertContract(locNavigate);
   const { mutate: editContract } = useUpdateContract(contractId);

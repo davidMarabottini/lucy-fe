@@ -14,7 +14,7 @@ const WorkActivityDetailPage = () => {
   const activityId = activityIdParams ? parseInt(activityIdParams, 10) : 0;
   
   const { data, isLoading, error } = useWorkActivityDetail(activityId);
-  const { t } = useTranslation("workActivity", { keyPrefix: "details" });
+  const { t } = useTranslation("features/workActivity", { keyPrefix: "details" });
 
   if (isLoading) return <div>{t("additionalMessage.loading")}</div>;
   if (error) return <div>{t("additionalMessage.errorLoading")}</div>;

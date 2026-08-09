@@ -20,7 +20,7 @@ const ContractsList = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [curContract, setCurContract] = useState<Contract | undefined>();
 
-  const { t } = useTranslation("contract", { keyPrefix: "list" });
+  const { t } = useTranslation("features/contract", { keyPrefix: "list" });
 
   const openDeleteModalHdlr = (contract: Contract) => {
     setCurContract(contract);

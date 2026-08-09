@@ -22,7 +22,7 @@ const InsertGroupCompany = () => {
   const isEditMode = Boolean(companyId);
 
   const [locNavigate, setLockNavigate] = useState<boolean>(false)
-  const { t } = useTranslation('groupCompany', { keyPrefix: 'insert' });
+  const { t } = useTranslation("features/groupCompany", { keyPrefix: 'insert' });
   const { data: companyData, isFetched: isFetchedCompany } = useGroupCompanyDetail(companyId ?? 0, { enabled: isEditMode });
   const { mutate: insertCompany } = useInsertGroupCompany(locNavigate);
   const { mutate: editCompany } = useUpdateGroupCompany(companyId);

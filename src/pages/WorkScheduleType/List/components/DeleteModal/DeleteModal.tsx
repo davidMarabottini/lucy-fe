@@ -18,7 +18,7 @@ export const DeleteModal = ({
   const { mutate: deleteWorkScheduleType } = useDeleteWorkScheduleType();
   
   // Namespace "groupCompany" con il prefisso corretto per la modale di eliminazione
-  const { t } = useTranslation("workScheduleType", { keyPrefix: "list.delete" });
+  const { t } = useTranslation("features/workScheduleType", { keyPrefix: "list.delete" });
 
   const confirmDeleteHdlr = () => {
     if (curType) {

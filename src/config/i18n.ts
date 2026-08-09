@@ -11,12 +11,16 @@ i18n
     lng: 'it',
     fallbackLng: 'it',
     debug: false,
-    ns: ['common', 'home', 'login'],
+    // ns: ['common', 'home', 'login'],
     defaultNS: 'common',
     interpolation: {
       escapeValue: false,
     },
     backend: {
+      // loadPath: [
+      //   '/locales/{{lng}}/{{ns}}.json',          // 2° tentativo: cerca nella root (es. common, errors)
+      //   '/locales/{{lng}}/features/{{ns}}.json', // 1° tentativo: cerca nelle features
+      // ],
       loadPath: '/locales/{{lng}}/{{ns}}.json',
     },
   });

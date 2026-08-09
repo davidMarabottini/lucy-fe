@@ -8,6 +8,7 @@
       "actions": "Azioni"
     },
     "delete": {
+      "header": "Cancellazione settore",
       "bodyQuestion": "Sei sicuro di voler eliminare questo settore?",
       "bodyTable": {
         "id": "ID",
@@ -27,5 +28,12 @@
       "reset": "Annulla"
     },
     "keepInPage": "Rimani in pagina"
+  },
+  "details": {
+    "title": "Dettagli settore",
+    "fields": {
+      "name": "Nome",
+      "description": "Descrizione"
+    }
   }
 }
