@@ -29,3 +29,11 @@ export const getContractSchedules = async (contractId: number): Promise<WorkSche
   const { data } = await apiClient.get(`/api/work-schedules/contract/${contractId}`);
   return data;
 };
+
+export const syncWorkSchedules = async (
+  contractId: number, 
+  payload: WorkScheduleAdd
+): Promise<WorkSchedule[]> => {
+  const { data } = await apiClient.post(`/api/work-schedules/contract/${contractId}/sync`, payload);
+  return data;
+};
