@@ -13,7 +13,7 @@ import * as LucideIcons from "lucide-react";
 import styles from "../SetDetails.module.scss";
 import Table from "@/components/organisms/Table/Table";
 import { useMemo } from "react";
-import { useFieldArray, useFormContext } from "react-hook-form";
+import { useFieldArray, useFormContext, type ArrayPath } from "react-hook-form";
 import Button from "@/components/atoms/Button/Button";
 
 type ScheduleSlot = {
@@ -28,14 +28,13 @@ type WorkScheduleFormValues = {
   schedules: Record<string, ScheduleSlot[]>;
 };
 
-// Sotto-componente per gestire la lista dinamica di slot orari per ogni giorno
 const DayScheduleRows = ({ dayName }: { dayName: string }) => {
   const { control } = useFormContext<WorkScheduleFormValues>();
   const fieldArrayName = `schedules.${dayName.toLowerCase()}` as const;
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: fieldArrayName as any,
+    name: fieldArrayName as ArrayPath<WorkScheduleFormValues>,
   });
 
   return (
@@ -54,9 +53,7 @@ const DayScheduleRows = ({ dayName }: { dayName: string }) => {
           {fields.length > 1 && (
             <Button
               type="button"
-              variant="tertiary"
-              color="danger"
-              size="sm"
+              color="custom"
               onClick={() => remove(index)}
               title="Rimuovi fascia oraria"
             >
@@ -68,9 +65,7 @@ const DayScheduleRows = ({ dayName }: { dayName: string }) => {
       <div>
         <Button
           type="button"
-          // variant="secondary"
           color="custom"
-          size="sm"
           onClick={() => append({ start_time: "", end_time: "" })}
         >
           <Plus size={14} />
@@ -83,15 +78,26 @@ const DayScheduleRows = ({ dayName }: { dayName: string }) => {
 const CardForm = ({ contractId }: { contractId: string }) => {
   const { t } = useTranslation("features/contract", { keyPrefix: "details" });
   const { classBase, ...iconPresetRest } = ICON_PRESET;
-  const { data: scheduleTypes } = useWorkScheduleTypes();
-  const { data: weekDays } = useWeekDays();
-  const { data: contractSchedules } = useContractSchedules({ contract_id: Number(contractId) });
+  const { data: scheduleTypes, isLoading: isLoadingTypes } = useWorkScheduleTypes();
+  const { data: weekDays, isLoading: isLoadingDays } = useWeekDays();
+  const { data: contractSchedules, isLoading: isLoadingSchedules } = useContractSchedules({ contract_id: Number(contractId) });
   const { mutate: syncWorkSchedules } = useSyncWorkSchedules(Number(contractId));
 
+  const isLoading = isLoadingTypes || isLoadingDays || isLoadingSchedules;
+
   const initialValues = useMemo<WorkScheduleFormValues>(() => {
+    if (!contractSchedules || !weekDays) {
+      return {
+        schedule_type_id: "",
+        weekly_hours: "",
+        note: "",
+        schedules: {},
+      };
+    }
+
     const schedulesMap: Record<string, ScheduleSlot[]> = {};
 
-    contractSchedules?.forEach((s) => {
+    contractSchedules.forEach((s) => {
       if (s.week_day?.name) {
         const day = s.week_day.name.toLowerCase();
         if (!schedulesMap[day]) {
@@ -104,7 +110,7 @@ const CardForm = ({ contractId }: { contractId: string }) => {
       }
     });
 
-    weekDays?.forEach((wd) => {
+    weekDays.forEach((wd) => {
       const day = wd.name.toLowerCase();
       if (!schedulesMap[day] || schedulesMap[day].length === 0) {
         schedulesMap[day] = [{ start_time: "", end_time: "" }];
@@ -112,21 +118,22 @@ const CardForm = ({ contractId }: { contractId: string }) => {
     });
 
     return {
-      schedule_type_id: contractSchedules?.[0]?.schedule_type_id
+      schedule_type_id: contractSchedules[0]?.schedule_type_id
         ? String(contractSchedules[0].schedule_type_id)
         : "",
-      weekly_hours: contractSchedules?.[0]?.weekly_hours
+      weekly_hours: contractSchedules[0]?.weekly_hours
         ? String(contractSchedules[0].weekly_hours)
         : "",
-      note: contractSchedules?.[0]?.note ?? "",
+      note: contractSchedules[0]?.note ?? "",
       schedules: schedulesMap,
     };
   }, [contractSchedules, weekDays]);
-
-  return (
+  return isLoading ? (
+        <div>Caricamento in corso...</div>
+  ) : (
     <Card additionalClassName={styles["p-contract-detail__card"]}>
       <Form<WorkScheduleFormValues>
-        enableReinitialize
+        // enableReinitialize
         defaultValues={initialValues}
         onSubmit={(values) => {
           const flatSchedules = Object.entries(values.schedules ?? {}).flatMap(
