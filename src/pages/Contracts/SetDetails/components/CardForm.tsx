@@ -1,5 +1,5 @@
 import Card from "@components/atoms/Card/Card";
-import { Check, X } from "lucide-react";
+import { Check, Plus, Trash2, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import type { WeekDay } from "@/api/types";
 import { useContractSchedules, useSyncWorkSchedules } from "@/hooks/api/useWorkScheduleHooks";
@@ -13,18 +13,71 @@ import * as LucideIcons from "lucide-react";
 import styles from "../SetDetails.module.scss";
 import Table from "@/components/organisms/Table/Table";
 import { useMemo } from "react";
+import { useFieldArray, useFormContext } from "react-hook-form";
+import Button from "@/components/atoms/Button/Button";
+
+type ScheduleSlot = {
+  start_time: string;
+  end_time: string;
+};
 
 type WorkScheduleFormValues = {
   schedule_type_id: string;
   weekly_hours: string;
   note: string;
-  schedules: Record<
-    string,
-    {
-      start_time: string;
-      end_time: string;
-    }[]
-  >;
+  schedules: Record<string, ScheduleSlot[]>;
+};
+
+// Sotto-componente per gestire la lista dinamica di slot orari per ogni giorno
+const DayScheduleRows = ({ dayName }: { dayName: string }) => {
+  const { control } = useFormContext<WorkScheduleFormValues>();
+  const fieldArrayName = `schedules.${dayName.toLowerCase()}` as const;
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: fieldArrayName as any,
+  });
+
+  return (
+    <Stack spacing="sm">
+      {fields.map((field, index) => (
+        <div key={field.id} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <Form.Input
+            name={`${fieldArrayName}.${index}.start_time`}
+            type="time"
+          />
+          <span>-</span>
+          <Form.Input
+            name={`${fieldArrayName}.${index}.end_time`}
+            type="time"
+          />
+          {fields.length > 1 && (
+            <Button
+              type="button"
+              variant="tertiary"
+              color="danger"
+              size="sm"
+              onClick={() => remove(index)}
+              title="Rimuovi fascia oraria"
+            >
+              <Trash2 size={14} />
+            </Button>
+          )}
+        </div>
+      ))}
+      <div>
+        <Button
+          type="button"
+          // variant="secondary"
+          color="custom"
+          size="sm"
+          onClick={() => append({ start_time: "", end_time: "" })}
+        >
+          <Plus size={14} />
+        </Button>
+      </div>
+    </Stack>
+  );
 };
 
 const CardForm = ({ contractId }: { contractId: string }) => {
@@ -36,7 +89,7 @@ const CardForm = ({ contractId }: { contractId: string }) => {
   const { mutate: syncWorkSchedules } = useSyncWorkSchedules(Number(contractId));
 
   const initialValues = useMemo<WorkScheduleFormValues>(() => {
-    const schedulesMap: Record<string, { start_time: string; end_time: string }[]> = {};
+    const schedulesMap: Record<string, ScheduleSlot[]> = {};
 
     contractSchedules?.forEach((s) => {
       if (s.week_day?.name) {
@@ -145,26 +198,9 @@ const CardForm = ({ contractId }: { contractId: string }) => {
                       value: (row) => row.name ?? "-",
                     },
                     {
-                      key: "__start_time",
-                      header: t("form.start.label"),
-                      value: ({ name }) => (
-                        <Form.Input
-                          name={`schedules.${name.toLowerCase()}.0.start_time`}
-                          type="time"
-                          label={t("form.start.label")}
-                        />
-                      ),
-                    },
-                    {
-                      key: "__end_time",
-                      header: t("form.end.label"),
-                      value: ({ name }) => (
-                        <Form.Input
-                          name={`schedules.${name.toLowerCase()}.0.end_time`}
-                          type="time"
-                          label={t("form.end.label")}
-                        />
-                      ),
+                      key: "__schedules",
+                      header: t("form.start.label") + " / " + t("form.end.label"),
+                      value: ({ name }) => <DayScheduleRows dayName={name} />,
                     },
                   ]}
                   getRowKey={(row) => String(row.id)}
