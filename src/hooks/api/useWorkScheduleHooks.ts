@@ -93,10 +93,24 @@ export const useDeleteWorkSchedule = () => {
   });
 };
 
+export interface WorkScheduleSlot {
+  day: string;
+  startTime: string;
+  endTime: string;
+}
+
+export interface WorkScheduleSyncPayload {
+  contract_id: number;
+  schedule_type_id: number;
+  weekly_hours?: number;
+  note?: string;
+  schedules: WorkScheduleSlot[];
+}
+
 export const useSyncWorkSchedules = (contractId: number) => {
   const queryClient = useQueryClient();
   return useAppMutation({
-    mutationFn: (payload: WorkScheduleAdd) => syncWorkSchedules(contractId, payload),
+    mutationFn: (payload: WorkScheduleSyncPayload) => syncWorkSchedules(contractId, payload),
     onSuccess: (data) => {
       queryClient.setQueryData(['workSchedules', 'contract', contractId], data);
       queryClient.invalidateQueries({ queryKey: ['workSchedules', 'contract', contractId] });
@@ -109,4 +123,4 @@ export const useSyncWorkSchedules = (contractId: number) => {
       [ERROR_KINDS.UNKNOWN]: `${libDomain}.sync.defaultError`,
     },
   });
-};
+}
