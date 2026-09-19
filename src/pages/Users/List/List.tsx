@@ -83,6 +83,7 @@ const User = () => {
       </Card>
       <Card>
         <Paginated<UsersResult>
+          area="users"
           useQueryHook={useUsers}
           filterConfig={[
             {key: 'name', placeholder: '', label: 'Cerca per nome'},

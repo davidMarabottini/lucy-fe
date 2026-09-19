@@ -46,6 +46,7 @@ const CardContractDetails = ({
         </div>
 
         <Paginated<WorkSchedule>
+          area={`contract-schedules-${contractId}`}
           useQueryHook={useContractSchedules}
           initialPerPage={10}
           filterConfig={[

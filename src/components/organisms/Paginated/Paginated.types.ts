@@ -16,6 +16,8 @@ export interface FilterConfig {
 export type PaginatedResponse<T> = T[] | PaginatedData<T>;
 
 export interface PaginatedProps<T extends object> {
+  /** Unique key identifying the area/list using this component, used to store its pagination/filters state in usePaginationStore */
+  area: string;
   useQueryHook: (params: Record<string, unknown>) => UseQueryResult<PaginatedResponse<T>, AppError>;
   initialPerPage?: number;
   filterConfig?: FilterConfig[];

@@ -24,6 +24,7 @@ const CardContractDetails = ({
       </Typography>
 
       <Paginated<WorkSchedule>
+        area={`contract-set-details-old-schedules-${contractId}`}
         useQueryHook={useContractSchedules}
         initialPerPage={10}
         filterConfig={[

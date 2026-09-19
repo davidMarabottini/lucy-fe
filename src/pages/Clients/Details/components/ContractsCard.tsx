@@ -28,6 +28,7 @@ export const ContractsCard = ({ clientId }: { clientId: string }) => {
       </Typography>
 
       <Paginated<Contract>
+        area={`client-detail-contracts-${clientId}`}
         useQueryHook={useContracts}
         initialPerPage={10}
         filterConfig={[

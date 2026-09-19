@@ -86,6 +86,7 @@ const ContractsList = () => {
 
       <Card additionalClassName={styles["p-contracts__card"]}>
         <Paginated<Contract>
+          area="contracts"
           useQueryHook={useContracts} 
           initialPerPage={10} 
           filterConfig={[

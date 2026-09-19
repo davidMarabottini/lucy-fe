@@ -75,6 +75,7 @@ const WorkActivitiesList = () => {
 
       <Card additionalClassName={styles["p-work-activities__card"]}>
         <Paginated<WorkActivity>
+          area="work-activities"
           useQueryHook={useWorkActivities}
           filterConfig={[
             {key: 'name', placeholder: '', label:t("table.filter.name")}

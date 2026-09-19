@@ -72,6 +72,7 @@ const LibemaxEmployees = () => {
 
       <Card additionalClassName={styles["p-libemax-employees__card"]}>
         <Paginated<LibemaxEmployee>
+          area="employees"
           useQueryHook={useEmployeesList} 
           initialPerPage={20} 
           filterConfig={[

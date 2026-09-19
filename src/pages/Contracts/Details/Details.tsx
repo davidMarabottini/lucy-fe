@@ -29,6 +29,7 @@ const ContractDetailPage = () => {
       <CardContractDetails contractId={contractId} />
       <Card>
         <Paginated<LibemaxEmployee>
+          area={`contract-detail-employees-${contractId}`}
           useQueryHook={useEmployeesList} 
           initialPerPage={20} 
           filterConfig={[

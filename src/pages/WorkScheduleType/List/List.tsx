@@ -80,6 +80,7 @@ const WorkScheduleTypeList = () => {
 
       <Card additionalClassName={styles["p-wst__card"]}>
         <Paginated<WorkScheduleType>
+          area="work-schedule-types"
           useQueryHook={useWorkScheduleTypes}
           filterConfig={[
             { key: 'name', placeholder: '', label: t('table.name') }
