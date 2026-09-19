@@ -118,7 +118,7 @@ const User = () => {
                   {key: 'surname', header: t("table.surname")},
                   {key: 'email', header: t("table.email")},
                   {key: 'username', header: t("table.username")},
-                  {key: 'roles', header: t("table.roles") },
+                  // {key: 'roles', header: t("table.roles") },
                 ]}
                 actions={actions}
               />
