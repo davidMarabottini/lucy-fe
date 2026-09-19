@@ -11,7 +11,8 @@ import {
   updateContract, 
   deleteContract,
   addEmployeeToContract,
-  getEmployeesByContract
+  getEmployeesByContract,
+  syncEmployeeContract,
 } from "@/api/contractService";
 import type {
   Contract,
@@ -116,6 +117,22 @@ export const useAddEmployeeToContract = (contractId: number) => {
     errorMap: {
       [ERROR_KINDS.SERVER]: `${libDomain}.addEmployee.500`,
       [ERROR_KINDS.UNKNOWN]: `${libDomain}.addEmployee.defaultError`
+    },
+  });
+};
+
+export const useSyncEmployeeContract = (contractId: number) => {
+  console.log('sono in hook')
+  const queryClient = useQueryClient();
+  return useAppMutation({
+    mutationFn: (payload) =>{ console.log('davildog payload', payload); return syncEmployeeContract(payload)},
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['contract', contractId] });
+    },
+    successKey: `${libDomain}.syncEmployee.success`,
+    errorMap: {
+      [ERROR_KINDS.SERVER]: `${libDomain}.syncEmployee.500`,
+      [ERROR_KINDS.UNKNOWN]: `${libDomain}.syncEmployee.defaultError`
     },
   });
 };

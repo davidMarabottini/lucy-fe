@@ -6,7 +6,8 @@ import clsx from "clsx";
 
 const Select = forwardRef<HTMLInputElement, SelectProps>(
   ({ options, name, defaultValue, className, onValueChange: onChange, label, ...props }, ref) => {
-    const [searchTerm, setSearchTerm] = useState("");
+    const initialLabel = options.find(opt => opt.value === defaultValue)?.label || "";
+    const [searchTerm, setSearchTerm] = useState(initialLabel);
     const [curValue, setCurValue] = useState(defaultValue);
     const [isOpen, setIsOpen] = useState(false);
 

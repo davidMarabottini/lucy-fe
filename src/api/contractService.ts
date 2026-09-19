@@ -45,3 +45,8 @@ export const getEmployeesByContract = async (contractId: number, date: string): 
   const { data } = await apiClient.get<ContractEmployeeAssignment[]>(`/api/employee-contracts/by-contract/${contractId}`, { params: { date } });
   return data;
 }
+
+export const syncEmployeeContract = async (payload: object): Promise<void> => {
+  console.log('faccio la chiamata finale')
+  await apiClient.post(`/api/employee-contracts/sync`, payload);
+};

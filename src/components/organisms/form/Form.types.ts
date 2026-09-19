@@ -1,18 +1,24 @@
 import type { ReactNode } from "react";
-import type { UseFormReturn, FieldValues, Path, DefaultValues, RegisterOptions } from "react-hook-form";
+import type { UseFormReturn, FieldValues, Path, DefaultValues, RegisterOptions, UseFormProps } from "react-hook-form";
 import type { ButtonProps } from "../../atoms/Button/Button.types";
 import type { InputProps } from "../../atoms/Input/Input.types";
 import type { TextAreaProps } from "../../atoms/TextArea/TextArea.types";
 import type { RadioBtnProps, RadioOptionBase } from "../../atoms/RadioBtn/RadioBtn.types";
 import type { SelectProps } from "../../molecules/Select/Select.types";
 import type { SwitchProps } from "@/components/atoms/Switch/Switch.types";
-import type { DualListBoxProps } from "@/components/atoms/DualListBox/DualListBox";
+import type { DualListBoxProps } from "@/components/atoms/DualListBox/DualListBox.types";
 import type { DatePickerProps } from "@/components/atoms/DatePicker/DatePicker";
 import type { FilteredDualListProps } from "@/components/molecules/FilteredDualListBox/FilteredDualListBox.types";
 
 type FormBase = Omit<React.FormHTMLAttributes<HTMLFormElement>, 'children' | 'onSubmit'>;
 
-export interface FormProperties<T extends FieldValues> extends FormBase {
+// export interface FormProperties<T extends FieldValues> extends FormBase {
+//   children: ReactNode | ((methods: UseFormReturn<T>) => ReactNode);
+//   onSubmit: (data: T, methods: UseFormReturn<T>) => void;
+//   defaultValues?: DefaultValues<T>;
+//   noValidate?: boolean;
+// }
+export interface FormProperties<T extends FieldValues> extends FormBase, Omit<UseFormProps<T>, 'defaultValues'> {
   children: ReactNode | ((methods: UseFormReturn<T>) => ReactNode);
   onSubmit: (data: T, methods: UseFormReturn<T>) => void;
   defaultValues?: DefaultValues<T>;
@@ -44,5 +50,5 @@ export interface FormDualListBoxProps<T extends FieldValues>
   export interface FormFilteredDualListBoxProps<T extends FieldValues> 
   extends Omit<FilteredDualListProps, 'value' | 'onChange' | 'error'>, FormBaseElements<T> {}
 
-export interface FormDatePicker<T extends FieldValues> 
-  extends Omit<DatePickerProps, 'value' | 'onChange' | 'error'>, FormBaseElements<T> {}
+export interface FormDatePickerProps<T extends FieldValues> 
+  extends Omit<DatePickerProps, 'value' | 'onChange' | 'error' | 'name'>, FormBaseElements<T> {}

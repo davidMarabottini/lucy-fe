@@ -13,11 +13,35 @@ import FormFilteredDualListBox from './components/FormFilteredDualListBox';
 const Form = <T extends FieldValues>({ 
   children, 
   onSubmit, 
-  defaultValues,
   noValidate,
+  defaultValues,
+  values,
+  resolver,
+  mode,
+  reValidateMode,
+  context,
+  shouldFocusError,
+  shouldUnregister,
+  shouldUseNativeValidation,
+  criteriaMode,
+  delayError,
+  resetOptions,
   ...props
 }: FormProperties<T>) => {
-  const methods = useForm<T>({ defaultValues });
+  const methods = useForm<T>({ 
+    ...(defaultValues && { defaultValues }),
+    ...(values && { values }),
+    ...(resolver && { resolver }),
+    ...(mode && { mode }),
+    ...(reValidateMode && { reValidateMode }),
+    ...(context && { context }),
+    ...(shouldFocusError !== undefined && { shouldFocusError }),
+    ...(shouldUnregister !== undefined && { shouldUnregister }),
+    ...(shouldUseNativeValidation !== undefined && { shouldUseNativeValidation }),
+    ...(criteriaMode && { criteriaMode }),
+    ...(delayError && { delayError }),
+    ...(resetOptions && { resetOptions }),
+   });
 
   return (
     <FormProvider {...methods}>
