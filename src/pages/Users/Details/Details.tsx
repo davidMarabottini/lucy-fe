@@ -55,6 +55,12 @@ const UsersDetailPage = () => {
                 </div>
               )}
 
+              {data.roles && (
+                <div>
+                  <strong>{t("fields.roles")}:</strong> {data.roles.join(', ')}
+                </div>
+              )}
+
             </div>
             </div>
         </div>

@@ -103,7 +103,7 @@ const User = () => {
                       <div>
                         <div>{user.email}</div>
                         <div>{user.username}</div>
-                        <div>{user.roles.join(', ')}</div>
+                        {/* <div>{user.roles.join(', ')}</div> */}
                       </div>
                     }
                     actions={actions(user)}
