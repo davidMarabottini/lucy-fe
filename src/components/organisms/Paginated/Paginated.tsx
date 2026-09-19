@@ -24,11 +24,9 @@ function Paginated<T extends object>({
   );
   const {t} = useTranslation('common');
 
-  const page = usePaginationStore((state) => state.lists[area]?.page ?? 1);
-  const filters = usePaginationStore((state) => state.lists[area]?.filters ?? baseFilter);
-  const setPage = usePaginationStore((state) => state.setPage);
-  const setFilter = usePaginationStore((state) => state.setFilter);
-  const resetList = usePaginationStore((state) => state.resetList);
+  const { lists, setPage, setFilter, resetList } = usePaginationStore();
+  const page = lists[area]?.page ?? 1;
+  const filters = lists[area]?.filters ?? baseFilter;
 
   const nonHiddenFilters = filterConfig.filter((f) => f.type !== 'hidden');
   const debouncedFilters = useDebounce(filters, 1200);

@@ -1,4 +1,10 @@
 {
   "title": "Impostazioni",
-  "cardTableView": "Visualizzazione come card"
+  "viewOpts": "Opzioni di visualizzazione",
+  "cardTableView": "Visualizzazione come card",
+  "lists": "Liste",
+  "key": "Chiave",
+  "filters": "Filtri",
+  "page": "Pagina",
+  "reset": "Reimposta"
 }

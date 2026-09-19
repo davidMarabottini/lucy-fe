@@ -16,7 +16,9 @@
     background-color: $color-surface;
     margin: auto;
     width: 95%;
+    max-height: 80vh;
     border-radius: $radius-lg;
+    overflow: auto;
   }
   
   &__header {

@@ -1,0 +1,14 @@
+.c-modal-settings {
+  &__subtitle {
+    margin-bottom: $space-md;
+  }
+  &__section {
+    padding: $space-md;
+    &:not(:last-child) {
+      border-bottom: 1px solid $color-border;
+    }
+  }
+  &__button-container {
+    margin-top: $space-md;
+  }
+}
