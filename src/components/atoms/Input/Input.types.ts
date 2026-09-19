@@ -5,5 +5,6 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
   onValueChange?: (value: string) => void;
-  fieldClassName?: ClassValue
+  fieldClassName?: ClassValue;
+  info?: string;
 }

@@ -4,10 +4,18 @@ import { useTranslation } from "react-i18next";
 import Paginated from "@/components/organisms/Paginated/Paginated";
 import type { WorkSchedule } from "@/api/types";
 import { useContractSchedules } from "@/hooks/api/useWorkScheduleHooks";
-import styles from "../Details.module.scss";
+import Button from "@/components/atoms/Button/Button";
+import { Trash2 } from "lucide-react";
+import styles from "../SetDetails.module.scss";
 import Table from "@/components/organisms/Table/Table";
 
-const CardContractDetails = ({ contractId }: { contractId: string; }) => {
+const CardContractDetails = ({
+  contractId,
+  deleteSchedule,
+}: {
+  contractId: string;
+  deleteSchedule: (id: number) => void;
+}) => {
   const { t } = useTranslation("features/contract", { keyPrefix: "details" });
   return (
     <Card additionalClassName={styles["p-contract-detail__card"]}>
@@ -16,7 +24,7 @@ const CardContractDetails = ({ contractId }: { contractId: string; }) => {
       </Typography>
 
       <Paginated<WorkSchedule>
-        area={`contract-schedules-${contractId}`}
+        area={`contract-set-details-old-schedules-${contractId}`}
         useQueryHook={useContractSchedules}
         initialPerPage={10}
         filterConfig={[
@@ -51,6 +59,18 @@ const CardContractDetails = ({ contractId }: { contractId: string; }) => {
               },
             ]}
             getRowKey={(row) => String(row.id)}
+            actions={(row) =>[
+               (
+                <Button
+                  key="remove"
+                  color="custom"
+                  additionalClassName={styles["p-companies__btn-delete"]}
+                  onClick={() => deleteSchedule(row.id)}
+                >
+                  <Trash2 size={18} />
+                </Button>
+              ),
+            ]}
           />
         )}
       </Paginated>

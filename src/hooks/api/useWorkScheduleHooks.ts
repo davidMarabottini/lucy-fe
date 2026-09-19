@@ -7,7 +7,8 @@ import {
   insertWorkSchedule,
   getClientSchedules,
   getContractSchedules,
-  deleteWorkSchedule
+  deleteWorkSchedule,
+  syncWorkSchedules,
 } from "@/api/workScheduleService";
 import type { WorkSchedule, WorkScheduleAdd } from "@/api/types";
 
@@ -91,3 +92,35 @@ export const useDeleteWorkSchedule = () => {
     },
   });
 };
+
+export interface WorkScheduleSlot {
+  day: string;
+  startTime: string;
+  endTime: string;
+}
+
+export interface WorkScheduleSyncPayload {
+  contract_id: number;
+  schedule_type_id: number;
+  weekly_hours?: number;
+  note?: string;
+  schedules: WorkScheduleSlot[];
+}
+
+export const useSyncWorkSchedules = (contractId: number) => {
+  const queryClient = useQueryClient();
+  return useAppMutation({
+    mutationFn: (payload: WorkScheduleSyncPayload) => syncWorkSchedules(contractId, payload),
+    onSuccess: (data) => {
+      queryClient.setQueryData(['workSchedules', 'contract', contractId], data);
+      queryClient.invalidateQueries({ queryKey: ['workSchedules', 'contract', contractId] });
+    },
+    successKey: `${libDomain}.sync.success`,
+    errorMap: {
+      [ERROR_KINDS.UNAUTHORIZED]: `${libDomain}.sync.401`,
+      [ERROR_KINDS.SERVER]: `${libDomain}.sync.500`,
+      [ERROR_KINDS.NETWORK]: `${libDomain}.sync.network`,
+      [ERROR_KINDS.UNKNOWN]: `${libDomain}.sync.defaultError`,
+    },
+  });
+}

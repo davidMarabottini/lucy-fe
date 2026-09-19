@@ -83,6 +83,7 @@ const SectorsList = () => {
 
       <Card additionalClassName={styles["p-sectors__card"]}>
         <Paginated<Sector>
+          area="sectors"
           useQueryHook={useSectors}
           initialPerPage={10}
           filterConfig={[

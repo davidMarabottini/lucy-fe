@@ -26,6 +26,7 @@ export const EmployeesContractCard = ({ employeeId }: { employeeId: string }) =>
       </Typography>
 
       <Paginated<Contract>
+        area={`employee-detail-contracts-${employeeId}`}
         useQueryHook={useContracts}
         initialPerPage={10}
         filterConfig={[

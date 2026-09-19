@@ -1,7 +1,7 @@
 export interface SelectOption {
   label: string;
-  value: string;
-  Icon: string;
+  value: string | number;
+  Icon?: string;
 }
 
 export interface SelectProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {

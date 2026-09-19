@@ -18,6 +18,7 @@ export const ContractSchedulesTable = ({ contractId, selectedDate }: ContractSch
   return (
     <Paginated<WorkSchedule>
       key={contractId}
+      area={`client-contract-schedules-${contractId}`}
       useQueryHook={useContractSchedules}
       initialPerPage={10}
       filterConfig={[

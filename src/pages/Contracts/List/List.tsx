@@ -4,7 +4,7 @@ import { useContracts } from "@/hooks/api/ContractHooks";
 import styles from './List.module.scss'; 
 import { type Contract } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
-import { Edit2, Eye, PlusCircle, Trash2 } from "lucide-react";
+import { Edit2, Eye, Option, PlusCircle, Trash2 } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -36,6 +36,14 @@ const ContractsList = () => {
       to={rewriteRoute(ROUTES.CONTRACT_DETAIL, {':contractId': contract.id.toString()})}
     >
       <Eye />
+    </LinkComponent>,
+    <LinkComponent
+      key="set-details"
+      color='custom'
+      className="t-btn-link"
+      to={rewriteRoute(ROUTES.CONTRACT_SET_DETAILS, { ':contractId': contract.id.toString() })}
+    >
+      <Option />
     </LinkComponent>,
     <LinkComponent
       key="edit"
@@ -78,6 +86,7 @@ const ContractsList = () => {
 
       <Card additionalClassName={styles["p-contracts__card"]}>
         <Paginated<Contract>
+          area="contracts"
           useQueryHook={useContracts} 
           initialPerPage={10} 
           filterConfig={[

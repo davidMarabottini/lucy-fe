@@ -1,6 +1,6 @@
 import { Controller, useFormContext, type FieldValues } from "react-hook-form";
 import DatePicker from "@components/atoms/DatePicker/DatePicker";
-import type { FormDatePicker } from "../Form.types";
+import type { FormDatePickerProps } from "../Form.types";
 
 
 const FormDatePicker = <T extends FieldValues>({ 
@@ -8,7 +8,7 @@ const FormDatePicker = <T extends FieldValues>({
   rules, 
   selectsRange, 
   ...props 
-}: FormDatePicker<T>) => {
+}: FormDatePickerProps<T>) => {
   const { control } = useFormContext<T>();
 
   return (

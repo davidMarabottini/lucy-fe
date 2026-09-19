@@ -40,7 +40,7 @@ const UsersDetailPage = lazy(() => import("@/pages/Users/Details/Details"));
 const WorkActivitiesDetails = lazy(() => import("@/pages/WorkActivities/Details/Details"));
 const SectorDetailPage = lazy(() => import("@/pages/Sectors/Details/Details"));
 const WorkScheduleTypeDetails = lazy(() => import("@/pages/WorkScheduleType/Details/Details"));
-const Settings = lazy(() => import("@/pages/Settings/Settings"));
+
 export type RouteHandle = {
   key: string;
   label?: string;

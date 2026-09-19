@@ -79,6 +79,7 @@ const GroupCompaniesList = () => {
 
       <Card additionalClassName={styles["p-companies__card"]}>
         <Paginated<GroupCompany>
+          area="group-companies"
           useQueryHook={useGroupCompanies} 
           initialPerPage={10} 
           filterConfig={[

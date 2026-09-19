@@ -67,6 +67,7 @@ const GroupCompanyDetailPage = () => {
         </Typography>
         
         <Paginated<Contract>
+          area={`group-company-detail-contracts-${companyId}`}
           useQueryHook={useContracts} 
           initialPerPage={10} 
           filterConfig={[

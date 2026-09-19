@@ -61,11 +61,13 @@ const User = () => {
 
   return (
     <div>
-      {curClient && <DeleteModal
-        openModal={openModal}
-        setOpenModal={setOpenModal}
-        curUser={curClient}
-      />}
+      {
+        curClient && <DeleteModal
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          curUser={curClient}
+        />
+      }
       <Card additionalClassName={styles["p-user-list__card-title"]}>
         <div className={styles["p-user-list__card-title-internal"]}>
             <Typography
@@ -81,6 +83,7 @@ const User = () => {
       </Card>
       <Card>
         <Paginated<UsersResult>
+          area="users"
           useQueryHook={useUsers}
           filterConfig={[
             {key: 'name', placeholder: '', label: 'Cerca per nome'},
@@ -108,7 +111,7 @@ const User = () => {
                 ))}
               </div>
             ) : (
-              <Table
+              <Table<UsersResult>
                 data={res}
                 columns={[
                   {key: 'name', header: t("table.name")},

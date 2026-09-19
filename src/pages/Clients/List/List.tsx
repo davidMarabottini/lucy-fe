@@ -76,6 +76,7 @@ const LibemaxClients = () => {
 
       <Card additionalClassName={styles["p-libemax-clients__card"]}>
         <Paginated<LibemaxClient>
+          area="clients"
           useQueryHook={useLibemaxClients} 
           initialPerPage={20} 
           filterConfig={[
