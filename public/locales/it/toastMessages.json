@@ -35,6 +35,13 @@
       "500": "Errore del server",
       "network": "Errore di rete. Controlla la tua connessione.",
       "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "delete": {
+      "success": "Utente eliminato con successo",
+      "401": "Non hai i permessi per eliminare un utente",
+      "500": "Errore del server",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
     }
   },
   "content": {
@@ -49,18 +56,6 @@
         "401": "Non hai i permessi per inserire questo SMS",
         "500": "Errore del server"
       }
-    }
-  },
-  "analyze": {
-    "mail": {
-      "success": "Mail analizzata",
-      "401": "Non hai i permessi per analizzare questa mail",
-      "500": "Errore del server"
-    },
-    "sms": {
-      "success": "SMS analizzato",
-      "401": "Non hai i permessi per analizzare questo SMS",
-      "500": "Errore del server"
     }
   },
   "updateUser": {
@@ -101,6 +96,188 @@
       "success": "Pianificazione eliminata con successo",
       "401": "Non hai i permessi per eliminare questa pianificazione",
       "500": "Errore del server durante l'eliminazione della pianificazione",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "sync": {
+      "success": "Sincronizzazione orari di lavoro avvenuta con successo",
+      "401": "Non hai i permessi per sincronizzare gli orari di lavoro",
+      "500": "Errore del server durante la sincronizzazione degli orari di lavoro",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    }
+  },
+  "client": {
+    "list": {
+      "401": "Non hai i permessi per visualizzare i clienti",
+      "500": "Errore del server durante il caricamento dei clienti",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "insert": {
+      "success": "Cliente aggiunto con successo",
+      "401": "Non hai i permessi per aggiungere un cliente",
+      "500": "Errore del server durante l'inserimento del cliente",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "update": {
+      "success": "Cliente aggiornato con successo",
+      "401": "Non hai i permessi per aggiornare questo cliente",
+      "500": "Errore del server durante l'aggiornamento del cliente",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "delete": {
+      "success": "Cliente eliminato con successo",
+      "401": "Non hai i permessi per eliminare questo cliente",
+      "500": "Errore del server durante l'eliminazione del cliente",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    }
+  },
+  "workActivity": {
+    "list": {
+      "401": "Non hai i permessi per visualizzare le attività lavorative",
+      "500": "Errore del server durante il caricamento delle attività lavorative",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "insert": {
+      "success": "Attività lavorativa aggiunta con successo",
+      "401": "Non hai i permessi per aggiungere un'attività lavorativa",
+      "500": "Errore del server durante l'inserimento dell'attività lavorativa",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "update": {
+      "success": "Attività lavorativa aggiornata con successo",
+      "401": "Non hai i permessi per aggiornare questa attività lavorativa",
+      "500": "Errore del server durante l'aggiornamento dell'attività lavorativa",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "delete": {
+      "success": "Attività lavorativa eliminata con successo",
+      "401": "Non hai i permessi per eliminare questa attività lavorativa",
+      "500": "Errore del server durante l'eliminazione dell'attività lavorativa",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    }
+  },
+  "sector": {
+    "list": {
+      "401": "Non hai i permessi per visualizzare i settori",
+      "500": "Errore del server durante il caricamento dei settori",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "insert": {
+      "success": "Settore aggiunto con successo",
+      "401": "Non hai i permessi per aggiungere un settore",
+      "500": "Errore del server durante l'inserimento del settore",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "update": {
+      "success": "Settore aggiornato con successo",
+      "401": "Non hai i permessi per aggiornare questo settore",
+      "500": "Errore del server durante l'aggiornamento del settore",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "delete": {
+      "success": "Settore eliminato con successo",
+      "401": "Non hai i permessi per eliminare questo settore",
+      "500": "Errore del server durante l'eliminazione del settore",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    }
+  },
+  "groupCompany": {
+    "list": {
+      "401": "Non hai i permessi per visualizzare le società del gruppo",
+      "500": "Errore del server durante il caricamento delle società del gruppo",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "insert": {
+      "success": "Società del gruppo aggiunta con successo",
+      "401": "Non hai i permessi per aggiungere una società del gruppo",
+      "500": "Errore del server durante l'inserimento della società del gruppo",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "update": {
+      "success": "Società del gruppo aggiornata con successo",
+      "401": "Non hai i permessi per aggiornare questa società del gruppo",
+      "500": "Errore del server durante l'aggiornamento della società del gruppo",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "delete": {
+      "success": "Società del gruppo eliminata con successo",
+      "401": "Non hai i permessi per eliminare questa società del gruppo",
+      "500": "Errore del server durante l'eliminazione della società del gruppo",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    }
+  },
+  "workScheduleType": {
+    "list": {
+      "401": "Non hai i permessi per visualizzare i tipi di orario di lavoro",
+      "500": "Errore del server durante il caricamento dei tipi di orario di lavoro",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "insert": {
+      "success": "Tipo di orario di lavoro aggiunto con successo",
+      "401": "Non hai i permessi per aggiungere un tipo di orario di lavoro",
+      "500": "Errore del server durante l'inserimento del tipo di orario di lavoro",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "update": {
+      "success": "Tipo di orario di lavoro aggiornato con successo",
+      "401": "Non hai i permessi per aggiornare questo tipo di orario di lavoro",
+      "500": "Errore del server durante l'aggiornamento del tipo di orario di lavoro",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "delete": {
+      "success": "Tipo di orario di lavoro eliminato con successo",
+      "401": "Non hai i permessi per eliminare questo tipo di orario di lavoro",
+      "500": "Errore del server durante l'eliminazione del tipo di orario di lavoro",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    }
+  },
+  "contract": {
+    "insert": {
+      "success": "Contratto aggiunto con successo",
+      "401": "Non hai i permessi per aggiungere un contratto",
+      "500": "Errore del server durante l'inserimento del contratto",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "update": {
+      "success": "Contratto aggiornato con successo",
+      "401": "Non hai i permessi per aggiornare questo contratto",
+      "500": "Errore del server durante l'aggiornamento del contratto",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "delete": {
+      "success": "Contratto eliminato con successo",
+      "401": "Non hai i permessi per eliminare questo contratto",
+      "500": "Errore del server durante l'eliminazione del contratto",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "syncEmployee": {
+      "success": "Sincronizzazione dipendenti del contratto avvenuta con successo",
+      "401": "Non hai i permessi per sincronizzare i dipendenti del contratto",
+      "500": "Errore del server durante la sincronizzazione dei dipendenti del contratto",
       "network": "Errore di rete. Controlla la tua connessione.",
       "defaultError": "Errore sconosciuto. Riprova più tardi."
     }

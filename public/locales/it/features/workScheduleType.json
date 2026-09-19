@@ -63,6 +63,7 @@
         "label": "Descrizione / Note"
       }
     },
+    "keepInPage": "Rimani in questa pagina",
     "submit": "Salva Tipologia",
     "reset": "Annulla",
     "success": "Tipologia creata con successo",
