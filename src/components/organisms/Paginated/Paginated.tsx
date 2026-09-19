@@ -5,6 +5,7 @@ import styles from './Paginated.module.scss';
 import { useDebounce } from '@/hooks/useDebounce';
 import { usePaginationStore } from '@/zustand/usePaginationStore';
 import type { PaginatedData, PaginatedProps } from './Paginated.types';
+import { useTranslation } from 'react-i18next';
 
 function isPaginatedData<T>(data: T[] | PaginatedData<T>): data is PaginatedData<T> {
   return data != null && !Array.isArray(data);
@@ -21,11 +22,13 @@ function Paginated<T extends object>({
     (acc, f) => (f.value ? ({ ...acc, [f.key]: f.value || '' }) : acc),
     {} as Record<string, string>
   );
+  const {t} = useTranslation('common');
 
   const page = usePaginationStore((state) => state.lists[area]?.page ?? 1);
   const filters = usePaginationStore((state) => state.lists[area]?.filters ?? baseFilter);
   const setPage = usePaginationStore((state) => state.setPage);
   const setFilter = usePaginationStore((state) => state.setFilter);
+  const resetList = usePaginationStore((state) => state.resetList);
 
   const nonHiddenFilters = filterConfig.filter((f) => f.type !== 'hidden');
   const debouncedFilters = useDebounce(filters, 1200);
@@ -44,7 +47,7 @@ function Paginated<T extends object>({
     setFilter(area, key, value);
   };
 
-  if (isLoading) return <div>Caricamento...</div>;
+  if (isLoading) return <div>{t('loading')}</div>;
 
   return (
     <div className={styles['c-paginated']}>
@@ -59,6 +62,12 @@ function Paginated<T extends object>({
               onValueChange={(val) => handleFilterChange(filter.key, val)}
             />
           ))}
+          <Button
+            onClick={() => resetList(area)}
+            disabled={page === 1 && Object.keys(filters).length === 0}
+          >
+            {t('reset')}
+          </Button>
         </div>
       )}
 
