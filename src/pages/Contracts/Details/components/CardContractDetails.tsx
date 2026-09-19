@@ -36,7 +36,7 @@ const CardContractDetails = ({ contractId }: { contractId: string; }) => {
                 key: '__time_info',
                 header: t('table.hours'),
                 value: (row) => row.weekly_hours
-                  ? `${row.weekly_hours}h ${t('table.weekly_short')}`
+                  ? `${row.weekly_hours}h / ${row.schedule_type?.frequency} ${row.schedule_type?.period ?? ''}`
                   : `${row.start_time?.substring(0, 5)} - ${row.end_time?.substring(0, 5)}`,
               },
               {

@@ -1,3 +1,4 @@
+import { createPortal } from "react-dom";
 import ReactDatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {it} from "date-fns/locale/it";
@@ -39,6 +40,7 @@ const DatePicker = ({className, error, label, ...props}: DatePickerProps) => {
           className={styles["c-datepicker__input"]}
           id={generatedId}
           autoComplete="off"
+          popperContainer={({ children }) => createPortal(children, document.body)}
           {...(props as ReactDatePickerProps)}
         />
         {label && (

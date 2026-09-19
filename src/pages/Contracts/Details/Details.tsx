@@ -9,7 +9,7 @@ import type { LibemaxEmployee } from "@/api/types";
 import { Mail, Phone } from "lucide-react";
 // import type LibemaxEmployees from "@/pages/Employees/List/List";
 import DetailCard from "@/components/atoms/DetailCard/DetailCard";
-import { useEmployeesList } from "@/hooks/api/useEmployeesHooks";
+import { useGetEmployeesByContractId } from "@/hooks/api/useEmployeesHooks";
 // import CardEmployee from "./components/CardEmployee";
 import styles from "./Details.module.scss";
 
@@ -30,9 +30,10 @@ const ContractDetailPage = () => {
       <Card>
         <Paginated<LibemaxEmployee>
           area={`contract-detail-employees-${contractId}`}
-          useQueryHook={useEmployeesList} 
+          useQueryHook={() => useGetEmployeesByContractId(contractId)} 
           initialPerPage={20} 
           filterConfig={[
+            // { key: 'contract_id', placeholder: '', label: 'Cerca Contratto', value: contractId, type: 'hidden' },
             { key: 'name', placeholder: '', label: 'Cerca Nome' },
             { key: 'email', placeholder: '', label: 'Cerca Email' },
           ]}
@@ -40,7 +41,7 @@ const ContractDetailPage = () => {
           {/*TODO: devo prendere solo gli utenti legati al contratto */}
           {(res) => (
               <div className={styles["p-contract-detail__grid"]}>
-                {res.map((employee) => (
+                {res.map(({employee}) => (
                   <DetailCard
                     key={employee.id}
                     header={<div>{employee.name} {employee.surname}</div>}
