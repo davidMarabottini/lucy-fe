@@ -19,6 +19,19 @@
     text-transform: uppercase;
   }
 
+  &__card-subbody {
+    margin-bottom: $space-sm;
+  }
+
+  &__card-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   &__grid {
     @include create-card-grid(( $bp-tablet: 2, $bp-wide: 4 ));
   }

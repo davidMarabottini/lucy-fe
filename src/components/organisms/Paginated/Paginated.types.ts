@@ -22,4 +22,5 @@ export interface PaginatedProps<T extends object> {
   initialPerPage?: number;
   filterConfig?: FilterConfig[];
   children: (data: T[]) => ReactNode;
+  additionalButtons?: ReactNode[];
 }

@@ -4,7 +4,7 @@ import { useContracts } from "@/hooks/api/ContractHooks";
 import styles from './List.module.scss'; 
 import { type Contract } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
-import { Edit2, Eye, Option, PlusCircle, Trash2 } from "lucide-react";
+import { Edit2, Eye, Option, PlusCircle, Sheet, Trash2 } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -15,6 +15,8 @@ import { rewriteRoute } from "@/utils/routes";
 import Table from "@/components/organisms/Table/Table";
 import DetailCard from "@/components/atoms/DetailCard/DetailCard";
 import { useViewStore } from "@/zustand/listViewAsCard";
+import clsx from "clsx";
+import { exportContractExcel } from "@/api/contractService";
 
 const ContractsList = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -93,6 +95,15 @@ const ContractsList = () => {
             { key: 'contract_code', placeholder: '', label: 'Cerca Codice' },
             { key: 'description', placeholder: '', label: 'Cerca Descrizione' },
           ]}  
+          additionalButtons={[
+            <Button
+              key="export"
+              onClick={exportContractExcel}
+              variant="outline"
+            >
+              <Sheet size={24} />
+            </Button>
+          ]}
         >
           {(res) => {
             return isCardView ? (
@@ -103,11 +114,11 @@ const ContractsList = () => {
                     header={<div>{contract.contract_code}</div>}
                     body={
                       <div>
-                        <div>{t('table.provider')}: {contract.provider_company?.name || '-'}</div>
-                        <div>{t('table.client')}: {contract.client?.name || '-'}</div>
-                        <div>{t('table.start_date')}: {contract.start_date ? new Date(contract.start_date).toLocaleDateString('it-IT') : '-'}</div>
-                        <div>{t('table.end_date')}: {contract.end_date ? new Date(contract.end_date).toLocaleDateString('it-IT') : '-'}</div>
-                        <div>{t('table.description')}: {contract.description || '-'}</div>
+                        <div className={styles["p-contracts__card-subbody"]}>{t('table.provider')}: {contract.provider_company?.name || '-'}</div>
+                        <div className={styles["p-contracts__card-subbody"]}>{t('table.client')}: {contract.client?.name || '-'}</div>
+                        <div className={styles["p-contracts__card-subbody"]}>{t('table.start_date')}: {contract.start_date ? new Date(contract.start_date).toLocaleDateString('it-IT') : '-'}</div>
+                        <div className={styles["p-contracts__card-subbody"]}>{t('table.end_date')}: {contract.end_date ? new Date(contract.end_date).toLocaleDateString('it-IT') : '-'}</div>
+                        <div className={clsx([styles["p-contracts__card-subbody"], styles["p-contracts__card-description"]])}>{t('table.description')}: {contract.description || '-'}</div>
                       </div>
                     }
                     actions={actions(contract)}

@@ -1,5 +1,6 @@
 import apiClient from "./apiClient";
 import type { LibemaxClient, LibemaxClientDetail, LibemaxAddClient } from "./types";
+import { exportFile } from "../utils/externalApi";
 
 export const getLibemaxClients = async (params?: Record<string, unknown>): Promise<LibemaxClient[]> => {
   const { data } = await apiClient.get("/api/clients", { params });
@@ -13,6 +14,11 @@ export const insertClient = async (
 
   return data
 }
+
+export const exportClientExcel = async () => {
+  const blob = await apiClient.get('/api/clients/export', { responseType: 'blob' }).then(res => res.data);
+  exportFile(blob, 'clienti.xlsx');
+};
 
 export const updateClient = async (
   clientId: number,

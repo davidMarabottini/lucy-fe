@@ -1,3 +1,4 @@
+import { exportFile } from "@/utils/externalApi";
 import apiClient from "./apiClient";
 import type { Contract, ContractPayload, ContractEmployeeAssignment } from "./types";
 import type { PaginatedData } from "@/types/utilities.types";
@@ -7,6 +8,10 @@ export const getContracts = async (params?: Record<string, unknown>): Promise<Pa
   return data;
 };
 
+export const exportContractExcel = async () => {
+  const blob = await apiClient.get('/api/contracts/export', { responseType: 'blob' }).then(res => res.data);
+  exportFile(blob, 'contratti.xlsx');
+};
 
 export const getContractById = async (id: number): Promise<Contract> => {
   const { data } = await apiClient.get<Contract>(`/api/contracts/${id}`);

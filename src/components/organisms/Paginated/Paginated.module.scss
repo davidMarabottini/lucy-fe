@@ -76,4 +76,10 @@
       color: var(--color-black);
     }
   }
+
+  &__footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }

@@ -4,7 +4,7 @@ import { useLibemaxClients } from "@/hooks/api/useClientHooks";
 import styles from './List.module.scss'
 import type { LibemaxClient } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
-import { Mail, Phone, PlusCircle } from "lucide-react";
+import { Mail, Phone, PlusCircle, Sheet } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -16,6 +16,7 @@ import { Edit2, Eye, Trash2 } from "lucide-react";
 import Button from "@/components/atoms/Button/Button";
 import { rewriteRoute } from "@/utils/routes";
 import DetailCard from "@/components/atoms/DetailCard/DetailCard";
+import { exportClientExcel } from "@/api/clientService";
 
 const LibemaxClients = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -82,6 +83,9 @@ const LibemaxClients = () => {
           filterConfig={[
             { key: 'name', placeholder: '', label: 'Cerca Nome' },
             { key: 'email', placeholder: '', label: 'Cerca Email' },
+          ]}
+          additionalButtons={[
+            <Button color="primary"  key="export" onClick={exportClientExcel} variant="outline"><Sheet size={24} /></Button>
           ]}
         >
           {(res) => isCardView ? (

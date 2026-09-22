@@ -1,44 +1,56 @@
+@use "sass:map";
+
+// Mappa strutturata con chiavi esplicite per massima chiarezza
+$button-colors: (
+  "primary": (
+    "base": $color-primary,
+    "hover": $color-primary-hover
+  ),
+  "secondary": (
+    "base": $color-secondary,
+    "hover": $color-secondary-hover
+  ),
+  "success": (
+    "base": $color-success,
+    "hover": $color-success-text
+  ),
+  "error": (
+    "base": $color-error,
+    "hover": $color-error-text
+  )
+);
+
 .c-button {
   padding: 0.5rem 1rem;
-  border: none;
+  border: 1px solid transparent; 
   border-radius: $radius-sm;
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 
-  &--primary {
-    background-color: $color-primary;
-    color: #fff;
+  @each $theme, $colors in $button-colors {
+    $color-base: map.get($colors, "base");
+    $color-hover: map.get($colors, "hover");
 
-    &:hover {
-      background-color: $color-primary-hover;
-    }
-  }
+    &--#{$theme} {
+      background-color: $color-base;
+      border-color: $color-base;
+      color: #fff;
 
-  &--secondary {
-    background-color: $color-secondary;
-    color: #fff;
+      &:hover {
+        background-color: $color-hover;
+        border-color: $color-hover;
+      }
 
-    &:hover {
-      background-color: $color-secondary-hover;
-    }
-  }
+      &.c-button--outline {
+        background-color: transparent;
+        color: $color-base;
 
-  &--success {
-    background-color: $color-success;
-    color: #fff;
-
-    &:hover {
-      background-color: $color-success-text;
-    }
-  }
-
-  &--error {
-    background-color: $color-error;
-    color: #fff;
-
-    &:hover {
-      background-color: $color-error-text;
+        &:hover {
+          background-color: $color-base;
+          color: #fff;
+        }
+      }
     }
   }
 
@@ -48,11 +60,18 @@
 
   &--disabled {
     background-color: $color-border;
+    border-color: $color-border;
     color: $color-text-muted;
     cursor: not-allowed;
 
+    &.c-button--outline {
+      background-color: transparent;
+      color: $color-text-muted;
+    }
+
     &:hover {
-      background-color: $color-border;
+      background-color: $color-border; 
+      border-color: $color-border;
     }
   }
 }

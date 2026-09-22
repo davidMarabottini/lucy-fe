@@ -1,4 +1,4 @@
-import { getClientDetail, getLibemaxClients, insertClient, deleteClient, updateClient } from "@/api/clientService";
+import { getClientDetail, getLibemaxClients, insertClient, deleteClient, updateClient, exportClientExcel } from "@/api/clientService";
 import type { LibemaxAddClient, LibemaxClient } from "@/api/types";
 import { useAppQuery } from "../useAppApi/useAppQuery";
 import { ERROR_KINDS } from "../useAppApi/error";
@@ -56,6 +56,19 @@ export const useLibemaxClients = (params?: Record<string, unknown>) =>
         [ERROR_KINDS.SERVER]: `${libDomain}.insert.500`,
         [ERROR_KINDS.NETWORK]: `${libDomain}.insert.network`,
         [ERROR_KINDS.UNKNOWN]: `${libDomain}.insert.defaultError`
+      },
+    })
+  }
+
+  export const useExportClientExcel = () => {
+    return useAppMutation({
+      mutationFn: exportClientExcel,
+      successKey: `${libDomain}.export.success`,
+      errorMap: {
+        [ERROR_KINDS.UNAUTHORIZED]: `${libDomain}.export.401`,
+        [ERROR_KINDS.SERVER]: `${libDomain}.export.500`,
+        [ERROR_KINDS.NETWORK]: `${libDomain}.export.network`,
+        [ERROR_KINDS.UNKNOWN]: `${libDomain}.export.defaultError`
       },
     })
   }

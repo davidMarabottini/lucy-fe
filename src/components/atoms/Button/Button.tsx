@@ -11,6 +11,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     type = "button",
     disabled = false,
     rounded,
+    variant = "filled",
     onClick,
     additionalClassName,
     asChild,
@@ -27,6 +28,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             styles[`c-button--${color}`],
             additionalClassName,
             {
+              [styles[`c-button--${variant}`]]: variant,
               [styles['c-button--disabled']]: disabled,
               [styles['c-button--rounded']]: rounded,
             })}

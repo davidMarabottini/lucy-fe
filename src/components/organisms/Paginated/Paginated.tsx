@@ -17,6 +17,7 @@ function Paginated<T extends object>({
   initialPerPage = 10,
   filterConfig = [],
   children,
+  additionalButtons,
 }: PaginatedProps<T>) {
   const baseFilter = filterConfig.reduce(
     (acc, f) => (f.value ? ({ ...acc, [f.key]: f.value || '' }) : acc),
@@ -73,29 +74,38 @@ function Paginated<T extends object>({
         {children(items)}
       </div>
 
-      {paginated  && (
-        <div className={styles['c-paginated__footer']}>
-          <div className={styles['c-paginated__pagination']}>
-            <Button
-              onClick={() => setPage(area, Math.max(page - 1, 1))}
-              disabled={page === 1}
-            >
-              <ChevronLeft size={20} />
-            </Button>
+      <div className={styles['c-paginated__footer-container']}>
+        {paginated  && (
+          <div className={styles['c-paginated__footer']}>
+            <div className={styles['c-paginated__pagination']}>
+              <Button
+                onClick={() => setPage(area, Math.max(page - 1, 1))}
+                disabled={page === 1}
+              >
+                <ChevronLeft size={20} />
+              </Button>
 
-            <span className={styles['c-paginated__page-info']}>
-              Pagina <strong>{page}</strong> di <strong>{totalPages}</strong>
-            </span>
+              <span className={styles['c-paginated__page-info']}>
+                Pagina <strong>{page}</strong> di <strong>{totalPages}</strong>
+              </span>
 
-            <Button
-              onClick={() => setPage(area, page + 1)}
-              disabled={page >= totalPages || isPlaceholderData}
-            >
-              <ChevronRight size={20} />
-            </Button>
+              <Button
+                onClick={() => setPage(area, page + 1)}
+                disabled={page >= totalPages || isPlaceholderData}
+              >
+                <ChevronRight size={20} />
+              </Button>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+        {additionalButtons && additionalButtons.length > 0 && (
+          <div className={styles['c-paginated__additional-buttons']}>
+            {additionalButtons.map((button, index) => (
+              <div key={index}>{button}</div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

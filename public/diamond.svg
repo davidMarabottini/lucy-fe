@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 800" width="100%" height="100%">
+  <defs>
+    <!-- Background White -->
+    <!-- Diamond Facet Gradients -->
+    <linearGradient id="blueBase" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0052cc" />
+      <stop offset="100%" stop-color="#002b80" />
+    </linearGradient>
+    
+    <linearGradient id="blueBright" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00c6ff" />
+      <stop offset="100%" stop-color="#0072ff" />
+    </linearGradient>
+    
+    <linearGradient id="blueDark" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0033aa" />
+      <stop offset="100%" stop-color="#001a66" />
+    </linearGradient>
+    
+    <linearGradient id="facetHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#80d8ff" stop-opacity="0.3" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Bianco -->
+  <rect width="50" height="40" fill="transparent" />
+  
+  <!-- Main Diamond Structure -->
+  <g id="diamond-facets" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+    
+    <!-- TOP CROWN FACETS -->
+    <!-- Center Top Facet (Table/Main) -->
+    <polygon points="360,260 640,260 500,385" fill="url(#blueBright)" />
+    
+    <!-- Top Left Outer Facet -->
+    <polygon points="250,260 360,260 170,385" fill="url(#blueBase)" />
+    <!-- Top Left Inner Facet -->
+    <polygon points="360,260 500,385 170,385" fill="url(#blueBright)" />
+    
+    <!-- Top Right Outer Facet -->
+    <polygon points="640,260 750,260 830,385" fill="url(#blueDark)" />
+    <!-- Top Right Inner Facet -->
+    <polygon points="640,260 500,385 830,385" fill="url(#blueBase)" />
+    
+    <!-- Top Flat Edge Triangles -->
+    <polygon points="250,260 360,260 305,200" fill="url(#blueBright)" />
+    <polygon points="360,260 640,260 500,200" fill="url(#facetHighlight)" />
+    <polygon points="640,260 750,260 695,200" fill="url(#blueBase)" />
+    
+    <!-- Top Upper Border -->
+    <polygon points="305,200 500,200 360,260" fill="url(#blueBright)" />
+    <polygon points="500,200 695,200 640,260" fill="url(#blueBase)" />
+    
+    <!-- BOTTOM PAVILION FACETS -->
+    <!-- Bottom Center Left Facet -->
+    <polygon points="170,385 500,385 500,680" fill="url(#blueBright)" />
+    <!-- Bottom Center Right Facet -->
+    <polygon points="500,385 830,385 500,680" fill="url(#blueBase)" />
+    
+    <!-- Bottom Outer Left Facet -->
+    <polygon points="170,385 335,385 500,680" fill="url(#blueDark)" />
+    <!-- Bottom Outer Right Facet -->
+    <polygon points="830,385 665,385 500,680" fill="url(#blueDark)" />
+    
+    <!-- Deep Inner Shadows/Highlights -->
+    <polygon points="335,385 500,385 500,680" fill="url(#facetHighlight)" opacity="0.4" />
+  </g>
+  
+  <!-- Sparkles & Highlights -->
+  <g fill="#ffffff">
+    <circle cx="280" cy="230" r="3" opacity="0.8" />
+    <circle cx="720" cy="220" r="4" opacity="0.9" />
+    <line x1="360" y1="260" x2="500" y2="385" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity="0.7" />
+  </g>
+</svg>
