@@ -5,7 +5,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useAppMutation } from "../useAppApi/useAppMutation";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "@/constants/routes";
-import { deleteEmployee, getAllEmployeesByContractId, getEmployeeDetail, getEmployeesByContractId, getLibemaxEmployees, insertEmployee, editEmployee } from "@/api/employeesService";
+import { deleteEmployee, getAllEmployeesByContractId, getEmployeeDetail, getEmployeesByContractId, getLibemaxEmployees, insertEmployee, editEmployee, exportEmployeesExcel } from "@/api/employeesService";
 import type { LibemaxEmployee, ContractEmployeeAssignment } from "@/api/types";
 
 const libDomain = 'employees';
@@ -124,3 +124,16 @@ export const useGetEmployeesByContractId = (contractId: number, date?: string) =
       [ERROR_KINDS.UNKNOWN]: `${libDomain}.contractEmployees.defaultError`
     },
   });
+
+export const useExportEmployeesExcel = () => {
+  return useAppMutation<void, void>({
+    mutationFn: exportEmployeesExcel,
+    successKey: `${libDomain}.export.success`,
+    errorMap: {
+      [ERROR_KINDS.UNAUTHORIZED]: `${libDomain}.export.401`,
+      [ERROR_KINDS.SERVER]: `${libDomain}.export.500`,
+      [ERROR_KINDS.NETWORK]: `${libDomain}.export.network`,
+      [ERROR_KINDS.UNKNOWN]: `${libDomain}.export.defaultError`
+    },
+  });
+};

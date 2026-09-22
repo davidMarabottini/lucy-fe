@@ -3,7 +3,8 @@ import {
   getActivityById, 
   insertWorkActivity, 
   updateWorkActivity,
-  deleteWorkActivity
+  deleteWorkActivity,
+  exportWorkActivitiesExcel
 } from "@/api/workActivityService";
 import type { WorkActivity } from "@/api/types";
 import { useAppQuery } from "../useAppApi/useAppQuery";
@@ -103,6 +104,19 @@ export const useWorkActivityDelete = () => {
       [ERROR_KINDS.SERVER]: `${libDomain}.delete.500`,
       [ERROR_KINDS.NETWORK]: `${libDomain}.delete.network`,
       [ERROR_KINDS.UNKNOWN]: `${libDomain}.delete.defaultError`
+    },
+  });
+};
+
+export const useExportWorkActivitiesExcel = () => {
+  return useAppMutation<void, void>({
+    mutationFn: exportWorkActivitiesExcel,
+    successKey: `${libDomain}.export.success`,
+    errorMap: {
+      [ERROR_KINDS.UNAUTHORIZED]: `${libDomain}.export.401`,
+      [ERROR_KINDS.SERVER]: `${libDomain}.export.500`,
+      [ERROR_KINDS.NETWORK]: `${libDomain}.export.network`,
+      [ERROR_KINDS.UNKNOWN]: `${libDomain}.export.defaultError`
     },
   });
 };

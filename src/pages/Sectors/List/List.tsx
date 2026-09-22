@@ -1,11 +1,11 @@
 import Card from "@components/atoms/Card/Card";
 import Typography from "@components/atoms/Typography/Typography";
-import { useSectors } from "@/hooks/api/useSectors"; // Hook creato precedentemente
+import { useSectors, useExportSectorsExcel } from "@/hooks/api/useSectors"; // Hook creato precedentemente
 import styles from './List.module.scss'; // Riutilizziamo lo stesso stile o uno dedicato
 import Table from "@/components/organisms/Table/Table";
 import { type Sector } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
-import { Edit2, Eye, PlusCircle, Trash2 } from "lucide-react";
+import { Edit2, Eye, PlusCircle, Sheet, Trash2 } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -21,6 +21,8 @@ const SectorsList = () => {
   const [curSector, setCurSector] = useState<Sector | undefined>();
 
   const { t } = useTranslation("features/sector", { keyPrefix: "list" });
+
+  const exportSectorsExcelMutation = useExportSectorsExcel();
 
   const openDeleteModalHdlr = (sector: Sector) => {
     setCurSector(sector);
@@ -88,6 +90,9 @@ const SectorsList = () => {
           initialPerPage={10}
           filterConfig={[
             { key: 'name', placeholder: '', label: 'Cerca Nome' },
+          ]}
+          additionalButtons={[
+            <Button color="primary" key="export" onClick={() => exportSectorsExcelMutation.mutate()} disabled={exportSectorsExcelMutation.isPending} variant="outline"><Sheet size={24} /></Button>
           ]}
         >
           {(res) => {

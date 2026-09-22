@@ -61,7 +61,7 @@ export const useLibemaxClients = (params?: Record<string, unknown>) =>
   }
 
   export const useExportClientExcel = () => {
-    return useAppMutation({
+    return useAppMutation<void, void>({
       mutationFn: exportClientExcel,
       successKey: `${libDomain}.export.success`,
       errorMap: {

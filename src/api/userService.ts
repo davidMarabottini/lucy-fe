@@ -2,6 +2,7 @@ import type { RegistrationData } from "@/pages/Users/Insert/Insert.types";
 import apiClient from "../api/apiClient";
 import { MOCK_PATH } from "@/constants/api";
 import type { RegistrationResult, UserStatusResult, UsersResult } from "./types";
+import { exportFile } from "../utils/externalApi";
 
 export const insertUser = async (
   registration: RegistrationData
@@ -26,6 +27,11 @@ export const getUserDetail = async (userId: number): Promise<UsersResult> => {
 export const getUsers = async (params?: Record<string, unknown>): Promise<UsersResult[]> => {
   const { data } = await apiClient.get('/api/users', { params });
   return data;
+};
+
+export const exportUsersExcel = async () => {
+  const blob = await apiClient.get('/api/users/export', { responseType: 'blob' }).then(res => res.data);
+  exportFile(blob, 'utenti.xlsx');
 };
 
 // todo: cambia tipizzazione su user altrimenti è n casino

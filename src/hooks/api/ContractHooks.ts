@@ -13,6 +13,7 @@ import {
   addEmployeeToContract,
   getEmployeesByContract,
   syncEmployeeContract,
+  exportContractExcel,
 } from "@/api/contractService";
 import type {
   Contract,
@@ -101,6 +102,19 @@ export const useDeleteContract = () => {
     errorMap: {
       [ERROR_KINDS.SERVER]: `${libDomain}.delete.500`,
       [ERROR_KINDS.UNKNOWN]: `${libDomain}.delete.defaultError`
+    },
+  });
+};
+
+export const useExportContractExcel = () => {
+  return useAppMutation<void, void>({
+    mutationFn: exportContractExcel,
+    successKey: `${libDomain}.export.success`,
+    errorMap: {
+      [ERROR_KINDS.UNAUTHORIZED]: `${libDomain}.export.401`,
+      [ERROR_KINDS.SERVER]: `${libDomain}.export.500`,
+      [ERROR_KINDS.NETWORK]: `${libDomain}.export.network`,
+      [ERROR_KINDS.UNKNOWN]: `${libDomain}.export.defaultError`
     },
   });
 };

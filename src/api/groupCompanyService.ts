@@ -1,9 +1,15 @@
 import apiClient from "./apiClient";
 import type { GroupCompany, GroupCompanyPayload } from "./types";
+import { exportFile } from "../utils/externalApi";
 
 export const getGroupCompanies = async (params?: Record<string, unknown>): Promise<GroupCompany[]> => {
   const { data } = await apiClient.get<GroupCompany[]>('/api/group-company', {params});
   return data;
+};
+
+export const exportGroupCompaniesExcel = async () => {
+  const blob = await apiClient.get('/api/group-company/export', { responseType: 'blob' }).then(res => res.data);
+  exportFile(blob, 'societa-gruppo.xlsx');
 };
 
 export const getGroupCompanyById = async (id: number): Promise<GroupCompany> => {

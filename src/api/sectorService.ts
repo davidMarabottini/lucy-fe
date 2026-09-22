@@ -1,9 +1,15 @@
 import apiClient from "./apiClient";
 import type { Sector, SectorPayload } from "./types";
+import { exportFile } from "../utils/externalApi";
 
 export const getSectors = async (params?: Record<string, unknown>): Promise<Sector[]> => {
   const { data } = await apiClient.get<Sector[]>('/api/sectors', { params });
   return data;
+};
+
+export const exportSectorsExcel = async () => {
+  const blob = await apiClient.get('/api/sectors/export', { responseType: 'blob' }).then(res => res.data);
+  exportFile(blob, 'settori.xlsx');
 };
 
 export const getSectorById = async (id: number): Promise<Sector> => {

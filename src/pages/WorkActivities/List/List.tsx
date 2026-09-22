@@ -1,10 +1,10 @@
 import Card from "@components/atoms/Card/Card";
 import Typography from "@components/atoms/Typography/Typography";
-import { useWorkActivities } from "@/hooks/api/useWorkActivity"; // Corretto path hook
+import { useWorkActivities, useExportWorkActivitiesExcel } from "@/hooks/api/useWorkActivity";
 import styles from './List.module.scss'
 import { type WorkActivity } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
-import { Edit2, Eye, PlusCircle, Trash2 } from "lucide-react";
+import { Edit2, Eye, PlusCircle, Sheet, Trash2 } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -21,6 +21,8 @@ const WorkActivitiesList = () => {
   const [curActivity, setCurActivity] = useState<WorkActivity | undefined>();
 
   const { t } = useTranslation("features/workActivity", {keyPrefix: "list"});
+
+  const exportWorkActivitiesExcelMutation = useExportWorkActivitiesExcel();
 
   const openDeleteModalHdlr = (activity: WorkActivity) => {
     setCurActivity(activity);
@@ -79,6 +81,9 @@ const WorkActivitiesList = () => {
           useQueryHook={useWorkActivities}
           filterConfig={[
             {key: 'name', placeholder: '', label:t("table.filter.name")}
+          ]}
+          additionalButtons={[
+            <Button color="primary" key="export" onClick={() => exportWorkActivitiesExcelMutation.mutate()} disabled={exportWorkActivitiesExcelMutation.isPending} variant="outline"><Sheet size={24} /></Button>
           ]}
         >
           {(res) =>  isCardView ? (

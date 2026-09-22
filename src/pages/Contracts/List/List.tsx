@@ -16,13 +16,15 @@ import Table from "@/components/organisms/Table/Table";
 import DetailCard from "@/components/atoms/DetailCard/DetailCard";
 import { useViewStore } from "@/zustand/listViewAsCard";
 import clsx from "clsx";
-import { exportContractExcel } from "@/api/contractService";
+import { useExportContractExcel } from "@/hooks/api/ContractHooks";
 
 const ContractsList = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [curContract, setCurContract] = useState<Contract | undefined>();
 
   const { t } = useTranslation("features/contract", { keyPrefix: "list" });
+
+  const exportContractExcelMutation = useExportContractExcel();
 
   const openDeleteModalHdlr = (contract: Contract) => {
     setCurContract(contract);
@@ -98,7 +100,8 @@ const ContractsList = () => {
           additionalButtons={[
             <Button
               key="export"
-              onClick={exportContractExcel}
+              onClick={() => exportContractExcelMutation.mutate()}
+              disabled={exportContractExcelMutation.isPending}
               variant="outline"
             >
               <Sheet size={24} />

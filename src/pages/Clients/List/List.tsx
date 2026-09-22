@@ -16,13 +16,15 @@ import { Edit2, Eye, Trash2 } from "lucide-react";
 import Button from "@/components/atoms/Button/Button";
 import { rewriteRoute } from "@/utils/routes";
 import DetailCard from "@/components/atoms/DetailCard/DetailCard";
-import { exportClientExcel } from "@/api/clientService";
+import { useExportClientExcel } from "@/hooks/api/useClientHooks";
 
 const LibemaxClients = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [curClient, setCurClient] = useState<LibemaxClient | undefined>()
 
   const {t} = useTranslation("features/client", {keyPrefix: "list"});
+
+  const exportClientExcelMutation = useExportClientExcel();
 
   const openDeleteModalHdlr = (client: LibemaxClient) => {
     setCurClient(client);
@@ -85,7 +87,7 @@ const LibemaxClients = () => {
             { key: 'email', placeholder: '', label: 'Cerca Email' },
           ]}
           additionalButtons={[
-            <Button color="primary"  key="export" onClick={exportClientExcel} variant="outline"><Sheet size={24} /></Button>
+            <Button color="primary"  key="export" onClick={() => exportClientExcelMutation.mutate()} disabled={exportClientExcelMutation.isPending} variant="outline"><Sheet size={24} /></Button>
           ]}
         >
           {(res) => isCardView ? (

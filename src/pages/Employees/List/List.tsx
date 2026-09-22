@@ -3,13 +3,13 @@ import Typography from "@components/atoms/Typography/Typography";
 import styles from './List.module.scss'
 import type { LibemaxEmployee } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
-import {  Edit2, Eye, Mail, Phone, PlusCircle, Trash2 } from "lucide-react";
+import {  Edit2, Eye, Mail, Phone, PlusCircle, Sheet, Trash2 } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { DeleteModal } from "./components/DeleteModal/DeleteModal";
 import Paginated from "@/components/organisms/Paginated/Paginated";
-import { useEmployeesList } from "@/hooks/api/useEmployeesHooks";
+import { useEmployeesList, useExportEmployeesExcel } from "@/hooks/api/useEmployeesHooks";
 import { useViewStore } from "@/zustand/listViewAsCard";
 import { rewriteRoute } from "@/utils/routes";
 import Button from "@/components/atoms/Button/Button";
@@ -21,6 +21,8 @@ const LibemaxEmployees = () => {
   const [curEmployee, setCurEmployee] = useState<LibemaxEmployee | undefined>()
 
   const {t} = useTranslation("features/employee", {keyPrefix: "list"});
+
+  const exportEmployeesExcelMutation = useExportEmployeesExcel();
 
   const openDeleteModalHdlr = (employee: LibemaxEmployee) => {
     setCurEmployee(employee);
@@ -78,6 +80,9 @@ const LibemaxEmployees = () => {
           filterConfig={[
             { key: 'name', placeholder: '', label: 'Cerca Nome' },
             { key: 'email', placeholder: '', label: 'Cerca Email' },
+          ]}
+          additionalButtons={[
+            <Button color="primary" key="export" onClick={() => exportEmployeesExcelMutation.mutate()} disabled={exportEmployeesExcelMutation.isPending} variant="outline"><Sheet size={24} /></Button>
           ]}
         >
           {(res) => isCardView ? (

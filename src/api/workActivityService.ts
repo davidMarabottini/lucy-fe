@@ -1,9 +1,15 @@
 import apiClient from "./apiClient";
 import type { WorkActivity, WorkActivityAdd } from "./types";
+import { exportFile } from "../utils/externalApi";
 
 export const getWorkActivities = async (params?: Record<string, unknown>): Promise<WorkActivity[]> => {
   const { data } = await apiClient.get("/api/activities", {params});
   return data;
+};
+
+export const exportWorkActivitiesExcel = async () => {
+  const blob = await apiClient.get('/api/activities/export', { responseType: 'blob' }).then(res => res.data);
+  exportFile(blob, 'attivita-lavorative.xlsx');
 };
 
 /**

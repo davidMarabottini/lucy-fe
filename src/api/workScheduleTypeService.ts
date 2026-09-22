@@ -1,9 +1,15 @@
 import apiClient from "./apiClient";
 import type { WorkScheduleType, WorkScheduleTypePayload } from "./types";
+import { exportFile } from "../utils/externalApi";
 
 export const getWorkScheduleTypes = async (params?: Record<string, unknown>): Promise<WorkScheduleType[]> => {
   const { data } = await apiClient.get<WorkScheduleType[]>('/api/work-schedule-types', { params });
   return data;
+};
+
+export const exportWorkScheduleTypesExcel = async () => {
+  const blob = await apiClient.get('/api/work-schedule-types/export', { responseType: 'blob' }).then(res => res.data);
+  exportFile(blob, 'tipi-orario-lavoro.xlsx');
 };
 
 export const getWorkScheduleTypeById = async (id: number): Promise<WorkScheduleType> => {

@@ -99,3 +99,16 @@ export const useUsers = (params?: Record<string, unknown>) =>
       },
     })
   }
+
+  export const useExportUsersExcel = () => {
+    return useAppMutation<void, void>({
+      mutationFn: userService.exportUsersExcel,
+      successKey: `${domain}.export.success`,
+      errorMap: {
+        [ERROR_KINDS.UNAUTHORIZED]: `${domain}.export.401`,
+        [ERROR_KINDS.SERVER]: `${domain}.export.500`,
+        [ERROR_KINDS.NETWORK]: `${domain}.export.network`,
+        [ERROR_KINDS.UNKNOWN]: `${domain}.export.defaultError`
+      },
+    })
+  }

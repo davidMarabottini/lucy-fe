@@ -42,6 +42,13 @@
       "500": "Errore del server",
       "network": "Errore di rete. Controlla la tua connessione.",
       "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "export": {
+      "success": "Elenco utenti esportato con successo",
+      "401": "Non hai i permessi per esportare gli utenti",
+      "500": "Errore del server durante l'esportazione degli utenti",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
     }
   },
   "content": {
@@ -134,6 +141,13 @@
       "500": "Errore del server durante l'eliminazione del cliente",
       "network": "Errore di rete. Controlla la tua connessione.",
       "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "export": {
+      "success": "Elenco clienti esportato con successo",
+      "401": "Non hai i permessi per esportare i clienti",
+      "500": "Errore del server durante l'esportazione dei clienti",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
     }
   },
   "workActivity": {
@@ -161,6 +175,13 @@
       "success": "Attività lavorativa eliminata con successo",
       "401": "Non hai i permessi per eliminare questa attività lavorativa",
       "500": "Errore del server durante l'eliminazione dell'attività lavorativa",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "export": {
+      "success": "Elenco attività lavorative esportato con successo",
+      "401": "Non hai i permessi per esportare le attività lavorative",
+      "500": "Errore del server durante l'esportazione delle attività lavorative",
       "network": "Errore di rete. Controlla la tua connessione.",
       "defaultError": "Errore sconosciuto. Riprova più tardi."
     }
@@ -192,6 +213,13 @@
       "500": "Errore del server durante l'eliminazione del settore",
       "network": "Errore di rete. Controlla la tua connessione.",
       "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "export": {
+      "success": "Elenco settori esportato con successo",
+      "401": "Non hai i permessi per esportare i settori",
+      "500": "Errore del server durante l'esportazione dei settori",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
     }
   },
   "groupCompany": {
@@ -221,6 +249,13 @@
       "500": "Errore del server durante l'eliminazione della società del gruppo",
       "network": "Errore di rete. Controlla la tua connessione.",
       "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "export": {
+      "success": "Elenco società del gruppo esportato con successo",
+      "401": "Non hai i permessi per esportare le società del gruppo",
+      "500": "Errore del server durante l'esportazione delle società del gruppo",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
     }
   },
   "workScheduleType": {
@@ -248,6 +283,13 @@
       "success": "Tipo di orario di lavoro eliminato con successo",
       "401": "Non hai i permessi per eliminare questo tipo di orario di lavoro",
       "500": "Errore del server durante l'eliminazione del tipo di orario di lavoro",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "export": {
+      "success": "Elenco tipi di orario di lavoro esportato con successo",
+      "401": "Non hai i permessi per esportare i tipi di orario di lavoro",
+      "500": "Errore del server durante l'esportazione dei tipi di orario di lavoro",
       "network": "Errore di rete. Controlla la tua connessione.",
       "defaultError": "Errore sconosciuto. Riprova più tardi."
     }
@@ -280,6 +322,13 @@
       "500": "Errore del server durante la sincronizzazione dei dipendenti del contratto",
       "network": "Errore di rete. Controlla la tua connessione.",
       "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "export": {
+      "success": "Elenco contratti esportato con successo",
+      "401": "Non hai i permessi per esportare i contratti",
+      "500": "Errore del server durante l'esportazione dei contratti",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
     }
   },
   "employees": {
@@ -300,6 +349,13 @@
       "success": "Dipendente eliminato con successo",
       "401": "Non hai i permessi per eliminare questo dipendente",
       "500": "Errore del server durante l'eliminazione del dipendente",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "defaultError": "Errore sconosciuto. Riprova più tardi."
+    },
+    "export": {
+      "success": "Elenco dipendenti esportato con successo",
+      "401": "Non hai i permessi per esportare i dipendenti",
+      "500": "Errore del server durante l'esportazione dei dipendenti",
       "network": "Errore di rete. Controlla la tua connessione.",
       "defaultError": "Errore sconosciuto. Riprova più tardi."
     }

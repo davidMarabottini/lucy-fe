@@ -1,9 +1,15 @@
 import apiClient from "./apiClient";
 import type { LibemaxEmployee, LibemaxAddEmployee, ContractEmployeeAssignment } from "./types";
+import { exportFile } from "../utils/externalApi";
 
 export const getLibemaxEmployees = async (params?: Record<string, unknown>): Promise<LibemaxEmployee[]> => {
   const { data } = await apiClient.get("/api/employees", { params });
   return data;
+};
+
+export const exportEmployeesExcel = async () => {
+  const blob = await apiClient.get('/api/employees/export', { responseType: 'blob' }).then(res => res.data);
+  exportFile(blob, 'dipendenti.xlsx');
 };
 
 export const insertEmployee = async (

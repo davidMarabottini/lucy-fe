@@ -8,7 +8,8 @@ import {
   getGroupCompanyById, 
   insertGroupCompany, 
   updateGroupCompany, 
-  deleteGroupCompany
+  deleteGroupCompany,
+  exportGroupCompaniesExcel
 } from "@/api/groupCompanyService";
 import type { GroupCompany, GroupCompanyPayload } from "@/api/types";
 
@@ -96,6 +97,20 @@ export const useDeleteGroupCompany = () => {
     errorMap: {
       [ERROR_KINDS.SERVER]: `${libDomain}.delete.500`,
       [ERROR_KINDS.UNKNOWN]: `${libDomain}.delete.defaultError`
+    },
+  });
+};
+
+// 6. EXPORT EXCEL
+export const useExportGroupCompaniesExcel = () => {
+  return useAppMutation<void, void>({
+    mutationFn: exportGroupCompaniesExcel,
+    successKey: `${libDomain}.export.success`,
+    errorMap: {
+      [ERROR_KINDS.UNAUTHORIZED]: `${libDomain}.export.401`,
+      [ERROR_KINDS.SERVER]: `${libDomain}.export.500`,
+      [ERROR_KINDS.NETWORK]: `${libDomain}.export.network`,
+      [ERROR_KINDS.UNKNOWN]: `${libDomain}.export.defaultError`
     },
   });
 };

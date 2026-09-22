@@ -8,7 +8,8 @@ import {
   getWorkScheduleTypeById, 
   insertWorkScheduleType, 
   updateWorkScheduleType, 
-  deleteWorkScheduleType
+  deleteWorkScheduleType,
+  exportWorkScheduleTypesExcel
 } from "@/api/workScheduleTypeService";
 import type { WorkScheduleType } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
@@ -92,6 +93,19 @@ export const useDeleteWorkScheduleType = () => {
     errorMap: {
       [ERROR_KINDS.SERVER]: `${libDomain}.delete.500`,
       [ERROR_KINDS.UNKNOWN]: `${libDomain}.delete.defaultError`
+    },
+  });
+};
+
+export const useExportWorkScheduleTypesExcel = () => {
+  return useAppMutation<void, void>({
+    mutationFn: exportWorkScheduleTypesExcel,
+    successKey: `${libDomain}.export.success`,
+    errorMap: {
+      [ERROR_KINDS.UNAUTHORIZED]: `${libDomain}.export.401`,
+      [ERROR_KINDS.SERVER]: `${libDomain}.export.500`,
+      [ERROR_KINDS.NETWORK]: `${libDomain}.export.network`,
+      [ERROR_KINDS.UNKNOWN]: `${libDomain}.export.defaultError`
     },
   });
 };
