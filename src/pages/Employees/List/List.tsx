@@ -15,81 +15,13 @@ import { rewriteRoute } from "@/utils/routes";
 import Button from "@/components/atoms/Button/Button";
 import Table from "@/components/organisms/Table/Table";
 import DetailCard from "@/components/atoms/DetailCard/DetailCard";
-import PdfDocument from "@/components/atoms/PdfDocument/PdfDocument";
-import { StyleSheet, Text, View } from "@react-pdf/renderer";
 import Switch from "@/components/atoms/Switch/Switch";
-
-const pdfStyles = StyleSheet.create({
-  section: {
-    gap: 4,
-  },
-  title: {
-    fontSize: 16,
-    marginBottom: 8,
-  },
-  table: {
-    display: "table",
-    width: "auto",
-    borderStyle: "solid",
-    borderWidth: 1,
-    borderColor: "#000",
-    borderRightWidth: 0,
-    borderBottomWidth: 0,
-  },
-  tableRow: {
-    flexDirection: "row",
-  },
-  tableHeader: {
-    margin: 4,
-    fontWeight: "bold",
-    borderStyle: "solid",
-    borderWidth: 1,
-    borderColor: "#000",
-    borderLeftWidth: 0,
-    borderTopWidth: 0,
-  },
-  tableCell: {
-    margin: 4,
-    borderStyle: "solid",
-    borderWidth: 1,
-    borderColor: "#000",
-    borderLeftWidth: 0,
-    borderTopWidth: 0,
-  },
-});
-
-const LibemaxEmployeesPDF = () => {
-  const {data: employees, isLoading, error} = useEmployeesList();
-  if(isLoading) return <Text>Loading...</Text>;
-  if(error) return <Text>Error loading employees</Text>;
-  return (
-  <PdfDocument title={`Scheda dipendente`} height="900px">
-    <View style={pdfStyles.section}>
-      <Text style={pdfStyles.title}>Employees</Text>
-      <View style={pdfStyles.table}>
-        <View style={pdfStyles.tableRow}>
-          <Text style={pdfStyles.tableHeader}>ID</Text>
-          <Text style={pdfStyles.tableHeader}>Name</Text>
-          <Text style={pdfStyles.tableHeader}>Email</Text>
-          <Text style={pdfStyles.tableHeader}>Phone</Text>
-        </View>
-        {employees?.map((employee) => (
-          <View style={pdfStyles.tableRow} key={employee.id}>
-            <Text style={pdfStyles.tableCell}>{employee.id}</Text>
-            <Text style={pdfStyles.tableCell}>{employee.name}</Text>
-            <Text style={pdfStyles.tableCell}>{employee.email}</Text>
-            <Text style={pdfStyles.tableCell}>{employee.phone}</Text>
-          </View>
-        ))}
-      </View>
-    </View>
-  </PdfDocument>
-)};
+import { PdfDataTable } from "@/components/organisms/PdfDataTable/PdfDataTable";
 
 const LibemaxEmployees = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [curEmployee, setCurEmployee] = useState<LibemaxEmployee | undefined>()
-  // const [pdfEmployee, setPdfEmployee] = useState<LibemaxEmployee | undefined>()
+  const {data: employees, isLoading, error} = useEmployeesList();
 
   const {t} = useTranslation("features/employee", {keyPrefix: "list"});
 
@@ -210,32 +142,22 @@ const LibemaxEmployees = () => {
           }
         </Paginated>
       </Card>}
-      { showAsPDF && (
+      {showAsPDF && (
         <Card additionalClassName={styles["p-libemax-employees__card"]}>
-          <LibemaxEmployeesPDF />
-          {/*{employees.length > 0 && (
-            <PdfDocument title={`Scheda dipendente`} height="900px">
-            <View style={pdfStyles.section}>
-            <View style={pdfStyles.table}>
-              <View style={pdfStyles.tableRow}>
-                <Text style={pdfStyles.tableHeader}>ID Libemax</Text>
-                <Text style={pdfStyles.tableHeader}>Nome</Text>
-                <Text style={pdfStyles.tableHeader}>Email</Text>
-                <Text style={pdfStyles.tableHeader}>Telefono</Text>
-              </View>
-              {employees.map((employee) => (
-                <View style={pdfStyles.tableRow} key={employee.id}>
-                  <Text style={pdfStyles.tableCell}>{employee.id}</Text>
-                  <Text style={pdfStyles.tableCell}>{employee.name} {employee.surname}</Text>
-                  <Text style={pdfStyles.tableCell}>{employee.email}</Text>
-                  <Text style={pdfStyles.tableCell}>{employee.phone}</Text>
-                </View>
-              ))}
-            </View>
+          {isLoading && <p>Loading...</p>}
+          {error && <p>Error</p>}
+          {employees && (
+            <PdfDataTable
+            title={`Scheda dipendente`}
+            data={employees}
+            columns={[
+              {key: "id", header: "ID Libemax"},
+              {key: "name", header: "Nome"},
+              {key: "email", header: "Email"},
+              {key: "phone", header: "Telefono"},
+            ]}
+          />)}
 
-            </View>
-          </PdfDocument>
-          )}*/}
         </Card>
       )}
     </div>

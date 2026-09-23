@@ -4,7 +4,7 @@ import { useLibemaxClients } from "@/hooks/api/useClientHooks";
 import styles from './List.module.scss'
 import type { LibemaxClient } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
-import { Mail, Phone, PlusCircle, Sheet } from "lucide-react";
+import { FileText, Mail, PanelsTopLeft, Phone, PlusCircle, Sheet } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -17,14 +17,19 @@ import Button from "@/components/atoms/Button/Button";
 import { rewriteRoute } from "@/utils/routes";
 import DetailCard from "@/components/atoms/DetailCard/DetailCard";
 import { useExportClientExcel } from "@/hooks/api/useClientHooks";
+import Switch from "@/components/atoms/Switch/Switch";
+import { PdfDataTable } from "@/components/organisms/PdfDataTable/PdfDataTable";
 
 const LibemaxClients = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [curClient, setCurClient] = useState<LibemaxClient | undefined>()
+  const {data: clients, isLoading, error} = useLibemaxClients();
 
   const {t} = useTranslation("features/client", {keyPrefix: "list"});
 
   const exportClientExcelMutation = useExportClientExcel();
+  
+  const [showAsPDF, setShowAsPDF] = useState<boolean>(false);
 
   const openDeleteModalHdlr = (client: LibemaxClient) => {
     setCurClient(client);
@@ -73,12 +78,20 @@ const LibemaxClients = () => {
             <Typography variant="h2" additionalClasses={styles["p-libemax-clients__title"]}>
               {t("title")}
             </Typography>
+            <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+              <Switch
+                KOIcon={PanelsTopLeft}
+                OKIcon={FileText}
+                value={showAsPDF}
+                onChange={() => setShowAsPDF(!showAsPDF)}
+              />
             <LinkComponent to={ROUTES.INSERT_CLIENT}><PlusCircle /></LinkComponent>
+            </div>
         </div>
       </Card>
 
-      <Card additionalClassName={styles["p-libemax-clients__card"]}>
-        <Paginated<LibemaxClient>
+      {!showAsPDF && <Card additionalClassName={styles["p-libemax-clients__card"]}>
+        {<Paginated<LibemaxClient>
           area="clients"
           useQueryHook={useLibemaxClients} 
           initialPerPage={20} 
@@ -130,8 +143,26 @@ const LibemaxClients = () => {
                 actions={actions}
               />
             )}
-        </Paginated>
-      </Card>
+        </Paginated>}
+      </Card>}
+            {showAsPDF && (
+        <Card additionalClassName={styles["p-libemax-employees__card"]}>
+          {isLoading && <p>Loading...</p>}
+          {error && <p>Error</p>}
+          {clients && (
+            <PdfDataTable
+            title={`Scheda dipendente`}
+            data={clients}
+            columns={[
+              {key: "id", header: "ID Libemax"},
+              {key: "name", header: "Nome"},
+              {key: "email", header: "Email"},
+              {key: "phone", header: "Telefono"},
+            ]}
+          />)}
+
+        </Card>
+      )}
     </div>
   );
 };
