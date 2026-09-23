@@ -86,8 +86,8 @@ const LibemaxClients = () => {
             { key: 'name', placeholder: '', label: 'Cerca Nome' },
             { key: 'email', placeholder: '', label: 'Cerca Email' },
           ]}
-          additionalButtons={[
-            <Button color="primary"  key="export" onClick={() => exportClientExcelMutation.mutate()} disabled={exportClientExcelMutation.isPending} variant="outline"><Sheet size={24} /></Button>
+          additionalButtons={(_, filters) => [
+            <Button color="primary" key="export" onClick={() =>  exportClientExcelMutation.mutate(filters)} disabled={exportClientExcelMutation.isPending} variant="outline"><Sheet size={24} /></Button>
           ]}
         >
           {(res) => isCardView ? (

@@ -100,7 +100,7 @@ function Paginated<T extends object>({
         )}
         {additionalButtons && additionalButtons.length > 0 && (
           <div className={styles['c-paginated__additional-buttons']}>
-            {additionalButtons.map((button, index) => (
+            {additionalButtons(page, filters).map((button, index) => (
               <div key={index}>{button}</div>
             ))}
           </div>

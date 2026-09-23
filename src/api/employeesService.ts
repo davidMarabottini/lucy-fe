@@ -7,8 +7,8 @@ export const getLibemaxEmployees = async (params?: Record<string, unknown>): Pro
   return data;
 };
 
-export const exportEmployeesExcel = async () => {
-  const blob = await apiClient.get('/api/employees/export', { responseType: 'blob' }).then(res => res.data);
+export const exportEmployeesExcel = async (filters: Record<string, unknown>) => {
+  const blob = await apiClient.get('/api/employees/export', { responseType: 'blob', params: filters }).then(res => res.data);
   exportFile(blob, 'dipendenti.xlsx');
 };
 

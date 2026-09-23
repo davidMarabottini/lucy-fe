@@ -8,8 +8,8 @@ export const getContracts = async (params?: Record<string, unknown>): Promise<Pa
   return data;
 };
 
-export const exportContractExcel = async () => {
-  const blob = await apiClient.get('/api/contracts/export', { responseType: 'blob' }).then(res => res.data);
+export const exportContractExcel = async (filters: Record<string, unknown>) => {
+  const blob = await apiClient.get('/api/contracts/export', { responseType: 'blob', params: filters }).then(res => res.data);
   exportFile(blob, 'contratti.xlsx');
 };
 

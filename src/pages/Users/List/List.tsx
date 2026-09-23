@@ -1,9 +1,9 @@
 import Card from "@components/atoms/Card/Card";
-import { useUsers, useExportUsersExcel } from "@/hooks/api/useUserHooks";
+import { useUsers } from "@/hooks/api/useUserHooks";
 import Typography from "@/components/atoms/Typography/Typography";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { ROUTES } from "@/constants/routes";
-import { Edit2, Eye, PlusCircle, Sheet, Trash2 } from "lucide-react";
+import { Edit2, Eye, PlusCircle, Trash2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import styles from './List.module.scss'
 import { useMe } from "@/hooks/api/useAuthenticationHooks";
@@ -20,8 +20,6 @@ import { useViewStore } from "@/zustand/listViewAsCard";
 const User = () => {
   const {t} = useTranslation("features/user", {keyPrefix: "list"});
   const { data: me } = useMe()
-
-  const exportUsersExcelMutation = useExportUsersExcel();
 
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [curClient, setCurClient] = useState<UsersResult | undefined>()
@@ -92,9 +90,6 @@ const User = () => {
             {key: 'surname', placeholder: '', label: 'Cerca per Cognome'},
             {key: 'username', placeholder: '', label: 'Cerca per username'},
             {key: 'email', placeholder: '', label: 'Cerca per email'}
-          ]}
-          additionalButtons={[
-            <Button color="primary" key="export" onClick={() => exportUsersExcelMutation.mutate()} disabled={exportUsersExcelMutation.isPending} variant="outline"><Sheet size={24} /></Button>
           ]}
         >
           {(res) => {

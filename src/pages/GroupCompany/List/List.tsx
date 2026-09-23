@@ -1,10 +1,10 @@
 import Card from "@components/atoms/Card/Card";
 import Typography from "@components/atoms/Typography/Typography";
-import { useGroupCompanies, useExportGroupCompaniesExcel } from "@/hooks/api/GroupCompanyHooks";
+import { useGroupCompanies } from "@/hooks/api/GroupCompanyHooks";
 import styles from './List.module.scss'; 
 import { type GroupCompany } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
-import { Edit2, Eye, PlusCircle, Sheet, Trash2 } from "lucide-react";
+import { Edit2, Eye, PlusCircle, Trash2 } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -22,7 +22,6 @@ const GroupCompaniesList = () => {
 
   const { t } = useTranslation("features/groupCompany", { keyPrefix: "list" });
 
-  const exportGroupCompaniesExcelMutation = useExportGroupCompaniesExcel();
 
   const openDeleteModalHdlr = (company: GroupCompany) => {
     setCurCompany(company);
@@ -87,9 +86,6 @@ const GroupCompaniesList = () => {
           filterConfig={[
             { key: 'name', placeholder: '', label: 'Cerca Nome' },
             { key: 'email', placeholder: '', label: 'Cerca Email' },
-          ]}
-          additionalButtons={[
-            <Button color="primary" key="export" onClick={() => exportGroupCompaniesExcelMutation.mutate()} disabled={exportGroupCompaniesExcelMutation.isPending} variant="outline"><Sheet size={24} /></Button>
           ]}
         >
           {(res) => {            

@@ -108,7 +108,7 @@ export const useDeleteContract = () => {
 
 export const useExportContractExcel = () => {
   return useAppMutation<void, void>({
-    mutationFn: exportContractExcel,
+    mutationFn: (filters: Record<string, unknown>) =>  exportContractExcel(filters),
     successKey: `${libDomain}.export.success`,
     errorMap: {
       [ERROR_KINDS.UNAUTHORIZED]: `${libDomain}.export.401`,

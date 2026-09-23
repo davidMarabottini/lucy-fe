@@ -127,7 +127,7 @@ export const useGetEmployeesByContractId = (contractId: number, date?: string) =
 
 export const useExportEmployeesExcel = () => {
   return useAppMutation<void, void>({
-    mutationFn: exportEmployeesExcel,
+    mutationFn: (filters: Record<string, unknown>) => exportEmployeesExcel(filters),
     successKey: `${libDomain}.export.success`,
     errorMap: {
       [ERROR_KINDS.UNAUTHORIZED]: `${libDomain}.export.401`,

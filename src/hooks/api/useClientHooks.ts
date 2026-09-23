@@ -60,9 +60,11 @@ export const useLibemaxClients = (params?: Record<string, unknown>) =>
     })
   }
 
+  //  Record<string, unknown>
   export const useExportClientExcel = () => {
+    // console.log('davidlog - filters a mezzo' , filters);
     return useAppMutation<void, void>({
-      mutationFn: exportClientExcel,
+      mutationFn: (filters: Record<string, unknown>) => exportClientExcel(filters),
       successKey: `${libDomain}.export.success`,
       errorMap: {
         [ERROR_KINDS.UNAUTHORIZED]: `${libDomain}.export.401`,

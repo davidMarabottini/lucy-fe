@@ -15,8 +15,9 @@ export const insertClient = async (
   return data
 }
 
-export const exportClientExcel = async () => {
-  const blob = await apiClient.get('/api/clients/export', { responseType: 'blob' }).then(res => res.data);
+export const exportClientExcel = async (filters?: Record<string, unknown>) => {
+  console.log('davidlog - filters', filters)
+  const blob = await apiClient.get('/api/clients/export', { responseType: 'blob', params: filters }).then(res => res.data);
   exportFile(blob, 'clienti.xlsx');
 };
 

@@ -24,7 +24,7 @@ const ContractsList = () => {
 
   const { t } = useTranslation("features/contract", { keyPrefix: "list" });
 
-  const exportContractExcelMutation = useExportContractExcel();
+  const { mutate: exportContractExcel, isPending: exportContractExcelIsPending } = useExportContractExcel();
 
   const openDeleteModalHdlr = (contract: Contract) => {
     setCurContract(contract);
@@ -97,11 +97,11 @@ const ContractsList = () => {
             { key: 'contract_code', placeholder: '', label: 'Cerca Codice' },
             { key: 'description', placeholder: '', label: 'Cerca Descrizione' },
           ]}  
-          additionalButtons={[
+          additionalButtons={(_, filters) => [
             <Button
               key="export"
-              onClick={() => exportContractExcelMutation.mutate()}
-              disabled={exportContractExcelMutation.isPending}
+              onClick={() => exportContractExcel(filters)}
+              disabled={exportContractExcelIsPending}
               variant="outline"
             >
               <Sheet size={24} />

@@ -22,8 +22,6 @@ const SectorsList = () => {
 
   const { t } = useTranslation("features/sector", { keyPrefix: "list" });
 
-  const exportSectorsExcelMutation = useExportSectorsExcel();
-
   const openDeleteModalHdlr = (sector: Sector) => {
     setCurSector(sector);
     setOpenModal(true);
@@ -90,9 +88,6 @@ const SectorsList = () => {
           initialPerPage={10}
           filterConfig={[
             { key: 'name', placeholder: '', label: 'Cerca Nome' },
-          ]}
-          additionalButtons={[
-            <Button color="primary" key="export" onClick={() => exportSectorsExcelMutation.mutate()} disabled={exportSectorsExcelMutation.isPending} variant="outline"><Sheet size={24} /></Button>
           ]}
         >
           {(res) => {

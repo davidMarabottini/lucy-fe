@@ -81,8 +81,8 @@ const LibemaxEmployees = () => {
             { key: 'name', placeholder: '', label: 'Cerca Nome' },
             { key: 'email', placeholder: '', label: 'Cerca Email' },
           ]}
-          additionalButtons={[
-            <Button color="primary" key="export" onClick={() => exportEmployeesExcelMutation.mutate()} disabled={exportEmployeesExcelMutation.isPending} variant="outline"><Sheet size={24} /></Button>
+          additionalButtons={(_, filters) => [
+            <Button color="primary" key="export" onClick={() => exportEmployeesExcelMutation.mutate(filters)} disabled={exportEmployeesExcelMutation.isPending} variant="outline"><Sheet size={24} /></Button>
           ]}
         >
           {(res) => isCardView ? (

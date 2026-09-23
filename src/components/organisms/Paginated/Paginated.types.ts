@@ -22,5 +22,6 @@ export interface PaginatedProps<T extends object> {
   initialPerPage?: number;
   filterConfig?: FilterConfig[];
   children: (data: T[]) => ReactNode;
-  additionalButtons?: ReactNode[];
+  // TODO: valutare di farlo andare via T
+  additionalButtons?: (page: number, filter: Record<string, unknown>) => ReactNode[];
 }

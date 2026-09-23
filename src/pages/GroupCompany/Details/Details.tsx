@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useGroupCompanyDetail } from "@/hooks/api/GroupCompanyHooks"; // Hook per società interna
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { ROUTES } from "@/constants/routes";
-import { Building, ChevronLeft, Hash, Tag } from "lucide-react";
+import { Building, ChevronLeft, CircleDollarSign, Tag } from "lucide-react";
 import styles from './Details.module.scss';
 import { useTranslation } from "react-i18next";
 import Paginated from "@/components/organisms/Paginated/Paginated";
@@ -45,7 +45,7 @@ const GroupCompanyDetailPage = () => {
             <div>
               {data.vat_number && (
                 <div>
-                  <Hash size={18} /> <strong>{t("fields.vat")}:</strong> {data.vat_number}
+                  <CircleDollarSign size={18} /> <strong>{t("fields.vat")}:</strong> {data.vat_number}
                 </div>
               )}
               {data.sectors && data.sectors.length > 0 && (

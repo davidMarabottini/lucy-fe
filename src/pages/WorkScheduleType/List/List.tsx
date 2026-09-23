@@ -1,11 +1,11 @@
 import Card from "@components/atoms/Card/Card";
 import Typography from "@components/atoms/Typography/Typography";
-import { useWorkScheduleTypes, useExportWorkScheduleTypesExcel } from "@/hooks/api/WorkScheduleTypeHooks";
+import { useWorkScheduleTypes } from "@/hooks/api/WorkScheduleTypeHooks";
 import styles from './List.module.scss'; 
 import Table from "@/components/organisms/Table/Table";
 import { type WorkScheduleType } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
-import { Edit2, Eye, PlusCircle, Trash2, HelpCircle, Sheet } from "lucide-react";
+import { Edit2, Eye, PlusCircle, Trash2, HelpCircle } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -23,7 +23,6 @@ const WorkScheduleTypeList = () => {
 
   const { t } = useTranslation("features/workScheduleType", { keyPrefix: "list" });
 
-  const exportWorkScheduleTypesExcelMutation = useExportWorkScheduleTypesExcel();
 
   const openDeleteModalHdlr = (type: WorkScheduleType) => {
     setCurType(type);
@@ -86,9 +85,6 @@ const WorkScheduleTypeList = () => {
           useQueryHook={useWorkScheduleTypes}
           filterConfig={[
             { key: 'name', placeholder: '', label: t('table.name') }
-          ]}
-          additionalButtons={[
-            <Button color="primary" key="export" onClick={() => exportWorkScheduleTypesExcelMutation.mutate()} disabled={exportWorkScheduleTypesExcelMutation.isPending} variant="outline"><Sheet size={24} /></Button>
           ]}
         >
           {(res) => {
