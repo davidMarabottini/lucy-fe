@@ -7,6 +7,7 @@ import Button from "@components/atoms/Button/Button";
 import { useAuth } from "@/auth/useAuth";
 import UserMenu from "../UserMenu/UserMenu";
 import { useMenuStore } from "@/zustand/menuState";
+import { Breadcrumb } from "@/components/molecules/Breadcrumb/Breadcrumb";
 
 const OpenMenuBtn = () => {
   const { menuOpen, openMenu } = useMenuStore();
@@ -48,6 +49,12 @@ const Header = () => {
             
             {isAuthenticated && <UserMenu />}
           </div>
+
+          {isAuthenticated && (
+            <div className={style["c-header__breadcrumb-area"]}>
+              <Breadcrumb />
+            </div>
+          )}
         </div>
       </header>
     </>

@@ -20,6 +20,19 @@
     "contractList": "Contratti",
     "workScheduleTypes": "Tipologie Orario",
     "workActivities": "Attività",
-    "libemaxEmployees": "Dipendenti"
+    "libemaxEmployees": "Dipendenti",
+    "insertClient": "Inserisci cliente",
+    "clientDetail": "Dettaglio cliente",
+    "insertEmployee": "Inserisci dipendente",
+    "employeeDetail": "Dettaglio dipendente",
+    "userDetails": "Dettaglio utente",
+    "sectorDetail": "Dettaglio settore",
+    "groupCompanyDetail": "Dettaglio società",
+    "workScheduleTypeDetails": "Dettaglio tipologia orario",
+    "workActivitiesInsert": "Inserisci attività",
+    "workActivitiesEdit": "Modifica attività",
+    "workActivitiesDetails": "Dettaglio attività",
+    "contractDetail": "Dettaglio contratto",
+    "contractSetDetails": "Pianificazione attività"
   }
 }

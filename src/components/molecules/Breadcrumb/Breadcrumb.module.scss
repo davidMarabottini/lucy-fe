@@ -1,0 +1,45 @@
+.c-breadcrumb {
+  width: 100%;
+  display: flex;
+
+  &__list {
+    @include flex-center;
+    flex-wrap: wrap;
+    gap: $space-xs;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    @include flex-center;
+    gap: $space-xs;
+  }
+
+  &__link {
+    @include flex-center;
+    gap: $space-xs;
+    color: $color-text-muted;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $color-primary;
+      text-decoration: underline;
+    }
+  }
+
+  &__current {
+    @include flex-center;
+    gap: $space-xs;
+    color: $color-primary;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  &__separator {
+    color: $color-text-muted;
+    flex-shrink: 0;
+  }
+}

@@ -26,12 +26,12 @@ const Home = () => {
                 <div>{tMenu(sections[sectionKey]?.VIEW?.label || "")}</div>
                 <div style={{ display: 'flex', gap: "8px" }}>
                    <LinkComponent
-                  to={sections[sectionKey]?.VIEW?.path}
+                  to={sections[sectionKey]?.VIEW?.path || ""}
                 >
                   <List />
                 </LinkComponent>
                 <LinkComponent
-                  to={sections[sectionKey]?.INSERT?.path}
+                  to={sections[sectionKey]?.INSERT?.path || ""}
                 >
                   <Plus />
                 </LinkComponent>
