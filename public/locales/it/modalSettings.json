@@ -6,5 +6,6 @@
   "key": "Chiave",
   "filters": "Filtri",
   "page": "Pagina",
-  "reset": "Reimposta"
+  "reset": "Reimposta",
+  "reset_all": "Reimposta tutto"
 }
