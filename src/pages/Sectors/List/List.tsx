@@ -1,11 +1,11 @@
 import Card from "@components/atoms/Card/Card";
 import Typography from "@components/atoms/Typography/Typography";
-import { useSectors, useExportSectorsExcel } from "@/hooks/api/useSectors"; // Hook creato precedentemente
+import { useSectors } from "@/hooks/api/useSectors"; // Hook creato precedentemente
 import styles from './List.module.scss'; // Riutilizziamo lo stesso stile o uno dedicato
 import Table from "@/components/organisms/Table/Table";
 import { type Sector } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
-import { Edit2, Eye, PlusCircle, Sheet, Trash2 } from "lucide-react";
+import { Edit2, Eye, PlusCircle, Trash2 } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -74,7 +74,6 @@ const SectorsList = () => {
             <Typography variant="h2" additionalClasses={styles["p-sectors__title"]}>
               {t("title")}
             </Typography>
-            {/* Ricordati di aggiungere SECTOR_INSERT nelle tue ROUTES se non l'hai fatto */}
             <LinkComponent to={ROUTES.SECTOR_INSERT || '/sectors/insert'}>
               <PlusCircle size={24} />
             </LinkComponent>

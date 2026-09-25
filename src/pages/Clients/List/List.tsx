@@ -151,7 +151,7 @@ const LibemaxClients = () => {
           {error && <p>Error</p>}
           {clients && (
             <PdfDataTable
-            title={`Scheda dipendente`}
+            title={`Clienti`}
             data={clients}
             columns={[
               {key: "id", header: "ID Libemax"},

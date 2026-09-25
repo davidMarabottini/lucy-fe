@@ -2,7 +2,7 @@ import clsx from "clsx";
 import styles from "./DetailCard.module.scss";
 import type { DetailCardProps } from "./DetailCard.types";
 
-const DetailCard = ({ header, body, actions, isSelected }: DetailCardProps) => {
+const DetailCard = ({ header, body, actions, isSelected, actionDirection = "normal" }: DetailCardProps) => {
   return (
     <div className={clsx(styles["c-detail-card"], isSelected && styles["c-detail-card--selected"])}>
       <div className={styles["c-detail-card__header"]}>
@@ -12,7 +12,7 @@ const DetailCard = ({ header, body, actions, isSelected }: DetailCardProps) => {
         {body}
       </div>
       {actions && actions.length > 0 && (
-        <div className={styles["c-detail-card__footer"]}>
+        <div className={styles["c-detail-card__footer"]} style={{ flexDirection: actionDirection === "reverse" ? "row-reverse" : "row" }}>
           {actions}
         </div>
       )}
