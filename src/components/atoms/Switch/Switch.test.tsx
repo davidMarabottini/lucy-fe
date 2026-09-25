@@ -11,10 +11,18 @@ const SwitchWrapper = ({allowIndeterminate}: {allowIndeterminate?: boolean}) => 
 }
 //TODO: aggiungere controlli su classi, sui valori ecc per il checked
 
-const isChecked = (input: HTMLInputElement, value: boolean | null, classNames: string[], negativeClasses: string[]) => {
-  expect(input.querySelector("input").checked).toBe(!!value)
-  classNames.forEach(cn => expect(input.className.includes(styles[cn])).toBeTruthy())
-  negativeClasses.forEach(ncn => expect(input.className.includes(styles[ncn])).toBeFalsy())
+const isChecked = (
+  toggle: HTMLElement,
+  value: boolean | null,
+  classNames: string[],
+  negativeClasses: string[]
+) => {
+  const wrapper = toggle.closest('label') as HTMLLabelElement;
+  const expectedAriaChecked = value === null ? 'mixed' : String(!!value);
+
+  expect(toggle.getAttribute('aria-checked')).toBe(expectedAriaChecked);
+  classNames.forEach(cn => expect(wrapper.className.includes(styles[cn])).toBeTruthy())
+  negativeClasses.forEach(ncn => expect(wrapper.className.includes(styles[ncn])).toBeFalsy())
 }
 
 describe('Switch Component', () => {
@@ -30,40 +38,53 @@ describe('Switch Component', () => {
   it('switch value should change on click', async () => {
     const user = userEvent.setup();
     render(<SwitchWrapper />);
-    const input = screen.getByTestId('switch-example') as HTMLInputElement;
+    const toggle = screen.getByRole('switch');
 
-    isChecked(input, false, ['c-switch'], ['c-switch--indeterminate', 'c-switch--checked'])
+    isChecked(toggle, false, ['c-switch'], ['c-switch--indeterminate', 'c-switch--checked'])
 
-    await user.click(input);
-    isChecked(input, true, ['c-switch', 'c-switch--checked'], ['c-switch--indeterminate'])
+    await user.click(toggle);
+    isChecked(toggle, true, ['c-switch', 'c-switch--checked'], ['c-switch--indeterminate'])
 
-    await user.click(input);
-    isChecked(input, false, ['c-switch'], ['c-switch--indeterminate', 'c-switch--checked'])
+    await user.click(toggle);
+    isChecked(toggle, false, ['c-switch'], ['c-switch--indeterminate', 'c-switch--checked'])
   });
 
   it('switch value should change on three states with allowIndeterminate', async () => {
     const user = userEvent.setup();
     render(<SwitchWrapper allowIndeterminate/>);
-    const input = screen.getByTestId('switch-example') as HTMLInputElement;
+    const toggle = screen.getByRole('switch');
 
-    isChecked(input, null, ['c-switch', 'c-switch--indeterminate'], ['c-switch--checked'])
+    isChecked(toggle, null, ['c-switch', 'c-switch--indeterminate'], ['c-switch--checked'])
 
-    await user.click(input);
-    isChecked(input, true, ['c-switch', 'c-switch--checked'], ['c-switch--indeterminate'])
+    await user.click(toggle);
+    isChecked(toggle, true, ['c-switch', 'c-switch--checked'], ['c-switch--indeterminate'])
 
-    await user.click(input);
-    isChecked(input, false, ['c-switch'], ['c-switch--indeterminate', 'c-switch--checked'])
+    await user.click(toggle);
+    isChecked(toggle, false, ['c-switch'], ['c-switch--indeterminate', 'c-switch--checked'])
 
-    await user.click(input);
-    isChecked(input, null, ['c-switch', 'c-switch--indeterminate'], ['c-switch--checked'])
+    await user.click(toggle);
+    isChecked(toggle, null, ['c-switch', 'c-switch--indeterminate'], ['c-switch--checked'])
+  });
+
+  it('switch value should change on keyboard activation', async () => {
+    const user = userEvent.setup();
+    render(<SwitchWrapper />);
+    const toggle = screen.getByRole('switch');
+
+    await user.tab();
+    expect(toggle).toHaveFocus();
+
+    await user.keyboard('[Space]');
+    isChecked(toggle, true, ['c-switch', 'c-switch--checked'], ['c-switch--indeterminate'])
   });
 
   it("should have additional class name", () => {
     const onChange = vi.fn();
     render(<Switch additionalClassName="c-test" dataTestid="switch-example" label="test" onChange={onChange} />);
 
-    const input = screen.getByTestId('switch-example') as HTMLInputElement;
+    const wrapper = screen.getByTestId('switch-example');
 
-    expect(input.className.includes("c-test")).toBeTruthy()
+    expect(wrapper.className.includes("c-test")).toBeTruthy()
   })
 });
+

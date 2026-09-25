@@ -20,9 +20,11 @@ export const DropDownHead = ({ label, isOpen, setIsOpen, children, className }: 
           </Button>
         </RadixDropdown.Trigger>
 
-        <RadixDropdown.Content className={styles['c-dropdown__menu']} >
-          {children}
-        </RadixDropdown.Content>
+        <RadixDropdown.Portal>
+          <RadixDropdown.Content className={styles['c-dropdown__menu']} sideOffset={4} align="end">
+            {children}
+          </RadixDropdown.Content>
+        </RadixDropdown.Portal>
       </div>
     </RadixDropdown.Root>
   );

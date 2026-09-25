@@ -1,46 +1,31 @@
-import { forwardRef, useEffect, useRef } from 'react';
+import { forwardRef } from 'react';
+import * as RadixSwitch from '@radix-ui/react-switch';
 import styles from './Switch.module.scss';
 import type { SwitchProps } from './Switch.types';
 import clsx from 'clsx';
 import { BadgeQuestionMark, Check, X } from 'lucide-react';
 
-const Switch = forwardRef<HTMLInputElement, SwitchProps>(
+const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
   ({
     label,
     value=null,
     onChange,
     allowIndeterminate,
+    disabled,
     additionalClassName,
     OKIcon=Check,
     KOIcon=X,
     IndeterminatedIcon=BadgeQuestionMark,
     dataTestid,
     ...props
-  }, externalRef) => {
+  }, ref) => {
     const realValue = allowIndeterminate ? value : !!value
 
-    const ref = useRef<HTMLInputElement>(null);
-
-    const setRefs = (node: HTMLInputElement | null) => {
-      ref.current = node;
-
-      if (typeof externalRef === 'function') {
-        externalRef(node);
-      } else if (externalRef) {
-        externalRef.current = node;
-      }
-    };
-
     const isChecked = realValue === true
-    const isIndeterminate = realValue === null
+    const isIndeterminate = allowIndeterminate && realValue === null
     const isUnchecked = realValue === false
 
-    useEffect(() => {
-      if (ref.current) {
-        ref.current.indeterminate = allowIndeterminate ? isIndeterminate : false;
-      }
-    }, [realValue, allowIndeterminate, isIndeterminate]);
-
+    // Radix reports its own toggled guess as the callback argument; the real next value follows our tri-state cycle instead
     const handleChange = () => {
       if (!allowIndeterminate) {
         onChange(!realValue);
@@ -56,35 +41,33 @@ const Switch = forwardRef<HTMLInputElement, SwitchProps>(
         <label className={
           clsx(styles['c-switch'], {
             [styles['c-switch--checked']]: isChecked,
-            [styles['c-switch--indeterminate']]: isIndeterminate
+            [styles['c-switch--indeterminate']]: isIndeterminate,
+            [styles['c-switch--disabled']]: disabled,
           }, additionalClassName)
         }
         data-testid={dataTestid}
         >
-          <input
-            type="checkbox"
-            ref={setRefs}
+          <RadixSwitch.Root
+            ref={ref}
             checked={isChecked}
-            onChange={handleChange}
-            className={styles['c-switch__checkbox']}
-            role="switch"
+            onCheckedChange={handleChange}
+            disabled={disabled}
             aria-checked={isIndeterminate ? 'mixed' : isChecked}
+            className={styles['c-switch__trackback']}
             {...props}
-          />
-
-          <span className={styles['c-switch__trackback']}>
-            <div className={styles['c-switch__point']}>
+          >
+            <RadixSwitch.Thumb className={styles['c-switch__point']}>
               {isChecked && <OKIcon size={20} />}
               {isIndeterminate && <IndeterminatedIcon size={20} />}
               {isUnchecked && <KOIcon size={20} />}
-            </div>
-          </span>
+            </RadixSwitch.Thumb>
+          </RadixSwitch.Root>
 
-          <span className={styles['c-switch__box']} />
-            {label}
-          </label>
+          {label}
+        </label>
       );
   }
 );
 
+Switch.displayName = "Switch";
 export default Switch
