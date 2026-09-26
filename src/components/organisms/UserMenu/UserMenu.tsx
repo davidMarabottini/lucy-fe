@@ -9,23 +9,22 @@ import { useLogout } from "@/hooks/api/useAuthenticationHooks";
 import type { MenuItemConfiguration } from "@/components/molecules/MenuManager/MenuManager.types";
 import type { MenuItem } from "@/constants/routes";
 import { useTranslation } from "react-i18next";
-import { DropDownHead } from "@/components/molecules/Dropdown/Dropdown";
+import { DropDownHead, DropDownItem } from "@/components/molecules/Dropdown/Dropdown";
 import { useOpenSettingsModal } from "@/zustand/openSettingsModal";
 
 const SubMenu = ({ item, onClose }: { item: MenuItem, onClose: () => void }) => {
   const {t} = useTranslation("menu");
-
   return (
     <>
       <div>
-        {item.handle.Icon && <item.handle.Icon size={16} />} {t(item.handle.label || '')}
+        {item.handle.Icon && <item.handle.Icon size={16} />} {item.handle.label ? t(item.handle.label) : ''}
       </div>
       <MenuManager
         curMenu="user.details"
         additionalClass={style["c-user-menu__sublist"]}
         itemClickHandler={onClose}
         template={item => (
-          <a key={item.handle.key} title={t(item.handle.label)}>
+          <a key={item.handle.key} title={item.handle.label ? t(item.handle.label) : ''}>
             {item.handle.Icon && <item.handle.Icon />}
           </a>
         )}
@@ -40,6 +39,7 @@ const UserMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const userMenuOpen = clsx({[style['c-user-menu__chevron-opened']]: isOpen});
   const openedSettings = useOpenSettingsModal(state => state.openedSettings);
+  const {t} = useTranslation("menu");
 
   const settingClickHdlr = () => {
     setIsOpen(false);
@@ -66,7 +66,13 @@ const UserMenu = () => {
         <MenuManager
           curMenu={AVAILABLE_MENUS.USER}
           additionalClass={style["c-user-menu__list"]}
-          itemClickHandler={() => setIsOpen(false)}
+          template={item => (
+          <DropDownItem key={item.handle.key} onSelect={() => setIsOpen(false)}>
+            <a title={item.handle.label}>
+              {item.handle.Icon && <item.handle.Icon />} {item.handle.label ? t(item.handle.label) : ''}
+            </a>
+          </DropDownItem>
+        )}
           config={menuConfig}
         />
       </DropDownHead>

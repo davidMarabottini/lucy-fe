@@ -29,3 +29,11 @@ export const DropDownHead = ({ label, isOpen, setIsOpen, children, className }: 
     </RadixDropdown.Root>
   );
 };
+
+export const DropDownItem = ({ children, onSelect, className }: { children: React.ReactNode, onSelect?: () => void, className?: string }) => {
+  return (
+    <RadixDropdown.Item asChild onSelect={onSelect} className={className}>
+      {children}
+    </RadixDropdown.Item>
+  );
+};
