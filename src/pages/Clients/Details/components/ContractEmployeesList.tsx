@@ -1,4 +1,6 @@
 import { useTranslation } from "react-i18next";
+import { rewriteRoute } from "@/utils/routes";
+import { ROUTES } from "@/constants/routes";
 import Typography from "@/components/atoms/Typography/Typography";
 import type { ContractEmployeeAssignment } from "@/api/types";
 import { useClientDetailStore } from "@/zustand/clientDetailState";
@@ -47,7 +49,7 @@ export const ContractEmployeesList = ({ employees }: ContractEmployeesListProps)
                         <Map size={16} />
                       </Button>
 
-                      <Link to={`/employees/${employee.id}`}>
+                      <Link to={rewriteRoute(ROUTES.EMPLOYEE_DETAIL, { ':employeeId': employee.id.toString() })}>
                         <Button color="custom" title={t("goToEmployee")}>
                           <ChevronRight size={16} />
                         </Button>

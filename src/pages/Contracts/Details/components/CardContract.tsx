@@ -47,7 +47,11 @@ const CardContract = ({ data }: { data: Contract }) => {
             </div>
             <div className={styles["p-contract-detail__info-detail"]}>
               <Briefcase size={18} />
-              <strong>{t("fields.provider")}:</strong> {data.provider_company?.name}
+              <strong>{t("fields.provider")}:</strong>
+              <LinkComponent
+              to={rewriteRoute(ROUTES.GROUP_COMPANY_DETAIL, { ':companyId': data.provider_company?.id.toString() })}
+              color="primary"
+            >{data.provider_company?.name}</LinkComponent>
             </div>
               </div>
             </div>

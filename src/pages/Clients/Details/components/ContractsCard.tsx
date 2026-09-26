@@ -12,6 +12,9 @@ import { useState } from "react";
 import { useClientDetailStore } from "@/zustand/clientDetailState";
 import { ContractDetailPanel } from "./ContractDetailPanel.tsx";
 import Table from "@/components/organisms/Table/Table.tsx";
+import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
+import { rewriteRoute } from "@/utils/routes";
+import { ROUTES } from "@/constants/routes";
 
 export const ContractsCard = ({ clientId }: { clientId: string }) => {
   const { t } = useTranslation("features/client", { keyPrefix: "details.contracts" });
@@ -41,8 +44,8 @@ export const ContractsCard = ({ clientId }: { clientId: string }) => {
           <Table
             data={res}
             columns={[
-              { key: 'contract_code', header: t('table.contract_code') },
-              { key: 'provider', header: t('table.provider'), value: (row) => row.provider?.name || '-' },
+              { key: 'contract_code', header: t('table.contract_code'), value: (row) => <LinkComponent to={rewriteRoute(ROUTES.CONTRACT_DETAIL, { ':contractId': row.id.toString() })}>{row.contract_code || '-'}</LinkComponent> },
+              { key: 'provider_company', header: t('table.provider'), value: (row) => <LinkComponent to={rewriteRoute(ROUTES.GROUP_COMPANY_DETAIL, { ':companyId': row.provider_company?.id.toString() })}>{row.provider_company?.name || '-'}</LinkComponent> },
               { key: 'client', header: t('table.client'), value: (row) => row.client?.name || '-' },
               { key: 'start_date', header: t('table.start_date'), value: (row) => row.start_date ? new Date(row.start_date).toLocaleDateString('it-IT') : '-' },
               { key: 'end_date', header: t('table.end_date'), value: (row) => row.end_date ? new Date(row.end_date).toLocaleDateString('it-IT') : '-' },

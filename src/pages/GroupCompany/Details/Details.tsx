@@ -12,6 +12,7 @@ import type { Contract } from "@/api/types";
 import { useContracts } from "@/hooks/api/ContractHooks";
 import clsx from "clsx";
 import Table from "@/components/organisms/Table/Table";
+import { rewriteRoute } from "@/utils/routes";
 
 const GroupCompanyDetailPage = () => {
   const { companyId } = useParams<{ companyId: string }>();
@@ -82,12 +83,13 @@ const GroupCompanyDetailPage = () => {
               columns={[
                 {
                   key: 'contract_code',
-                  header: t('contracts.table.contract_code')
+                  header: t('contracts.table.contract_code'),
+                  value: (row) => <LinkComponent to={rewriteRoute(ROUTES.CONTRACT_DETAIL, { ':contractId': row.id.toString() })}>{row.contract_code || '-'}</LinkComponent>,
                 },
                 {
                   key: 'client',
                   header: t('contracts.table.client'),
-                  value: (row) => row.client?.name || '-'
+                  value: (row) => <LinkComponent to={rewriteRoute(ROUTES.CLIENT_DETAIL, { ':clientId': row.client?.id.toString() })}>{row.client?.name || '-'}</LinkComponent>
                 },
                 {
                   key: 'start_date',
