@@ -224,36 +224,36 @@
   },
   "groupCompany": {
     "list": {
-      "401": "Non hai i permessi per visualizzare le società del gruppo",
-      "500": "Errore del server durante il caricamento delle società del gruppo",
+      "401": "Non hai i permessi per visualizzare le società interne",
+      "500": "Errore del server durante il caricamento delle società interne",
       "network": "Errore di rete. Controlla la tua connessione.",
       "defaultError": "Errore sconosciuto. Riprova più tardi."
     },
     "insert": {
-      "success": "Società del gruppo aggiunta con successo",
-      "401": "Non hai i permessi per aggiungere una società del gruppo",
-      "500": "Errore del server durante l'inserimento della società del gruppo",
+      "success": "società interna aggiunta con successo",
+      "401": "Non hai i permessi per aggiungere una società interna",
+      "500": "Errore del server durante l'inserimento della società interna",
       "network": "Errore di rete. Controlla la tua connessione.",
       "defaultError": "Errore sconosciuto. Riprova più tardi."
     },
     "update": {
-      "success": "Società del gruppo aggiornata con successo",
-      "401": "Non hai i permessi per aggiornare questa società del gruppo",
-      "500": "Errore del server durante l'aggiornamento della società del gruppo",
+      "success": "società interna aggiornata con successo",
+      "401": "Non hai i permessi per aggiornare questa società interna",
+      "500": "Errore del server durante l'aggiornamento della società interna",
       "network": "Errore di rete. Controlla la tua connessione.",
       "defaultError": "Errore sconosciuto. Riprova più tardi."
     },
     "delete": {
-      "success": "Società del gruppo eliminata con successo",
-      "401": "Non hai i permessi per eliminare questa società del gruppo",
-      "500": "Errore del server durante l'eliminazione della società del gruppo",
+      "success": "società interna eliminata con successo",
+      "401": "Non hai i permessi per eliminare questa società interna",
+      "500": "Errore del server durante l'eliminazione della società interna",
       "network": "Errore di rete. Controlla la tua connessione.",
       "defaultError": "Errore sconosciuto. Riprova più tardi."
     },
     "export": {
-      "success": "Elenco società del gruppo esportato con successo",
-      "401": "Non hai i permessi per esportare le società del gruppo",
-      "500": "Errore del server durante l'esportazione delle società del gruppo",
+      "success": "Elenco società interna esportata con successo",
+      "401": "Non hai i permessi per esportare le società interne",
+      "500": "Errore del server durante l'esportazione delle società interne",
       "network": "Errore di rete. Controlla la tua connessione.",
       "defaultError": "Errore sconosciuto. Riprova più tardi."
     }

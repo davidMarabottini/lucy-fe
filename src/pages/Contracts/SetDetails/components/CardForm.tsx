@@ -15,7 +15,8 @@ import Table from "@/components/organisms/Table/Table";
 import Button from "@/components/atoms/Button/Button";
 
 import styles from "../SetDetails.module.scss";
-import Tooltip from "@/components/atoms/Tooltip/Tooltip";
+// import Tooltip from "@/components/atoms/Tooltip/Tooltip";
+import Typography from "@/components/atoms/Typography/Typography";
 
 type ScheduleSlot = {
   start_time: string;
@@ -192,17 +193,15 @@ const CardForm = ({ contractId }: { contractId: string }) => {
           )}
 
           {flexible?.map((st) => (
-            <div key={st.name}
-            // style={{ display: "flex", alignItems: "center", gap: "8px" }}
-            >
-              {/* <h3>{st.description}</h3> */}
+            <div key={st.name}>
               <Form.Input
-                // className="l-grid__col l-grid__col--span-6"
                 name={`flexible.${st.name}`}
                 type="number"
                 label={st.name}
               />
-              <Tooltip text={st.description} position="left" />
+              <Typography variant="small" color="muted" additionalClasses={styles["p-contract-detail__flexible-description"]}>
+                {st.description}
+              </Typography>
             </div>
           ))}
 
