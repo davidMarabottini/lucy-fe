@@ -6,15 +6,16 @@ import {
   Building,
   Plus,
   Briefcase,
-  Layers} from "lucide-react";
+  Layers,
+KeyRound,
+} from "lucide-react";
 import React, { lazy, type LazyExoticComponent } from "react";
 import { AUTH_DOMAINS, AVAILABLE_MENUS } from "./configuration";
 import type { RouteObject } from "react-router-dom";
-// deve essere importato asincronicamente
-// import UsersDetailPage from "@/pages/Users/Details/Details";
 
 const Login = lazy(() => import("@/pages/Login/Login"));
 const Home = lazy(() => import("@/pages/Home/Home"));
+const ChangePassword = lazy(() => import("@/pages/ChangePassword/ChangePassword"));
 const LibemaxEmployees = lazy(() => import("@/pages/Employees/List/List"));
 const EmployeeDetail = lazy(() => import("@/pages/Employees/Details/Details"));
 const InsertEmployee = lazy(() => import("@/pages/Employees/Insert/Insert"));
@@ -95,6 +96,7 @@ export const ACTION_TYPES = {
   DETAILS: 'DETAILS',
   INSERT: 'INSERT',
   EDIT: 'EDIT',
+  CHANGE_PASSWORD: 'CHANGE_PASSWORD',
   DELETE: 'DELETE',
   EDIT_DETAILS: 'EDIT_DETAILS',
   NONE: 'NONE',
@@ -125,6 +127,8 @@ export const ROUTE_CONFIGS: readonly AppRouteObject[] = Object.freeze([
   {path: '/sectors/insert', Element: SectorInsert, handle: {key: 'SECTOR_INSERT', section: ROUTE_SECTIONS.SECTORS, label: 'labels.sectorInsert', action: ACTION_TYPES.INSERT, Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
   {path: '/sectors/edit/:idSector', Element: SectorInsert, handle: {key:  'SECTOR_EDIT', section: 'SECTORS', label: 'labels.sectorInsert', action: ACTION_TYPES.EDIT, Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
   {path: '/sectors/:idSector', Element: SectorDetailPage, handle: {key:  'SECTOR_DETAIL', section: 'SECTORS', label: 'labels.sectorDetail', action: ACTION_TYPES.DETAILS, Icon: Layers, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
+  {path: '/change-password', Element: ChangePassword, handle: {key: 'CHANGE_PASSWORD', section: ROUTE_SECTIONS.AUTH, action: ACTION_TYPES.CHANGE_PASSWORD, label: 'labels.changePassword', Icon: KeyRound, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.USER]}},
+
   {path: '#', handle: {key: 'SETTINGS', section: ROUTE_SECTIONS.SETTINGS, action: ACTION_TYPES.NONE, label: 'labels.settings',  Icon: Layers, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.USER]}, isOnlyMenu: true, menuAction: (openSettings: () => void) => openSettings() },
 
   {path: '', handle: {key: 'LOGOUT', action: ACTION_TYPES.LOGOUT, section: ROUTE_SECTIONS.AUTH, label: 'labels.logout', Icon: LogOutIcon, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.USER], isOnlyMenu: true, menuAction: (logout: () => void) => logout() } },

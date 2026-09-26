@@ -48,6 +48,19 @@ export const useLogout = () => {
   })
 }
 
+export const useChangePassword = () => {
+  return useAppMutation({
+    mutationFn: authService.changePassword,
+    successKey: `${authDomain}.changePassword.success`,
+    errorMap: {
+      [ERROR_KINDS.UNAUTHORIZED]: `${authDomain}.changePassword.401`,
+      [ERROR_KINDS.SERVER]: `${authDomain}.changePassword.500`,
+      [ERROR_KINDS.NETWORK]: `${authDomain}.changePassword.network`,
+      [ERROR_KINDS.UNKNOWN]: `${authDomain}.changePassword.defaultError`
+    }
+  });
+};
+
 export const useMe = () => useAppQuery({
     queryKey: ['me'],
     queryFn: authService.getMe,
