@@ -18,7 +18,7 @@ const SubMenu = ({ item, onClose }: { item: MenuItem, onClose: () => void }) => 
   return (
     <>
       <div>
-        <item.handle.Icon size={16} /> {t(item.handle.label)}
+        {item.handle.Icon && <item.handle.Icon size={16} />} {t(item.handle.label || '')}
       </div>
       <MenuManager
         curMenu="user.details"
@@ -26,7 +26,7 @@ const SubMenu = ({ item, onClose }: { item: MenuItem, onClose: () => void }) => 
         itemClickHandler={onClose}
         template={item => (
           <a key={item.handle.key} title={t(item.handle.label)}>
-            <item.handle.Icon />
+            {item.handle.Icon && <item.handle.Icon />}
           </a>
         )}
       />
