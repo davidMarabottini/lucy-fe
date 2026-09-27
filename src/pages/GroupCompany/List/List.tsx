@@ -4,9 +4,9 @@ import { useGroupCompanies } from "@/hooks/api/GroupCompanyHooks";
 import styles from './List.module.scss'; 
 import { type GroupCompany } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
-import { Edit2, Eye, PlusCircle, Trash2 } from "lucide-react";
+import { ArrowRight, Edit2, Eye, PlusCircle, Send, Trash2 } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import Button from "@/components/atoms/Button/Button";
 import { DeleteModal } from "./components/DeleteModal/DeleteModal";
@@ -15,12 +15,17 @@ import { rewriteRoute } from "@/utils/routes";
 import Table from "@/components/organisms/Table/Table";
 import DetailCard from "@/components/atoms/DetailCard/DetailCard";
 import { useViewStore } from "@/zustand/listViewAsCard";
+import { useCompanyStore } from "@/zustand/currentCompany";
 
 const GroupCompaniesList = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [curCompany, setCurCompany] = useState<GroupCompany | undefined>();
+  const companyStore = useCompanyStore();
 
   const { t } = useTranslation("features/groupCompany", { keyPrefix: "list" });
+  useEffect(() => {
+    console.log('Current company store:', companyStore);
+  }, [companyStore]);
 
 
   const openDeleteModalHdlr = (company: GroupCompany) => {
@@ -55,6 +60,14 @@ const GroupCompaniesList = () => {
     >
       <Trash2 />
     </Button>,
+    <Button
+      key="view"
+      color="custom"
+      additionalClassName="t-btn-link"
+      onClick={() => companyStore.setCompany(company.id, company.name)}
+    >
+      <Send />
+    </Button>
   ]
 
   return (

@@ -1,5 +1,6 @@
 import style from "./Header.module.scss";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 import Typography from "@/components/atoms/Typography/Typography";
 import { MenuIcon } from "lucide-react";
 import Button from "@components/atoms/Button/Button";
@@ -8,6 +9,9 @@ import { useAuth } from "@/auth/useAuth";
 import UserMenu from "../UserMenu/UserMenu";
 import { useMenuStore } from "@/zustand/menuState";
 import { Breadcrumb } from "@/components/molecules/Breadcrumb/Breadcrumb";
+import { useCompanyStore } from "@/zustand/currentCompany";
+import { DropDownHead, DropDownItem } from "@/components/molecules/Dropdown/Dropdown";
+import { useGroupCompanies } from "@/hooks/api/GroupCompanyHooks";
 
 const OpenMenuBtn = () => {
   const { menuOpen, openMenu } = useMenuStore();
@@ -21,7 +25,6 @@ const OpenMenuBtn = () => {
       aria-expanded={menuOpen ? "true" : "false"}
       aria-controls="side-menu"
     >
-      {/* <Gem size={40} className={style["c-header__icon"]}  /> */}
       <MenuIcon size={36}  />
     </Button>
   )
@@ -30,7 +33,10 @@ const OpenMenuBtn = () => {
 const Header = () => {
   const {t} = useTranslation("common")
   const {isAuthenticated } = useAuth();
+  const {companyName, setCompany} = useCompanyStore();
+  const [isOpen, setIsOpen] = useState(false);
 
+  const {data: groupCompanies, isFetched: groupCompaniesFetched } = useGroupCompanies()
   return (
     <>
       <header className={style["c-header"]}>
@@ -52,9 +58,29 @@ const Header = () => {
 
           {isAuthenticated && (
             <div className={style["c-header__breadcrumb-area"]}>
-              <Breadcrumb />
+              <div >
+                <Breadcrumb />
+              </div>
+              {groupCompaniesFetched && <div>
+                <DropDownHead
+                  label={companyName}
+                  isOpen={isOpen}
+                  setIsOpen={setIsOpen}
+                >
+                  {groupCompanies?.map((company) => (
+                    <div key={company.id}>
+                      <DropDownItem onSelect={() => setCompany(company.id, company.name)}>
+                          <div className={style["c-header__dropdown-item"]}>
+                            {company.name}
+                          </div>
+                      </DropDownItem>
+                    </div>
+                  ))}
+                </DropDownHead>
+              </div>}
             </div>
           )}
+          
         </div>
       </header>
     </>

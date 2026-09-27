@@ -7,10 +7,7 @@
   }
 
   &__icon {
-    border-radius: 50%;
-    background: $color-canvas;
-    padding: $space-md;
-    flex-shrink: 0;
+    display: none;
   }
 
   &__distance-pill {
@@ -54,7 +51,6 @@
       gap: $space-md;
       align-items: center;
       margin-top: $space-xl;
-      margin-left: $space-xl;
   }
 
   &__detail-column {
@@ -82,5 +78,19 @@
 
    &__contract-detail-map {
     padding-top: $space-lg;
+  }
+
+  @include mq($bp-tablet) {
+    &__icon {
+      display: block;
+      border-radius: 50%;
+      background: $color-canvas;
+      padding: $space-md;
+      flex-shrink: 0;
+    }
+
+    &__employee-sheet {
+      margin-left: $space-xl;
+    }
   }
 }
