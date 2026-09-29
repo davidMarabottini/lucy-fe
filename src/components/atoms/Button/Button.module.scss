@@ -28,6 +28,11 @@ $button-colors: (
   cursor: pointer;
   transition: all 0.3s ease;
 
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+
   @each $theme, $colors in $button-colors {
     $color-base: map.get($colors, "base");
     $color-hover: map.get($colors, "hover");

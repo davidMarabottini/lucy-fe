@@ -13,5 +13,5 @@ export const RouteGuard = ({availableRoutes}: RouteGuardProps) => {
 
   if (isLoading) return <div>Caricamento sessione...</div>;
 
-  return availableRoutes.includes(domain) ? <Outlet /> : <Navigate to={ROUTES.HOME} replace />;
+  return availableRoutes.includes(domain) ? <Outlet /> : <Navigate to={domain === 'private' ? ROUTES.HOME : ROUTES.LOGIN} replace />;
 };

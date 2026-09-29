@@ -24,3 +24,7 @@ export const updateMineDetails = async (userData: Omit<UserDetails, 'id' | 'role
   const { data } = await apiClient.put('/api/users/me', userData);
   return data;
 };
+
+export const changePassword = async (passwordData: {oldPassword: string, newPassword: string}): Promise<void> => {
+  await apiClient.post('/api/change-password', passwordData);
+};

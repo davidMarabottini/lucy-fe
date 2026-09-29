@@ -3,7 +3,7 @@ import Typography from "@components/atoms/Typography/Typography";
 import styles from './List.module.scss'
 import type { LibemaxEmployee } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
-import {  Edit2, Eye, Mail, Phone, PlusCircle, Sheet, Trash2 } from "lucide-react";
+import {  Edit2, Eye, FileText, Mail, PanelsTopLeft, Phone, PlusCircle, Sheet, Trash2 } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -15,10 +15,13 @@ import { rewriteRoute } from "@/utils/routes";
 import Button from "@/components/atoms/Button/Button";
 import Table from "@/components/organisms/Table/Table";
 import DetailCard from "@/components/atoms/DetailCard/DetailCard";
+import Switch from "@/components/atoms/Switch/Switch";
+import { PdfDataTable } from "@/components/organisms/PdfDataTable/PdfDataTable";
 
 const LibemaxEmployees = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [curEmployee, setCurEmployee] = useState<LibemaxEmployee | undefined>()
+  const {data: employees, isLoading, error} = useEmployeesList();
 
   const {t} = useTranslation("features/employee", {keyPrefix: "list"});
 
@@ -29,6 +32,7 @@ const LibemaxEmployees = () => {
     setOpenModal(true);
   }
 
+  const [showAsPDF, setShowAsPDF] = useState<boolean>(false);
   const isCardView = useViewStore((state) => state.isCardView)
 
   const actions = (employee: LibemaxEmployee) => [
@@ -53,7 +57,7 @@ const LibemaxEmployees = () => {
       onClick={() => openDeleteModalHdlr(employee)}
     >
       <Trash2 />
-    </Button>
+    </Button>,
   ];
 
   return (
@@ -68,11 +72,19 @@ const LibemaxEmployees = () => {
             <Typography variant="h2" additionalClasses={styles["p-libemax-employees__title"]}>
               {t("title")}
             </Typography>
-            <LinkComponent to={ROUTES.INSERT_EMPLOYEE}><PlusCircle /></LinkComponent>
+            <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+              <Switch
+                KOIcon={PanelsTopLeft}
+                OKIcon={FileText}
+                value={showAsPDF}
+                onChange={() => setShowAsPDF(!showAsPDF)}
+              />
+              <LinkComponent to={ROUTES.INSERT_EMPLOYEE}><PlusCircle /></LinkComponent>
+            </div>
         </div>
       </Card>
 
-      <Card additionalClassName={styles["p-libemax-employees__card"]}>
+      {!showAsPDF && <Card additionalClassName={styles["p-libemax-employees__card"]}>
         <Paginated<LibemaxEmployee>
           area="employees"
           useQueryHook={useEmployeesList} 
@@ -85,7 +97,8 @@ const LibemaxEmployees = () => {
             <Button color="primary" key="export" onClick={() => exportEmployeesExcelMutation.mutate(filters)} disabled={exportEmployeesExcelMutation.isPending} variant="outline"><Sheet size={24} /></Button>
           ]}
         >
-          {(res) => isCardView ? (
+          {(res) => {
+            return isCardView ? (
               <div className={styles["p-libemax-employees__grid"]}>
                 {res.map((employee) => (
                   <DetailCard
@@ -125,10 +138,28 @@ const LibemaxEmployees = () => {
                 ]}
                 actions={actions}
               />
-            )
+            )}
           }
         </Paginated>
-      </Card>
+      </Card>}
+      {showAsPDF && (
+        <Card additionalClassName={styles["p-libemax-employees__card"]}>
+          {isLoading && <p>Loading...</p>}
+          {error && <p>Error</p>}
+          {employees && (
+            <PdfDataTable
+            title={`Dipendenti`}
+            data={employees}
+            columns={[
+              {key: "id", header: "ID Libemax"},
+              {key: "name", header: "Nome"},
+              {key: "email", header: "Email"},
+              {key: "phone", header: "Telefono"},
+            ]}
+          />)}
+
+        </Card>
+      )}
     </div>
   );
 };

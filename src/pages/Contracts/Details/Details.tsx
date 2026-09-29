@@ -12,6 +12,9 @@ import DetailCard from "@/components/atoms/DetailCard/DetailCard";
 import { useGetEmployeesByContractId } from "@/hooks/api/useEmployeesHooks";
 // import CardEmployee from "./components/CardEmployee";
 import styles from "./Details.module.scss";
+import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
+import { ROUTES } from "@/constants/routes";
+import { rewriteRoute } from "@/utils/routes";
 
 // --- Main Page ---
 const ContractDetailPage = () => {
@@ -44,7 +47,9 @@ const ContractDetailPage = () => {
                 {res.map(({employee}) => (
                   <DetailCard
                     key={employee.id}
-                    header={<div>{employee.name} {employee.surname}</div>}
+                    header={<div>
+                      <LinkComponent to={rewriteRoute(ROUTES.EMPLOYEE_DETAIL, { ':employeeId': employee.id.toString() })}>{employee.name} {employee.surname}</LinkComponent>
+                      </div>}
                     body={
                       <div>
                         <div>

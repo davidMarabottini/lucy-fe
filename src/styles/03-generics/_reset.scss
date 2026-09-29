@@ -39,6 +39,12 @@ textarea, input, button {
   outline: none;
 }
 
+:focus-visible {
+  outline: 2px solid $color-primary;
+  outline-offset: 2px;
+  border-radius: $radius-sm;
+}
+
 button {
   cursor: pointer;
   background: none;

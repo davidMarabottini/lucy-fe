@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppQuery } from "../useAppApi/useAppQuery";
 import { useAppMutation } from "../useAppApi/useAppMutation";
 import { ERROR_KINDS } from "../useAppApi/error";
+import { useCompanyStore } from "@/zustand/currentCompany";
 import { 
   getGroupCompanies, 
   getGroupCompanyById, 
@@ -16,10 +17,12 @@ import type { GroupCompany, GroupCompanyPayload } from "@/api/types";
 const libDomain = 'groupCompany';
 
 // 1. LISTA SOCIETÀ
-export const useGroupCompanies = (params?: Record<string, unknown>) =>
-  useAppQuery<GroupCompany[]>({
-    queryKey: ['group-companies', params],
-    queryFn: () => getGroupCompanies(params),
+export const useGroupCompanies = (params?: Record<string, unknown>, all?: boolean) => {
+  const { companyId } = useCompanyStore();
+  const effectiveCompanyId = all ? undefined : companyId;
+  return useAppQuery<GroupCompany[]>({
+    queryKey: ['group-companies', params, effectiveCompanyId],
+    queryFn: () => getGroupCompanies({...params, id: effectiveCompanyId}),
     errorMap: {
       [ERROR_KINDS.UNAUTHORIZED]: `${libDomain}.list.401`,
       [ERROR_KINDS.SERVER]: `${libDomain}.list.500`,
@@ -28,7 +31,7 @@ export const useGroupCompanies = (params?: Record<string, unknown>) =>
     },
     staleTime: 1000 * 60 * 5, // 5 minuti
   });
-
+}
 // 2. DETTAGLIO SOCIETÀ
 export const useGroupCompanyDetail = (id: number, options?: { enabled?: boolean }) =>
   useAppQuery({
