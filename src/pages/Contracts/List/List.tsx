@@ -4,7 +4,7 @@ import { useContracts } from "@/hooks/api/ContractHooks";
 import styles from './List.module.scss'; 
 import { type Contract } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
-import { Edit2, Eye, Option, PlusCircle, Sheet, Trash2 } from "lucide-react";
+import { Edit2, Eye, PlusCircle, Settings2, Sheet, Trash2 } from "lucide-react";
 import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -47,7 +47,7 @@ const ContractsList = () => {
       className="t-btn-link"
       to={rewriteRoute(ROUTES.CONTRACT_SET_DETAILS, { ':contractId': contract.id.toString() })}
     >
-      <Option />
+      <Settings2 />
     </LinkComponent>,
     <LinkComponent
       key="edit"
