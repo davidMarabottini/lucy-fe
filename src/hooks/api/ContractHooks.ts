@@ -15,6 +15,7 @@ import {
   syncEmployeeContract,
   exportContractExcel,
 } from "@/api/contractService";
+import { useCompanyStore } from "@/zustand/currentCompany";
 import type {
   Contract,
   ContractPayload,
@@ -24,10 +25,11 @@ import { ROUTES } from "@/constants/routes";
 
 const libDomain = 'contract';
 
-export const useContracts = (params?: Record<string, unknown>) =>
-  useAppQuery<PaginatedData<Contract>>({
-    queryKey: ['contracts', params], 
-    queryFn: () => getContracts(params),
+export const useContracts = (params?: Record<string, unknown>) => {
+  const { companyId } = useCompanyStore();
+  return useAppQuery<PaginatedData<Contract>>({
+    queryKey: ['contracts', params, companyId], 
+    queryFn: () => getContracts({...params, provider_company_id: companyId}),
     errorMap: {
       [ERROR_KINDS.UNAUTHORIZED]: `${libDomain}.list.401`,
       [ERROR_KINDS.SERVER]: `${libDomain}.list.500`,
@@ -37,6 +39,7 @@ export const useContracts = (params?: Record<string, unknown>) =>
     staleTime: 1000 * 60 * 5,
     placeholderData: (previousData) => previousData, 
   });
+}
 
 export const useContractDetail = (id: number, options?: { enabled?: boolean }) =>
   useAppQuery<Contract>({
@@ -107,8 +110,9 @@ export const useDeleteContract = () => {
 };
 
 export const useExportContractExcel = () => {
+  const { companyId } = useCompanyStore();
   return useAppMutation<void, void>({
-    mutationFn: (filters: Record<string, unknown>) =>  exportContractExcel(filters),
+    mutationFn: (filters: Record<string, unknown>) =>  exportContractExcel({...filters, provider_company_id: companyId}),
     successKey: `${libDomain}.export.success`,
     errorMap: {
       [ERROR_KINDS.UNAUTHORIZED]: `${libDomain}.export.401`,

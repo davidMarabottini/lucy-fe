@@ -19,7 +19,8 @@
   "header": {
     "actions": {
       "openMenu": "Apri menu",
-      "logout": "Logout"
+      "logout": "Logout",
+      "allCompanies": "Tutte le società"
     }
   },
   "loading": "Caricamento...",

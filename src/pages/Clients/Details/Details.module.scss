@@ -4,10 +4,7 @@
   }
 
   &__icon {
-    border-radius: 50%;
-    background: $color-canvas;
-    padding: $space-md;
-    flex-shrink: 0;
+    display: none;
   }
 
   &__map-wrapper {
@@ -56,7 +53,7 @@
       gap: $space-md;
       align-items: center;
       margin-top: $space-xl;
-      margin-left: $space-xl;
+      // margin-left: $space-xl;
   }
 
   &__detail-column {
@@ -68,5 +65,19 @@
 
   &__subtitle-section {
     margin-bottom: $space-md;
+  }
+
+  @include mq($bp-tablet) {
+    &__icon {
+      display: block;
+      border-radius: 50%;
+      background: $color-canvas;
+      padding: $space-md;
+      flex-shrink: 0;
+    }
+
+      &__client-sheet {
+      margin-left: $space-xl;
+  }
   }
 }
