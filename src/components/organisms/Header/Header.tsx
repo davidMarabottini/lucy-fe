@@ -36,7 +36,7 @@ const Header = () => {
   const {companyName, setCompany} = useCompanyStore();
   const [isOpen, setIsOpen] = useState(false);
 
-  const {data: groupCompanies, isFetched: groupCompaniesFetched } = useGroupCompanies()
+  const {data: groupCompanies, isFetched: groupCompaniesFetched } = useGroupCompanies(undefined, true)
   return (
     <>
       <header className={style["c-header"]}>
@@ -63,7 +63,7 @@ const Header = () => {
               </div>
               {groupCompaniesFetched && <div>
                 <DropDownHead
-                  label={companyName}
+                  label={companyName ?? t('common:header.actions.allCompanies')}
                   isOpen={isOpen}
                   setIsOpen={setIsOpen}
                 >
@@ -76,6 +76,13 @@ const Header = () => {
                       </DropDownItem>
                     </div>
                   ))}
+                  <div>
+                    <DropDownItem onSelect={() => setCompany(null, null)}>
+                      <div className={style["c-header__dropdown-item"]}>
+                        {t('common:header.actions.allCompanies')}
+                      </div>
+                    </DropDownItem>
+                  </div>
                 </DropDownHead>
               </div>}
             </div>

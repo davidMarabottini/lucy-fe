@@ -4,7 +4,7 @@ import { persist } from 'zustand/middleware';
 export interface curCompany {
   companyId: number | null;
   companyName: string | null;
-  setCompany: (companyId: number, companyName: string) => void;
+  setCompany: (companyId: number | null, companyName: string | null) => void;
 }
 
 export const useCompanyStore = create<curCompany>()(
