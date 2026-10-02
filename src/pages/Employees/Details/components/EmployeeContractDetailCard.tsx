@@ -119,7 +119,7 @@ export const EmployeeContractDetailCard = ({ employeeLibemaxId }: EmployeeContra
 
           <div className={detailStyles['p-employee-detail__contract-detail-map']}>
             {mapLoading && <div>{t("timbrature.loadingMap")}</div>}
-            <MapContent
+            {/*TODO: riadattare <MapContent
               headquarter={{
                 id: 'client_location',
                 latitude: Number.parseFloat(clientLocation?.latitudine || '0'),
@@ -148,6 +148,37 @@ export const EmployeeContractDetailCard = ({ employeeLibemaxId }: EmployeeContra
                 })) as ClockInPoint[]
               }
               focusedPointId={selectedPoint}
+            /> */}
+            <MapContent
+              mapConfig={{
+                mode: 'single',
+                headquarter: {
+                  id: 'client_location',
+                  latitude: Number.parseFloat(clientLocation?.latitudine || '0'),
+                  longitude: Number.parseFloat(clientLocation?.longitudine || '0'),
+                  label: clientLocation?.nome,
+                  description: `
+                    ${clientLocation?.nome || ''}
+                    ${clientLocation?.indirizzo || ''}
+                    ${clientLocation?.citta || ''} ${clientLocation?.cap || ''}
+                  `
+                },
+                clockIn: points.map((p) => ({
+                  id: p.id,
+                  latitude: Number.parseFloat(p.latitudine) || 0,
+                  longitude: Number.parseFloat(p.longitudine) || 0,
+                  label: p.indirizzo,
+                  description: `
+                    ${p.user || ''}
+                    ${p.indirizzo || ''}
+                    ${p.citta || ''} ${p.cap || ''}
+                    ${p.provincia || ''} ${p.stato || ''}
+                    ${p.type === 'start' ? 'Entrata' : 'Uscita'}
+                    ${p.orario ? `Timbratura ore ${p.orario}` : ''}
+                  `
+                })),
+                focusedPointId: selectedPoint,
+              }}
             />
             {mapError && <div>{t("timbrature.errorLoadingMap")}</div>}
           </div>

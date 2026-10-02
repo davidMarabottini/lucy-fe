@@ -4,7 +4,7 @@ import styles from "../Details.module.scss";
 import Table from "@/components/organisms/Table/Table";
 import MapContent from "@/components/molecules/MapContent/MapContent";
 import { useLibemaxTimbrature } from "@/hooks/api/useLibemaxTimbratureHooks";
-import type { ClockInPoint } from "@/components/molecules/MapContent/MapContent.types";
+// import type { ClockInPoint } from "@/components/molecules/MapContent/MapContent.types";
 import { useState } from "react";
 import Button from "@/components/atoms/Button/Button";
 import { Map, TriangleAlert } from "lucide-react";
@@ -100,19 +100,20 @@ export const MapCard = ({ clientId }: { clientId: string }) => {
       <div className={styles["p-client-detail__map-wrapper"]}>
         {mapLoading && <div>{t("additionalMessage.loadingMap")}</div>}
         <MapContent
-          headquarter={{
-            id: 'client_location',
-            latitude: Number.parseFloat(clientLocation?.latitudine || '0'),
-            longitude: Number.parseFloat(clientLocation?.longitudine || '0'),
-            label: clientLocation?.nome,
-            description: `
-              ${clientLocation?.nome || ''}
-              ${clientLocation?.indirizzo || ''}
-              ${clientLocation?.citta || ''} ${clientLocation?.cap || ''}
-            `
-          }}
-          clockIn={
-            points.map((p) => ({
+          mapConfig={{
+            mode: 'single',
+            headquarter: {
+              id: 'client_location',
+              latitude: Number.parseFloat(clientLocation?.latitudine || '0'),
+              longitude: Number.parseFloat(clientLocation?.longitudine || '0'),
+              label: clientLocation?.nome,
+              description: `
+                ${clientLocation?.nome || ''}
+                ${clientLocation?.indirizzo || ''}
+                ${clientLocation?.citta || ''} ${clientLocation?.cap || ''}
+              `
+            },
+            clockIn: points.map((p) => ({
               id: p.id,
               latitude: Number.parseFloat(p.latitudine) || 0,
               longitude: Number.parseFloat(p.longitudine) || 0,
@@ -125,9 +126,9 @@ export const MapCard = ({ clientId }: { clientId: string }) => {
                 ${p.type === 'start' ? 'Entrata' : 'Uscita'}
                 ${p.orario ? `Timbratura ore ${p.orario}` : ''}
               `
-            })) as ClockInPoint[]
-          }
-          focusedPointId={selectedPoint}
+            })),
+            focusedPointId: selectedPoint,
+          }}
         />
         {mapError && <div>{t("additionalMessage.errorLoadingMap")}</div>}
       </div>

@@ -1,7 +1,7 @@
 
 import { useAppQuery } from "../useAppApi/useAppQuery";
 import { ERROR_KINDS } from "../useAppApi/error";
-import { getCounts } from "@/api/homeService";
+import { getCounts, getWorkedHours } from "@/api/homeService";
 import { ROUTE_SECTIONS } from "@/constants/routes";
 import { exportClientExcel } from "@/api/clientService";
 import { exportEmployeesExcel } from "@/api/employeesService";
@@ -42,6 +42,19 @@ export const useCounts = () =>
     },
     staleTime: 1000 * 60 * 60,
   });
+
+  export const useWorkedHours = () =>
+    useAppQuery({
+      queryKey: ['home-worked-hours'],
+      queryFn: () => getWorkedHours(),
+      errorMap: {
+        [ERROR_KINDS.UNAUTHORIZED]: `${libDomain}.list.401`,
+        [ERROR_KINDS.SERVER]: `${libDomain}.list.500`,
+        [ERROR_KINDS.NETWORK]: `${libDomain}.list.network`,
+        [ERROR_KINDS.UNKNOWN]: `${libDomain}.list.defaultError`
+      },
+      staleTime: 1000 * 60 * 60,
+    });
 
 export const useExportGeneralExcel = () =>
   useAppMutation({

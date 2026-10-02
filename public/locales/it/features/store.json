@@ -1,0 +1,70 @@
+{
+  "list": {
+    "title": "Store",
+    "table": {
+      "id": "ID",
+      "company_id": "ID Azienda",
+      "name": "Nome",
+      "description": "Descrizione",
+      "price": "Prezzo",
+      "actions": "Azioni"
+    },
+    "delete": {
+      "header": "Cancellazione store",
+      "bodyQuestion": "Sei sicuro di voler eliminare questo store?",
+      "bodyTable": {
+        "id": "ID",
+        "company_id": "ID Azienda",
+        "name": "Nome",
+        "description": "Descrizione",
+        "price": "Prezzo"
+      },
+      "confirmButton": "Elimina",
+      "cancelButton": "Annulla"
+    }
+  },
+  "insert": {
+    "title": "Inserisci store",
+    "form": {
+      "company_id": {
+        "label": "ID Azienda",
+        "error": {
+          "required": "ID Azienda obbligatorio"
+        }
+      },
+      "name": {
+        "label": "Nome",
+        "error": {
+          "required": "Nome obbligatorio"
+        }
+      },
+      "description": {
+        "label": "Descrizione",
+        "error": {
+          "required": "Descrizione obbligatoria"
+        }
+      },
+      "price": {
+        "label": "Prezzo",
+        "error": {
+          "required": "Prezzo obbligatorio"
+        }
+      },
+      "error": {
+        "generic": "Si è verificato un errore"
+      },
+      "submit": "Salva",
+      "reset": "Annulla"
+    },
+    "keepInPage": "Rimani in pagina"
+  },
+  "details": {
+    "title": "Dettagli store",
+    "fields": {
+      "company_id": "ID Azienda",
+      "name": "Nome",
+      "description": "Descrizione",
+      "price": "Prezzo"
+    }
+  }
+}

@@ -7,8 +7,8 @@ export interface MapPoint {
 }
 
 export interface MapComponentProps {
-  workLocation: MapPoint;
-  checkPoints: MapPoint[]; // Entrate e Uscite
+  workLocation?: MapPoint;
+  checkPoints?: MapPoint[]; // Entrate e Uscite
   mapStyle?: string;
   className?: string;
   focusedPointId?: string | number | null;

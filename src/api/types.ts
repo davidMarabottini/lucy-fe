@@ -13,6 +13,23 @@ export type DomainType = {
   description: string | null;
 };
 
+// ─── Home ─────────────────────────────────────────────────────
+export interface Coordinate {
+  lat: number;
+  lng: number;
+}
+
+export interface ClienteReport {
+  id_cliente: number;
+  libemax_id: number;
+  cliente: string;
+  ore_teoriche: number;
+  ore_lavorate: number;
+  differenza_ore: number;
+  distanza_media_metri: number;
+  coordinate: Coordinate;
+}
+
 // ─── Libemax Integration ─────────────────────────────────────────────────────
 
 export type LibemaxUser = {
@@ -308,3 +325,15 @@ export type WorkSchedule = {
 };
 
 export type WorkScheduleAdd = Omit<WorkSchedule, "id" | "week_day" | "work_activity" | "schedule_type">;
+
+// ─── Stores ───────────────────────────────────────────────────────────────────
+
+export type Store = {
+  id: number;
+  company_id: number;
+  name: string;
+  description: string;
+  price: number;
+};
+
+export type PayloadStore = Omit<Store, "id">;
