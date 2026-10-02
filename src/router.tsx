@@ -1,7 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { MainLayout } from '@/layouts/MainLayout';
 import { structuredRoutes, type TStructRoute } from './constants/routes';
-import { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
+import RouterErrorBoundary from './components/organisms/ErrorPage/RouterErrorBoundary';
+
+const NotFound = lazy(() => import('@/pages/NotFound/NotFound'));
 import type { LucideIcon } from 'lucide-react';
 import { RouteGuard } from './auth/RouteGuard';
 import type { ValueOf } from './types/utilities.types';
@@ -23,10 +26,18 @@ const generateChildren = (routes: Array<{path: string; Element: React.ComponentT
 
 export const router = createBrowserRouter([{
   element: <MainLayout />,
-  children: (Object.keys(structuredRoutes) as TStructRoute[]).map((routesGroup) => (
-    {
-      element: <RouteGuard key={routesGroup} availableRoutes={routesGroup.split('__')  as ValueOf<typeof AUTH_DOMAINS>[]} />,
-      children: generateChildren((structuredRoutes[routesGroup] || [])),
-    }
-  ))
+  errorElement: <RouterErrorBoundary />,
+  children: [{
+    // errorElement annidato: gli errori delle pagine mantengono header e menu
+    errorElement: <RouterErrorBoundary />,
+    children: [
+      ...(Object.keys(structuredRoutes) as TStructRoute[]).map((routesGroup) => (
+        {
+          element: <RouteGuard key={routesGroup} availableRoutes={routesGroup.split('__')  as ValueOf<typeof AUTH_DOMAINS>[]} />,
+          children: generateChildren((structuredRoutes[routesGroup] || [])),
+        }
+      )),
+      { path: '*', element: <Suspense fallback={<div>Caricamento...</div>}><NotFound /></Suspense> },
+    ],
+  }],
 }])

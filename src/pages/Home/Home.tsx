@@ -18,7 +18,7 @@ import MapContent from "@/components/molecules/MapContent/MapContent";
 const Home = () => {
   const {classBase, ...iconPresetRest} = ICON_PRESET;
   const sections = routesBySection;
-  const filteredRouteSections = Object.keys(routesBySection).filter(sectionKey => sectionKey !== ROUTE_SECTIONS.HOME && sectionKey !== ROUTE_SECTIONS.AUTH && sectionKey !== ROUTE_SECTIONS.SETTINGS);
+  const filteredRouteSections = Object.keys(routesBySection).filter(sectionKey => sectionKey !== ROUTE_SECTIONS.HOME && ![ROUTE_SECTIONS.AUTH, ROUTE_SECTIONS.SETTINGS, ROUTE_SECTIONS.ERRORS].includes(sectionKey));
   const { t: tMenu } = useTranslation("menu");
   const { data: counts } = useCounts();
   const { mutate: exportExcel } = useExportGeneralExcel();

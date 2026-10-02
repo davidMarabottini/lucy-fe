@@ -10,7 +10,7 @@ export const getstores = async (params?: Record<string, unknown>): Promise<Store
   return data;
 };
 
-export const exportstoresExcel = async () => {
+export const exportStoresExcel = async () => {
   const blob = await apiClient.get('/api/stores/export', { responseType: 'blob' }).then(res => res.data);
   exportFile(blob, 'stores.xlsx');
 };

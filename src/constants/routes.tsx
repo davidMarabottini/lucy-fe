@@ -44,6 +44,8 @@ const WorkScheduleTypeDetails = lazy(() => import("@/pages/WorkScheduleType/Deta
 const StoreList = lazy(() => import("@/pages/Store/List/List"));
 const StoreDetails = lazy(() => import("@/pages/Store/Details/Details"));
 const StoreInsert = lazy(() => import("@/pages/Store/Insert/Insert"));
+const NotFound = lazy(() => import("@/pages/NotFound/NotFound"));
+const ServerError = lazy(() => import("@/pages/ServerError/ServerError"));
 
 export type RouteHandle = {
   key: string;
@@ -92,7 +94,8 @@ export const ROUTE_SECTIONS = {
   SETTINGS: 'SETTINGS',
   CLIENTS: 'CLIENTS',
   EMPLOYEES: 'EMPLOYEES',
-  STORE: 'STORE',
+  STORE: 'STORES',
+  ERRORS: 'ERRORS',
 };
 
 export const ACTION_TYPES = {
@@ -159,6 +162,8 @@ export const ROUTE_CONFIGS: readonly AppRouteObject[] = Object.freeze([
   {path: '/contracts/:contractId/set', Element: SetDetails, handle: {key: 'CONTRACT_SET_DETAILS', section: ROUTE_SECTIONS.CONTRACTS, action: ACTION_TYPES.DETAILS, label: 'labels.contractSetDetails', parentKey: 'CONTRACT_DETAIL', domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
 
 
+  {path: '/404', Element: NotFound, handle: {key: 'NOT_FOUND', section: ROUTE_SECTIONS.ERRORS, action: ACTION_TYPES.NONE, domain: [AUTH_DOMAINS.PUBLIC, AUTH_DOMAINS.PRIVATE], menu: []}},
+  {path: '/500', Element: ServerError, handle: {key: 'SERVER_ERROR', section: ROUTE_SECTIONS.ERRORS, action: ACTION_TYPES.NONE, domain: [AUTH_DOMAINS.PUBLIC, AUTH_DOMAINS.PRIVATE], menu: []}},
 ]);
 
 export type SectionRouteEntry = { path: string; label?: string; Icon?: LucideIcon };

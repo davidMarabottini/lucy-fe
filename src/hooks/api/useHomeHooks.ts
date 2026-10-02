@@ -1,4 +1,4 @@
-
+import { exportStoresExcel } from "@/api/storeService";
 import { useAppQuery } from "../useAppApi/useAppQuery";
 import { ERROR_KINDS } from "../useAppApi/error";
 import { getCounts, getWorkedHours } from "@/api/homeService";
@@ -24,6 +24,7 @@ const excelExport: Record<keyof typeof ROUTE_SECTIONS, (filters?: Record<string,
   [ROUTE_SECTIONS.SECTORS]: exportSectorsExcel,
   [ROUTE_SECTIONS.USERS]: exportUsersExcel,
   [ROUTE_SECTIONS.WORK_SCHEDULE_TYPES]: exportWorkScheduleTypesExcel,
+  [ROUTE_SECTIONS.STORE]: exportStoresExcel,
 
   // [ROUTE_SECTIONS.AUTH]: '/export/auth',
   // [ROUTE_SECTIONS.SETTINGS]: '/export/settings',

@@ -1,0 +1,10 @@
+{
+  "404": {
+    "title": "Pagina non trovata",
+    "description": "La pagina che stai cercando non esiste o è stata spostata."
+  },
+  "500": {
+    "title": "Errore del server",
+    "description": "Si è verificato un errore imprevisto. Riprova tra qualche istante."
+  }
+}
