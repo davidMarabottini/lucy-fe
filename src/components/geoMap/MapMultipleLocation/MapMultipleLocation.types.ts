@@ -14,4 +14,5 @@ export interface WorkLocationsMapProps {
   circleFillColor?: string;
   circleFillOpacity?: number;
   circleStrokeColor?: string;
+  renderPointPopup?: (point: WorkLocationPoint) => React.ReactNode;
 }

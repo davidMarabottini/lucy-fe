@@ -5,13 +5,11 @@ import { useAppMutation } from "../useAppApi/useAppMutation";
 import { ERROR_KINDS } from "../useAppApi/error";
 import { 
   getstores,
-
-  // getSectors, 
   getStoreById, 
   insertStore, 
   updateStore, 
   deleteStore,
-  // exportSectorsExcel
+  exportStoresExcel
 } from "@/api/storeService";
 import type { ROUTES } from "@/constants/routes";
 import type { Store } from "@/api/types";
@@ -99,15 +97,15 @@ export const useDeleteStore = () => {
   });
 };
 
-// export const useExportSectorsExcel = () => {
-//   return useAppMutation<void, void>({
-//     mutationFn: exportSectorsExcel,
-//     successKey: `${libDomain}.export.success`,
-//     errorMap: {
-//       [ERROR_KINDS.UNAUTHORIZED]: `${libDomain}.export.401`,
-//       [ERROR_KINDS.SERVER]: `${libDomain}.export.500`,
-//       [ERROR_KINDS.NETWORK]: `${libDomain}.export.network`,
-//       [ERROR_KINDS.UNKNOWN]: `${libDomain}.export.defaultError`
-//     },
-//   });
-// };
+export const useExportStoresExcel = () => {
+  return useAppMutation<void, void>({
+    mutationFn: exportStoresExcel,
+    successKey: `${libDomain}.export.success`,
+    errorMap: {
+      [ERROR_KINDS.UNAUTHORIZED]: `${libDomain}.export.401`,
+      [ERROR_KINDS.SERVER]: `${libDomain}.export.500`,
+      [ERROR_KINDS.NETWORK]: `${libDomain}.export.network`,
+      [ERROR_KINDS.UNKNOWN]: `${libDomain}.export.defaultError`
+    },
+  });
+};

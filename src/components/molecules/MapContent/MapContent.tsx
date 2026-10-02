@@ -48,6 +48,7 @@ const MapContent: React.FC<MapContentProps> = ({ mapConfig, className }) => {
           circleFillColor={mapConfig.circleFillColor}
           circleFillOpacity={mapConfig.circleFillOpacity}
           circleStrokeColor={mapConfig.circleStrokeColor}
+          renderPointPopup={mapConfig.renderPointPopup}
         />
       )}
     </div>

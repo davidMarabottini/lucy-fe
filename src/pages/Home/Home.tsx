@@ -33,7 +33,6 @@ const Home = () => {
   const [selectedPositiveNegative, setSelectedPositiveNegative] = useState(positivNegative[0].value);
 
   const curDataSet = selectedPositiveNegative === "negatives" ? negatives : positives;
-
   return (
     <>
     <Card additionalClassName={styles["p-home"]}>
@@ -126,23 +125,28 @@ const Home = () => {
       <MapContent
         mapConfig={{
           mode: 'locations',
-          locations: curDataSet.map(({ id, coordinate, label, distanza_media_metri }) => ({
-            id,
+          locations: curDataSet.map(({ id_cliente, cliente, coordinate, distanza_media_metri }) => ({
+            id: id_cliente,
             latitude: coordinate.lat,
             longitude: coordinate.lng,
-            label,
+            label: cliente,
             radiusInMeters: distanza_media_metri,
-            PointPopup: () => (
-            <div>
-              ciao
-              {/* <strong>{label}</strong> */}
-              {/* <p>Raggio: {radiusInMeters}m</p> */}
-            </div>
-          )
           })),
           radiusInMeters: 300,
-        }
-        }
+          renderPointPopup: (point) => {
+            const report = curDataSet.find(({ id_cliente }) => id_cliente === point.id);
+            if (!report) return null;
+            return (
+              <div>
+                <strong>{report.cliente}</strong>
+                <p>Ore lavorate: {report.ore_lavorate}</p>
+                <p>Ore teoriche: {report.ore_teoriche}</p>
+                <p>Differenza: {report.differenza_ore}</p>
+                <p>Distanza media: {report.distanza_media_metri}m</p>
+              </div>
+            );
+          },
+        }}
       />
     </Card>
     </>

@@ -15,7 +15,7 @@ export interface WorkLocationsMapProps {
   circleFillColor?: string;
   circleFillOpacity?: number;
   circleStrokeColor?: string;
-  PointPopup?:  (point: WorkLocationPoint) => ReactNode
+  renderPointPopup?: (point: WorkLocationPoint) => ReactNode;
 }
 
 const WorkLocationsMap: React.FC<WorkLocationsMapProps> = ({
@@ -26,7 +26,7 @@ const WorkLocationsMap: React.FC<WorkLocationsMapProps> = ({
   circleFillColor = '#3b82f6',
   circleFillOpacity = 0.2,
   circleStrokeColor = '#1d4ed8',
-  PointPopup=undefined,
+  renderPointPopup,
 }) => {
   const [selectedPoint, setSelectedPoint] = useState<WorkLocationPoint | null>(null);
   const mapRef = useRef<MapRef>(null);
@@ -107,7 +107,7 @@ const WorkLocationsMap: React.FC<WorkLocationsMapProps> = ({
           </Marker>
         ))}
 
-        {PointPopup && selectedPoint && (
+        {renderPointPopup && selectedPoint && (
           <Popup
             longitude={selectedPoint.longitude}
             latitude={selectedPoint.latitude}
@@ -115,7 +115,7 @@ const WorkLocationsMap: React.FC<WorkLocationsMapProps> = ({
             onClose={() => setSelectedPoint(null)}
             closeOnClick={false}
           >
-            {PointPopup(selectedPoint)}
+            {renderPointPopup(selectedPoint)}
           </Popup>
         )}
       </Map>

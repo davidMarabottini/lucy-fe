@@ -17,6 +17,7 @@ export type LocationsMapConfig = {
   circleFillColor?: string;
   circleFillOpacity?: number;
   circleStrokeColor?: string;
+  renderPointPopup?: (point: WorkLocationPoint) => React.ReactNode;
 };
 
 export type MapConfig = SingleMapConfig | LocationsMapConfig;
@@ -25,19 +26,3 @@ export interface MapContentProps {
   mapConfig: MapConfig;
   className?: string;
 }
-
-// import type { MapPoint } from '@/components/atoms/MapComponent/MapComponent.types';
-
-// export type { MapPoint };
-
-// export interface ClockInPoint extends MapPoint {
-//   type: 'start' | 'end';
-// }
-
-// export interface MapContentProps {
-//   headquarter?: MapPoint;
-//   clockIn?: ClockInPoint[];
-//   trackLine?: boolean;
-//   className?: string;
-//   focusedPointId?: string | number | null;
-// }
