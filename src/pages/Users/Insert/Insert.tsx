@@ -4,7 +4,7 @@ import Card from '@components/ui/Card/Card';
 import clsx from 'clsx';
 import styles from "./Insert.module.scss";
 import { useTranslation } from 'react-i18next';
-import Form from '@components/organisms/form/Form';
+import Form from '@components/form/Form';
 import Stack from '@/components/ui/Stack/Stack';
 import type { RegistrationForm } from './Insert.types';
 import { useInsertUser, useUpdateUser, useUserDetail } from '@/hooks/api/useUserHooks';

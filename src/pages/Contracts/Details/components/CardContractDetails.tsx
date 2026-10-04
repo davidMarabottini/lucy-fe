@@ -1,11 +1,11 @@
 import Card from "@components/ui/Card/Card";
 import Typography from "@/components/ui/Typography/Typography";
 import { useTranslation } from "react-i18next";
-import Paginated from "@/components/organisms/Paginated/Paginated";
+import Paginated from "@/components/statused/Paginated/Paginated";
 import type { WorkSchedule } from "@/api/types";
 import { useContractSchedules } from "@/hooks/api/useWorkScheduleHooks";
 import styles from "../Details.module.scss";
-import Table from "@/components/organisms/Table/Table";
+import Table from "@/components/ui/Table/Table";
 
 const CardContractDetails = ({ contractId }: { contractId: string; }) => {
   const { t } = useTranslation("features/contract", { keyPrefix: "details" });

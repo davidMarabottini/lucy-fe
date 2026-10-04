@@ -1,5 +1,5 @@
 import { useEmployeeDelete } from "@/hooks/api/useEmployeesHooks";
-import Table from "@/components/organisms/Table/Table";
+import Table from "@/components/ui/Table/Table";
 import styles from "../../List.module.scss"
 import type { LibemaxEmployee } from "@/api/types";
 import { Check, X } from "lucide-react";

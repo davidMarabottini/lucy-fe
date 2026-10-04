@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import styles from "./ChangePassword.module.scss";
 import { useTranslation } from 'react-i18next';
 import { useChangePassword } from '@/hooks/api/useAuthenticationHooks';
-import Form from '@components/organisms/form/Form';
+import Form from '@components/form/Form';
 import Stack from '@/components/ui/Stack/Stack';
 import { LockKeyhole } from 'lucide-react';
 

@@ -1,7 +1,7 @@
 import Card from '@components/ui/Card/Card';
 import styles from "./Insert.module.scss";
 import { useTranslation } from 'react-i18next';
-import Form from '@components/organisms/form/Form';
+import Form from '@components/form/Form';
 import Stack from '@/components/ui/Stack/Stack';
 import Typography from '@/components/ui/Typography/Typography';
 import { Check, ChevronLeft, X } from 'lucide-react';

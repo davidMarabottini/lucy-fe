@@ -9,7 +9,7 @@ import LinkComponent from "@/components/ui/LinkComponent/LinkComponent";
 import { Minus, Plus, Ruler } from "lucide-react";
 import { useCounts, useExportGeneralExcel, useWorkedHours } from "@/hooks/api/useHomeHooks";
 // import Button from "@/components/ui/Button/Button";
-import Table from "@/components/organisms/Table/Table";
+import Table from "@/components/ui/Table/Table";
 import type { ClienteReport } from "@/api/types";
 import RadioBtn from "@/components/ui/RadioBtn/RadioBtn";
 import { ICON_PRESET } from "@/components/ui/RadioBtn/presets/icon.presets";

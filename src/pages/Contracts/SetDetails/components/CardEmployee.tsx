@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import Card from "@components/ui/Card/Card";
 import Typography from "@/components/ui/Typography/Typography";
-import Form from "@/components/organisms/form/Form";
+import Form from "@/components/form/Form";
 import Stack from "@/components/ui/Stack/Stack";
 
 import styles from "../SetDetails.module.scss";

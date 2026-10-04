@@ -1,9 +1,9 @@
-import Header from "@components/organisms/Header/Header";
+import Header from "@/components/LayoutComponents/Header/Header";
 import { Outlet } from 'react-router-dom';
 import styles from './MainLayout.module.scss';
-import { ToastContainer } from "@/components/organisms/Toast/ToastContainer";
+import { ToastContainer } from "@/components/ui/Toast/ToastContainer";
 import clsx from "clsx";
-import { SideMenu } from "@/components/organisms/SideMenu/SideMenu";
+import { SideMenu } from "@/components/LayoutComponents/SideMenu/SideMenu";
 import ModalSettings from "./components/ModalSettings/ModalSettings";
 
 export const MainLayout = () => {

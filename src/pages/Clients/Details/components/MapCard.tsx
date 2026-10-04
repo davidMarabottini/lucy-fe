@@ -1,7 +1,7 @@
 import Card from "@/components/ui/Card/Card";
 import { useTranslation } from "react-i18next";
 import styles from "../Details.module.scss";
-import Table from "@/components/organisms/Table/Table";
+import Table from "@/components/ui/Table/Table";
 import MapContent from "@/components/geoMap/MapContent/MapContent";
 import { useLibemaxTimbrature } from "@/hooks/api/useLibemaxTimbratureHooks";
 // import type { ClockInPoint } from "@/components/molecules/MapContent/MapContent.types";

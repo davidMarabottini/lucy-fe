@@ -6,7 +6,7 @@ import Button from "@/components/ui/Button/Button";
 import { useTranslation } from "react-i18next";
 import type { DeleteModalProps } from "./DeleteModal.types";
 import type { WorkActivity } from "@/api/types";
-import Table from "@/components/organisms/Table/Table";
+import Table from "@/components/ui/Table/Table";
 
 export const DeleteModal = ({openModal, setOpenModal, curWorkActivity: curWorkActivity}: DeleteModalProps) => {
   const {mutate: deleteWorkActivity} = useWorkActivityDelete();

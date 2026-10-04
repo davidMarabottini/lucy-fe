@@ -1,4 +1,4 @@
-import ErrorPage from '@/components/organisms/ErrorPage/ErrorPage';
+import ErrorPage from '@/components/ui/ErrorPage/ErrorPage';
 
 const ServerError = () => <ErrorPage code={500} />;
 

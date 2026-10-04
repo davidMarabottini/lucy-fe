@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import CardContract from "./components/CardContract";
 import CardContractDetails from "./components/CardContractDetails";
 import Card from "@/components/ui/Card/Card";
-import Paginated from "@/components/organisms/Paginated/Paginated";
+import Paginated from "@/components/statused/Paginated/Paginated";
 import type { LibemaxEmployee } from "@/api/types";
 import { Mail, Phone } from "lucide-react";
 // import type LibemaxEmployees from "@/pages/Employees/List/List";

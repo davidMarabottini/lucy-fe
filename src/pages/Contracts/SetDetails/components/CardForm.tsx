@@ -9,9 +9,9 @@ import { useWorkScheduleTypes } from "@/hooks/api/WorkScheduleTypeHooks";
 import { useWeekDays } from "@/hooks/api/WeekDaysHooks";
 
 import Card from "@components/ui/Card/Card";
-import Form from "@/components/organisms/form/Form";
+import Form from "@/components/form/Form";
 import Stack from "@/components/ui/Stack/Stack";
-import Table from "@/components/organisms/Table/Table";
+import Table from "@/components/ui/Table/Table";
 import Button from "@/components/ui/Button/Button";
 
 import styles from "../SetDetails.module.scss";

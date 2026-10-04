@@ -2,7 +2,7 @@ import Card from "@components/ui/Card/Card";
 // import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 import styles from "../SetDetails.module.scss";
-import Form from "@/components/organisms/form/Form";
+import Form from "@/components/form/Form";
 import { useEmployeesList } from "@/hooks/api/useEmployeesHooks";
 import Stack from "@/components/ui/Stack/Stack";
 import Button from "@/components/ui/Button/Button";

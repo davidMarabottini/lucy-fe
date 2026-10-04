@@ -2,7 +2,7 @@ import Card from "@components/ui/Card/Card";
 import Typography from "@/components/ui/Typography/Typography";
 import { useStores } from "@/hooks/api/useStores"; // Hook creato precedentemente
 import styles from './List.module.scss'; // Riutilizziamo lo stesso stile o uno dedicato
-import Table from "@/components/organisms/Table/Table";
+import Table from "@/components/ui/Table/Table";
 import { type Store } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
 import { Edit2, Eye, PlusCircle, Trash2 } from "lucide-react";
@@ -11,7 +11,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Button from "@/components/ui/Button/Button";
 import {DeleteModal} from "./components/DeleteModal/DeleteModal";
-import Paginated from "@/components/organisms/Paginated/Paginated";
+import Paginated from "@/components/statused/Paginated/Paginated";
 import { rewriteRoute } from "@/utils/routes";
 import DetailCard from "@/components/Cards/DetailCard/DetailCard";
 import { useViewStore } from "@/zustand/listViewAsCard";

@@ -6,7 +6,7 @@ import { useEmployeeDetailStore } from "@/zustand/employeeDetailState";
 import { ContractSchedulesTable } from "@/pages/Clients/Details/components/ContractSchedulesTable";
 import Button from "@/components/ui/Button/Button";
 import { Map as MapIcon, TriangleAlert, X } from "lucide-react";
-import Table from "@/components/organisms/Table/Table";
+import Table from "@/components/ui/Table/Table";
 import MapContent from "@/components/geoMap/MapContent/MapContent";
 import { useLibemaxTimbrature } from "@/hooks/api/useLibemaxTimbratureHooks";
 import type { ClockInPoint } from "@/components/geoMap/MapContent/MapContent.types";

@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import styles from "./Login.module.scss";
 import { useTranslation } from 'react-i18next';
 import { useLogin } from '@/hooks/api/useAuthenticationHooks';
-import Form from '@components/organisms/form/Form';
+import Form from '@components/form/Form';
 import Stack from '@/components/ui/Stack/Stack';
 import { LogIn } from 'lucide-react';
 

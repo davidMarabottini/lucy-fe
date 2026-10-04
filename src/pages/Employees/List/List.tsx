@@ -8,15 +8,15 @@ import LinkComponent from "@/components/ui/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { DeleteModal } from "./components/DeleteModal/DeleteModal";
-import Paginated from "@/components/organisms/Paginated/Paginated";
+import Paginated from "@/components/statused/Paginated/Paginated";
 import { useEmployeesList, useExportEmployeesExcel } from "@/hooks/api/useEmployeesHooks";
 import { useViewStore } from "@/zustand/listViewAsCard";
 import { rewriteRoute } from "@/utils/routes";
 import Button from "@/components/ui/Button/Button";
-import Table from "@/components/organisms/Table/Table";
+import Table from "@/components/ui/Table/Table";
 import DetailCard from "@/components/Cards/DetailCard/DetailCard";
 import Switch from "@/components/ui/Switch/Switch";
-import { PdfDataTable } from "@/components/organisms/PdfDataTable/PdfDataTable";
+import { PdfDataTable } from "@/components/Pdf/PdfDataTable/PdfDataTable";
 
 const LibemaxEmployees = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);

@@ -4,7 +4,7 @@ import { RouterProvider } from 'react-router-dom';
 import { router } from './router';
 import '@styles/main.scss';
 import { AuthProvider } from '@/auth/AuthProvider';
-import { ToastProvider } from './components/organisms/Toast/Toast';
+import { ToastProvider } from './components/ui/Toast/Toast';
 
 const queryClient = new QueryClient({
   defaultOptions: {

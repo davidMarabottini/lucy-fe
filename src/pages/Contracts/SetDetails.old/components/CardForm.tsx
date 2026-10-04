@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 import Card from "@components/ui/Card/Card";
 import Stack from "@/components/ui/Stack/Stack";
-import Form from "@/components/organisms/form/Form";
-import Table from "@/components/organisms/Table/Table";
+import Form from "@/components/form/Form";
+import Table from "@/components/ui/Table/Table";
 import Button from "@/components/ui/Button/Button";
 import { ICON_PRESET } from "@/components/ui/RadioBtn/presets/icon.presets";
 import { Check, Plus, Trash2, X } from "lucide-react";

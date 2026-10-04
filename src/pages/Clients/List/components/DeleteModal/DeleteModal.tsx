@@ -1,5 +1,5 @@
 import { useClientDelete } from "@/hooks/api/useClientHooks";
-import Table from "@/components/organisms/Table/Table";
+import Table from "@/components/ui/Table/Table";
 import styles from "../../List.module.scss"
 import type { LibemaxClient } from "@/api/types";
 import { Check, X } from "lucide-react";

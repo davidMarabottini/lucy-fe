@@ -5,7 +5,7 @@ import { Modal } from "@/components/Modal/Modal/Modal";
 import Button from "@/components/ui/Button/Button";
 import { useTranslation } from "react-i18next";
 import type { DeleteModalProps } from "./DeleteModal.types";
-import Table from "@/components/organisms/Table/Table";
+import Table from "@/components/ui/Table/Table";
 import type { WorkScheduleType } from "@/api/types";
 
 export const DeleteModal = ({ 
