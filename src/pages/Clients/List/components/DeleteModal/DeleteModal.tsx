@@ -3,7 +3,7 @@ import Table from "@/components/ui/Table/Table";
 import styles from "../../List.module.scss"
 import type { LibemaxClient } from "@/api/types";
 import { Check, X } from "lucide-react";
-import { Modal } from "@/components/Modal/Modal/Modal";
+import { Modal } from "@/components/modals/GenericModal/Modal";
 import Button from "@/components/ui/Button/Button";
 import { useTranslation } from "react-i18next";
 import type { DeleteModalProps } from "./DeleteModal.types";

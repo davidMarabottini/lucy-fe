@@ -14,9 +14,9 @@ import { useViewStore } from "@/zustand/listViewAsCard";
 import { rewriteRoute } from "@/utils/routes";
 import Button from "@/components/ui/Button/Button";
 import Table from "@/components/ui/Table/Table";
-import DetailCard from "@/components/Cards/DetailCard/DetailCard";
+import DetailCard from "@/components/cards/DetailCard/DetailCard";
 import Switch from "@/components/ui/Switch/Switch";
-import { PdfDataTable } from "@/components/Pdf/PdfDataTable/PdfDataTable";
+import { PdfDataTable } from "@/components/pdfs/PdfDataTable/PdfDataTable";
 
 const LibemaxEmployees = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);

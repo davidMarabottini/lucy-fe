@@ -8,7 +8,7 @@ import Button from "@/components/ui/Button/Button";
 import { Link } from "react-router-dom";
 import { Map, ChevronRight } from "lucide-react";
 import cardStyles from "./ContractsCard.module.scss";
-import { EmployeeContractDetailsCard } from "@/components/Cards/DetailCards/EmployeeContractDetailsCard/EmployeeContractDetailsCard";
+import { EmployeeContractDetailsCard } from "@/components/cards/EmployeeContractDetailsCard/EmployeeContractDetailsCard";
 
 interface ContractEmployeesListProps {
   employees: ContractEmployeeAssignment[];

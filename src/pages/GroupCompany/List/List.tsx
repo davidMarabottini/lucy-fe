@@ -13,7 +13,7 @@ import { DeleteModal } from "./components/DeleteModal/DeleteModal";
 import Paginated from "@/components/statused/Paginated/Paginated";
 import { rewriteRoute } from "@/utils/routes";
 import Table from "@/components/ui/Table/Table";
-import DetailCard from "@/components/Cards/DetailCard/DetailCard";
+import DetailCard from "@/components/cards/DetailCard/DetailCard";
 import { useViewStore } from "@/zustand/listViewAsCard";
 import { useCompanyStore } from "@/zustand/currentCompany";
 

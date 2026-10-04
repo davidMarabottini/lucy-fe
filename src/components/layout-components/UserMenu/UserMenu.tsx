@@ -3,13 +3,13 @@ import { useState } from "react";
 import { useAuth } from "@/auth/useAuth";
 import { ChevronDown } from "lucide-react";
 import style from "./UserMenu.module.scss";
-import MenuManager from "@/components/LayoutComponents/MenuManager/MenuManager";
+import MenuManager from "@/components/layout-components/MenuManager/MenuManager";
 import { AVAILABLE_MENUS } from "@/constants/configuration";
 import { useLogout } from "@/hooks/api/useAuthenticationHooks";
-import type { MenuItemConfiguration } from "@/components/LayoutComponents/MenuManager/MenuManager.types";
+import type { MenuItemConfiguration } from "@/components/layout-components/MenuManager/MenuManager.types";
 import type { MenuItem } from "@/constants/routes";
 import { useTranslation } from "react-i18next";
-import { DropDownHead, DropDownItem } from "@/components/LayoutComponents/Dropdown/Dropdown";
+import { DropDownHead, DropDownItem } from "@/components/layout-components/Dropdown/Dropdown";
 import { useOpenSettingsModal } from "@/zustand/openSettingsModal";
 
 const SubMenu = ({ item, onClose }: { item: MenuItem, onClose: () => void }) => {

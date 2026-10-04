@@ -7,9 +7,9 @@ import { ContractSchedulesTable } from "@/pages/Clients/Details/components/Contr
 import Button from "@/components/ui/Button/Button";
 import { Map as MapIcon, TriangleAlert, X } from "lucide-react";
 import Table from "@/components/ui/Table/Table";
-import MapContent from "@/components/geoMap/MapContent/MapContent";
+import MapContent from "@/components/maps/MapContent/MapContent";
 import { useLibemaxTimbrature } from "@/hooks/api/useLibemaxTimbratureHooks";
-import type { ClockInPoint } from "@/components/geoMap/MapContent/MapContent.types";
+import type { ClockInPoint } from "@/components/maps/MapContent/MapContent.types";
 import { useState } from "react";
 import { calculateDistance } from "@/utils/calculateDistance";
 import 'maplibre-gl/dist/maplibre-gl.css';

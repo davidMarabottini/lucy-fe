@@ -13,7 +13,7 @@ import Table from "@/components/ui/Table/Table";
 import type { ClienteReport } from "@/api/types";
 import RadioBtn from "@/components/ui/RadioBtn/RadioBtn";
 import { ICON_PRESET } from "@/components/ui/RadioBtn/presets/icon.presets";
-import MapContent from "@/components/geoMap/MapContent/MapContent";
+import MapContent from "@/components/maps/MapContent/MapContent";
 import { rewriteRoute } from "@/utils/routes";
 
 const Home = () => {

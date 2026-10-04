@@ -1,7 +1,7 @@
 // MapContent.tsx
 import { useState } from 'react';
-import MapComponent from '@/components/geoMap/MapComponent/MapComponent';
-import WorkLocationsMap from '@/components/geoMap/MapMultipleLocation/MapMultipleLocation';
+import MapComponent from '@/components/maps/MapComponent/MapComponent';
+import WorkLocationsMap from '@/components/maps/MapMultipleLocation/MapMultipleLocation';
 import RadioBtn from '@/components/ui/RadioBtn/RadioBtn';
 import type { MapContentProps } from './MapContent.types';
 import clsx from 'clsx';

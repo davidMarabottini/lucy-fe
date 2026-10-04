@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "@react-pdf/renderer";
-import PdfDocument from "@/components/Pdf/PdfDocument/PdfDocument";
+import PdfDocument from "@/components/pdfs/PdfDocument/PdfDocument";
 
 // 1. Tipizzazione avanzata per le colonne del PDF
 export interface PdfColumn<T> {

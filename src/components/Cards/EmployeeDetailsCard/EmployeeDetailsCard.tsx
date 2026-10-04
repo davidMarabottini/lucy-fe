@@ -1,6 +1,6 @@
 import type { LibemaxEmployee } from "@/api/types";
 import Button from "@/components/ui/Button/Button";
-import DetailCard from "@/components/Cards/DetailCard/DetailCard";
+import DetailCard from "@/components/cards/DetailCard/DetailCard";
 import LinkComponent from "@/components/ui/LinkComponent/LinkComponent";
 import { ROUTES } from "@/constants/routes";
 import { rewriteRoute } from "@/utils/routes";

@@ -15,10 +15,10 @@ import { useViewStore } from "@/zustand/listViewAsCard";
 import { Edit2, Eye, Trash2 } from "lucide-react";
 import Button from "@/components/ui/Button/Button";
 import { rewriteRoute } from "@/utils/routes";
-import DetailCard from "@/components/Cards/DetailCard/DetailCard";
+import DetailCard from "@/components/cards/DetailCard/DetailCard";
 import { useExportClientExcel } from "@/hooks/api/useClientHooks";
 import Switch from "@/components/ui/Switch/Switch";
-import { PdfDataTable } from "@/components/Pdf/PdfDataTable/PdfDataTable";
+import { PdfDataTable } from "@/components/pdfs/PdfDataTable/PdfDataTable";
 
 const LibemaxClients = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);

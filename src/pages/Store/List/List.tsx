@@ -13,7 +13,7 @@ import Button from "@/components/ui/Button/Button";
 import {DeleteModal} from "./components/DeleteModal/DeleteModal";
 import Paginated from "@/components/statused/Paginated/Paginated";
 import { rewriteRoute } from "@/utils/routes";
-import DetailCard from "@/components/Cards/DetailCard/DetailCard";
+import DetailCard from "@/components/cards/DetailCard/DetailCard";
 import { useViewStore } from "@/zustand/listViewAsCard";
 
 const StoresList = () => {
