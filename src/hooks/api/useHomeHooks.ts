@@ -2,7 +2,7 @@ import { exportStoresExcel } from "@/api/storeService";
 import { useAppQuery } from "../useAppApi/useAppQuery";
 import { ERROR_KINDS } from "../useAppApi/error";
 import { getCounts, getWorkedHours } from "@/api/homeService";
-import { ROUTE_SECTIONS } from "@/constants/routes";
+import { ROUTE_SECTIONS } from "@/constants/routeList";
 import { exportClientExcel } from "@/api/clientService";
 import { exportEmployeesExcel } from "@/api/employeesService";
 import { exportGroupCompaniesExcel } from "@/api/groupCompanyService";

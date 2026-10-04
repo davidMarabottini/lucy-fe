@@ -1,15 +1,12 @@
 import { generatePath, matchRoutes } from 'react-router-dom';
 import {
-  ACTION_TYPES,
-  ROUTE_CONFIGS,
-  ROUTE_SECTIONS,
   routesBySection,
-  type AppRouteObject,
 } from '@/constants/routes';
 import { AUTH_DOMAINS } from '@/constants/configuration';
 import type { BreadcrumbItem } from '@/zustand/breadcrumbState';
+import { ACTION_TYPES, ROUTE_CONFIGS, ROUTE_SECTIONS, type AppRouteObject } from '@/constants/routeList';
 
-// only real, private pages can appear in the breadcrumb (menu-only actions have no path to render)
+//TODO: cambiare questa logica
 const NAVIGABLE_ROUTES: AppRouteObject[] = ROUTE_CONFIGS.filter(
   (route) => !route.handle.isOnlyMenu && route.handle.domain.includes(AUTH_DOMAINS.PRIVATE)
 );
