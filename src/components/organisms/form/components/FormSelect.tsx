@@ -1,5 +1,5 @@
 import { useFormContext, useWatch, type FieldValues } from 'react-hook-form';
-import Select from '@components/molecules/Select/Select';
+import Select from '@/components/ui/Select/Select';
 import type { FormSelectProps } from '../Form.types';
 
 const FormSelect = <T extends FieldValues>({ name, rules, options, ...props }: FormSelectProps<T>) => {

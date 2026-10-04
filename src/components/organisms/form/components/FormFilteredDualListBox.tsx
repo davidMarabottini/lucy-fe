@@ -1,5 +1,5 @@
 import { Controller, useFormContext, type FieldValues } from 'react-hook-form';
-import FilteredDualListBox from '@components/molecules/FilteredDualListBox/FilteredDualListBox';
+import FilteredDualListBox from '@/components/ui/FilteredDualListBox/FilteredDualListBox';
 import type { FormFilteredDualListBoxProps } from '../Form.types';
 
 const FormFilteredDualListBox = <T extends FieldValues>({ name, rules, ...props }: FormFilteredDualListBoxProps<T>) => {

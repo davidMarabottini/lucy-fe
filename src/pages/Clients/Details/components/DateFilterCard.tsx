@@ -2,7 +2,7 @@ import Card from "@/components/ui/Card/Card";
 import { useTranslation } from "react-i18next";
 import styles from "../Details.module.scss";
 import { useClientDetailStore } from "@/zustand/clientDetailState";
-import DateNavigatorCard from "@/components/molecules/DateFilterCard/DateNavigatorCard";
+import DateNavigatorCard from "@/components/ui/DateFilterCard/DateNavigatorCard";
 
 const DateFilterCard = () => {
   const { t } = useTranslation("features/client", { keyPrefix: "details.workDetails" });

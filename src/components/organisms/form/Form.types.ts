@@ -3,12 +3,12 @@ import type { UseFormReturn, FieldValues, Path, DefaultValues, RegisterOptions, 
 import type { ButtonProps } from "../../atoms/Button/Button.types";
 import type { InputProps } from "@components/ui/Input/Input.types";
 import type { TextAreaProps } from "../../ui/TextArea/TextArea.types";
-import type { RadioBtnProps, RadioOptionBase } from "../../atoms/RadioBtn/RadioBtn.types";
-import type { SelectProps } from "../../molecules/Select/Select.types";
+import type { RadioBtnProps, RadioOptionBase } from "../../ui/RadioBtn/RadioBtn.types";
+import type { SelectProps } from "../../ui/Select/Select.types";
 import type { SwitchProps } from "@/components/ui/Switch/Switch.types";
 import type { DualListBoxProps } from "@/components/atoms/DualListBox/DualListBox.types";
 import type { DatePickerProps } from "@/components/ui/DatePicker/DatePicker";
-import type { FilteredDualListProps } from "@/components/molecules/FilteredDualListBox/FilteredDualListBox.types";
+import type { FilteredDualListProps } from "@/components/ui/FilteredDualListBox/FilteredDualListBox.types";
 
 type FormBase = Omit<React.FormHTMLAttributes<HTMLFormElement>, 'children' | 'onSubmit'>;
 

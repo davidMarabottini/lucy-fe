@@ -8,9 +8,9 @@ import Button from "@components/ui/Button/Button";
 import { useAuth } from "@/auth/useAuth";
 import UserMenu from "../UserMenu/UserMenu";
 import { useMenuStore } from "@/zustand/menuState";
-import { Breadcrumb } from "@/components/molecules/Breadcrumb/Breadcrumb";
+import { Breadcrumb } from "@/components/LayoutComponents/Breadcrumb/Breadcrumb";
 import { useCompanyStore } from "@/zustand/currentCompany";
-import { DropDownHead, DropDownItem } from "@/components/molecules/Dropdown/Dropdown";
+import { DropDownHead, DropDownItem } from "@/components/LayoutComponents/Dropdown/Dropdown";
 import { useGroupCompanies } from "@/hooks/api/GroupCompanyHooks";
 
 const OpenMenuBtn = () => {

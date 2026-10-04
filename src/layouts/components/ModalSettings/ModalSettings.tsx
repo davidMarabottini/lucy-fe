@@ -1,5 +1,5 @@
 import Button from "@/components/ui/Button/Button";
-import { Modal } from "@/components/atoms/Modal/Modal"
+import { Modal } from "@/components/Modal/Modal/Modal"
 import Switch from "@/components/ui/Switch/Switch";
 import Table from "@/components/organisms/Table/Table";
 import { useViewStore } from "@/zustand/listViewAsCard";

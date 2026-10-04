@@ -1,4 +1,4 @@
-import DetailCard from "@/components/atoms/DetailCard/DetailCard";
+import DetailCard from "@/components/Cards/DetailCard/DetailCard";
 import { CalendarCheck, CalendarX, Mail, Phone } from "lucide-react";
 import styles from "./EmployeeContractDetailsCard.module.scss";
 

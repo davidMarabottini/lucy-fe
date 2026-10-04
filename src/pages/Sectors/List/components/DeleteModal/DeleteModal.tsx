@@ -2,7 +2,7 @@ import { useDeleteSector } from "@/hooks/api/useSectors";
 // import Table from "@/components/organisms/Table/Table";
 import styles from "../../List.module.scss"
 import { Check, X } from "lucide-react";
-import { Modal } from "@/components/atoms/Modal/Modal";
+import { Modal } from "@/components/Modal/Modal/Modal";
 import Button from "@/components/ui/Button/Button";
 import { useTranslation } from "react-i18next";
 import type { DeleteModalProps } from "./DeleteModal.types";

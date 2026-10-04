@@ -14,7 +14,7 @@ import { DeleteModal } from "./components/DeleteModal/DeleteModal";
 import Paginated from "@/components/organisms/Paginated/Paginated";
 import Table from "@/components/organisms/Table/Table";
 import { rewriteRoute } from "@/utils/routes";
-import DetailCard from "@/components/atoms/DetailCard/DetailCard";
+import DetailCard from "@/components/Cards/DetailCard/DetailCard";
 import { useViewStore } from "@/zustand/listViewAsCard";
 
 const User = () => {

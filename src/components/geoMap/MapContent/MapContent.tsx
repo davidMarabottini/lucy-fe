@@ -2,11 +2,11 @@
 import { useState } from 'react';
 import MapComponent from '@/components/geoMap/MapComponent/MapComponent';
 import WorkLocationsMap from '@/components/geoMap/MapMultipleLocation/MapMultipleLocation';
-import RadioBtn from '@/components/atoms/RadioBtn/RadioBtn';
+import RadioBtn from '@/components/ui/RadioBtn/RadioBtn';
 import type { MapContentProps } from './MapContent.types';
 import clsx from 'clsx';
 import styles from './MapContent.module.scss';
-import { ICON_PRESET } from '@/components/atoms/RadioBtn/presets/icon.presets';
+import { ICON_PRESET } from '@/components/ui/RadioBtn/presets/icon.presets';
 import { GlobeIcon, MapIcon } from 'lucide-react';
 
 const mapGraphics = [

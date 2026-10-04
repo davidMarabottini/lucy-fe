@@ -8,7 +8,7 @@ import Paginated from "@/components/organisms/Paginated/Paginated";
 import type { LibemaxEmployee } from "@/api/types";
 import { Mail, Phone } from "lucide-react";
 // import type LibemaxEmployees from "@/pages/Employees/List/List";
-import DetailCard from "@/components/atoms/DetailCard/DetailCard";
+import DetailCard from "@/components/Cards/DetailCard/DetailCard";
 import { useGetEmployeesByContractId } from "@/hooks/api/useEmployeesHooks";
 // import CardEmployee from "./components/CardEmployee";
 import styles from "./Details.module.scss";

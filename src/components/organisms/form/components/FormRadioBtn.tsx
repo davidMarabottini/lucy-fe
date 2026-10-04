@@ -1,7 +1,7 @@
 import { Controller, useFormContext, type FieldValues } from 'react-hook-form';
-import RadioBtn from '@components/atoms/RadioBtn/RadioBtn';
+import RadioBtn from '@components/ui/RadioBtn/RadioBtn';
 import type { FormRadioBtnProps } from '../Form.types';
-import type { RadioOptionBase } from '@/components/atoms/RadioBtn/RadioBtn.types';
+import type { RadioOptionBase } from '@/components/ui/RadioBtn/RadioBtn.types';
 
 
 const FormRadioBtn = <T extends FieldValues, RadioOption extends RadioOptionBase>({ name, rules, options, ...props }: FormRadioBtnProps<T, RadioOption>) => {

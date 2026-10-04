@@ -11,8 +11,8 @@ import { useCounts, useExportGeneralExcel, useWorkedHours } from "@/hooks/api/us
 // import Button from "@/components/ui/Button/Button";
 import Table from "@/components/organisms/Table/Table";
 import type { ClienteReport } from "@/api/types";
-import RadioBtn from "@/components/atoms/RadioBtn/RadioBtn";
-import { ICON_PRESET } from "@/components/atoms/RadioBtn/presets/icon.presets";
+import RadioBtn from "@/components/ui/RadioBtn/RadioBtn";
+import { ICON_PRESET } from "@/components/ui/RadioBtn/presets/icon.presets";
 import MapContent from "@/components/geoMap/MapContent/MapContent";
 import { rewriteRoute } from "@/utils/routes";
 

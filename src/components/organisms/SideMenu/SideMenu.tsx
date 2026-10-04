@@ -4,7 +4,7 @@ import Typography from '@/components/ui/Typography/Typography';
 import styles from './SideMenu.module.scss';
 import { useTranslation } from 'react-i18next';
 import { useMenuStore } from '@/zustand/menuState';
-import MenuManager from '@/components/molecules/MenuManager/MenuManager';
+import MenuManager from '@/components/LayoutComponents/MenuManager/MenuManager';
 
 export const SideMenu = () => {
   const { t } = useTranslation('common');
