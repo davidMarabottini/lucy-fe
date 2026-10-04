@@ -2,6 +2,7 @@ import type { ValueOf } from "@/types/utilities.types";
 import {type LucideIcon} from "lucide-react";
 import { AUTH_DOMAINS, AVAILABLE_MENUS } from "./configuration";
 import { ACTION_TYPES, ROUTE_CONFIGS, ROUTE_SECTIONS, type AppRouteObject } from "./routeList";
+import { getRouteBySection, getRoutes, getStructuredRoutes } from "@/utils/routes";
 
 export type RouteHandle = {
   key: string;
@@ -41,39 +42,15 @@ export type RoutesBySection = Partial<
   >
 >;
 
-export const routesBySection = ROUTE_CONFIGS
-.filter(route => route.handle.domain.includes(AUTH_DOMAINS.PRIVATE))
-.reduce<RoutesBySection>((acc, route) => {
-  const { section, action, label, Icon } = route.handle;
-
-  acc[section] ??= {};
-  acc[section]![action] = { path: route.path, label, Icon };
-
-  return acc;
-}, {});
+export const routesBySection = getRouteBySection(ROUTE_CONFIGS);
 
 
-export type TStructRoute = ValueOf<typeof AUTH_DOMAINS> | `${ValueOf<typeof AUTH_DOMAINS>}__${ValueOf<typeof AUTH_DOMAINS>}`
-
-type StructuredRoutes = Record<TStructRoute, AppRouteObject[]>;
-
-
-export const structuredRoutes = ROUTE_CONFIGS.reduce((acc, route) => {
-  const key = route.handle.domain.toSorted().join('__') as TStructRoute;
-
-  if (!acc[key]) {
-    acc[key] = [];
-  }
-
-  acc[key].push(route);
-
-  return acc;
-}, {} as StructuredRoutes);
-
-const dKeys = Object.keys(AUTH_DOMAINS)
-const menuKeys = Object.keys(AVAILABLE_MENUS)
+export const structuredRoutes = getStructuredRoutes(ROUTE_CONFIGS);
 
 export const structuredMenu = (() => {
+  const dKeys = Object.keys(AUTH_DOMAINS)
+  const menuKeys = Object.keys(AVAILABLE_MENUS)
+  
   const m: StructuredMenu = {};
 
   for (const menuKey of menuKeys) {
@@ -95,7 +72,5 @@ export const structuredMenu = (() => {
   return m
 })()
 
-export const ROUTES = ROUTE_CONFIGS.reduce((acc, { handle, path }: AppRouteObject) => {
-  if(!handle.isOnlyMenu) acc[handle.key] = path;
-  return acc;
-}, {} as Record<RouteHandle['key'], string>);
+export const ROUTES = getRoutes(ROUTE_CONFIGS);
+

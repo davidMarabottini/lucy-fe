@@ -1,14 +1,11 @@
 import Card from "@/components/ui/Card/Card";
 import Typography from "@/components/ui/Typography/Typography";
 import styles from './Home.module.scss';
-import { useTranslation } from "react-i18next";
 import { useState } from "react";
-import { routesBySection, ROUTE_SECTIONS, ROUTES } from "@/constants/routes";
-// import DetailCard from "@/components/atoms/DetailCard/DetailCard";
+import { ROUTES } from "@/constants/routes";
 import LinkComponent from "@/components/ui/LinkComponent/LinkComponent";
 import { Minus, Plus, Ruler } from "lucide-react";
-import { useCounts, useExportGeneralExcel, useWorkedHours } from "@/hooks/api/useHomeHooks";
-// import Button from "@/components/ui/Button/Button";
+import { useWorkedHours } from "@/hooks/api/useHomeHooks";
 import Table from "@/components/ui/Table/Table";
 import type { ClienteReport } from "@/api/types";
 import RadioBtn from "@/components/ui/RadioBtn/RadioBtn";
@@ -18,11 +15,11 @@ import { rewriteRoute } from "@/utils/routes";
 
 const Home = () => {
   const {classBase, ...iconPresetRest} = ICON_PRESET;
-  const sections = routesBySection;
-  const filteredRouteSections = Object.keys(routesBySection).filter(sectionKey => sectionKey !== ROUTE_SECTIONS.HOME && ![ROUTE_SECTIONS.AUTH, ROUTE_SECTIONS.SETTINGS, ROUTE_SECTIONS.ERRORS].includes(sectionKey));
-  const { t: tMenu } = useTranslation("menu");
-  const { data: counts } = useCounts();
-  const { mutate: exportExcel } = useExportGeneralExcel();
+  // const sections = routesBySection;
+  // const filteredRouteSections = Object.keys(routesBySection).filter(sectionKey => sectionKey !== ROUTE_SECTIONS.HOME && ![ROUTE_SECTIONS.AUTH, ROUTE_SECTIONS.SETTINGS, ROUTE_SECTIONS.ERRORS].includes(sectionKey));
+  // const { t: tMenu } = useTranslation("menu");
+  // const { data: counts } = useCounts();
+  // const { mutate: exportExcel } = useExportGeneralExcel();
   const { data: workedHours, isLoading: workedHoursLoading, error: workedHoursError, isFetched: workedHoursFetched } = useWorkedHours();
 
   const positives = (workedHours || []).filter(({ differenza_ore }) => differenza_ore > 0).toSorted((a, b) => b.differenza_ore - a.differenza_ore);
