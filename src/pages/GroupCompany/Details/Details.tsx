@@ -1,17 +1,17 @@
-import Card from "@components/atoms/Card/Card";
-import Typography from "@components/atoms/Typography/Typography";
+import Card from "@components/ui/Card/Card";
+import Typography from "@/components/ui/Typography/Typography";
 import { useParams } from "react-router-dom";
 import { useGroupCompanyDetail } from "@/hooks/api/GroupCompanyHooks"; // Hook per società interna
-import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
+import LinkComponent from "@/components/ui/LinkComponent/LinkComponent";
 import { ROUTES } from "@/constants/routes";
 import { Building, ChevronLeft, CircleDollarSign, Tag } from "lucide-react";
 import styles from './Details.module.scss';
 import { useTranslation } from "react-i18next";
-import Paginated from "@/components/organisms/Paginated/Paginated";
+import Paginated from "@/components/statused/Paginated/Paginated";
 import type { Contract } from "@/api/types";
 import { useContracts } from "@/hooks/api/ContractHooks";
 import clsx from "clsx";
-import Table from "@/components/organisms/Table/Table";
+import Table from "@/components/ui/Table/Table";
 import { rewriteRoute } from "@/utils/routes";
 
 const GroupCompanyDetailPage = () => {

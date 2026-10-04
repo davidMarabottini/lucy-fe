@@ -1,19 +1,19 @@
-import Card from "@components/atoms/Card/Card";
-import Typography from "@components/atoms/Typography/Typography";
+import Card from "@components/ui/Card/Card";
+import Typography from "@/components/ui/Typography/Typography";
 import { useGroupCompanies } from "@/hooks/api/GroupCompanyHooks";
 import styles from './List.module.scss'; 
 import { type GroupCompany } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
 import { ArrowRight, Edit2, Eye, PlusCircle, Send, Trash2 } from "lucide-react";
-import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
+import LinkComponent from "@/components/ui/LinkComponent/LinkComponent";
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import Button from "@/components/atoms/Button/Button";
+import Button from "@/components/ui/Button/Button";
 import { DeleteModal } from "./components/DeleteModal/DeleteModal";
-import Paginated from "@/components/organisms/Paginated/Paginated";
+import Paginated from "@/components/statused/Paginated/Paginated";
 import { rewriteRoute } from "@/utils/routes";
-import Table from "@/components/organisms/Table/Table";
-import DetailCard from "@/components/atoms/DetailCard/DetailCard";
+import Table from "@/components/ui/Table/Table";
+import DetailCard from "@/components/cards/DetailCard/DetailCard";
 import { useViewStore } from "@/zustand/listViewAsCard";
 import { useCompanyStore } from "@/zustand/currentCompany";
 

@@ -1,11 +1,11 @@
 import { useTranslation } from "react-i18next";
 import * as Lucide from "lucide-react";
-import Paginated from "@/components/organisms/Paginated/Paginated";
+import Paginated from "@/components/statused/Paginated/Paginated";
 import { useContractSchedules } from "@/hooks/api/useWorkScheduleHooks";
 import type { WorkSchedule } from "@/api/types";
 import { getTodayWeekDayId } from "@/utils/weekDay";
 import cardStyles from "./ContractsCard.module.scss";
-import Table from "@/components/organisms/Table/Table";
+import Table from "@/components/ui/Table/Table";
 
 interface ContractSchedulesTableProps {
   contractId: number;

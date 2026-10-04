@@ -1,7 +1,7 @@
-import Card from "@/components/atoms/Card/Card";
-// import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
-import Switch from "@/components/atoms/Switch/Switch";
-import Typography from "@/components/atoms/Typography/Typography";
+import Card from "@/components/ui/Card/Card";
+// import LinkComponent from "@/components/ui/LinkComponent/LinkComponent";
+import Switch from "@/components/ui/Switch/Switch";
+import Typography from "@/components/ui/Typography/Typography";
 import { useViewStore } from "@/zustand/listViewAsCard";
 // import { X } from "lucide-react";
 import { useTranslation } from "react-i18next";

@@ -1,5 +1,5 @@
-import Typography from "@/components/atoms/Typography/Typography";
-import Button from "@/components/atoms/Button/Button";
+import Typography from "@/components/ui/Typography/Typography.tsx";
+import Button from "@/components/ui/Button/Button";
 import { X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useGetEmployeesByContract } from "@/hooks/api/ContractHooks";

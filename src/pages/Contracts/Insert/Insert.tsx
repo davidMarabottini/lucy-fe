@@ -1,18 +1,18 @@
-import Card from '@components/atoms/Card/Card';
+import Card from '@components/ui/Card/Card';
 import styles from "./Insert.module.scss";
 import { useTranslation } from 'react-i18next';
-import Form from '@components/organisms/form/Form';
-import Stack from '@components/atoms/Stack/Stack';
-import Typography from '@components/atoms/Typography/Typography';
+import Form from '@components/form/Form';
+import Stack from '@/components/ui/Stack/Stack';
+import Typography from '@/components/ui/Typography/Typography';
 import { Check, ChevronLeft, X } from 'lucide-react';
 import { ROUTES } from '@/constants/routes';
-import LinkComponent from '@/components/atoms/LinkComponent/LinkComponent';
+import LinkComponent from '@/components/ui/LinkComponent/LinkComponent';
 
 // Hooks
 import { useContractDetail, useInsertContract, useUpdateContract } from '@/hooks/api/ContractHooks';
 import { useGroupCompanies } from '@/hooks/api/GroupCompanyHooks';
 import { useLibemaxClients } from '@/hooks/api/useClientHooks'; // Assumendo esista questo hook
-import Switch from '@/components/atoms/Switch/Switch';
+import Switch from '@/components/ui/Switch/Switch';
 import { useState } from 'react';
 import type { UseFormReturn } from 'react-hook-form';
 import { useParams } from 'react-router-dom';

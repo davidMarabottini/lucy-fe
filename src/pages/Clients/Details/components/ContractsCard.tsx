@@ -1,18 +1,18 @@
-import Card from "@/components/atoms/Card/Card";
-import Typography from "@/components/atoms/Typography/Typography";
+import Card from "@/components/ui/Card/Card";
+import Typography from "@/components/ui/Typography/Typography.tsx";
 import { useTranslation } from "react-i18next";
 import detailStyles from "../Details.module.scss";
 import { useContracts } from "@/hooks/api/ContractHooks";
 import type { Contract } from "@/api/types";
-import Paginated from "@/components/organisms/Paginated/Paginated";
-import Button from "@/components/atoms/Button/Button";
+import Paginated from "@/components/statused/Paginated/Paginated.tsx";
+import Button from "@/components/ui/Button/Button";
 import { Link } from "react-router-dom";
 import { ChevronRight, List } from "lucide-react";
 import { useState } from "react";
 import { useClientDetailStore } from "@/zustand/clientDetailState";
 import { ContractDetailPanel } from "./ContractDetailPanel.tsx";
-import Table from "@/components/organisms/Table/Table.tsx";
-import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
+import Table from "@/components/ui/Table/Table.tsx";
+import LinkComponent from "@/components/ui/LinkComponent/LinkComponent";
 import { rewriteRoute } from "@/utils/routes";
 import { ROUTES } from "@/constants/routes";
 

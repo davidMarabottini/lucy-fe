@@ -1,20 +1,20 @@
-import Card from "@components/atoms/Card/Card";
-import Typography from "@components/atoms/Typography/Typography";
+import Card from "@components/ui/Card/Card";
+import Typography from "@/components/ui/Typography/Typography";
 import { useWorkScheduleTypes } from "@/hooks/api/WorkScheduleTypeHooks";
 import styles from './List.module.scss'; 
-import Table from "@/components/organisms/Table/Table";
+import Table from "@/components/ui/Table/Table";
 import { type WorkScheduleType } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
 import { Edit2, Eye, PlusCircle, Trash2, HelpCircle } from "lucide-react";
-import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
+import LinkComponent from "@/components/ui/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import Button from "@/components/atoms/Button/Button";
+import Button from "@/components/ui/Button/Button";
 import { DeleteModal } from "./components/DeleteModal/DeleteModal";
 import * as Icons from "lucide-react";
 import { rewriteRoute } from "@/utils/routes";
-import Paginated from "@/components/organisms/Paginated/Paginated";
-import DetailCard from "@/components/atoms/DetailCard/DetailCard";
+import Paginated from "@/components/statused/Paginated/Paginated";
+import DetailCard from "@/components/cards/DetailCard/DetailCard";
 import { useViewStore } from "@/zustand/listViewAsCard";
 
 const WorkScheduleTypeList = () => {

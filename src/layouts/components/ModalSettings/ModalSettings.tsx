@@ -1,13 +1,13 @@
-import Button from "@/components/atoms/Button/Button";
-import { Modal } from "@/components/atoms/Modal/Modal"
-import Switch from "@/components/atoms/Switch/Switch";
-import Table from "@/components/organisms/Table/Table";
+import Button from "@/components/ui/Button/Button";
+import { Modal } from "@/components/modals/GenericModal/Modal"
+import Switch from "@/components/ui/Switch/Switch";
+import Table from "@/components/ui/Table/Table";
 import { useViewStore } from "@/zustand/listViewAsCard";
 import { useOpenSettingsModal } from "@/zustand/openSettingsModal";
 import { usePaginationStore } from "@/zustand/usePaginationStore";
 import { useTranslation } from "react-i18next";
 import styles from "./ModalSettings.module.scss";
-import Typography from "@/components/atoms/Typography/Typography";
+import Typography from "@/components/ui/Typography/Typography";
 
 const ModalSettings = () => {
   const openedSettings = useOpenSettingsModal(state => state.isOpenedSettings);

@@ -1,16 +1,16 @@
-import Card from "@/components/atoms/Card/Card";
+import Card from "@/components/ui/Card/Card";
 import { useTranslation } from "react-i18next";
 import styles from "../Details.module.scss";
-import Table from "@/components/organisms/Table/Table";
-import MapContent from "@/components/molecules/MapContent/MapContent";
+import Table from "@/components/ui/Table/Table";
+import MapContent from "@/components/maps/MapContent/MapContent";
 import { useLibemaxTimbrature } from "@/hooks/api/useLibemaxTimbratureHooks";
 // import type { ClockInPoint } from "@/components/molecules/MapContent/MapContent.types";
 import { useState } from "react";
-import Button from "@/components/atoms/Button/Button";
+import Button from "@/components/ui/Button/Button";
 import { Map, TriangleAlert } from "lucide-react";
 import { calculateDistance } from "@/utils/calculateDistance";
 import 'maplibre-gl/dist/maplibre-gl.css';
-import Typography from "@/components/atoms/Typography/Typography";
+import Typography from "@/components/ui/Typography/Typography";
 import { useClientDetailStore } from "@/zustand/clientDetailState";
 import clsx from "clsx";
 

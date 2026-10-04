@@ -1,18 +1,18 @@
-import Card from '@components/atoms/Card/Card';
+import Card from '@components/ui/Card/Card';
 import clsx from 'clsx';
 import styles from "./Insert.module.scss";
 import { useTranslation } from 'react-i18next';
-import Form from '@components/organisms/form/Form';
-import Stack from '@components/atoms/Stack/Stack';
+import Form from '@components/form/Form';
+import Stack from '@/components/ui/Stack/Stack';
 import type { LibemaxEmployeeForm } from './Insert.types';
 import { useEmployeeDetail, useInsertEmployee, useUpdateEmployee } from '@/hooks/api/useEmployeesHooks';
 import { VALIDATIONS_EMAIL } from '@constants/validations';
-import Typography from '@components/atoms/Typography/Typography';
+import Typography from '@/components/ui/Typography/Typography';
 import { Check, ChevronLeft, X } from 'lucide-react';
 import { ROUTES } from '@/constants/routes';
-import LinkComponent from '@/components/atoms/LinkComponent/LinkComponent';
+import LinkComponent from '@/components/ui/LinkComponent/LinkComponent';
 import { useState } from 'react';
-import Switch from '@/components/atoms/Switch/Switch';
+import Switch from '@/components/ui/Switch/Switch';
 import type { UseFormReturn } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 

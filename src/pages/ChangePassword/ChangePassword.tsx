@@ -1,10 +1,10 @@
-import Card from '@components/atoms/Card/Card';
+import Card from '@components/ui/Card/Card';
 import clsx from 'clsx';
 import styles from "./ChangePassword.module.scss";
 import { useTranslation } from 'react-i18next';
 import { useChangePassword } from '@/hooks/api/useAuthenticationHooks';
-import Form from '@components/organisms/form/Form';
-import Stack from '@components/atoms/Stack/Stack';
+import Form from '@components/form/Form';
+import Stack from '@/components/ui/Stack/Stack';
 import { LockKeyhole } from 'lucide-react';
 
 type ChangePasswordData = {oldPassword: string, newPassword: string, repeatNewPassword: string};

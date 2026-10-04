@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import RadioBtn from '@components/atoms/RadioBtn/RadioBtn';
-import Button from '@/components/atoms/Button/Button';
-import { ICON_PRESET } from '@/components/atoms/RadioBtn/presets/icon.presets';
+import RadioBtn from '@components/ui/RadioBtn/RadioBtn';
+import Button from '@/components/ui/Button/Button';
+import { ICON_PRESET } from '@/components/ui/RadioBtn/presets/icon.presets';
 import { Mars, Transgender, Venus } from 'lucide-react';
 
 const meta = {
-  title: 'atoms/RadioBtn',
+  title: 'ui/RadioBtn',
   component: RadioBtn,
   parameters: { layout: 'centered' },
   tags: ['autodocs'],

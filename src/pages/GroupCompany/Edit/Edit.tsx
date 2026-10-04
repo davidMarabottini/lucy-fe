@@ -1,13 +1,13 @@
-import Card from '@components/atoms/Card/Card';
+import Card from '@components/ui/Card/Card';
 import clsx from 'clsx';
 import styles from "./Edit.module.scss";
 import { useTranslation } from 'react-i18next';
-import Form from '@components/organisms/form/Form';
-import Stack from '@components/atoms/Stack/Stack';
-import Typography from '@components/atoms/Typography/Typography';
+import Form from '@components/form/Form';
+import Stack from '@/components/ui/Stack/Stack';
+import Typography from '@/components/ui/Typography/Typography';
 import { Check, ChevronLeft, X } from 'lucide-react';
 // import { ROUTES } from '@/constants/routes';
-import LinkComponent from '@/components/atoms/LinkComponent/LinkComponent';
+import LinkComponent from '@/components/ui/LinkComponent/LinkComponent';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useGroupCompanyDetail, useUpdateGroupCompany } from '@/hooks/api/GroupCompanyHooks';
 import { useSectors } from '@/hooks/api/useSectors';

@@ -8,15 +8,15 @@ import { useContractSchedules, useSyncWorkSchedules } from "@/hooks/api/useWorkS
 import { useWorkScheduleTypes } from "@/hooks/api/WorkScheduleTypeHooks";
 import { useWeekDays } from "@/hooks/api/WeekDaysHooks";
 
-import Card from "@components/atoms/Card/Card";
-import Form from "@/components/organisms/form/Form";
-import Stack from "@/components/atoms/Stack/Stack";
-import Table from "@/components/organisms/Table/Table";
-import Button from "@/components/atoms/Button/Button";
+import Card from "@components/ui/Card/Card";
+import Form from "@/components/form/Form";
+import Stack from "@/components/ui/Stack/Stack";
+import Table from "@/components/ui/Table/Table";
+import Button from "@/components/ui/Button/Button";
 
 import styles from "../SetDetails.module.scss";
 // import Tooltip from "@/components/atoms/Tooltip/Tooltip";
-import Typography from "@/components/atoms/Typography/Typography";
+import Typography from "@/components/ui/Typography/Typography";
 
 type ScheduleSlot = {
   start_time: string;

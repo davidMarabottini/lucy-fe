@@ -52,35 +52,9 @@
     }
   },
   {
-    "id_cliente": 102,
-    "libemax_id": 129,
-    "cliente": "VIA GIUSEPPE GARIBALDI 12",
-    "ore_teoriche": 40.0,
-    "ore_lavorate": 42.5,
-    "differenza_ore": 2.5,
-    "distanza_media_metri": 512,
-    "coordinate": {
-      "lat": 45.4735,
-      "lng": 9.1842
-    }
-  },
-  {
-    "id_cliente": 88,
-    "libemax_id": 115,
-    "cliente": "CONDOMINIO MANZONI 8",
-    "ore_teoriche": 15.5,
-    "ore_lavorate": 18.0,
-    "differenza_ore": 2.5,
-    "distanza_media_metri": 340,
-    "coordinate": {
-      "lat": 45.4682,
-      "lng": 9.1912
-    }
-  },
-  {
     "id_cliente": 95,
     "libemax_id": 122,
-    "cliente": "Corso Buenos Aires 45",
+    "cliente": "CORSO VITTORIO EMANUELE N°21",
     "ore_teoriche": 60.0,
     "ore_lavorate": 58.0,
     "differenza_ore": -2.0,
@@ -93,7 +67,7 @@
   {
     "id_cliente": 109,
     "libemax_id": 136,
-    "cliente": "Via Dante 10",
+    "cliente": "VIA SAN MARCO 26",
     "ore_teoriche": 25.0,
     "ore_lavorate": 28.2,
     "differenza_ore": 3.2,
@@ -106,7 +80,7 @@
   {
     "id_cliente": 120,
     "libemax_id": 147,
-    "cliente": "VIA ROMA 102",
+    "cliente": "Via Rembrandt 40",
     "ore_teoriche": 35.0,
     "ore_lavorate": 35.0,
     "differenza_ore": 0.0,
@@ -119,7 +93,7 @@
   {
     "id_cliente": 125,
     "libemax_id": 152,
-    "cliente": "CONDOMINIO LE ROSE",
+    "cliente": "Via Mac Mahon n°9",
     "ore_teoriche": 50.0,
     "ore_lavorate": 48.5,
     "differenza_ore": -1.5,
@@ -132,7 +106,7 @@
   {
     "id_cliente": 140,
     "libemax_id": 167,
-    "cliente": "Via Verdi 3",
+    "cliente": "VIA FERDINANDO DI SAVOIA 2",
     "ore_teoriche": 18.0,
     "ore_lavorate": 22.1,
     "differenza_ore": 4.1,
@@ -140,136 +114,6 @@
     "coordinate": {
       "lat": 45.4671,
       "lng": 9.1891
-    }
-  },
-  {
-    "id_cliente": 145,
-    "libemax_id": 172,
-    "cliente": "VIA MATTEOTTI 88",
-    "ore_teoriche": 80.0,
-    "ore_lavorate": 85.4,
-    "differenza_ore": 5.4,
-    "distanza_media_metri": 1430,
-    "coordinate": {
-      "lat": 45.4612,
-      "lng": 9.1921
-    }
-  },
-  {
-    "id_cliente": 150,
-    "libemax_id": 177,
-    "cliente": "Via Milano 15",
-    "ore_teoriche": 28.0,
-    "ore_lavorate": 26.0,
-    "differenza_ore": -2.0,
-    "distanza_media_metri": 530,
-    "coordinate": {
-      "lat": 45.4502,
-      "lng": 9.1802
-    }
-  },
-  {
-    "id_cliente": 155,
-    "libemax_id": 182,
-    "cliente": "CONDOMINIO SUNRISE",
-    "ore_teoriche": 42.0,
-    "ore_lavorate": 44.0,
-    "differenza_ore": 2.0,
-    "distanza_media_metri": 710,
-    "coordinate": {
-      "lat": 45.4382,
-      "lng": 9.1621
-    }
-  },
-  {
-    "id_cliente": 160,
-    "libemax_id": 187,
-    "cliente": "Via Torino 7",
-    "ore_teoriche": 12.0,
-    "ore_lavorate": 12.0,
-    "differenza_ore": 0.0,
-    "distanza_media_metri": 310,
-    "coordinate": {
-      "lat": 45.4628,
-      "lng": 9.1873
-    }
-  },
-  {
-    "id_cliente": 165,
-    "libemax_id": 192,
-    "cliente": "VIA PALERMO 22",
-    "ore_teoriche": 33.0,
-    "ore_lavorate": 37.5,
-    "differenza_ore": 4.5,
-    "distanza_media_metri": 890,
-    "coordinate": {
-      "lat": 45.4741,
-      "lng": 9.1832
-    }
-  },
-  {
-    "id_cliente": 170,
-    "libemax_id": 197,
-    "cliente": "Via Vivaldi 4",
-    "ore_teoriche": 22.5,
-    "ore_lavorate": 20.0,
-    "differenza_ore": -2.5,
-    "distanza_media_metri": 410,
-    "coordinate": {
-      "lat": 45.4821,
-      "lng": 9.1652
-    }
-  },
-  {
-    "id_cliente": 175,
-    "libemax_id": 202,
-    "cliente": "CONDOMINIO IL PINO",
-    "ore_teoriche": 65.0,
-    "ore_lavorate": 70.0,
-    "differenza_ore": 5.0,
-    "distanza_media_metri": 1150,
-    "coordinate": {
-      "lat": 45.4281,
-      "lng": 9.1502
-    }
-  },
-  {
-    "id_cliente": 180,
-    "libemax_id": 207,
-    "cliente": "Via Foscolo 19",
-    "ore_teoriche": 19.0,
-    "ore_lavorate": 21.3,
-    "differenza_ore": 2.3,
-    "distanza_media_metri": 280,
-    "coordinate": {
-      "lat": 45.4705,
-      "lng": 9.1722
-    }
-  },
-  {
-    "id_cliente": 185,
-    "libemax_id": 212,
-    "cliente": "VIA DE GASPERI 50",
-    "ore_teoriche": 55.0,
-    "ore_lavorate": 52.0,
-    "differenza_ore": -3.0,
-    "distanza_media_metri": 980,
-    "coordinate": {
-      "lat": 45.4812,
-      "lng": 9.1482
-    }
-  },
-  {
-    "id_cliente": 190,
-    "libemax_id": 217,
-    "cliente": "Via Pascoli 2",
-    "ore_teoriche": 30.0,
-    "ore_lavorate": 31.5,
-    "differenza_ore": 1.5,
-    "distanza_media_metri": 640,
-    "coordinate": {
-      "lat": 45.4762,
-      "lng": 9.2212
     }
   }
 ]

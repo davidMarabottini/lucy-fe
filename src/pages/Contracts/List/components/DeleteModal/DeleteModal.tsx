@@ -1,11 +1,11 @@
 import { useDeleteContract } from "@/hooks/api/ContractHooks";
 import styles from "../../List.module.scss";
 import { Check, X } from "lucide-react";
-import { Modal } from "@/components/atoms/Modal/Modal";
-import Button from "@/components/atoms/Button/Button";
+import { Modal } from "@/components/modals/GenericModal/Modal";
+import Button from "@/components/ui/Button/Button";
 import { useTranslation } from "react-i18next";
 import type { DeleteModalProps } from "./DeleteModal.types";
-import Table from "@/components/organisms/Table/Table";
+import Table from "@/components/ui/Table/Table";
 import type { Contract } from "@/api/types";
 
 export const DeleteModal = ({ 

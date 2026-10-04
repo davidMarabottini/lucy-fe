@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { MainLayout } from '@/layouts/MainLayout';
 import { structuredRoutes, type TStructRoute } from './constants/routes';
 import { Suspense, lazy } from 'react';
-import RouterErrorBoundary from './components/organisms/ErrorPage/RouterErrorBoundary';
+import RouterErrorBoundary from './components/ui/ErrorPage/RouterErrorBoundary';
 
 const NotFound = lazy(() => import('@/pages/NotFound/NotFound'));
 import type { LucideIcon } from 'lucide-react';

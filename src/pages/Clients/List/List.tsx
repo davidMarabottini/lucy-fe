@@ -1,24 +1,24 @@
-import Card from "@components/atoms/Card/Card";
-import Typography from "@components/atoms/Typography/Typography";
+import Card from "@components/ui/Card/Card";
+import Typography from "@/components/ui/Typography/Typography";
 import { useLibemaxClients } from "@/hooks/api/useClientHooks";
 import styles from './List.module.scss'
 import type { LibemaxClient } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
 import { FileText, Mail, PanelsTopLeft, Phone, PlusCircle, Sheet } from "lucide-react";
-import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
+import LinkComponent from "@/components/ui/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { DeleteModal } from "./components/DeleteModal/DeleteModal";
-import Paginated from "@/components/organisms/Paginated/Paginated";
-import Table from "@/components/organisms/Table/Table";
+import Paginated from "@/components/statused/Paginated/Paginated";
+import Table from "@/components/ui/Table/Table";
 import { useViewStore } from "@/zustand/listViewAsCard";
 import { Edit2, Eye, Trash2 } from "lucide-react";
-import Button from "@/components/atoms/Button/Button";
+import Button from "@/components/ui/Button/Button";
 import { rewriteRoute } from "@/utils/routes";
-import DetailCard from "@/components/atoms/DetailCard/DetailCard";
+import DetailCard from "@/components/cards/DetailCard/DetailCard";
 import { useExportClientExcel } from "@/hooks/api/useClientHooks";
-import Switch from "@/components/atoms/Switch/Switch";
-import { PdfDataTable } from "@/components/organisms/PdfDataTable/PdfDataTable";
+import Switch from "@/components/ui/Switch/Switch";
+import { PdfDataTable } from "@/components/pdfs/PdfDataTable/PdfDataTable";
 
 const LibemaxClients = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);

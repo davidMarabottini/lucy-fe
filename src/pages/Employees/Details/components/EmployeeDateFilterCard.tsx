@@ -1,8 +1,8 @@
-import Card from "@/components/atoms/Card/Card";
+import Card from "@/components/ui/Card/Card";
 import { useTranslation } from "react-i18next";
 import styles from "../Details.module.scss";
 import { useEmployeeDetailStore } from "@/zustand/employeeDetailState";
-import DateNavigatorCard from "@/components/molecules/DateFilterCard/DateNavigatorCard";
+import DateNavigatorCard from "@/components/ui/DateFilterCard/DateNavigatorCard";
 
 const EmployeeDateFilterCard = () => {
   const { t } = useTranslation("features/employee", { keyPrefix: "details" });
