@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ChevronRight, HomeIcon } from 'lucide-react';
-import LinkComponent from '@/components/atoms/LinkComponent/LinkComponent';
+import LinkComponent from '@/components/ui/LinkComponent/LinkComponent';
 import { useAuth } from '@/auth/useAuth';
 import { useBreadcrumb } from '@/hooks/useBreadcrumb';
 import styles from './Breadcrumb.module.scss';

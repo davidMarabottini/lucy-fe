@@ -1,5 +1,5 @@
 import * as RadixDropdown from '@radix-ui/react-dropdown-menu';
-import Button from '@components/atoms/Button/Button';
+import Button from '@components/ui/Button/Button';
 import styles from './Dropdown.module.scss';
 import type { DropdownHeadProps } from './Dropdown.types.ts';
 import { clsx } from 'clsx';

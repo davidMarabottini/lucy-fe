@@ -1,13 +1,13 @@
-import Card from "@components/atoms/Card/Card";
+import Card from "@components/ui/Card/Card";
 // import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 import styles from "../SetDetails.module.scss";
 import Form from "@/components/organisms/form/Form";
 import { useEmployeesList } from "@/hooks/api/useEmployeesHooks";
-import Stack from "@/components/atoms/Stack/Stack";
-import Button from "@/components/atoms/Button/Button";
+import Stack from "@/components/ui/Stack/Stack";
+import Button from "@/components/ui/Button/Button";
 import { useTranslation } from "react-i18next";
-import Typography from "@/components/atoms/Typography/Typography";
+import Typography from "@/components/ui/Typography/Typography";
 import { useAddEmployeeToContract } from "@/hooks/api/ContractHooks";
 
 // TODO: da capire se duplicato

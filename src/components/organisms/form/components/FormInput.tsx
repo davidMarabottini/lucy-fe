@@ -1,5 +1,5 @@
 import { useFormContext, type FieldValues } from 'react-hook-form';
-import Input from '@components/atoms/Input/Input';
+import Input from '@components/ui/Input/Input';
 import type { FormInputProps } from '../Form.types';
 
 const FormInput = <T extends FieldValues>({ name, rules, ...props }: FormInputProps<T>) => {

@@ -1,4 +1,4 @@
-import type { ButtonProps } from "@/components/atoms/Button/Button.types";
+import type { ButtonProps } from "@/components/ui/Button/Button.types";
 import type React from "react";
 
 type DynamicValue<T> = (row: T) => string | number | React.ReactNode;

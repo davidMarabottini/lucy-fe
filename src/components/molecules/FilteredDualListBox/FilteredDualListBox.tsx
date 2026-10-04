@@ -1,10 +1,10 @@
 import { useState, useMemo } from "react";
-import Input from "@components/atoms/Input/Input";
-import DualListBox from "@components/atoms/DualListBox/DualListBox";
+import Input from "@components/ui/Input/Input";
+import DualListBox from "@components/ui/DualListBox/DualListBox";
 import styles from "./FilteredDualListBox.module.scss";
 import clsx from "clsx";
 import type { FilteredDualListProps } from "./FilteredDualListBox.types";
-import Typography from "@/components/atoms/Typography/Typography";
+import Typography from "@/components/ui/Typography/Typography";
 import { useTranslation } from "react-i18next";
 
 const FilteredDualList = ({

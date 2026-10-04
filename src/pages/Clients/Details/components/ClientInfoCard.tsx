@@ -1,5 +1,5 @@
-import Card from "@/components/atoms/Card/Card";
-import Typography from "@/components/atoms/Typography/Typography";
+import Card from "@/components/ui/Card/Card";
+import Typography from "@/components/ui/Typography/Typography";
 import styles from "../Details.module.scss";
 import { Building, Mail, Phone } from "lucide-react";
 import type { LibemaxClientDetail } from "@/api/types";

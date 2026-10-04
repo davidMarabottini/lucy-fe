@@ -1,15 +1,15 @@
-import Card from "@components/atoms/Card/Card";
-import Typography from "@components/atoms/Typography/Typography";
+import Card from "@components/ui/Card/Card";
+import Typography from "@/components/ui/Typography/Typography";
 import { useSectors } from "@/hooks/api/useSectors"; // Hook creato precedentemente
 import styles from './List.module.scss'; // Riutilizziamo lo stesso stile o uno dedicato
 import Table from "@/components/organisms/Table/Table";
 import { type Sector } from "@/api/types";
 import { ROUTES } from "@/constants/routes";
 import { Edit2, Eye, PlusCircle, Trash2 } from "lucide-react";
-import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
+import LinkComponent from "@/components/ui/LinkComponent/LinkComponent";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import Button from "@/components/atoms/Button/Button";
+import Button from "@/components/ui/Button/Button";
 import {DeleteModal} from "./components/DeleteModal/DeleteModal";
 import Paginated from "@/components/organisms/Paginated/Paginated";
 import { rewriteRoute } from "@/utils/routes";

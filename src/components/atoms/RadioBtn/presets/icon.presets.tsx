@@ -1,5 +1,5 @@
 import { Check, type LucideIcon } from 'lucide-react';
-import Typography from '../../Typography/Typography';
+import Typography from '../../../ui/Typography/Typography';
 import styles from './presets.module.scss';
 import clsx from 'clsx';
 import type { RadioOptionBase } from '../RadioBtn.types';

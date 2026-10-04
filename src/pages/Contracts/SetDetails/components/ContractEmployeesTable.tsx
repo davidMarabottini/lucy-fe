@@ -1,10 +1,10 @@
 import { useFieldArray, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import Typography from "@/components/atoms/Typography/Typography";
+import Typography from "@/components/ui/Typography/Typography";
 import Form from "@/components/organisms/form/Form";
-import Stack from "@/components/atoms/Stack/Stack";
-import Button from "@/components/atoms/Button/Button";
+import Stack from "@/components/ui/Stack/Stack";
+import Button from "@/components/ui/Button/Button";
 import Table from "@/components/organisms/Table/Table";
 
 import type { AddEmployeeFormValues, ContractEmployeesTableProps } from "../SetDetails.types";

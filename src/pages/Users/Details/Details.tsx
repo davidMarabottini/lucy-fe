@@ -1,8 +1,8 @@
-import Card from "@components/atoms/Card/Card";
-import Typography from "@components/atoms/Typography/Typography";
+import Card from "@components/ui/Card/Card";
+import Typography from "@/components/ui/Typography/Typography";
 import { useParams } from "react-router-dom";
 import { useUserDetail } from "@/hooks/api/useUserHooks"; // Hook per società interna
-import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
+import LinkComponent from "@/components/ui/LinkComponent/LinkComponent";
 import { ROUTES } from "@/constants/routes";
 import { Building, ChevronLeft, Mail, User, User2 } from "lucide-react";
 import styles from './Details.module.scss';

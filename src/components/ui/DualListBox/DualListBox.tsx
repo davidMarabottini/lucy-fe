@@ -1,6 +1,6 @@
 import styles from "./DualListBox.module.scss";
 import clsx from "clsx";
-import Typography from "@components/atoms/Typography/Typography";
+import Typography from "@/components/ui/Typography/Typography";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import type { DualListBoxProps } from "./DualListBox.types";
 

@@ -1,7 +1,7 @@
 import type { LibemaxEmployee } from "@/api/types";
-import Button from "@/components/atoms/Button/Button";
+import Button from "@/components/ui/Button/Button";
 import DetailCard from "@/components/atoms/DetailCard/DetailCard";
-import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
+import LinkComponent from "@/components/ui/LinkComponent/LinkComponent";
 import { ROUTES } from "@/constants/routes";
 import { rewriteRoute } from "@/utils/routes";
 import { Edit2, Link, Mail, Phone, Trash2 } from "lucide-react";

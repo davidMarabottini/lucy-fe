@@ -1,5 +1,5 @@
-import DatePicker from "@/components/atoms/DatePicker/DatePicker";
-import Button from "@/components/atoms/Button/Button";
+import DatePicker from "@/components/ui/DatePicker/DatePicker";
+import Button from "@/components/ui/Button/Button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { type DateNavigatorCardProps } from "./DateNavigatorCard.types";
 

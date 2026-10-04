@@ -1,5 +1,5 @@
 import { useFormContext, type FieldValues } from 'react-hook-form';
-import TextArea from '@components/atoms/TextArea/TextArea';
+import TextArea from '@/components/ui/TextArea/TextArea';
 import type { FormTextAreaProps } from '../Form.types';
 
 const FormTextArea = <T extends FieldValues>({ name, rules, ...props }: FormTextAreaProps<T>) => {

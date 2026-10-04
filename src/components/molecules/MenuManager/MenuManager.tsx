@@ -1,6 +1,6 @@
 import { useMenu } from "@/hooks/useMenu";
 import type { MenuManagerProps } from "./MenuManager.types";
-import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
+import LinkComponent from "@/components/ui/LinkComponent/LinkComponent";
 import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";

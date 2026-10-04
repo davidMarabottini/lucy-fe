@@ -1,10 +1,10 @@
 import clsx from "clsx";
 import { useTranslation } from "react-i18next";
 
-import Card from "@components/atoms/Card/Card";
-import Typography from "@/components/atoms/Typography/Typography";
+import Card from "@components/ui/Card/Card";
+import Typography from "@/components/ui/Typography/Typography";
 import Form from "@/components/organisms/form/Form";
-import Stack from "@/components/atoms/Stack/Stack";
+import Stack from "@/components/ui/Stack/Stack";
 
 import styles from "../SetDetails.module.scss";
 import { useEmployeesList, useGetEmployeesByContractId } from "@/hooks/api/useEmployeesHooks";

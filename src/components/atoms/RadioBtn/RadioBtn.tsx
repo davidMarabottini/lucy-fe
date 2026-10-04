@@ -2,7 +2,7 @@ import { forwardRef, useId, useState, type JSX } from "react";
 import type { RadioBtnProps, RadioOptionBase } from "./RadioBtn.types";
 import styles from './RadioBtn.module.scss';
 import clsx from "clsx";
-import Typography from "../Typography/Typography";
+import Typography from "../../ui/Typography/Typography";
 
 
 const RadioBtn = forwardRef(

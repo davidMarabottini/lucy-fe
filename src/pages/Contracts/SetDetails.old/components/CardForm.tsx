@@ -1,9 +1,9 @@
 import { useMemo } from "react";
-import Card from "@components/atoms/Card/Card";
-import Stack from "@components/atoms/Stack/Stack";
+import Card from "@components/ui/Card/Card";
+import Stack from "@/components/ui/Stack/Stack";
 import Form from "@/components/organisms/form/Form";
 import Table from "@/components/organisms/Table/Table";
-import Button from "@/components/atoms/Button/Button";
+import Button from "@/components/ui/Button/Button";
 import { ICON_PRESET } from "@/components/atoms/RadioBtn/presets/icon.presets";
 import { Check, Plus, Trash2, X } from "lucide-react";
 import * as LucideIcons from "lucide-react";

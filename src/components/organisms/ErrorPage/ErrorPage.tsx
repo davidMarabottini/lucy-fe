@@ -1,6 +1,6 @@
-import Card from '@components/atoms/Card/Card';
-import Typography from '@components/atoms/Typography/Typography';
-import LinkComponent from '@/components/atoms/LinkComponent/LinkComponent';
+import Card from '@components/ui/Card/Card';
+import Typography from '@/components/ui/Typography/Typography';
+import LinkComponent from '@/components/ui/LinkComponent/LinkComponent';
 import { ROUTES } from '@/constants/routes';
 import { Home } from 'lucide-react';
 import { useTranslation } from 'react-i18next';

@@ -1,10 +1,10 @@
 import { useTranslation } from "react-i18next";
 import { rewriteRoute } from "@/utils/routes";
 import { ROUTES } from "@/constants/routes";
-import Typography from "@/components/atoms/Typography/Typography";
+import Typography from "@/components/ui/Typography/Typography";
 import type { ContractEmployeeAssignment } from "@/api/types";
 import { useClientDetailStore } from "@/zustand/clientDetailState";
-import Button from "@/components/atoms/Button/Button";
+import Button from "@/components/ui/Button/Button";
 import { Link } from "react-router-dom";
 import { Map, ChevronRight } from "lucide-react";
 import cardStyles from "./ContractsCard.module.scss";

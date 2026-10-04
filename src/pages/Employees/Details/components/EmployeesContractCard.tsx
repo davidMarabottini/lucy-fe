@@ -1,11 +1,11 @@
-import Card from "@/components/atoms/Card/Card";
-import Typography from "@/components/atoms/Typography/Typography";
+import Card from "@/components/ui/Card/Card";
+import Typography from "@/components/ui/Typography/Typography";
 import { useTranslation } from "react-i18next";
 import detailStyles from "../Details.module.scss";
 import { useContracts } from "@/hooks/api/ContractHooks";
 import type { Contract } from "@/api/types";
 import Paginated from "@/components/organisms/Paginated/Paginated";
-import Button from "@/components/atoms/Button/Button";
+import Button from "@/components/ui/Button/Button";
 import { Link } from "react-router-dom";
 import { ChevronRight, List } from "lucide-react";
 import { useEmployeeDetailStore } from "@/zustand/employeeDetailState";

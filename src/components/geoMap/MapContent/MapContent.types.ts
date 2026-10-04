@@ -1,5 +1,5 @@
 // MapContent.types.ts
-import type { MapPoint } from '@/components/atoms/MapComponent/MapComponent.types';
+import type { MapPoint } from '@/components/geoMap/MapComponent/MapComponent.types';
 import type { WorkLocationPoint } from '@/components/geoMap/MapMultipleLocation/MapMultipleLocation.types';
 
 export type SingleMapConfig = {

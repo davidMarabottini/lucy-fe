@@ -1,9 +1,9 @@
 import style from "./Header.module.scss";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
-import Typography from "@/components/atoms/Typography/Typography";
+import Typography from "@/components/ui/Typography/Typography";
 import { MenuIcon } from "lucide-react";
-import Button from "@components/atoms/Button/Button";
+import Button from "@components/ui/Button/Button";
 
 import { useAuth } from "@/auth/useAuth";
 import UserMenu from "../UserMenu/UserMenu";

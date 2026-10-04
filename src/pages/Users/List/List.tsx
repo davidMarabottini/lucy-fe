@@ -1,13 +1,13 @@
-import Card from "@components/atoms/Card/Card";
+import Card from "@components/ui/Card/Card";
 import { useUsers } from "@/hooks/api/useUserHooks";
-import Typography from "@/components/atoms/Typography/Typography";
-import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
+import Typography from "@/components/ui/Typography/Typography";
+import LinkComponent from "@/components/ui/LinkComponent/LinkComponent";
 import { ROUTES } from "@/constants/routes";
 import { Edit2, Eye, PlusCircle, Trash2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import styles from './List.module.scss'
 import { useMe } from "@/hooks/api/useAuthenticationHooks";
-import Button from "@/components/atoms/Button/Button";
+import Button from "@/components/ui/Button/Button";
 import { useState } from "react";
 import type { UsersResult } from "@/api/types";
 import { DeleteModal } from "./components/DeleteModal/DeleteModal";

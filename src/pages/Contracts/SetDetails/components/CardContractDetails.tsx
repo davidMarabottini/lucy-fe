@@ -1,10 +1,10 @@
-import Card from "@components/atoms/Card/Card";
-import Typography from "@components/atoms/Typography/Typography";
+import Card from "@components/ui/Card/Card";
+import Typography from "@/components/ui/Typography/Typography";
 import { useTranslation } from "react-i18next";
 import Paginated from "@/components/organisms/Paginated/Paginated";
 import type { WorkSchedule } from "@/api/types";
 import { useContractSchedules } from "@/hooks/api/useWorkScheduleHooks";
-import Button from "@/components/atoms/Button/Button";
+import Button from "@/components/ui/Button/Button";
 import { Trash2 } from "lucide-react";
 import styles from "../SetDetails.module.scss";
 import Table from "@/components/organisms/Table/Table";

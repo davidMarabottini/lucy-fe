@@ -1,5 +1,5 @@
-import Card from "@components/atoms/Card/Card";
-import Typography from "@components/atoms/Typography/Typography";
+import Card from "@components/ui/Card/Card";
+import Typography from "@/components/ui/Typography/Typography";
 import { useTranslation } from "react-i18next";
 import Paginated from "@/components/organisms/Paginated/Paginated";
 import type { WorkSchedule } from "@/api/types";

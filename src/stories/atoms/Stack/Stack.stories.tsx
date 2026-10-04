@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import './stack.css';
 import { fn } from 'storybook/test';
 
-import Stack from '@components/atoms/Stack/Stack';
+import Stack from '@/components/ui/Stack/Stack';
 
 const meta = {
   title: 'atoms/Stack',

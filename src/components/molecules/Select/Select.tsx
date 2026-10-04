@@ -2,7 +2,7 @@ import { forwardRef, useState, useRef, useLayoutEffect } from "react";
 import { createPortal } from "react-dom";
 import type { SelectProps } from "./Select.types";
 import styles from './Select.module.scss';
-import Input from "../../atoms/Input/Input";
+import Input from "@components/ui/Input/Input";
 import clsx from "clsx";
 
 const Select = forwardRef<HTMLInputElement, SelectProps>(

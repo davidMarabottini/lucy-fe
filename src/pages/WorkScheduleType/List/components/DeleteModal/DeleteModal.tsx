@@ -2,7 +2,7 @@ import { useDeleteWorkScheduleType } from "@/hooks/api/WorkScheduleTypeHooks";
 import styles from "../../List.module.scss";
 import { Check, X } from "lucide-react";
 import { Modal } from "@/components/atoms/Modal/Modal";
-import Button from "@/components/atoms/Button/Button";
+import Button from "@/components/ui/Button/Button";
 import { useTranslation } from "react-i18next";
 import type { DeleteModalProps } from "./DeleteModal.types";
 import Table from "@/components/organisms/Table/Table";

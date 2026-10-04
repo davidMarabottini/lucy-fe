@@ -1,5 +1,5 @@
 // WorkLocationsMap.types.ts
-import type { MapPoint } from '../../atoms/MapComponent/MapComponent.types';
+import type { MapPoint } from '../MapComponent/MapComponent.types';
 
 export interface WorkLocationPoint extends MapPoint {
   radiusInMeters: number;

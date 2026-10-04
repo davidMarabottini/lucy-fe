@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { fn } from 'storybook/test';
 
-import TextArea from '@components/atoms/TextArea/TextArea';
+import TextArea from '@/components/ui/TextArea/TextArea';
 
 const meta = {
   title: 'atoms/TextArea',

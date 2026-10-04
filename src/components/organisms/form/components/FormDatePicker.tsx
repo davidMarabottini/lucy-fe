@@ -1,5 +1,5 @@
 import { Controller, useFormContext, type FieldValues } from "react-hook-form";
-import DatePicker from "@components/atoms/DatePicker/DatePicker";
+import DatePicker from "@components/ui/DatePicker/DatePicker";
 import type { FormDatePickerProps } from "../Form.types";
 
 

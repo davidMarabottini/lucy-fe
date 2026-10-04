@@ -1,5 +1,5 @@
 import { useFormContext } from 'react-hook-form';
-import Button from '@components/atoms/Button/Button';
+import Button from '@components/ui/Button/Button';
 import type { FormButtonProps } from '../Form.types';
 
 const FormButton = ({ children, autoDisabled=true, disabled, type, ...props }: FormButtonProps) => {

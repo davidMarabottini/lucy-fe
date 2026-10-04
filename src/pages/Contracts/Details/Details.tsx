@@ -3,7 +3,7 @@ import { useContractDetail } from "@/hooks/api/ContractHooks";
 import { useTranslation } from "react-i18next";
 import CardContract from "./components/CardContract";
 import CardContractDetails from "./components/CardContractDetails";
-import Card from "@/components/atoms/Card/Card";
+import Card from "@/components/ui/Card/Card";
 import Paginated from "@/components/organisms/Paginated/Paginated";
 import type { LibemaxEmployee } from "@/api/types";
 import { Mail, Phone } from "lucide-react";
@@ -12,7 +12,7 @@ import DetailCard from "@/components/atoms/DetailCard/DetailCard";
 import { useGetEmployeesByContractId } from "@/hooks/api/useEmployeesHooks";
 // import CardEmployee from "./components/CardEmployee";
 import styles from "./Details.module.scss";
-import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
+import LinkComponent from "@/components/ui/LinkComponent/LinkComponent";
 import { ROUTES } from "@/constants/routes";
 import { rewriteRoute } from "@/utils/routes";
 

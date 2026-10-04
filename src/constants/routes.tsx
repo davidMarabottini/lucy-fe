@@ -8,6 +8,7 @@ import {
   Briefcase,
   Layers,
 KeyRound,
+Package,
 } from "lucide-react";
 import React, { lazy, type LazyExoticComponent } from "react";
 import { AUTH_DOMAINS, AVAILABLE_MENUS } from "./configuration";
@@ -145,15 +146,16 @@ export const ROUTE_CONFIGS: readonly AppRouteObject[] = Object.freeze([
   {path: '#', handle: {key: 'SETTINGS', section: ROUTE_SECTIONS.SETTINGS, action: ACTION_TYPES.NONE, label: 'labels.settings',  Icon: Layers, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.USER]}, isOnlyMenu: true, menuAction: (openSettings: () => void) => openSettings() },
 
   {path: '', handle: {key: 'LOGOUT', action: ACTION_TYPES.LOGOUT, section: ROUTE_SECTIONS.AUTH, label: 'labels.logout', Icon: LogOutIcon, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.USER], isOnlyMenu: true, menuAction: (logout: () => void) => logout() } },
+
+  {path: '/store', Element: StoreList, handle: {key: 'STORE_LIST', section: ROUTE_SECTIONS.STORE, action: ACTION_TYPES.VIEW, label: 'labels.storeList', Icon: Package, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.MAIN]}},
+  {path: '/store/insert', Element: StoreInsert, handle: {key: 'STORE_INSERT', section: ROUTE_SECTIONS.STORE, action: ACTION_TYPES.INSERT, label: 'labels.storeInsert', Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
+  {path: '/store/edit/:idStore', Element: StoreInsert, handle: {key: 'STORE_EDIT', section: ROUTE_SECTIONS.STORE, action: ACTION_TYPES.EDIT, label: 'labels.storeEdit', Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
+  {path: '/store/:idStore', Element: StoreDetails, handle: {key: 'STORE_DETAILS', section: ROUTE_SECTIONS.STORE, action: ACTION_TYPES.DETAILS, label: 'labels.storeDetails', domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
+
   {path: '/work-schedule-types', Element: WorkScheduleTypeList, handle: {key: 'WORK_SCHEDULE_TYPE_LIST', section: ROUTE_SECTIONS.WORK_SCHEDULE_TYPES, action: ACTION_TYPES.VIEW, label: 'labels.workScheduleTypes', Icon: Layers, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.MAIN]}},
   {path: '/work-schedule-types/insert', Element: WorkScheduleTypeInsert, handle: {key: 'WORK_SCHEDULE_TYPE_INSERT', section: ROUTE_SECTIONS.WORK_SCHEDULE_TYPES, action: ACTION_TYPES.INSERT, label: 'labels.workScheduleTypeInsert', Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
   {path: '/work-schedule-types/edit/:idWorkScheduleType', Element: WorkScheduleTypeInsert, handle: {key: 'WORK_SCHEDULE_TYPE_EDIT', section: ROUTE_SECTIONS.WORK_SCHEDULE_TYPES, action: ACTION_TYPES.EDIT, label: 'labels.workScheduleTypeInsert', Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
   {path: '/work-schedule-types/:idWorkScheduleType', Element: WorkScheduleTypeDetails, handle: {key: 'WORK_SCHEDULE_TYPE_DETAILS', section: ROUTE_SECTIONS.WORK_SCHEDULE_TYPES, action: ACTION_TYPES.DETAILS, label: 'labels.workScheduleTypeDetails', domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
-
-  {path: '/store', Element: StoreList, handle: {key: 'STORE_LIST', section: ROUTE_SECTIONS.STORE, action: ACTION_TYPES.VIEW, label: 'labels.storeList', Icon: Layers, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.MAIN]}},
-  {path: '/store/insert', Element: StoreInsert, handle: {key: 'STORE_INSERT', section: ROUTE_SECTIONS.STORE, action: ACTION_TYPES.INSERT, label: 'labels.storeInsert', Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
-  {path: '/store/edit/:idStore', Element: StoreInsert, handle: {key: 'STORE_EDIT', section: ROUTE_SECTIONS.STORE, action: ACTION_TYPES.EDIT, label: 'labels.storeEdit', Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
-  {path: '/store/:idStore', Element: StoreDetails, handle: {key: 'STORE_DETAILS', section: ROUTE_SECTIONS.STORE, action: ACTION_TYPES.DETAILS, label: 'labels.storeDetails', domain: [AUTH_DOMAINS.PRIVATE], menu: []}},
 
   {path: '/contracts', Element: ContractList, handle: {key: 'CONTRACT_LIST', section: ROUTE_SECTIONS.CONTRACTS, action: ACTION_TYPES.VIEW, label: 'labels.contractList', Icon: Briefcase, domain: [AUTH_DOMAINS.PRIVATE], menu: [AVAILABLE_MENUS.MAIN]}},
   {path: '/contracts/insert', Element: ContractInsert, handle: {key: 'CONTRACT_INSERT', section: ROUTE_SECTIONS.CONTRACTS, action: ACTION_TYPES.INSERT, label: 'labels.contractInsert', Icon: Plus, domain: [AUTH_DOMAINS.PRIVATE], menu: []}},

@@ -1,13 +1,13 @@
 import type { ReactNode } from "react";
 import type { UseFormReturn, FieldValues, Path, DefaultValues, RegisterOptions, UseFormProps } from "react-hook-form";
 import type { ButtonProps } from "../../atoms/Button/Button.types";
-import type { InputProps } from "../../atoms/Input/Input.types";
-import type { TextAreaProps } from "../../atoms/TextArea/TextArea.types";
+import type { InputProps } from "@components/ui/Input/Input.types";
+import type { TextAreaProps } from "../../ui/TextArea/TextArea.types";
 import type { RadioBtnProps, RadioOptionBase } from "../../atoms/RadioBtn/RadioBtn.types";
 import type { SelectProps } from "../../molecules/Select/Select.types";
-import type { SwitchProps } from "@/components/atoms/Switch/Switch.types";
+import type { SwitchProps } from "@/components/ui/Switch/Switch.types";
 import type { DualListBoxProps } from "@/components/atoms/DualListBox/DualListBox.types";
-import type { DatePickerProps } from "@/components/atoms/DatePicker/DatePicker";
+import type { DatePickerProps } from "@/components/ui/DatePicker/DatePicker";
 import type { FilteredDualListProps } from "@/components/molecules/FilteredDualListBox/FilteredDualListBox.types";
 
 type FormBase = Omit<React.FormHTMLAttributes<HTMLFormElement>, 'children' | 'onSubmit'>;

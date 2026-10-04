@@ -1,6 +1,6 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
-import Stack from "../Stack/Stack";
+import Stack from "../../ui/Stack/Stack";
 import styles from "./Modal.module.scss";
 import { type ModalProp } from "./Modal.types";
 

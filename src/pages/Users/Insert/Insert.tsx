@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Card from '@components/atoms/Card/Card';
+import Card from '@components/ui/Card/Card';
 import clsx from 'clsx';
 import styles from "./Insert.module.scss";
 import { useTranslation } from 'react-i18next';
 import Form from '@components/organisms/form/Form';
-import Stack from '@components/atoms/Stack/Stack';
+import Stack from '@/components/ui/Stack/Stack';
 import type { RegistrationForm } from './Insert.types';
 import { useInsertUser, useUpdateUser, useUserDetail } from '@/hooks/api/useUserHooks';
 import { VALIDATIONS_EMAIL } from '@constants/validations';
 import { ROUTES } from '@constants/routes';
-import Typography from '@components/atoms/Typography/Typography';
+import Typography from '@/components/ui/Typography/Typography';
 import { Check, ChevronLeft, X } from 'lucide-react';
-import LinkComponent from '@/components/atoms/LinkComponent/LinkComponent';
-import Switch from '@/components/atoms/Switch/Switch';
+import LinkComponent from '@/components/ui/LinkComponent/LinkComponent';
+import Switch from '@/components/ui/Switch/Switch';
 import type { UseFormReturn } from 'react-hook-form';
 
 const Registration = () => {

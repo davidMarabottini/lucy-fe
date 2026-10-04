@@ -1,8 +1,8 @@
-import Card from "@components/atoms/Card/Card";
-import Typography from "@components/atoms/Typography/Typography";
+import Card from "@components/ui/Card/Card";
+import Typography from "@/components/ui/Typography/Typography";
 import { useParams } from "react-router-dom";
 import { useEmployeeDetail } from "@/hooks/api/useEmployeesHooks";
-import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
+import LinkComponent from "@/components/ui/LinkComponent/LinkComponent";
 import { ROUTES } from "@/constants/routes";
 import { ChevronLeft } from "lucide-react";
 import styles from './Details.module.scss'

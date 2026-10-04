@@ -1,5 +1,5 @@
-import Button from '@/components/atoms/Button/Button';
-import Input from '@/components/atoms/Input/Input';
+import Button from '@/components/ui/Button/Button';
+import Input from '@/components/ui/Input/Input';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import styles from './Paginated.module.scss';
 import { useDebounce } from '@/hooks/useDebounce';

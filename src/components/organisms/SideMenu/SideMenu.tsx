@@ -1,6 +1,6 @@
 import * as Dialog from '@radix-ui/react-dialog';
 // import clsx from 'clsx';
-import Typography from '@components/atoms/Typography/Typography';
+import Typography from '@/components/ui/Typography/Typography';
 import styles from './SideMenu.module.scss';
 import { useTranslation } from 'react-i18next';
 import { useMenuStore } from '@/zustand/menuState';

@@ -1,19 +1,20 @@
-import Card from "@/components/atoms/Card/Card";
-import Typography from "@/components/atoms/Typography/Typography";
+import Card from "@/components/ui/Card/Card";
+import Typography from "@/components/ui/Typography/Typography";
 import styles from './Home.module.scss';
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
-import { routesBySection, ROUTE_SECTIONS } from "@/constants/routes";
-import DetailCard from "@/components/atoms/DetailCard/DetailCard";
-import LinkComponent from "@/components/atoms/LinkComponent/LinkComponent";
-import { List, Minus, Plus, Sheet } from "lucide-react";
+import { routesBySection, ROUTE_SECTIONS, ROUTES } from "@/constants/routes";
+// import DetailCard from "@/components/atoms/DetailCard/DetailCard";
+import LinkComponent from "@/components/ui/LinkComponent/LinkComponent";
+import { Minus, Plus, Ruler } from "lucide-react";
 import { useCounts, useExportGeneralExcel, useWorkedHours } from "@/hooks/api/useHomeHooks";
-import Button from "@/components/atoms/Button/Button";
+// import Button from "@/components/ui/Button/Button";
 import Table from "@/components/organisms/Table/Table";
 import type { ClienteReport } from "@/api/types";
 import RadioBtn from "@/components/atoms/RadioBtn/RadioBtn";
 import { ICON_PRESET } from "@/components/atoms/RadioBtn/presets/icon.presets";
-import MapContent from "@/components/molecules/MapContent/MapContent";
+import MapContent from "@/components/geoMap/MapContent/MapContent";
+import { rewriteRoute } from "@/utils/routes";
 
 const Home = () => {
   const {classBase, ...iconPresetRest} = ICON_PRESET;
@@ -24,18 +25,25 @@ const Home = () => {
   const { mutate: exportExcel } = useExportGeneralExcel();
   const { data: workedHours, isLoading: workedHoursLoading, error: workedHoursError, isFetched: workedHoursFetched } = useWorkedHours();
 
-  const positives = (workedHours || []).filter(({ differenza_ore }) => differenza_ore > 0);
-  const negatives = (workedHours || []).filter(({ differenza_ore }) => differenza_ore <= 0);
+  const positives = (workedHours || []).filter(({ differenza_ore }) => differenza_ore > 0).toSorted((a, b) => b.differenza_ore - a.differenza_ore);
+  const negatives = (workedHours || []).filter(({ differenza_ore }) => differenza_ore <= 0).toSorted((a, b) => a.differenza_ore - b.differenza_ore);
+  const distance = (workedHours || []).toSorted((a, b) => b.distanza_media_metri - a.distanza_media_metri);
   const positivNegative = [
     { label: "Positive", value: "positives", Icon: Plus },
-    { label: "Negative", value: "negatives", Icon: Minus }
+    { label: "Negative", value: "negatives", Icon: Minus },
+    { label: "Distance", value: "distance", Icon: Ruler }
   ];
   const [selectedPositiveNegative, setSelectedPositiveNegative] = useState(positivNegative[0].value);
 
-  const curDataSet = selectedPositiveNegative === "negatives" ? negatives : positives;
+  const curDataSet = selectedPositiveNegative === "negatives" ? negatives : selectedPositiveNegative === "distance" ? distance : positives;
   return (
     <>
     <Card additionalClassName={styles["p-home"]}>
+      <Typography variant="h1">
+        HOME
+      </Typography>
+    </Card>
+    {/* <Card additionalClassName={styles["p-home"]}>
       <div className={styles["p-home__grid"]}>
         {filteredRouteSections.map(sectionKey => (
           <DetailCard
@@ -76,7 +84,7 @@ const Home = () => {
           />
         ))}
       </div>
-    </Card>
+    </Card> */}
     <Card additionalClassName={styles["p-home"]}>
       <RadioBtn
         name="map-graphic"
@@ -95,6 +103,7 @@ const Home = () => {
           {
             key: "cliente",
             header: "Cliente",
+            value: ({ cliente, id_cliente }) => <LinkComponent to={rewriteRoute(ROUTES.CLIENT_DETAIL, { ':clientId': id_cliente })}>{cliente}</LinkComponent>,
           },
           {
             key: "coordinate",
@@ -118,7 +127,7 @@ const Home = () => {
             header: "Differenza Ore"
           },
         ]}
-        data={curDataSet.toSorted((a, b) => b.differenza_ore - a.differenza_ore)}
+        data={curDataSet}
       />}
     </Card>
     <Card additionalClassName={styles["p-home"]}>
@@ -139,10 +148,10 @@ const Home = () => {
             return (
               <div>
                 <strong>{report.cliente}</strong>
-                <p>Ore lavorate: {report.ore_lavorate}</p>
-                <p>Ore teoriche: {report.ore_teoriche}</p>
-                <p>Differenza: {report.differenza_ore}</p>
-                <p>Distanza media: {report.distanza_media_metri}m</p>
+                <p style={{ fontWeight: 'normal' }}>Ore lavorate: {report.ore_lavorate}</p>
+                <p style={{ fontWeight: 'normal' }}>Ore teoriche: {report.ore_teoriche}</p>
+                <p style={{ fontWeight: 'normal' }}>Differenza: {report.differenza_ore}</p>
+                <p style={{ fontWeight: 'normal' }}>Distanza media: {report.distanza_media_metri}m</p>
               </div>
             );
           },

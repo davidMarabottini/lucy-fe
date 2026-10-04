@@ -1,5 +1,5 @@
 import { Controller, useFormContext, type FieldValues } from 'react-hook-form';
-import DualListBox from '@components/atoms/DualListBox/DualListBox';
+import DualListBox from '@components/ui/DualListBox/DualListBox';
 import type { FormDualListBoxProps } from '../Form.types';
 
 const FormDualListBox = <T extends FieldValues>({ name, rules, ...props }: FormDualListBoxProps<T>) => {

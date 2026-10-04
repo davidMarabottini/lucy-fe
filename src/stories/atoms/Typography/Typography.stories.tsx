@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Typography from '@components/atoms/Typography/Typography';
+import Typography from '@/components/ui/Typography/Typography';
 
 const meta: Meta<typeof Typography> = {
   title: 'atoms/Typography',
